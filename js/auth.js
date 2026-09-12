@@ -201,35 +201,6 @@ function enterApp(username) {
     // Mostra il nome
     document.getElementById('welcome_user').textContent =
         'Bentornato ' + username + '!';
-}
-async function loadCredits() {
-
-    const { data: sessionData, error: sessionError } =
-        await supabaseClient.auth.getSession();
-
-    if (sessionError || !sessionData.session) {
-        console.error('Sessione non trovata:', sessionError);
-        return;
-    }
-
-    const userId = sessionData.session.user.id;
-
-    const { data, error } =
-        await supabaseClient
-            .from('score_credit_transactions')
-            .select('amount')
-            .eq('user_id', userId);
-
-    if (error) {
-        console.error('Errore caricamento crediti:', error);
-        return;
-    }
-
-    const balance = data.reduce(
-        (total, transaction) => total + transaction.amount,
-        0
-    );
-
-    document.getElementById('credit_balance').textContent =
-        balance + ' crediti';
+    // Carica i crediti
+    loadCredits();
 }
