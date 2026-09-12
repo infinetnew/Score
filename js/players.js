@@ -59,7 +59,7 @@ async function showPlayersByRole(role) {
         return;
     }
 
-    // 2. Recupera tutti i giocatori già acquistati nella giornata
+    // 2. Giocatori già acquistati da QUALSIASI utente
     const { data: purchases, error: purchasesError } =
         await supabaseClient.rpc(
             'score_get_purchased_players',
@@ -72,25 +72,12 @@ async function showPlayersByRole(role) {
         return;
     }
 
-    // 3. Recupera l'utente attualmente loggato
-    const { data: sessionData, error: sessionError } =
-        await supabaseClient.auth.getSession();
-
-    if (sessionError || !sessionData.session) {
-        console.error('Sessione non trovata:', sessionError);
-        container.innerHTML = 'Sessione non valida.';
-        return;
-    }
-
-    const userId = sessionData.session.user.id;
-
-    // 4. Recupera gli acquisti fatti da QUESTO utente nella giornata
+    // 3. Giocatori acquistati da QUESTO utente
     const { data: myPurchases, error: myPurchasesError } =
-        await supabaseClient
-            .from('score_purchases')
-            .select('player_id')
-            .eq('user_id', userId)
-            .eq('matchday', 1);
+        await supabaseClient.rpc(
+            'score_get_my_purchases',
+            { p_matchday: 1 }
+        );
 
     if (myPurchasesError) {
         console.error('Errore caricamento tuoi acquisti:', myPurchasesError);
@@ -98,25 +85,18 @@ async function showPlayersByRole(role) {
         return;
     }
 
-    // 5. Controlla se l'utente ha già acquistato questo ruolo
-    const myPurchasedPlayerIds = new Set(
-        myPurchases.map(purchase => purchase.player_id)
+    // 4. Controlla se questo utente ha già acquistato il ruolo
+    const alreadyHaveRole = myPurchases.some(
+        purchase => purchase.role === role
     );
 
-    const myPlayers = players.filter(
-        player => myPurchasedPlayerIds.has(player.id)
-    );
-
-    const alreadyHaveRole = myPlayers.length > 0;
-
-    // Se ho già un giocatore di questo ruolo, non mostro il mercato
     if (alreadyHaveRole) {
         container.innerHTML =
             'Hai già acquistato un giocatore per questo ruolo.';
         return;
     }
 
-    // 6. Elimina i giocatori già acquistati da QUALSIASI utente
+    // 5. Elimina i giocatori già acquistati da QUALSIASI utente
     const purchasedPlayerIds = new Set(
         purchases.map(purchase => purchase.player_id)
     );
@@ -127,7 +107,7 @@ async function showPlayersByRole(role) {
 
     container.innerHTML = '';
 
-    // 7. Mostra i giocatori ancora disponibili
+    // 6. Mostra i giocatori disponibili
     availablePlayers.forEach(player => {
 
         const row = document.createElement('div');
