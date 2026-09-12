@@ -59,6 +59,18 @@ if (purchasesError) {
     container.innerHTML = 'Errore nel caricamento degli acquisti.';
     return;
 }
+// Il calcolo degli scontri è possibile solo quando
+// tutti i giocatori acquistati hanno ricevuto un voto.
+
+const calculateButton =
+    document.getElementById('calculate_matches');
+
+const completeButton =
+    document.getElementById('complete_matchday');
+
+// Di default: calcolo disabilitato
+calculateButton.disabled = true;
+completeButton.disabled = true;
 
 
 // Recupera i voti già inseriti per questa giornata
@@ -75,6 +87,42 @@ if (ratingsError) {
     console.error(ratingsError);
     container.innerHTML = 'Errore nel caricamento dei voti.';
     return;
+}
+// Controlla se tutti gli acquisti hanno un voto
+const allRatingsInserted =
+    purchases &&
+    purchases.length > 0 &&
+    purchases.every(purchase =>
+        ratings.some(rating =>
+            rating.player_id === purchase.player_id
+        )
+    );
+
+// Controlla se gli scontri sono già stati calcolati
+const { data: h2hMatches, error: h2hError } =
+    await supabaseClient
+        .from('score_h2h_matches')
+        .select('status')
+        .eq('matchday', matchday);
+
+if (h2hError) {
+    console.error('H2H ERROR:', h2hError);
+} else {
+
+    const allCalculated =
+        h2hMatches &&
+        h2hMatches.length > 0 &&
+        h2hMatches.every(match =>
+            match.status === 'calculated'
+        );
+
+    if (allCalculated) {
+        calculateButton.disabled = true;
+        completeButton.disabled = false;
+    } else {
+        calculateButton.disabled = !allRatingsInserted;
+        completeButton.disabled = true;
+    }
 }
 
 container.innerHTML = '';
