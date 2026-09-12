@@ -89,12 +89,15 @@ Object.keys(groupedPurchases).forEach(username => {
 
     userSection.style.marginBottom = '25px';
 
-userSection.innerHTML = `
-    <h3>
-        👤 ${username}
-        — Totale: <span id="total_${username}">0</span>
-    </h3>
-`;
+    userSection.innerHTML = `
+        <h3>👤 ${username} — Totale: 
+            <span class="user-total">0</span>
+        </h3>
+    `;
+
+    const totalElement = userSection.querySelector('.user-total');
+
+    let total = 0;
 
     groupedPurchases[username].forEach(purchase => {
 
@@ -103,33 +106,46 @@ userSection.innerHTML = `
         row.style.padding = '10px';
         row.style.borderBottom = '1px solid #ddd';
 
+        const savedRating = savedRatings[purchase.player_id];
+
+        if (savedRating !== undefined) {
+            total += parseFloat(savedRating);
+        }
+
         row.innerHTML = `
             <strong>${purchase.player_name}</strong>
             - ${purchase.team}
 
-<input
-    type="number"
-    min="0"
-    max="10"
-    step="0.5"
-    placeholder="Voto"
-    id="rating_${purchase.player_id}"
-    value="${savedRatings[purchase.player_id] ?? ''}"
-    ${savedRatings[purchase.player_id] !== undefined ? 'disabled' : ''}
-    style="width:70px; margin-left:10px;"
->
+            <input
+                type="number"
+                min="0"
+                max="10"
+                step="0.5"
+                placeholder="Voto"
+                id="rating_${purchase.player_id}"
+                value="${savedRating ?? ''}"
+                ${savedRating !== undefined ? 'disabled' : ''}
+                style="width:70px; margin-left:10px;"
+            >
 
-<button
-    onclick="saveRating(${purchase.player_id}, ${matchday})"
-    ${savedRatings[purchase.player_id] !== undefined ? 'disabled' : ''}
-    style="margin-left:5px;"
->
-    ${savedRatings[purchase.player_id] !== undefined ? '✓ SALVATO' : 'SALVA'}
-</button>
+            ${
+                savedRating === undefined
+                ? `
+                    <button
+                        onclick="saveRating(${purchase.player_id}, ${matchday})"
+                        style="margin-left:5px;"
+                    >
+                        SALVA
+                    </button>
+                `
+                : ''
+            }
         `;
 
         userSection.appendChild(row);
     });
+
+    totalElement.textContent = total.toFixed(1);
 
     container.appendChild(userSection);
 });
@@ -187,5 +203,26 @@ const button = input.parentElement.querySelector('button');
 
 if (button) {
     button.remove();
+}
+
+const userSection = input.closest('div').parentElement;
+
+const totalElement = userSection.querySelector('.user-total');
+
+if (totalElement) {
+
+    let total = 0;
+
+    const inputs = userSection.querySelectorAll('input[type="number"]');
+
+    inputs.forEach(input => {
+
+        if (input.value !== '') {
+            total += parseFloat(input.value);
+        }
+
+    });
+
+    totalElement.textContent = total.toFixed(1);
 }
 }
