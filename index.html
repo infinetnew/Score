@@ -112,7 +112,10 @@
 
     <p>La tua settimana SCORE</p>
 
-
+<section id="admin_section" style="display:none;">
+    <h3>⚙️ ADMIN</h3>
+    <button id="open_admin">GESTIONE VOTI</button>
+</section>
     <!-- CREDITI -->
     <section>
         <h3>💰 CREDITI</h3>
@@ -253,7 +256,7 @@ auth: {
             const { data: profile, error } =
                 await supabaseClient
                     .from('score_users')
-                    .select('username')
+                    .select('username, is_admin')
                     .eq('id', user.id)
                     .single();
 
@@ -280,6 +283,9 @@ auth: {
             // Mostriamo il nome
             document.getElementById('welcome_user').textContent =
                 'Bentornato ' + username + '!';
+if (profile.is_admin) {
+    document.getElementById('admin_section').style.display = 'block';
+}
 loadCredits();
 
         });
