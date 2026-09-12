@@ -40,6 +40,8 @@ console.log('MATCHDAY ERROR:', matchdayError);
                 )
             `)
             .eq('matchday', matchday);
+console.log('PURCHASES:', purchases);
+console.log('PURCHASES ERROR:', purchasesError);
 
     if (purchasesError) {
         console.error(purchasesError);
