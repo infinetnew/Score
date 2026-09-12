@@ -150,8 +150,7 @@ Object.keys(groupedPurchases).forEach(username => {
     container.appendChild(userSection);
 });
 
-const calculateButton =
-    document.getElementById('calculate_matches')
+document.getElementById('calculate_matches')
     .addEventListener('click', async () => {
 
         const { data: matchday, error: matchdayError } =
@@ -179,15 +178,49 @@ const calculateButton =
 
         console.log('Scontri calcolati:', data);
 
-        // Cambia il pulsante
         const button =
             document.getElementById('calculate_matches');
 
         button.textContent = 'SCONTRI CALCOLATI';
         button.disabled = true;
 
-        // Abilita CONCLUDI GIORNATA
         document.getElementById('complete_matchday').disabled = false;
+    });
+document.getElementById('complete_matchday')
+    .addEventListener('click', async () => {
+
+        const { data: matchday, error: matchdayError } =
+            await supabaseClient.rpc('score_get_active_matchday');
+
+        if (matchdayError || !matchday) {
+            console.error(matchdayError);
+            alert('Impossibile recuperare la giornata attiva.');
+            return;
+        }
+
+        const { data, error } =
+            await supabaseClient.rpc(
+                'score_complete_matchday',
+                {
+                    p_matchday: matchday
+                }
+            );
+
+        if (error) {
+            console.error('Errore conclusione giornata:', error);
+            alert(error.message);
+            return;
+        }
+
+        console.log('Giornata conclusa:', data);
+
+        const button =
+            document.getElementById('complete_matchday');
+
+        button.textContent = 'GIORNATA CONCLUSA';
+        button.disabled = true;
+
+        await openAdmin();
     });
 async function saveRating(playerId, matchday) {
 
