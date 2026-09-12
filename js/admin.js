@@ -21,26 +21,7 @@ console.log('MATCHDAY ERROR:', matchdayError);
 
     document.getElementById('admin_matchday').textContent =
         `Giornata ${matchday}`;
-const { data: h2hMatches, error: h2hError } =
-    await supabaseClient
-        .from('score_h2h_matches')
-        .select('status')
-        .eq('matchday', matchday);
 
-console.log('H2H:', h2hMatches);
-console.log('H2H ERROR:', h2hError);
-
-if (!h2hError && h2hMatches && h2hMatches.length > 0) {
-
-    const allCalculated =
-        h2hMatches.every(match => match.status === 'calculated');
-
-    document.getElementById('calculate_matches').disabled =
-        allCalculated;
-
-    document.getElementById('complete_matchday').disabled =
-        !allCalculated;
-}
 
     // Recupera gli acquisti della giornata
 const { data: purchases, error: purchasesError } =
