@@ -46,22 +46,45 @@ async function showPlayersByRole(role) {
 
     container.innerHTML = 'Caricamento...';
 
-    const { data, error } = await supabaseClient
+    // Carica tutti i giocatori disponibili del ruolo
+    const { data: players, error: playersError } = await supabaseClient
         .from('score_players')
         .select('id, name, role, team, price')
         .eq('available', true)
         .eq('role', role)
         .order('price', { ascending: false });
 
-    if (error) {
-        console.error('Errore caricamento giocatori:', error);
+    if (playersError) {
+        console.error('Errore caricamento giocatori:', playersError);
         container.innerHTML = 'Errore nel caricamento dei giocatori.';
         return;
     }
 
+    // Carica i giocatori già acquistati nella giornata 1
+    const { data: purchases, error: purchasesError } = await supabaseClient
+        .from('score_purchases')
+        .select('player_id')
+        .eq('matchday', 1);
+
+    if (purchasesError) {
+        console.error('Errore caricamento acquisti:', purchasesError);
+        container.innerHTML = 'Errore nel controllo dei giocatori acquistati.';
+        return;
+    }
+
+    // Creiamo un elenco degli ID già acquistati
+    const purchasedPlayerIds = new Set(
+        purchases.map(purchase => purchase.player_id)
+    );
+
+    // Mostriamo solamente i giocatori ancora liberi
+    const availablePlayers = players.filter(
+        player => !purchasedPlayerIds.has(player.id)
+    );
+
     container.innerHTML = '';
 
-    data.forEach(player => {
+    availablePlayers.forEach(player => {
 
         const row = document.createElement('div');
 
@@ -81,6 +104,10 @@ async function showPlayersByRole(role) {
 
         container.appendChild(row);
     });
+
+    if (availablePlayers.length === 0) {
+        container.innerHTML = 'Nessun giocatore disponibile.';
+    }
 }
 
 
