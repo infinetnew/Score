@@ -4,43 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCORE</title>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #question {
+            font-size: 24px;
+            margin: 30px 0 20px;
+        }
+
+        .option {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
 
     <h1>SCORE</h1>
-    <p>La nostra nuova sfida di calcio.</p>
+
+    <div id="question">Caricamento domanda...</div>
+
+    <button class="option" id="option_a"></button>
+    <button class="option" id="option_b"></button>
+    <button class="option" id="option_c"></button>
+    <button class="option" id="option_d"></button>
 
     <script>
         const SUPABASE_URL = 'https://fkudvfkjjxmcbppvfinf.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZrdWR2ZmtqanhtY2JwcHZmaW5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MzY3NzgsImV4cCI6MjA5NjMxMjc3OH0.iVb5dD1ySIogTJKhvpGlUkmi5PusSRMyG0EmmGAlrF8';
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY,
-    {
-        auth: {
-            persistSession: false,
-            autoRefreshToken: false
+        const supabaseClient = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_ANON_KEY,
+            {
+                auth: {
+                    persistSession: false,
+                    autoRefreshToken: false
+                }
+            }
+        );
+
+        async function loadQuestion() {
+
+            const { data, error } = await supabaseClient
+                .from('score_questions')
+                .select('*')
+                .limit(1);
+
+            if (error) {
+                console.error('Errore Supabase:', error);
+                document.getElementById('question').textContent =
+                    'Errore nel caricamento della domanda.';
+                return;
+            }
+
+            if (!data || data.length === 0) {
+                document.getElementById('question').textContent =
+                    'Nessuna domanda disponibile.';
+                return;
+            }
+
+            const question = data[0];
+
+            document.getElementById('question').textContent =
+                question.question;
+
+            document.getElementById('option_a').textContent =
+                question.option_a;
+
+            document.getElementById('option_b').textContent =
+                question.option_b;
+
+            document.getElementById('option_c').textContent =
+                question.option_c;
+
+            document.getElementById('option_d').textContent =
+                question.option_d;
         }
-    }
-);
 
-async function testSupabase() {
-    const { data, error } = await supabaseClient
-        .from('score_questions')
-        .select('*')
-        .limit(1);
-
-    if (error) {
-        console.error('Errore Supabase:', error);
-        return;
-    }
-
-    console.log('Domanda ricevuta da Supabase:', data);
-}
-
-testSupabase();
+        loadQuestion();
     </script>
 
 </body>
