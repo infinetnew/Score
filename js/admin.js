@@ -232,4 +232,5 @@ if (totalElement) {
 
     totalElement.textContent = total.toFixed(1);
 }
+await openAdmin();
 }
