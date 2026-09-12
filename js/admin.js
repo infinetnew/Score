@@ -23,23 +23,14 @@ console.log('MATCHDAY ERROR:', matchdayError);
         `Giornata ${matchday}`;
 
     // Recupera gli acquisti della giornata
-    const { data: purchases, error: purchasesError } =
-        await supabaseClient
-            .from('score_purchases')
-            .select(`
-                player_id,
-                user_id,
-                price,
-                score_players (
-                    name,
-                    team,
-                    role
-                ),
-                score_users (
-                    username
-                )
-            `)
-            .eq('matchday', matchday);
+const { data: purchases, error: purchasesError } =
+    await supabaseClient.rpc(
+        'score_get_admin_purchases',
+        {
+            p_matchday: matchday
+        }
+    );
+
 console.log('PURCHASES:', purchases);
 console.log('PURCHASES ERROR:', purchasesError);
 
@@ -56,24 +47,21 @@ console.log('PURCHASES ERROR:', purchasesError);
         return;
     }
 
-    purchases.forEach(purchase => {
+purchases.forEach(purchase => {
 
-        const player = purchase.score_players;
-        const user = purchase.score_users;
+    const row = document.createElement('div');
 
-        const row = document.createElement('div');
+    row.style.padding = '10px';
+    row.style.borderBottom = '1px solid #ddd';
 
-        row.style.padding = '10px';
-        row.style.borderBottom = '1px solid #ddd';
+    row.innerHTML = `
+        <strong>${purchase.player_name}</strong>
+        - ${purchase.team}
+        - ${purchase.username}
+    `;
 
-        row.innerHTML = `
-            <strong>${player.name}</strong>
-            - ${player.team}
-            - ${user.username}
-        `;
-
-        container.appendChild(row);
-    });
+    container.appendChild(row);
+});
 }
 
 document.getElementById('open_admin')
