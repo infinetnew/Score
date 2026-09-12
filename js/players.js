@@ -13,3 +13,4 @@ async function loadPlayers() {
 
     console.log('Giocatori caricati:', data);
 }
+loadPlayers();
