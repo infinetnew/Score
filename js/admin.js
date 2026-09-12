@@ -149,6 +149,13 @@ Object.keys(groupedPurchases).forEach(username => {
 
     container.appendChild(userSection);
 });
+
+const calculateButton =
+    document.getElementById('calculate_matches');
+
+if (ratings.length === purchases.length) {
+    calculateButton.disabled = false;
+}
 }
 
 document.getElementById('open_admin')
