@@ -10,6 +10,8 @@ async function openAdmin() {
     // Recupera la giornata attiva
     const { data: matchday, error: matchdayError } =
         await supabaseClient.rpc('score_get_active_matchday');
+console.log('MATCHDAY:', matchday);
+console.log('MATCHDAY ERROR:', matchdayError);
 
     if (matchdayError || !matchday) {
         console.error(matchdayError);
