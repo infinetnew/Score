@@ -46,7 +46,7 @@ async function showPlayersByRole(role) {
 
     container.innerHTML = 'Caricamento...';
 
-    // Carica tutti i giocatori disponibili del ruolo
+    // Carica i giocatori del ruolo
     const { data: players, error: playersError } = await supabaseClient
         .from('score_players')
         .select('id, name, role, team, price')
@@ -60,24 +60,25 @@ async function showPlayersByRole(role) {
         return;
     }
 
-    // Carica i giocatori già acquistati nella giornata 1
-    const { data: purchases, error: purchasesError } = await supabaseClient
-        .from('score_purchases')
-        .select('player_id')
-        .eq('matchday', 1);
+    // Recupera gli ID dei giocatori già acquistati nella giornata
+    const { data: purchases, error: purchasesError } =
+        await supabaseClient.rpc(
+            'score_get_purchased_players',
+            { p_matchday: 1 }
+        );
 
     if (purchasesError) {
-        console.error('Errore caricamento acquisti:', purchasesError);
-        container.innerHTML = 'Errore nel controllo dei giocatori acquistati.';
+        console.error('Errore controllo giocatori acquistati:', purchasesError);
+        container.innerHTML = 'Errore nel controllo dei giocatori disponibili.';
         return;
     }
 
-    // Creiamo un elenco degli ID già acquistati
+    // Crea un elenco degli ID già acquistati
     const purchasedPlayerIds = new Set(
         purchases.map(purchase => purchase.player_id)
     );
 
-    // Mostriamo solamente i giocatori ancora liberi
+    // Togli dalla lista i giocatori già acquistati
     const availablePlayers = players.filter(
         player => !purchasedPlayerIds.has(player.id)
     );
