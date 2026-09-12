@@ -34,13 +34,35 @@ const { data: purchases, error: purchasesError } =
 console.log('PURCHASES:', purchases);
 console.log('PURCHASES ERROR:', purchasesError);
 
-    if (purchasesError) {
-        console.error(purchasesError);
-        container.innerHTML = 'Errore nel caricamento degli acquisti.';
-        return;
-    }
+if (purchasesError) {
+    console.error(purchasesError);
+    container.innerHTML = 'Errore nel caricamento degli acquisti.';
+    return;
+}
 
-    container.innerHTML = '';
+
+// Recupera i voti già inseriti per questa giornata
+const { data: ratings, error: ratingsError } =
+    await supabaseClient
+        .from('score_player_ratings')
+        .select('player_id, rating')
+        .eq('matchday', matchday);
+
+console.log('RATINGS:', ratings);
+console.log('RATINGS ERROR:', ratingsError);
+
+if (ratingsError) {
+    console.error(ratingsError);
+    container.innerHTML = 'Errore nel caricamento dei voti.';
+    return;
+}
+
+container.innerHTML = '';
+const savedRatings = {};
+
+ratings.forEach(rating => {
+    savedRatings[rating.player_id] = rating.rating;
+});
 
     if (!purchases || purchases.length === 0) {
         container.innerHTML = 'Nessun giocatore acquistato.';
@@ -82,22 +104,25 @@ Object.keys(groupedPurchases).forEach(username => {
             <strong>${purchase.player_name}</strong>
             - ${purchase.team}
 
-            <input
-                type="number"
-                min="0"
-                max="10"
-                step="0.5"
-                placeholder="Voto"
-                id="rating_${purchase.player_id}"
-                style="width:70px; margin-left:10px;"
-            >
+<input
+    type="number"
+    min="0"
+    max="10"
+    step="0.5"
+    placeholder="Voto"
+    id="rating_${purchase.player_id}"
+    value="${savedRatings[purchase.player_id] ?? ''}"
+    ${savedRatings[purchase.player_id] !== undefined ? 'disabled' : ''}
+    style="width:70px; margin-left:10px;"
+>
 
-            <button
-                onclick="saveRating(${purchase.player_id}, ${matchday})"
-                style="margin-left:5px;"
-            >
-                SALVA
-            </button>
+<button
+    onclick="saveRating(${purchase.player_id}, ${matchday})"
+    ${savedRatings[purchase.player_id] !== undefined ? 'disabled' : ''}
+    style="margin-left:5px;"
+>
+    ${savedRatings[purchase.player_id] !== undefined ? '✓ SALVATO' : 'SALVA'}
+</button>
         `;
 
         userSection.appendChild(row);
@@ -153,7 +178,14 @@ async function saveRating(playerId, matchday) {
         return;
     }
 
-    alert(`Voto ${rating} salvato!`);
+alert(`Voto ${rating} salvato!`);
 
-    console.log('VOTO SALVATO:', data);
+input.disabled = true;
+
+const button = input.parentElement.querySelector('button');
+
+if (button) {
+    button.disabled = true;
+    button.textContent = '✓ SALVATO';
+}
 }
