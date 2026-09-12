@@ -45,7 +45,17 @@ async function showPlayersByRole(role) {
 
     container.innerHTML = 'Caricamento...';
 
-    // 1. Carica i giocatori del ruolo
+    // Recupera la giornata attualmente attiva
+    const { data: matchday, error: matchdayError } =
+        await supabaseClient.rpc('score_get_active_matchday');
+
+    if (matchdayError || !matchday) {
+        console.error('Errore recupero giornata attiva:', matchdayError);
+        container.innerHTML = 'Nessuna giornata attiva.';
+        return;
+    }
+
+    // Carica i giocatori del ruolo
     const { data: players, error: playersError } = await supabaseClient
         .from('score_players')
         .select('id, name, role, team, price')
@@ -59,11 +69,11 @@ async function showPlayersByRole(role) {
         return;
     }
 
-    // 2. Giocatori già acquistati da QUALSIASI utente
+    // Giocatori già acquistati da QUALSIASI utente
     const { data: purchases, error: purchasesError } =
         await supabaseClient.rpc(
             'score_get_purchased_players',
-            { p_matchday: 1 }
+            { p_matchday: matchday }
         );
 
     if (purchasesError) {
@@ -72,11 +82,11 @@ async function showPlayersByRole(role) {
         return;
     }
 
-    // 3. Giocatori acquistati da QUESTO utente
+    // Giocatori acquistati da QUESTO utente
     const { data: myPurchases, error: myPurchasesError } =
         await supabaseClient.rpc(
             'score_get_my_purchases',
-            { p_matchday: 1 }
+            { p_matchday: matchday }
         );
 
     if (myPurchasesError) {
@@ -85,7 +95,7 @@ async function showPlayersByRole(role) {
         return;
     }
 
-    // 4. Controlla se questo utente ha già acquistato il ruolo
+    // Controlla se l'utente ha già acquistato questo ruolo
     const alreadyHaveRole = myPurchases.some(
         purchase => purchase.role === role
     );
@@ -96,7 +106,7 @@ async function showPlayersByRole(role) {
         return;
     }
 
-    // 5. Elimina i giocatori già acquistati da QUALSIASI utente
+    // Elimina i giocatori già acquistati nella giornata corrente
     const purchasedPlayerIds = new Set(
         purchases.map(purchase => purchase.player_id)
     );
@@ -107,7 +117,6 @@ async function showPlayersByRole(role) {
 
     container.innerHTML = '';
 
-    // 6. Mostra i giocatori disponibili
     availablePlayers.forEach(player => {
 
         const row = document.createElement('div');
@@ -133,7 +142,6 @@ async function showPlayersByRole(role) {
         container.innerHTML = 'Nessun giocatore disponibile.';
     }
 }
-
 
 async function buyPlayer(player) {
 
