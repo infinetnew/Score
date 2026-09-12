@@ -151,28 +151,7 @@ Object.keys(groupedPurchases).forEach(username => {
 });
 
 const calculateButton =
-    document.getElementById('calculate_matches');
-
-if (ratings.length === purchases.length) {
-    calculateButton.disabled = false;
-}
-}
-
-document.getElementById('open_admin')
-    .addEventListener('click', () => {
-        console.log('CLICK ADMIN');
-        openAdmin();
-    });
-
-
-document.getElementById('close_admin')
-    .addEventListener('click', () => {
-
-        document.getElementById('admin_page').style.display = 'none';
-        document.getElementById('app').style.display = 'block';
-
-    });
-document.getElementById('calculate_matches')
+    document.getElementById('calculate_matches')
     .addEventListener('click', async () => {
 
         const { data: matchday, error: matchdayError } =
@@ -200,9 +179,15 @@ document.getElementById('calculate_matches')
 
         console.log('Scontri calcolati:', data);
 
-        alert('Scontri calcolati correttamente!');
+        // Cambia il pulsante
+        const button =
+            document.getElementById('calculate_matches');
 
-        await openAdmin();
+        button.textContent = 'SCONTRI CALCOLATI';
+        button.disabled = true;
+
+        // Abilita CONCLUDI GIORNATA
+        document.getElementById('complete_matchday').disabled = false;
     });
 async function saveRating(playerId, matchday) {
 
