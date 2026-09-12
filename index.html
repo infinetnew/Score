@@ -15,7 +15,26 @@
         const SUPABASE_URL = 'https://fkudvfkjjxmcbppvfinf.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZrdWR2ZmtqanhtY2JwcHZmaW5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MzY3NzgsImV4cCI6MjA5NjMxMjc3OH0.iVb5dD1ySIogTJKhvpGlUkmi5PusSRMyG0EmmGAlrF8';
 
-        console.log('SCORE collegato a Supabase:', SUPABASE_URL);
+      const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
+
+async function testSupabase() {
+    const { data, error } = await supabase
+        .from('score_questions')
+        .select('*')
+        .limit(1);
+
+    if (error) {
+        console.error('Errore Supabase:', error);
+        return;
+    }
+
+    console.log('Domanda ricevuta da Supabase:', data);
+}
+
+testSupabase();
     </script>
 
 </body>
