@@ -172,6 +172,38 @@ document.getElementById('close_admin')
         document.getElementById('app').style.display = 'block';
 
     });
+document.getElementById('calculate_matches')
+    .addEventListener('click', async () => {
+
+        const { data: matchday, error: matchdayError } =
+            await supabaseClient.rpc('score_get_active_matchday');
+
+        if (matchdayError || !matchday) {
+            console.error(matchdayError);
+            alert('Impossibile recuperare la giornata attiva.');
+            return;
+        }
+
+        const { data, error } =
+            await supabaseClient.rpc(
+                'score_calculate_h2h',
+                {
+                    p_matchday: matchday
+                }
+            );
+
+        if (error) {
+            console.error('Errore calcolo scontri:', error);
+            alert(error.message);
+            return;
+        }
+
+        console.log('Scontri calcolati:', data);
+
+        alert('Scontri calcolati correttamente!');
+
+        await openAdmin();
+    });
 async function saveRating(playerId, matchday) {
 
     const input = document.getElementById(`rating_${playerId}`);
