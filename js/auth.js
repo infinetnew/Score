@@ -203,6 +203,7 @@ function enterApp(username) {
         'Bentornato ' + username + '!';
     // Carica i crediti
     loadCredits();
+loadNextH2H();
 }
 async function loadCredits() {
 
@@ -234,4 +235,63 @@ async function loadCredits() {
 
     document.getElementById('credit_balance').textContent =
         balance + ' crediti';
+}
+async function loadNextH2H() {
+
+    const { data: matchday, error: matchdayError } =
+        await supabaseClient.rpc('score_get_active_matchday');
+
+    if (matchdayError || !matchday) {
+        console.error('Errore giornata:', matchdayError);
+        return;
+    }
+
+    const { data: user } =
+        await supabaseClient.auth.getUser();
+
+    if (!user || !user.user) {
+        return;
+    }
+
+    const userId = user.user.id;
+
+    const { data: match, error: matchError } =
+        await supabaseClient
+            .from('score_h2h_matches')
+            .select(`
+                player1_id,
+                player2_id
+            `)
+            .eq('matchday', matchday)
+            .or(`player1_id.eq.${userId},player2_id.eq.${userId}`)
+            .single();
+
+    if (matchError || !match) {
+        console.error('Errore scontro:', matchError);
+
+        document.getElementById('next_h2h_match').textContent =
+            'Nessuno scontro assegnato';
+
+        return;
+    }
+
+    const opponentId =
+        match.player1_id === userId
+            ? match.player2_id
+            : match.player1_id;
+
+    const { data: opponent, error: opponentError } =
+        await supabaseClient
+            .from('score_users')
+            .select('username')
+            .eq('id', opponentId)
+            .single();
+
+    if (opponentError || !opponent) {
+        console.error('Errore avversario:', opponentError);
+        return;
+    }
+
+    document.getElementById('next_h2h_match').textContent =
+        `Tu 🆚 ${opponent.username}`;
 }
