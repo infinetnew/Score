@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -17,6 +18,13 @@
 
         h1 {
             text-align: center;
+        }
+
+        #timer {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
         }
 
         #question {
@@ -39,6 +47,8 @@
 
     <h1>SCORE</h1>
 
+    <div id="timer">120</div>
+
     <div id="question">Caricamento domanda...</div>
 
     <button class="option" id="option_a"></button>
@@ -60,6 +70,9 @@
                 }
             }
         );
+
+        let seconds = 120;
+        let timer;
 
         async function loadQuestion() {
 
@@ -97,7 +110,48 @@
 
             document.getElementById('option_d').textContent =
                 question.option_d;
+
+            startTimer();
         }
+
+        function startTimer() {
+
+            timer = setInterval(() => {
+
+                seconds--;
+
+                document.getElementById('timer').textContent = seconds;
+
+                if (seconds <= 0) {
+                    clearInterval(timer);
+
+                    document.getElementById('timer').textContent = 'TEMPO SCADUTO';
+
+                    disableButtons();
+                }
+
+            }, 1000);
+        }
+
+        function disableButtons() {
+            document.querySelectorAll('.option').forEach(button => {
+                button.disabled = true;
+            });
+        }
+
+        document.querySelectorAll('.option').forEach(button => {
+
+            button.addEventListener('click', () => {
+
+                clearInterval(timer);
+
+                disableButtons();
+
+                console.log('Risposta data dopo:', 120 - seconds, 'secondi');
+
+            });
+
+        });
 
         loadQuestion();
     </script>
