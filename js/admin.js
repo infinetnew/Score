@@ -72,9 +72,11 @@ async function openAdmin() {
     });
 }
 
-
 document.getElementById('open_admin')
-    .addEventListener('click', openAdmin);
+    .addEventListener('click', () => {
+        console.log('CLICK ADMIN');
+        openAdmin();
+    });
 
 
 document.getElementById('close_admin')
