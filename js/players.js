@@ -28,6 +28,7 @@ function openMarket() {
     marketPage.style.display = 'block';
 }
 
+
 function closeMarket() {
     const marketPage = document.getElementById('market_page');
 
@@ -37,6 +38,7 @@ function closeMarket() {
 
     document.getElementById('app').style.display = 'block';
 }
+
 
 async function showPlayersByRole(role) {
 
@@ -63,14 +65,59 @@ async function showPlayersByRole(role) {
 
         const row = document.createElement('div');
 
+        row.style.cursor = 'pointer';
+        row.style.padding = '8px';
+        row.style.borderBottom = '1px solid #ddd';
+
         row.innerHTML = `
             <strong>${player.name}</strong>
             - ${player.team}
-            - ${player.price} crediti
+            - ${player.price}
         `;
+
+        row.addEventListener('click', () => {
+            buyPlayer(player);
+        });
 
         container.appendChild(row);
     });
 }
+
+
+async function buyPlayer(player) {
+
+    const confirmPurchase = confirm(
+        `Vuoi acquistare ${player.name} per ${player.price}?`
+    );
+
+    if (!confirmPurchase) {
+        return;
+    }
+
+    const { data, error } = await supabaseClient.rpc(
+        'score_buy_player',
+        {
+            p_player_id: player.id,
+            p_matchday: 1
+        }
+    );
+
+    if (error) {
+        console.error('Errore acquisto:', error);
+        alert(error.message);
+        return;
+    }
+
+    alert(
+        `${player.name} acquistato!\n\n` +
+        `Prezzo: ${data.price}\n` +
+        `Crediti rimasti: ${data.remaining_credits}`
+    );
+
+    loadCredits();
+
+    showPlayersByRole(player.role);
+}
+
 
 document.getElementById('open_market').addEventListener('click', openMarket);
