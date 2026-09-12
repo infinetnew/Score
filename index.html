@@ -11,56 +11,98 @@
 
 <body>
 
-    <h1>SCORE</h1>
+    <main class="auth-container">
 
-    <div id="auth">
+        <!-- SCHERMATA INIZIALE -->
+        <section id="welcome_screen">
 
-        <h2>Registrati</h2>
+            <h1>SCORE</h1>
 
-        <input
-            type="text"
-            id="register_username"
-            placeholder="Username"
-        >
+            <p>Benvenuto in SCORE</p>
+            <p>Hai già un account?</p>
 
-        <input
-            type="email"
-            id="register_email"
-            placeholder="Email"
-        >
+            <button id="show_login">
+                SÌ, ACCEDI
+            </button>
 
-        <input
-            type="password"
-            id="register_password"
-            placeholder="Password"
-        >
+            <button id="show_register">
+                NO, REGISTRATI
+            </button>
 
-        <button onclick="registerUser()">
-            Registrati
-        </button>
+        </section>
 
 
-        <h2>Accedi</h2>
+        <!-- SCHERMATA LOGIN -->
+        <section id="login_screen" style="display: none;">
 
-        <input
-            type="email"
-            id="login_email"
-            placeholder="Email"
-        >
+            <h1>Accedi</h1>
 
-        <input
-            type="password"
-            id="login_password"
-            placeholder="Password"
-        >
+            <input
+                type="email"
+                id="login_email"
+                placeholder="Email"
+            >
 
-        <button onclick="loginUser()">
-            Accedi
-        </button>
+            <input
+                type="password"
+                id="login_password"
+                placeholder="Password"
+            >
+
+            <button onclick="loginUser()">
+                ACCEDI
+            </button>
+
+            <button id="back_from_login">
+                ← Indietro
+            </button>
+
+        </section>
+
+
+        <!-- SCHERMATA REGISTRAZIONE -->
+        <section id="register_screen" style="display: none;">
+
+            <h1>Registrati</h1>
+
+            <input
+                type="text"
+                id="register_username"
+                placeholder="Username"
+            >
+
+            <input
+                type="email"
+                id="register_email"
+                placeholder="Email"
+            >
+
+            <input
+                type="password"
+                id="register_password"
+                placeholder="Password"
+            >
+
+            <input
+                type="password"
+                id="register_password_confirm"
+                placeholder="Conferma password"
+            >
+
+            <button onclick="registerUser()">
+                REGISTRATI
+            </button>
+
+            <button id="back_from_register">
+                ← Indietro
+            </button>
+
+        </section>
+
 
         <div id="auth_message"></div>
 
-    </div>
+    </main>
 
 
     <script>
@@ -83,7 +125,56 @@
                 }
             );
 
+
+        const welcomeScreen =
+            document.getElementById('welcome_screen');
+
+        const loginScreen =
+            document.getElementById('login_screen');
+
+        const registerScreen =
+            document.getElementById('register_screen');
+
+
+        document.getElementById('show_login')
+            .addEventListener('click', () => {
+
+                welcomeScreen.style.display = 'none';
+                loginScreen.style.display = 'block';
+                registerScreen.style.display = 'none';
+
+            });
+
+
+        document.getElementById('show_register')
+            .addEventListener('click', () => {
+
+                welcomeScreen.style.display = 'none';
+                loginScreen.style.display = 'none';
+                registerScreen.style.display = 'block';
+
+            });
+
+
+        document.getElementById('back_from_login')
+            .addEventListener('click', () => {
+
+                loginScreen.style.display = 'none';
+                welcomeScreen.style.display = 'block';
+
+            });
+
+
+        document.getElementById('back_from_register')
+            .addEventListener('click', () => {
+
+                registerScreen.style.display = 'none';
+                welcomeScreen.style.display = 'block';
+
+            });
+
     </script>
+
 
     <script src="js/auth.js"></script>
 
