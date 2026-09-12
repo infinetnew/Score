@@ -47,20 +47,63 @@ console.log('PURCHASES ERROR:', purchasesError);
         return;
     }
 
+// Raggruppa i giocatori per utente
+const groupedPurchases = {};
+
 purchases.forEach(purchase => {
 
-    const row = document.createElement('div');
+    if (!groupedPurchases[purchase.username]) {
+        groupedPurchases[purchase.username] = [];
+    }
 
-    row.style.padding = '10px';
-    row.style.borderBottom = '1px solid #ddd';
+    groupedPurchases[purchase.username].push(purchase);
+});
 
-    row.innerHTML = `
-        <strong>${purchase.player_name}</strong>
-        - ${purchase.team}
-        - ${purchase.username}
+
+// Mostra gli utenti uno alla volta
+Object.keys(groupedPurchases).forEach(username => {
+
+    const userSection = document.createElement('div');
+
+    userSection.style.marginBottom = '25px';
+
+    userSection.innerHTML = `
+        <h3>👤 ${username}</h3>
     `;
 
-    container.appendChild(row);
+    groupedPurchases[username].forEach(purchase => {
+
+        const row = document.createElement('div');
+
+        row.style.padding = '10px';
+        row.style.borderBottom = '1px solid #ddd';
+
+        row.innerHTML = `
+            <strong>${purchase.player_name}</strong>
+            - ${purchase.team}
+
+            <input
+                type="number"
+                min="0"
+                max="10"
+                step="0.5"
+                placeholder="Voto"
+                id="rating_${purchase.player_id}"
+                style="width:70px; margin-left:10px;"
+            >
+
+            <button
+                onclick="saveRating(${purchase.player_id}, ${matchday})"
+                style="margin-left:5px;"
+            >
+                SALVA
+            </button>
+        `;
+
+        userSection.appendChild(row);
+    });
+
+    container.appendChild(userSection);
 });
 }
 
@@ -78,3 +121,39 @@ document.getElementById('close_admin')
         document.getElementById('app').style.display = 'block';
 
     });
+async function saveRating(playerId, matchday) {
+
+    const input = document.getElementById(`rating_${playerId}`);
+
+    const rating = parseFloat(input.value);
+
+    if (isNaN(rating)) {
+        alert('Inserisci un voto.');
+        return;
+    }
+
+    if (rating < 0 || rating > 10) {
+        alert('Il voto deve essere compreso tra 0 e 10.');
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient.rpc(
+            'score_set_player_rating',
+            {
+                p_player_id: playerId,
+                p_matchday: matchday,
+                p_rating: rating
+            }
+        );
+
+    if (error) {
+        console.error('Errore salvataggio voto:', error);
+        alert(error.message);
+        return;
+    }
+
+    alert(`Voto ${rating} salvato!`);
+
+    console.log('VOTO SALVATO:', data);
+}
