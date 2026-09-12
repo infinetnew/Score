@@ -6,7 +6,6 @@
     <title>SCORE</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -14,55 +13,79 @@
 
     <h1>SCORE</h1>
 
-    <div id="timer">120</div>
+    <div id="auth">
 
-    <div id="question">Caricamento domanda...</div>
+        <h2>Registrati</h2>
 
-    <button class="option" id="option_a"></button>
-    <button class="option" id="option_b"></button>
-    <button class="option" id="option_c"></button>
-    <button class="option" id="option_d"></button>
+        <input
+            type="text"
+            id="register_username"
+            placeholder="Username"
+        >
+
+        <input
+            type="email"
+            id="register_email"
+            placeholder="Email"
+        >
+
+        <input
+            type="password"
+            id="register_password"
+            placeholder="Password"
+        >
+
+        <button onclick="registerUser()">
+            Registrati
+        </button>
+
+
+        <h2>Accedi</h2>
+
+        <input
+            type="email"
+            id="login_email"
+            placeholder="Email"
+        >
+
+        <input
+            type="password"
+            id="login_password"
+            placeholder="Password"
+        >
+
+        <button onclick="loginUser()">
+            Accedi
+        </button>
+
+        <div id="auth_message"></div>
+
+    </div>
+
 
     <script>
-        const SUPABASE_URL = 'https://fkudvfkjjxmcbppvfinf.supabase.co';
 
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZrdWR2ZmtqanhtY2JwcHZmaW5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MzY3NzgsImV4cCI6MjA5NjMxMjc3OH0.iVb5dD1ySIogTJKhvpGlUkmi5PusSRMyG0EmmGAlrF8';
+        const SUPABASE_URL =
+            'https://fkudvfkjjxmcbppvfinf.supabase.co';
 
-        const supabaseClient = window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_ANON_KEY,
-            {
-                auth: {
-                    persistSession: false,
-                    autoRefreshToken: false
+        const SUPABASE_ANON_KEY =
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZrdWR2ZmtqanhtY2JwcHZmaW5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MzY3NzgsImV4cCI6MjA5NjMxMjc3OH0.iVb5dD1ySIogTJKhvpGlUkmi5PusSRMyG0EmmGAlrF8';
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_ANON_KEY,
+                {
+                    auth: {
+                        persistSession: false,
+                        autoRefreshToken: false
+                    }
                 }
-            }
-        );
+            );
+
     </script>
 
-    <script src="js/quiz.js"></script>
-
-    <script>
-        loadQuestion();
-
-        document.querySelectorAll('.option').forEach(button => {
-
-            button.addEventListener('click', () => {
-
-                clearInterval(timer);
-
-                disableButtons();
-
-                console.log(
-                    'Risposta data dopo:',
-                    120 - seconds,
-                    'secondi'
-                );
-
-            });
-
-        });
-    </script>
+    <script src="js/auth.js"></script>
 
 </body>
 </html>
