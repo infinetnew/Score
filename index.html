@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -8,39 +7,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        #timer {
-            text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        #question {
-            font-size: 24px;
-            margin: 30px 0 20px;
-        }
-
-        .option {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            font-size: 18px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -58,6 +25,7 @@
 
     <script>
         const SUPABASE_URL = 'https://fkudvfkjjxmcbppvfinf.supabase.co';
+
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZrdWR2ZmtqanhtY2JwcHZmaW5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MzY3NzgsImV4cCI6MjA5NjMxMjc3OH0.iVb5dD1ySIogTJKhvpGlUkmi5PusSRMyG0EmmGAlrF8';
 
         const supabaseClient = window.supabase.createClient(
@@ -70,74 +38,12 @@
                 }
             }
         );
+    </script>
 
-        let seconds = 120;
-        let timer;
+    <script src="js/quiz.js"></script>
 
-        async function loadQuestion() {
-
-            const { data, error } = await supabaseClient
-                .from('score_questions')
-                .select('*')
-                .limit(1);
-
-            if (error) {
-                console.error('Errore Supabase:', error);
-                document.getElementById('question').textContent =
-                    'Errore nel caricamento della domanda.';
-                return;
-            }
-
-            if (!data || data.length === 0) {
-                document.getElementById('question').textContent =
-                    'Nessuna domanda disponibile.';
-                return;
-            }
-
-            const question = data[0];
-
-            document.getElementById('question').textContent =
-                question.question;
-
-            document.getElementById('option_a').textContent =
-                question.option_a;
-
-            document.getElementById('option_b').textContent =
-                question.option_b;
-
-            document.getElementById('option_c').textContent =
-                question.option_c;
-
-            document.getElementById('option_d').textContent =
-                question.option_d;
-
-            startTimer();
-        }
-
-        function startTimer() {
-
-            timer = setInterval(() => {
-
-                seconds--;
-
-                document.getElementById('timer').textContent = seconds;
-
-                if (seconds <= 0) {
-                    clearInterval(timer);
-
-                    document.getElementById('timer').textContent = 'TEMPO SCADUTO';
-
-                    disableButtons();
-                }
-
-            }, 1000);
-        }
-
-        function disableButtons() {
-            document.querySelectorAll('.option').forEach(button => {
-                button.disabled = true;
-            });
-        }
+    <script>
+        loadQuestion();
 
         document.querySelectorAll('.option').forEach(button => {
 
@@ -147,13 +53,15 @@
 
                 disableButtons();
 
-                console.log('Risposta data dopo:', 120 - seconds, 'secondi');
+                console.log(
+                    'Risposta data dopo:',
+                    120 - seconds,
+                    'secondi'
+                );
 
             });
 
         });
-
-        loadQuestion();
     </script>
 
 </body>
