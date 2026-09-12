@@ -89,9 +89,12 @@ Object.keys(groupedPurchases).forEach(username => {
 
     userSection.style.marginBottom = '25px';
 
-    userSection.innerHTML = `
-        <h3>👤 ${username}</h3>
-    `;
+userSection.innerHTML = `
+    <h3>
+        👤 ${username}
+        — Totale: <span id="total_${username}">0</span>
+    </h3>
+`;
 
     groupedPurchases[username].forEach(purchase => {
 
@@ -178,14 +181,11 @@ async function saveRating(playerId, matchday) {
         return;
     }
 
-alert(`Voto ${rating} salvato!`);
-
 input.disabled = true;
 
 const button = input.parentElement.querySelector('button');
 
 if (button) {
-    button.disabled = true;
-    button.textContent = '✓ SALVATO';
+    button.remove();
 }
 }
