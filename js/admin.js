@@ -299,3 +299,14 @@ async function saveRating(playerId, matchday) {
 
     await openAdmin();
 }
+document.getElementById('open_admin')
+    .addEventListener('click', () => {
+        console.log('CLICK ADMIN');
+        openAdmin();
+    });
+
+document.getElementById('close_admin')
+    .addEventListener('click', () => {
+        document.getElementById('admin_page').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+    });
