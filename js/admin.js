@@ -149,6 +149,7 @@ Object.keys(groupedPurchases).forEach(username => {
 
     container.appendChild(userSection);
 });
+}
 
 document.getElementById('calculate_matches')
     .addEventListener('click', async () => {
@@ -186,6 +187,8 @@ document.getElementById('calculate_matches')
 
         document.getElementById('complete_matchday').disabled = false;
     });
+
+
 document.getElementById('complete_matchday')
     .addEventListener('click', async () => {
 
@@ -222,11 +225,15 @@ document.getElementById('complete_matchday')
 
         await openAdmin();
     });
+
+
 async function saveRating(playerId, matchday) {
 
-    const input = document.getElementById(`rating_${playerId}`);
+    const input =
+        document.getElementById(`rating_${playerId}`);
 
-    const rating = parseFloat(input.value);
+    const rating =
+        parseFloat(input.value);
 
     if (isNaN(rating)) {
         alert('Inserisci un voto.');
@@ -254,33 +261,41 @@ async function saveRating(playerId, matchday) {
         return;
     }
 
-input.disabled = true;
+    input.disabled = true;
 
-const button = input.parentElement.querySelector('button');
+    const button =
+        input.parentElement.querySelector('button');
 
-if (button) {
-    button.remove();
-}
+    if (button) {
+        button.remove();
+    }
 
-const userSection = input.closest('div').parentElement;
+    const userSection =
+        input.closest('div').parentElement;
 
-const totalElement = userSection.querySelector('.user-total');
+    const totalElement =
+        userSection.querySelector('.user-total');
 
-if (totalElement) {
+    if (totalElement) {
 
-    let total = 0;
+        let total = 0;
 
-    const inputs = userSection.querySelectorAll('input[type="number"]');
+        const inputs =
+            userSection.querySelectorAll(
+                'input[type="number"]'
+            );
 
-    inputs.forEach(input => {
+        inputs.forEach(input => {
 
-        if (input.value !== '') {
-            total += parseFloat(input.value);
-        }
+            if (input.value !== '') {
+                total += parseFloat(input.value);
+            }
 
-    });
+        });
 
-    totalElement.textContent = total.toFixed(1);
-}
-await openAdmin();
+        totalElement.textContent =
+            total.toFixed(1);
+    }
+
+    await openAdmin();
 }
