@@ -133,9 +133,9 @@
                 SUPABASE_URL,
                 SUPABASE_ANON_KEY,
                 {
-                    auth: {
-                        persistSession: false,
-                        autoRefreshToken: false
+auth: {
+    persistSession: true,
+    autoRefreshToken: true
                     }
                 }
             );
@@ -190,7 +190,49 @@
 
     </script>
 
+supabaseClient.auth.getSession().then(async ({ data }) => {
 
+    if (!data.session) {
+        return;
+    }
+
+    const user = data.session.user;
+
+    console.log('Sessione trovata:', user.id);
+
+
+    // Recuperiamo il nome dell'utente
+    const { data: profile, error } =
+        await supabaseClient
+            .from('score_users')
+            .select('username')
+            .eq('id', user.id)
+            .single();
+
+
+    if (error) {
+        console.error('Errore recupero profilo:', error);
+        return;
+    }
+
+
+    const username = profile.username || 'giocatore';
+
+
+    // Nascondiamo la schermata di accesso
+    document.querySelector('.auth-container').style.display =
+        'none';
+
+
+    // Mostriamo l'app
+    document.getElementById('app').style.display =
+        'block';
+
+
+    // Mostriamo il nome
+    document.getElementById('welcome_user').textContent =
+        'Bentornato ' + username + '!';
+});
     <script src="js/auth.js"></script>
 
 </body>
