@@ -190,50 +190,53 @@ auth: {
 
     </script>
 
-supabaseClient.auth.getSession().then(async ({ data }) => {
+    <script>
 
-    if (!data.session) {
-        return;
-    }
+        supabaseClient.auth.getSession().then(async ({ data }) => {
 
-    const user = data.session.user;
+            if (!data.session) {
+                return;
+            }
 
-    console.log('Sessione trovata:', user.id);
+            const user = data.session.user;
 
-
-    // Recuperiamo il nome dell'utente
-    const { data: profile, error } =
-        await supabaseClient
-            .from('score_users')
-            .select('username')
-            .eq('id', user.id)
-            .single();
+            console.log('Sessione trovata:', user.id);
 
 
-    if (error) {
-        console.error('Errore recupero profilo:', error);
-        return;
-    }
+            // Recuperiamo il nome dell'utente
+            const { data: profile, error } =
+                await supabaseClient
+                    .from('score_users')
+                    .select('username')
+                    .eq('id', user.id)
+                    .single();
 
 
-    const username = profile.username || 'giocatore';
+            if (error) {
+                console.error('Errore recupero profilo:', error);
+                return;
+            }
 
 
-    // Nascondiamo la schermata di accesso
-    document.querySelector('.auth-container').style.display =
-        'none';
+            const username = profile.username || 'giocatore';
 
 
-    // Mostriamo l'app
-    document.getElementById('app').style.display =
-        'block';
+            // Nascondiamo la schermata di accesso
+            document.querySelector('.auth-container').style.display =
+                'none';
 
 
-    // Mostriamo il nome
-    document.getElementById('welcome_user').textContent =
-        'Bentornato ' + username + '!';
-});
+            // Mostriamo l'app
+            document.getElementById('app').style.display =
+                'block';
+
+
+            // Mostriamo il nome
+            document.getElementById('welcome_user').textContent =
+                'Bentornato ' + username + '!';
+
+        });
+
+    </script>
+
     <script src="js/auth.js"></script>
-
-</body>
-</html>
