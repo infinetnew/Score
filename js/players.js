@@ -153,11 +153,21 @@ async function buyPlayer(player) {
         return;
     }
 
+    // Recupera la giornata attualmente attiva
+    const { data: matchday, error: matchdayError } =
+        await supabaseClient.rpc('score_get_active_matchday');
+
+    if (matchdayError || !matchday) {
+        console.error('Errore recupero giornata attiva:', matchdayError);
+        alert('Nessuna giornata attiva.');
+        return;
+    }
+
     const { data, error } = await supabaseClient.rpc(
         'score_buy_player',
         {
             p_player_id: player.id,
-            p_matchday: 1
+            p_matchday: matchday
         }
     );
 
