@@ -246,28 +246,24 @@ async function loadNextH2H() {
         return;
     }
 
-    const { data: user } =
-        await supabaseClient.auth.getUser();
+    const { data: match, error: matchError } =
+        await supabaseClient.rpc(
+            'score_get_my_h2h_match',
+            {
+                p_matchday: matchday
+            }
+        );
 
-    if (!user || !user.user) {
+    if (matchError) {
+        console.error('Errore scontro:', matchError);
+
+        document.getElementById('next_h2h_match').textContent =
+            'Errore nel caricamento dello scontro';
+
         return;
     }
 
-    const userId = user.user.id;
-
-    const { data: match, error: matchError } =
-        await supabaseClient
-            .from('score_h2h_matches')
-            .select(`
-                player1_id,
-                player2_id
-            `)
-            .eq('matchday', matchday)
-            .or(`player1_id.eq.${userId},player2_id.eq.${userId}`)
-            .single();
-
-    if (matchError || !match) {
-        console.error('Errore scontro:', matchError);
+    if (!match || match.length === 0) {
 
         document.getElementById('next_h2h_match').textContent =
             'Nessuno scontro assegnato';
@@ -275,23 +271,6 @@ async function loadNextH2H() {
         return;
     }
 
-    const opponentId =
-        match.player1_id === userId
-            ? match.player2_id
-            : match.player1_id;
-
-    const { data: opponent, error: opponentError } =
-        await supabaseClient
-            .from('score_users')
-            .select('username')
-            .eq('id', opponentId)
-            .single();
-
-    if (opponentError || !opponent) {
-        console.error('Errore avversario:', opponentError);
-        return;
-    }
-
     document.getElementById('next_h2h_match').textContent =
-        `Tu 🆚 ${opponent.username}`;
+        `Tu 🆚 ${match[0].opponent_username}`;
 }
