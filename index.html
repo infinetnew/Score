@@ -142,19 +142,50 @@
 
 <section id="quiz_screen" class="score-modal" style="display: none;">
 
-    <h2>QUIZ DI OGGI</h2>
+    <button id="close_quiz" class="quiz-close">
+        ×
+    </button>
+
+    <h2>🧠 QUIZ DI OGGI</h2>
 
     <p id="question">Caricamento...</p>
 
-    <button class="option" id="option_a"></button>
-    <button class="option" id="option_b"></button>
-    <button class="option" id="option_c"></button>
-    <button class="option" id="option_d"></button>
+    <div class="quiz-options">
 
-    <p>Tempo: <span id="timer">120</span></p>
-<button id="close_quiz">
-    ✕ CHIUDI
-</button>
+        <label class="quiz-option">
+            <input type="radio" name="quiz_answer" id="option_a" value="A">
+            <span class="radio-circle"></span>
+            <span class="option-text" id="option_a_text"></span>
+        </label>
+
+        <label class="quiz-option">
+            <input type="radio" name="quiz_answer" id="option_b" value="B">
+            <span class="radio-circle"></span>
+            <span class="option-text" id="option_b_text"></span>
+        </label>
+
+        <label class="quiz-option">
+            <input type="radio" name="quiz_answer" id="option_c" value="C">
+            <span class="radio-circle"></span>
+            <span class="option-text" id="option_c_text"></span>
+        </label>
+
+        <label class="quiz-option">
+            <input type="radio" name="quiz_answer" id="option_d" value="D">
+            <span class="radio-circle"></span>
+            <span class="option-text" id="option_d_text"></span>
+        </label>
+
+    </div>
+
+    <button id="confirm_quiz" class="quiz-confirm">
+        CONFERMA RISPOSTA
+    </button>
+
+    <p class="quiz-timer">
+        Tempo: <span id="timer">120</span>
+    </p>
+
 </section>
 
 
