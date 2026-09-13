@@ -472,27 +472,26 @@ body {
    CHIUDI
    ========================= */
 
-/* =========================
-   CHIUDI
-   ========================= */
+.quiz-close {
+    display: block;
+    width: 100%;
 
-#quiz_screen .quiz-close {
-    display: block !important;
-    position: static !important;
-    order: 999 !important;
-
-    width: 100% !important;
-    margin: 20px 0 0 0 !important;
-    padding: 12px !important;
+    margin: 16px 0 0;
+    padding: 13px;
 
     box-sizing: border-box;
 
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 10px;
+    border: 1px solid rgba(0, 200, 255, 0.45);
+    border-radius: 12px;
 
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(
+        135deg,
+        #087fc1,
+        #3156c9 55%,
+        #713fc1
+    );
 
-    color: white !important;
+    color: white;
 
     font-size: 15px;
     font-weight: bold;
@@ -500,9 +499,25 @@ body {
     text-align: center;
 
     cursor: pointer;
+
+    box-shadow:
+        0 6px 20px rgba(0, 120, 255, 0.30);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
 }
 
-#quiz_screen .quiz-close:hover {
-    background: rgba(255, 255, 255, 0.10);
-    border-color: rgba(255, 255, 255, 0.40);
+.quiz-close:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.12);
+
+    box-shadow:
+        0 9px 26px rgba(0, 150, 255, 0.45);
+}
+
+.quiz-close:active {
+    transform: scale(0.98);
 }
