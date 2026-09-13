@@ -155,6 +155,8 @@ async function buyPlayer(player) {
     message.innerHTML =
         `Vuoi acquistare <strong>${player.name}</strong>?<br><br>` +
         `Prezzo: <strong>${player.price} crediti</strong>`;
+    confirmButton.disabled = false;
+    confirmButton.textContent = 'ACQUISTA';
 
     buttons.style.display = 'flex';
     cancelButton.style.display = 'block';
