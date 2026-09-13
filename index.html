@@ -106,43 +106,41 @@
 
 <main id="app" style="display: none;">
 
-    <h1>SCORE</h1>
+    <!-- IMMAGINE PRINCIPALE -->
+    <div class="score-hero">
+        <img
+            src="assets/score-home.png"
+            alt="SCORE"
+        >
+    </div>
 
-    <h2 id="welcome_user"></h2>
-
-    <p>La tua settimana SCORE</p>
+    <!-- UTENTE E CREDITI -->
+    <div class="score-user-info">
+        <h2 id="welcome_user"></h2>
+        <p id="credit_balance">0 crediti</p>
+    </div>
 
 <section id="admin_section" style="display:none;">
     <h3>⚙️ ADMIN</h3>
     <button id="open_admin">GESTIONE VOTI</button>
 </section>
 
-    <!-- CREDITI -->
-    <section>
-        <h3>💰 CREDITI</h3>
-<p id="credit_balance">0 crediti</p>
-    </section>
-
-<!-- MERCATO GIOCATORI -->
-<section>
-    <h3>🛒 MERCATO GIOCATORI</h3>
-    <p>Acquista il tuo giocatore per la giornata.</p>
-    <button id="open_market">VAI AL MERCATO</button>
-</section>
-
-    <!-- GIOCATORI DELLA SETTIMANA -->
-    <section>
-        <h3>⚽ I MIEI GIOCATORI</h3>
-        <p>I tuoi giocatori per questa giornata</p>
-    </section>
 
 
-    <!-- QUIZ -->
-<section>
-    <h3>🧠 QUIZ DI OGGI</h3>
-    <p>La domanda di oggi ti aspetta.</p>
-    <button id="open_quiz">VAI AL QUIZ</button>
-</section>
+<!-- MERCATO -->
+<button class="home-menu-button" id="open_market">
+    🛒 MERCATO
+</button>
+<!-- I MIEI GIOCATORI -->
+<button class="home-menu-button" id="open_players">
+    ⚽ I MIEI GIOCATORI
+</button>
+
+
+<!-- QUIZ -->
+<button class="home-menu-button" id="open_quiz">
+    🧠 QUIZ
+</button>
 
 <section id="quiz_screen" style="display: none;">
 
@@ -160,30 +158,17 @@
 </section>
 
 
-    <!-- CLASSIFICA -->
-    <section>
-        <h3>🏆 CLASSIFICA</h3>
-        <p>La tua posizione in classifica</p>
-    </section>
-
+<!-- CLASSIFICA -->
+<button class="home-menu-button" id="open_ranking">
+    🏆 CLASSIFICA
+</button>
 
 <!-- TESTA A TESTA -->
-<section>
-    <h3>⚔️ TESTA A TESTA</h3>
-    <p>Il tuo prossimo scontro</p>
-    <p id="next_h2h_match">Caricamento...</p>
-</section>
+<button class="home-menu-button" id="open_h2h">
+    ⚔️ TESTA A TESTA
+</button>
 
 
-    <!-- MENU -->
-    <nav>
-        <button>HOME</button>
-        <button>QUIZ</button>
-        <button>GIOCATORI</button>
-        <button>CREDITI</button>
-        <button>CLASSIFICA</button>
-        <button>H2H</button>
-    </nav>
 
 </main>
 <div id="admin_page" style="display:none;">
