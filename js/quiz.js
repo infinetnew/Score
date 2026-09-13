@@ -5,6 +5,8 @@ let quizStartedAt = null;
 
 async function loadQuestion() {
 
+    clearInterval(timer);
+
     const { data, error } = await supabaseClient
         .rpc('score_get_today_quiz');
 
@@ -41,37 +43,8 @@ async function loadQuestion() {
     document.getElementById('option_d').textContent =
         currentQuestion.option_d;
 
-    await loadQuizStartTime();
-}
-
-
-async function loadQuizStartTime() {
-
-    const { data, error } = await supabaseClient
-        .from('score_quiz_sessions')
-        .select('started_at, completed_at')
-        .eq('question_id', currentQuestion.id)
-        .maybeSingle();
-
-    if (error) {
-        console.error('Errore caricamento sessione:', error);
-        return;
-    }
-
-    if (!data) {
-        console.error('Sessione quiz non trovata.');
-        return;
-    }
-
-    quizStartedAt = new Date(data.started_at);
-
-    if (data.completed_at) {
-        clearInterval(timer);
-        document.getElementById('timer').textContent =
-            'QUIZ COMPLETATO';
-        disableButtons();
-        return;
-    }
+    // Recupera l'orario della prima apertura del quiz
+    quizStartedAt = new Date(currentQuestion.started_at);
 
     startTimer();
 }
