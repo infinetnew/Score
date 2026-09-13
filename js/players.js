@@ -19,8 +19,17 @@ function closeMarket() {
 
 async function showPlayersByRole(role) {
 
-const container = document.getElementById('market_role_players');
+    const container = document.getElementById('market_role_players');
 
+    // Se clicco di nuovo sullo stesso ruolo, chiudo l'elenco
+    if (container.dataset.openRole === role) {
+        container.innerHTML = '';
+        container.dataset.openRole = '';
+        return;
+    }
+
+    // Apro il nuovo ruolo
+    container.dataset.openRole = role;
     container.innerHTML = 'Caricamento...';
 
     // Recupera la giornata attualmente attiva
@@ -124,50 +133,105 @@ row.style.color = 'white';
         container.innerHTML = 'Nessun giocatore disponibile.';
     }
 }
-
 async function buyPlayer(player) {
 
-    const confirmPurchase = confirm(
-        `Vuoi acquistare ${player.name} per ${player.price}?`
-    );
+    const modal = document.getElementById('purchase_modal');
+    const title = document.getElementById('purchase_title');
+    const message = document.getElementById('purchase_message');
+    const buttons = document.getElementById('purchase_buttons');
+    const cancelButton = document.getElementById('purchase_cancel');
+    const confirmButton = document.getElementById('purchase_confirm');
 
-    if (!confirmPurchase) {
-        return;
-    }
+    // Mostra conferma acquisto
+    title.textContent = '🛒 CONFERMA ACQUISTO';
 
-    // Recupera la giornata attualmente attiva
-    const { data: matchday, error: matchdayError } =
-        await supabaseClient.rpc('score_get_active_matchday');
+    message.innerHTML =
+        `Vuoi acquistare <strong>${player.name}</strong>?<br><br>` +
+        `Prezzo: <strong>${player.price} crediti</strong>`;
 
-    if (matchdayError || !matchday) {
-        console.error('Errore recupero giornata attiva:', matchdayError);
-        alert('Nessuna giornata attiva.');
-        return;
-    }
+    buttons.style.display = 'flex';
+    cancelButton.style.display = 'block';
+    confirmButton.style.display = 'block';
 
-    const { data, error } = await supabaseClient.rpc(
-        'score_buy_player',
-        {
-            p_player_id: player.id,
-            p_matchday: matchday
+    modal.style.display = 'flex';
+
+    // Annulla
+    cancelButton.onclick = () => {
+        modal.style.display = 'none';
+    };
+
+    // Conferma
+    confirmButton.onclick = async () => {
+
+        confirmButton.disabled = true;
+        confirmButton.textContent = 'ACQUISTO...';
+
+        // Recupera la giornata attualmente attiva
+        const { data: matchday, error: matchdayError } =
+            await supabaseClient.rpc('score_get_active_matchday');
+
+        if (matchdayError || !matchday) {
+
+            console.error(
+                'Errore recupero giornata attiva:',
+                matchdayError
+            );
+
+            title.textContent = '⚠️ ERRORE';
+            message.textContent = 'Nessuna giornata attiva.';
+            buttons.style.display = 'none';
+
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 1800);
+
+            return;
         }
-    );
 
-    if (error) {
-        console.error('Errore acquisto:', error);
-        alert(error.message);
-        return;
-    }
+        // Acquista il giocatore
+        const { data, error } = await supabaseClient.rpc(
+            'score_buy_player',
+            {
+                p_player_id: player.id,
+                p_matchday: matchday
+            }
+        );
 
-    alert(
-        `${player.name} acquistato!\n\n` +
-        `Prezzo: ${data.price}\n` +
-        `Crediti rimasti: ${data.remaining_credits}`
-    );
+        if (error) {
 
-    loadCredits();
+            console.error('Errore acquisto:', error);
 
-    showPlayersByRole(player.role);
+            title.textContent = '⚠️ ACQUISTO NON RIUSCITO';
+            message.textContent = error.message;
+            buttons.style.display = 'none';
+
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 2200);
+
+            return;
+        }
+
+        // Acquisto completato
+        title.textContent = '✅ ACQUISTO COMPLETATO';
+
+        message.innerHTML =
+            `<strong>${player.name}</strong> è stato acquistato!<br><br>` +
+            `Prezzo: <strong>${data.price} crediti</strong><br>` +
+            `Crediti rimasti: <strong>${data.remaining_credits}</strong>`;
+
+        buttons.style.display = 'none';
+
+        loadCredits();
+
+        setTimeout(() => {
+
+            modal.style.display = 'none';
+
+            showPlayersByRole(player.role);
+
+        }, 1800);
+    };
 }
 
 
