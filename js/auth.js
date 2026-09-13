@@ -274,3 +274,17 @@ async function loadNextH2H() {
     document.getElementById('next_h2h_match').textContent =
         `Tu 🆚 ${match[0].opponent_username}`;
 }
+document.getElementById('open_h2h').addEventListener('click', () => {
+
+    document.getElementById('h2h_screen').style.display = 'flex';
+
+    loadNextH2H();
+
+});
+
+
+document.getElementById('close_h2h').addEventListener('click', () => {
+
+    document.getElementById('h2h_screen').style.display = 'none';
+
+});
