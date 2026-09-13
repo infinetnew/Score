@@ -195,7 +195,12 @@ body {
     text-align: center;
 }
 
+#market_screen {
+    display: flex;
+    flex-direction: column;
 
+    text-align: center;
+}
 /* =========================
    ORDINE ELEMENTI QUIZ
    ========================= */
