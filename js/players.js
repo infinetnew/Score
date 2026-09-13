@@ -8,10 +8,10 @@ function openMarket() {
 
 
 function closeMarket() {
-    const marketPage = document.getElementById('market_page');
+    const marketScreen = document.getElementById('market_screen');
 
-    if (marketPage) {
-        marketPage.style.display = 'none';
+    if (marketScreen) {
+        marketScreen.style.display = 'none';
     }
 
     document.getElementById('app').style.display = 'block';
