@@ -31,6 +31,32 @@ async function loadQuestion() {
 
     currentQuestion = data[0];
 
+    // ==========================================
+    // CONTROLLO: QUIZ GIÀ COMPLETATO
+    // ==========================================
+
+    if (currentQuestion.completed_at) {
+
+        document.getElementById('question').textContent =
+            'Hai già risposto al quiz di oggi!';
+
+        document.getElementById('option_a').textContent = '';
+        document.getElementById('option_b').textContent = '';
+        document.getElementById('option_c').textContent = '';
+        document.getElementById('option_d').textContent = '';
+
+        disableButtons();
+
+        document.getElementById('timer').textContent =
+            'QUIZ COMPLETATO';
+
+        return;
+    }
+
+    // ==========================================
+    // QUIZ NON ANCORA COMPLETATO
+    // ==========================================
+
     document.getElementById('question').textContent =
         currentQuestion.question;
 
@@ -146,13 +172,19 @@ async function submitAnswer(answer) {
 
     if (result.correct) {
 
+        document.getElementById('question').textContent =
+            '🎉 Complimenti! La soluzione è corretta.';
+
         document.getElementById('timer').textContent =
             '+' + result.credits_earned + ' CREDITI';
 
     } else {
 
+        document.getElementById('question').textContent =
+            '❌ Soluzione sbagliata.';
+
         document.getElementById('timer').textContent =
-            'RISPOSTA ERRATA';
+            '0 CREDITI';
 
     }
 }
