@@ -184,7 +184,32 @@ padding: 30px 25px;
 
     z-index: 1000;
 }
+.score-modal::-webkit-scrollbar {
+    width: 8px;
+}
 
+.score-modal::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.score-modal::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #00bfff,
+        #7a3cff
+    );
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 190, 255, 0.5);
+}
+
+.score-modal::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #00d9ff,
+        #914dff
+    );
+}
 
 /* =========================
    QUIZ
