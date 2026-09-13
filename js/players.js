@@ -338,3 +338,63 @@ document.getElementById('close_my_players').addEventListener(
     'click',
     closeMyPlayers
 );
+async function openRanking() {
+
+    const screen = document.getElementById('ranking_screen');
+    const list = document.getElementById('ranking_list');
+
+    screen.style.display = 'flex';
+
+    list.innerHTML = 'Caricamento...';
+
+    // Recupera la classifica dal database
+    const { data: ranking, error } =
+        await supabaseClient.rpc('score_get_ranking');
+
+    if (error) {
+        console.error('Errore caricamento classifica:', error);
+        list.innerHTML = 'Errore nel caricamento della classifica.';
+        return;
+    }
+
+    list.innerHTML = '';
+
+    if (!ranking || ranking.length === 0) {
+        list.innerHTML = 'Nessun giocatore in classifica.';
+        return;
+    }
+
+    ranking.forEach((player, index) => {
+
+        const row = document.createElement('div');
+
+        row.className = 'ranking-row';
+
+        row.innerHTML = `
+            <span class="ranking-position">${index + 1}°</span>
+            <strong>${player.username}</strong>
+            <span class="ranking-points">${player.points} pt</span>
+        `;
+
+        list.appendChild(row);
+    });
+}
+
+
+function closeRanking() {
+
+    document.getElementById('ranking_screen').style.display = 'none';
+
+}
+
+
+document.getElementById('open_ranking').addEventListener(
+    'click',
+    openRanking
+);
+
+
+document.getElementById('close_ranking').addEventListener(
+    'click',
+    closeRanking
+);
