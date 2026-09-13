@@ -31,6 +31,35 @@ async function registerUser() {
     }
 
 
+    // Controlliamo se il nickname è già utilizzato
+    const { data: existingUser, error: nicknameError } =
+        await supabaseClient
+            .from('score_users')
+            .select('id')
+            .eq('username', username)
+            .maybeSingle();
+
+
+    if (nicknameError) {
+
+        console.error(nicknameError);
+
+        document.getElementById('auth_message').textContent =
+            'Errore nel controllo del nickname.';
+
+        return;
+    }
+
+
+    if (existingUser) {
+
+        document.getElementById('auth_message').textContent =
+            'Questo nickname è già utilizzato. Scegline un altro.';
+
+        return;
+    }
+
+
     // Creazione account
     const { data, error } =
         await supabaseClient.auth.signUp({
@@ -65,7 +94,7 @@ async function registerUser() {
     console.log('Account creato:', user.id);
 
 
-    // Salviamo lo username
+    // Salviamo il nickname
     const { error: profileError } =
         await supabaseClient
             .from('score_users')
@@ -80,13 +109,13 @@ async function registerUser() {
         console.error(profileError);
 
         document.getElementById('auth_message').textContent =
-            'Account creato, ma non riesco a salvare il nome utente.';
+            'Account creato, ma non riesco a salvare il nickname.';
 
         return;
     }
 
 
-    console.log('Username salvato:', username);
+    console.log('Nickname salvato:', username);
 
 
     // Login automatico
