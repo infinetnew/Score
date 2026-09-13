@@ -129,6 +129,39 @@
 <button class="home-menu-button" id="open_market">
     🛒 MERCATO
 </button>
+<section id="market_screen" class="score-modal" style="display: none;">
+
+    <h2>🛒 MERCATO</h2>
+
+    <p>Scegli un ruolo:</p>
+
+    <div class="market-sections">
+
+        <button class="market-section-button" onclick="showPlayersByRole('P')">
+            🧤 PORTIERI
+        </button>
+
+        <button class="market-section-button" onclick="showPlayersByRole('D')">
+            🛡️ DIFENSORI
+        </button>
+
+        <button class="market-section-button" onclick="showPlayersByRole('C')">
+            ⚙️ CENTROCAMPISTI
+        </button>
+
+        <button class="market-section-button" onclick="showPlayersByRole('A')">
+            ⚡ ATTACCANTI
+        </button>
+
+    </div>
+
+    <div id="market_role_players"></div>
+
+    <button class="quiz-close" onclick="closeMarket()">
+        Chiudi
+    </button>
+
+</section>
 
 <!-- I MIEI GIOCATORI -->
 <button class="home-menu-button" id="open_players">
