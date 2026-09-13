@@ -317,3 +317,14 @@ document.getElementById('close_h2h').addEventListener('click', () => {
     document.getElementById('h2h_screen').style.display = 'none';
 
 });
+document.getElementById('logout_button').addEventListener('click', async () => {
+
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+        console.error('Errore disconnessione:', error);
+        return;
+    }
+
+    location.reload();
+});
