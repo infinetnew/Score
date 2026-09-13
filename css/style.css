@@ -712,3 +712,46 @@ padding: 30px 25px;
 #h2h_screen #close_h2h {
     width: 180px;
 }
+#my_players_screen {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#my_players_screen h2 {
+    margin-bottom: 8px;
+}
+
+#my_players_matchday {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#my_players_list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.my-player-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.my-player-card strong {
+    font-size: 18px;
+}
+
+.my-player-card span {
+    font-size: 14px;
+}
