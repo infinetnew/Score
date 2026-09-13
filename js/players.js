@@ -1,31 +1,9 @@
 function openMarket() {
-    document.getElementById('app').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
 
-    let marketPage = document.getElementById('market_page');
+    const marketScreen = document.getElementById('market_screen');
 
-    if (!marketPage) {
-        marketPage = document.createElement('div');
-        marketPage.id = 'market_page';
-
-        marketPage.innerHTML = `
-            <h2>🛒 MERCATO GIOCATORI</h2>
-            <p>Scegli un ruolo:</p>
-
-            <button onclick="showPlayersByRole('P')">🧤 PORTIERI</button>
-            <button onclick="showPlayersByRole('D')">🛡️ DIFENSORI</button>
-            <button onclick="showPlayersByRole('C')">⚙️ CENTROCAMPISTI</button>
-            <button onclick="showPlayersByRole('A')">⚽ ATTACCANTI</button>
-
-            <div id="market_role_players"></div>
-
-            <br>
-            <button onclick="closeMarket()">← TORNA ALLA HOME</button>
-        `;
-
-        document.body.appendChild(marketPage);
-    }
-
-    marketPage.style.display = 'block';
+    marketScreen.style.display = 'flex';
 }
 
 
