@@ -55,31 +55,23 @@ async function loadQuestion() {
     // CONTROLLO: QUIZ GIÀ COMPLETATO
     // ==========================================
 
-    if (currentQuestion.completed_at) {
+if (currentQuestion.completed_at) {
 
-        document.getElementById('question').textContent =
-            'Hai già risposto al quiz di oggi!';
+    document.getElementById('question').textContent =
+        'Hai già risposto al quiz di oggi!';
 
-        document.getElementById('option_a_text').textContent = '';
-        document.getElementById('option_b_text').textContent = '';
-        document.getElementById('option_c_text').textContent = '';
-        document.getElementById('option_d_text').textContent = '';
+    // Nascondi completamente le risposte
+    document.querySelector('.quiz-options').style.display = 'none';
 
+    // Nascondi completamente il pulsante conferma
+    document.getElementById('confirm_quiz').style.display = 'none';
 
-        document.querySelectorAll('input[name="quiz_answer"]').forEach(input => {
-            input.disabled = true;
-            input.checked = false;
-        });
+    // Mostra lo stato del quiz
+    document.getElementById('timer').textContent =
+        'QUIZ COMPLETATO';
 
-
-        document.getElementById('confirm_quiz').disabled = true;
-
-
-        document.getElementById('timer').textContent =
-            'QUIZ COMPLETATO';
-
-        return;
-    }
+    return;
+}
 
 
     // ==========================================
