@@ -245,3 +245,86 @@ async function buyPlayer(player) {
 
 
 document.getElementById('open_market').addEventListener('click', openMarket);
+async function openMyPlayers() {
+
+    const screen = document.getElementById('my_players_screen');
+    const matchdayText = document.getElementById('my_players_matchday');
+    const list = document.getElementById('my_players_list');
+
+    screen.style.display = 'flex';
+
+    list.innerHTML = 'Caricamento...';
+    matchdayText.textContent = '';
+
+    // Recupera la giornata attiva
+    const { data: matchday, error: matchdayError } =
+        await supabaseClient.rpc('score_get_active_matchday');
+
+    if (matchdayError || !matchday) {
+        console.error('Errore recupero giornata:', matchdayError);
+        list.innerHTML = 'Nessuna giornata attiva.';
+        return;
+    }
+
+    matchdayText.textContent = `Giornata ${matchday}`;
+
+    // Recupera SOLO i miei acquisti della giornata attiva
+    const { data: myPurchases, error: purchasesError } =
+        await supabaseClient.rpc(
+            'score_get_my_purchases',
+            { p_matchday: matchday }
+        );
+
+    if (purchasesError) {
+        console.error('Errore caricamento giocatori:', purchasesError);
+        list.innerHTML = 'Errore nel caricamento dei tuoi giocatori.';
+        return;
+    }
+
+    list.innerHTML = '';
+
+    if (!myPurchases || myPurchases.length === 0) {
+        list.innerHTML = 'Non hai ancora acquistato nessun giocatore.';
+        return;
+    }
+
+    myPurchases.forEach(player => {
+
+        const row = document.createElement('div');
+
+        row.style.padding = '14px';
+        row.style.marginBottom = '8px';
+        row.style.border = '1px solid rgba(255,255,255,0.12)';
+        row.style.borderRadius = '12px';
+        row.style.background = 'rgba(255,255,255,0.05)';
+        row.style.color = 'white';
+
+        row.innerHTML = `
+            <strong>${player.name}</strong><br>
+            ${player.team} · ${player.role}
+            <br>
+            <span>${player.price} crediti</span>
+        `;
+
+        list.appendChild(row);
+    });
+}
+
+
+function closeMyPlayers() {
+
+    document.getElementById('my_players_screen').style.display = 'none';
+
+}
+
+
+document.getElementById('open_players').addEventListener(
+    'click',
+    openMyPlayers
+);
+
+
+document.getElementById('close_my_players').addEventListener(
+    'click',
+    closeMyPlayers
+);
