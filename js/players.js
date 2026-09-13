@@ -16,7 +16,7 @@ function openMarket() {
             <button onclick="showPlayersByRole('C')">⚙️ CENTROCAMPISTI</button>
             <button onclick="showPlayersByRole('A')">⚽ ATTACCANTI</button>
 
-            <div id="role_players"></div>
+            <div id="market_role_players"></div>
 
             <br>
             <button onclick="closeMarket()">← TORNA ALLA HOME</button>
@@ -41,7 +41,7 @@ function closeMarket() {
 
 async function showPlayersByRole(role) {
 
-    const container = document.getElementById('role_players');
+const container = document.getElementById('market_role_players');
 
     container.innerHTML = 'Caricamento...';
 
