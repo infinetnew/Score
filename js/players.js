@@ -288,26 +288,36 @@ async function openMyPlayers() {
         return;
     }
 
-    myPurchases.forEach(player => {
+// Recupera i dati completi dei giocatori acquistati
+const playerIds = myPurchases.map(purchase => purchase.player_id);
 
-        const row = document.createElement('div');
+const { data: players, error: playersError } =
+    await supabaseClient
+        .from('score_players')
+        .select('id, name, role, team, price')
+        .in('id', playerIds);
 
-        row.style.padding = '14px';
-        row.style.marginBottom = '8px';
-        row.style.border = '1px solid rgba(255,255,255,0.12)';
-        row.style.borderRadius = '12px';
-        row.style.background = 'rgba(255,255,255,0.05)';
-        row.style.color = 'white';
+if (playersError) {
+    console.error('Errore caricamento dati giocatori:', playersError);
+    list.innerHTML = 'Errore nel caricamento dei giocatori.';
+    return;
+}
 
-        row.innerHTML = `
-            <strong>${player.name}</strong><br>
-            ${player.team} · ${player.role}
-            <br>
-            <span>${player.price} crediti</span>
-        `;
+players.forEach(player => {
 
-        list.appendChild(row);
-    });
+    const row = document.createElement('div');
+
+    row.className = 'my-player-card';
+
+    row.innerHTML = `
+        <strong>${player.name}</strong>
+        <span>${player.team}</span>
+        <span>${player.role}</span>
+        <span>${player.price} crediti</span>
+    `;
+
+    list.appendChild(row);
+});
 }
 
 
