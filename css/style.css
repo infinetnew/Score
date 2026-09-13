@@ -6,9 +6,17 @@ body {
     margin: 0;
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background: linear-gradient(160deg, #07111f, #102b45, #07111f);
     color: white;
+
+    background:
+        radial-gradient(circle at 15% 15%, rgba(0, 180, 255, 0.22), transparent 35%),
+        radial-gradient(circle at 85% 20%, rgba(120, 60, 255, 0.20), transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(0, 255, 180, 0.12), transparent 40%),
+        linear-gradient(145deg, #030914, #081a2e 45%, #050b18);
+
+    background-attachment: fixed;
 }
+
 
 /* =========================
    HOME
@@ -21,7 +29,10 @@ body {
     text-align: center;
 }
 
-/* Immagine principale */
+
+/* =========================
+   IMMAGINE PRINCIPALE
+   ========================= */
 
 .score-hero {
     width: 100%;
@@ -34,9 +45,16 @@ body {
     display: block;
     margin: 0 auto;
     border-radius: 20px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(0, 150, 255, 0.12);
 }
 
-/* Utente e crediti */
+
+/* =========================
+   UTENTE E CREDITI
+   ========================= */
 
 .score-user-info {
     margin-bottom: 25px;
@@ -51,7 +69,19 @@ body {
     margin: 0;
     font-size: 20px;
     font-weight: bold;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #66d9ff,
+        #a98cff
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
+
 
 /* =========================
    MENU PRINCIPALE
@@ -62,99 +92,190 @@ body {
     width: 100%;
     margin: 12px 0;
     padding: 18px;
-    border: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
     border-radius: 14px;
-    background: linear-gradient(135deg, #173b5c, #0d2238);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22, 65, 100, 0.95),
+            rgba(20, 30, 65, 0.95)
+        );
+
     color: white;
+
     font-size: 18px;
     font-weight: bold;
+
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .home-menu-button:hover {
     transform: translateY(-2px);
+
+    border-color: rgba(80, 200, 255, 0.45);
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.45),
+        0 0 18px rgba(0, 170, 255, 0.12);
 }
 
 .home-menu-button:active {
     transform: scale(0.98);
 }
+
+
 /* =========================
    POPUP SCORE
    ========================= */
 
 .score-modal {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    width: calc(100% - 40px);
-    max-width: 460px;
-    
-    padding: 25px;
-    box-sizing: border-box;
-    
-    background: linear-gradient(145deg, #102b45, #07111f);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 22px;
-    
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
-    
-    z-index: 1000;
-}
-/* ==========================================
-   QUIZ
-   ========================================== */
 
-#quiz_screen {
-    position: fixed;
     top: 50%;
     left: 50%;
+
     transform: translate(-50%, -50%);
 
     width: calc(100% - 40px);
     max-width: 460px;
 
     padding: 30px 25px;
+
     box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(0, 190, 255, 0.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(120, 60, 255, 0.16),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            #0b1d32,
+            #07101e 55%,
+            #0b1024
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.75),
+        0 0 40px rgba(0, 150, 255, 0.08);
+
+    z-index: 1000;
+}
+
+
+/* =========================
+   QUIZ
+   ========================= */
+
+#quiz_screen {
+    display: flex;
+    flex-direction: column;
 
     text-align: center;
 }
 
 
-/* Titolo */
+/* =========================
+   ORDINE ELEMENTI QUIZ
+   ========================= */
 
 #quiz_screen h2 {
+    order: 1;
+
     margin: 0 0 25px;
+
     font-size: 24px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #55d8ff,
+            #a982ff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+#quiz_screen #question {
+    order: 2;
+}
+
+#quiz_screen .quiz-options {
+    order: 3;
+}
+
+#quiz_screen #confirm_quiz {
+    order: 4;
+}
+
+#quiz_screen .quiz-timer {
+    order: 5;
+}
+
+#quiz_screen .quiz-close {
+    order: 6;
 }
 
 
-/* Domanda */
+/* =========================
+   DOMANDA
+   ========================= */
 
 #question {
     margin: 0 0 25px;
+
     font-size: 20px;
     line-height: 1.4;
+
     font-weight: bold;
 }
 
 
-/* Contenitore risposte */
+/* =========================
+   CONTENITORE RISPOSTE
+   ========================= */
 
 .quiz-options {
     display: flex;
     flex-direction: column;
+
     gap: 12px;
 
     width: 100%;
 }
 
 
-/* Singola risposta */
+/* =========================
+   SINGOLA RISPOSTA
+   ========================= */
 
 .quiz-option {
+    position: relative;
+
     display: flex;
     align-items: center;
 
@@ -162,20 +283,33 @@ body {
     min-height: 52px;
 
     padding: 12px 15px;
+
     box-sizing: border-box;
 
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.075),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
 
     cursor: pointer;
 
     text-align: left;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
 }
 
 
-/* Nascondiamo il radio originale */
+/* Nasconde il radio originale */
 
 .quiz-option input {
     position: absolute;
@@ -183,7 +317,9 @@ body {
 }
 
 
-/* Pallino */
+/* =========================
+   PALLINO
+   ========================= */
 
 .radio-circle {
     width: 20px;
@@ -193,10 +329,16 @@ body {
 
     margin-right: 12px;
 
-    border: 2px solid rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.55);
+
     border-radius: 50%;
 
     box-sizing: border-box;
+
+    transition:
+        border 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
 
 
@@ -204,10 +346,50 @@ body {
 
 .quiz-option input:checked + .radio-circle {
     border: 6px solid white;
+
+    box-shadow:
+        0 0 10px rgba(80, 210, 255, 0.6);
 }
 
 
-/* Testo risposta */
+/* =========================
+   RISPOSTA SELEZIONATA
+   ========================= */
+
+.quiz-option:has(input:checked) {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 180, 255, 0.20),
+            rgba(110, 70, 255, 0.16)
+        );
+
+    border-color: rgba(80, 210, 255, 0.65);
+
+    box-shadow:
+        0 0 18px rgba(0, 170, 255, 0.12);
+
+    transform: translateX(2px);
+}
+
+
+/* Effetto al passaggio */
+
+.quiz-option:hover {
+    border-color: rgba(255, 255, 255, 0.30);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.10),
+            rgba(255, 255, 255, 0.04)
+        );
+}
+
+
+/* =========================
+   TESTO RISPOSTA
+   ========================= */
 
 .option-text {
     font-size: 17px;
@@ -215,26 +397,27 @@ body {
 }
 
 
-/* Effetto quando selezionata */
-
-.quiz-option:has(input:checked) {
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(255, 255, 255, 0.45);
-}
-
-
-/* Pulsante conferma */
+/* =========================
+   PULSANTE CONFERMA
+   ========================= */
 
 .quiz-confirm {
     width: 100%;
 
     margin-top: 22px;
+
     padding: 15px;
 
     border: none;
     border-radius: 12px;
 
-    background: linear-gradient(135deg, #173b5c, #0d2238);
+    background:
+        linear-gradient(
+            135deg,
+            #087fc1,
+            #3156c9 55%,
+            #713fc1
+        );
 
     color: white;
 
@@ -242,20 +425,52 @@ body {
     font-weight: bold;
 
     cursor: pointer;
+
+    box-shadow:
+        0 7px 22px rgba(0, 100, 220, 0.28);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.quiz-confirm:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 28px rgba(0, 150, 255, 0.35);
+}
+
+.quiz-confirm:active {
+    transform: scale(0.98);
+}
+
+.quiz-confirm:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 
-/* Timer */
+/* =========================
+   TIMER
+   ========================= */
 
 .quiz-timer {
     margin: 18px 0 0;
 
     font-size: 17px;
     font-weight: bold;
+
+    color: rgba(255, 255, 255, 0.85);
 }
 
 
-/* Pulsante chiudi */
+/* =========================
+   CHIUDI
+   ========================= */
 
 .quiz-close {
     position: static;
@@ -263,17 +478,37 @@ body {
     width: 100%;
 
     margin-top: 18px;
+
     padding: 12px;
 
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
     border-radius: 10px;
 
-    background: transparent;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.02)
+        );
 
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.65);
 
     font-size: 14px;
     font-weight: bold;
 
     cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.quiz-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    border-color: rgba(255, 255, 255, 0.30);
 }
