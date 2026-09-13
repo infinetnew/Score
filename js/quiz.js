@@ -5,9 +5,7 @@ let timer = null;
 async function loadQuestion() {
 
     const { data, error } = await supabaseClient
-        .from('score_questions')
-        .select('*')
-        .limit(1);
+        .rpc('score_get_today_quiz');
 
     if (error) {
         console.error('Errore Supabase:', error);
@@ -44,7 +42,6 @@ async function loadQuestion() {
 
     startTimer();
 }
-
 function startTimer() {
 
     seconds = 120;
