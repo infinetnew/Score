@@ -1,1 +1,81 @@
+/* =========================
+   SCORE - STILE PRINCIPALE
+   ========================= */
 
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(160deg, #07111f, #102b45, #07111f);
+    color: white;
+}
+
+/* =========================
+   HOME
+   ========================= */
+
+#app {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Immagine principale */
+
+.score-hero {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.score-hero img {
+    width: 100%;
+    max-width: 480px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+/* Utente e crediti */
+
+.score-user-info {
+    margin-bottom: 25px;
+}
+
+.score-user-info h2 {
+    margin: 10px 0 5px;
+    font-size: 25px;
+}
+
+#credit_balance {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* =========================
+   MENU PRINCIPALE
+   ========================= */
+
+.home-menu-button {
+    display: block;
+    width: 100%;
+    margin: 12px 0;
+    padding: 18px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #173b5c, #0d2238);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+.home-menu-button:hover {
+    transform: translateY(-2px);
+}
+
+.home-menu-button:active {
+    transform: scale(0.98);
+}
