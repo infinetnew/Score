@@ -79,3 +79,27 @@ body {
 .home-menu-button:active {
     transform: scale(0.98);
 }
+/* =========================
+   POPUP SCORE
+   ========================= */
+
+.score-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: calc(100% - 40px);
+    max-width: 460px;
+    
+    padding: 25px;
+    box-sizing: border-box;
+    
+    background: linear-gradient(145deg, #102b45, #07111f);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 22px;
+    
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+    
+    z-index: 1000;
+}
