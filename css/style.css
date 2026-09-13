@@ -755,3 +755,56 @@ padding: 30px 25px;
 .my-player-card span {
     font-size: 14px;
 }
+/* CLASSIFICA */
+
+#ranking_screen {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#ranking_screen h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+#ranking_list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.ranking-row {
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 45px 1fr 65px;
+    align-items: center;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    color: white;
+}
+
+.ranking-position {
+    font-weight: bold;
+    text-align: left;
+}
+
+.ranking-row strong {
+    text-align: left;
+    font-size: 17px;
+}
+
+.ranking-points {
+    text-align: right;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#ranking_screen #close_ranking {
+    width: 180px;
+}
