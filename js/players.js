@@ -121,9 +121,13 @@ async function showPlayersByRole(role) {
 
         const row = document.createElement('div');
 
-        row.style.cursor = 'pointer';
-        row.style.padding = '8px';
-        row.style.borderBottom = '1px solid #ddd';
+row.style.cursor = 'pointer';
+row.style.padding = '14px';
+row.style.marginBottom = '8px';
+row.style.border = '1px solid rgba(255,255,255,0.12)';
+row.style.borderRadius = '12px';
+row.style.background = 'rgba(255,255,255,0.05)';
+row.style.color = 'white';
 
         row.innerHTML = `
             <strong>${player.name}</strong>
