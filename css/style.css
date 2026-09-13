@@ -693,3 +693,22 @@ padding: 30px 25px;
     box-shadow:
         0 0 15px rgba(0,190,255,0.15);
 }
+#h2h_screen {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#h2h_screen h2 {
+    margin-bottom: 10px;
+}
+
+#h2h_screen #next_h2h_match {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 12px 0 25px;
+}
+
+#h2h_screen #close_h2h {
+    width: 180px;
+}
