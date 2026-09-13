@@ -4,16 +4,32 @@ let timer = null;
 let quizStartedAt = null;
 let answerSubmitted = false;
 
+
+// ==========================================
+// CARICA IL QUIZ
+// ==========================================
+
 async function loadQuestion() {
 
     clearInterval(timer);
 
     answerSubmitted = false;
 
+    // Reset delle risposte
+    document.querySelectorAll('input[name="quiz_answer"]').forEach(input => {
+        input.checked = false;
+        input.disabled = false;
+    });
+
+    document.getElementById('confirm_quiz').disabled = false;
+
+
     const { data, error } = await supabaseClient
         .rpc('score_get_today_quiz');
 
+
     if (error) {
+
         console.error('Errore Supabase:', error);
 
         document.getElementById('question').textContent =
@@ -22,14 +38,18 @@ async function loadQuestion() {
         return;
     }
 
+
     if (!data || data.length === 0) {
+
         document.getElementById('question').textContent =
             'Nessuna domanda disponibile.';
 
         return;
     }
 
+
     currentQuestion = data[0];
+
 
     // ==========================================
     // CONTROLLO: QUIZ GIÀ COMPLETATO
@@ -40,18 +60,27 @@ async function loadQuestion() {
         document.getElementById('question').textContent =
             'Hai già risposto al quiz di oggi!';
 
-        document.getElementById('option_a').textContent = '';
-        document.getElementById('option_b').textContent = '';
-        document.getElementById('option_c').textContent = '';
-        document.getElementById('option_d').textContent = '';
+        document.getElementById('option_a_text').textContent = '';
+        document.getElementById('option_b_text').textContent = '';
+        document.getElementById('option_c_text').textContent = '';
+        document.getElementById('option_d_text').textContent = '';
 
-        disableButtons();
+
+        document.querySelectorAll('input[name="quiz_answer"]').forEach(input => {
+            input.disabled = true;
+            input.checked = false;
+        });
+
+
+        document.getElementById('confirm_quiz').disabled = true;
+
 
         document.getElementById('timer').textContent =
             'QUIZ COMPLETATO';
 
         return;
     }
+
 
     // ==========================================
     // QUIZ NON ANCORA COMPLETATO
@@ -60,22 +89,19 @@ async function loadQuestion() {
     document.getElementById('question').textContent =
         currentQuestion.question;
 
-    document.getElementById('option_a').textContent =
+
+    document.getElementById('option_a_text').textContent =
         currentQuestion.option_a;
 
-    document.getElementById('option_b').textContent =
+    document.getElementById('option_b_text').textContent =
         currentQuestion.option_b;
 
-    document.getElementById('option_c').textContent =
+    document.getElementById('option_c_text').textContent =
         currentQuestion.option_c;
 
-    document.getElementById('option_d').textContent =
+    document.getElementById('option_d_text').textContent =
         currentQuestion.option_d;
 
-    // Riattiva i pulsanti
-    document.querySelectorAll('.option').forEach(button => {
-        button.disabled = false;
-    });
 
     // Recupera l'orario della prima apertura
     quizStartedAt = new Date(currentQuestion.started_at);
@@ -83,6 +109,10 @@ async function loadQuestion() {
     startTimer();
 }
 
+
+// ==========================================
+// TIMER
+// ==========================================
 
 function startTimer() {
 
@@ -107,7 +137,10 @@ function updateTimer() {
 
     seconds = Math.max(0, 120 - elapsedSeconds);
 
-    document.getElementById('timer').textContent = seconds;
+
+    document.getElementById('timer').textContent =
+        seconds;
+
 
     if (seconds <= 0) {
 
@@ -116,18 +149,20 @@ function updateTimer() {
         document.getElementById('timer').textContent =
             'TEMPO SCADUTO';
 
-        disableButtons();
+
+        document.querySelectorAll('input[name="quiz_answer"]').forEach(input => {
+            input.disabled = true;
+        });
+
+
+        document.getElementById('confirm_quiz').disabled = true;
     }
 }
 
 
-function disableButtons() {
-
-    document.querySelectorAll('.option').forEach(button => {
-        button.disabled = true;
-    });
-}
-
+// ==========================================
+// INVIA RISPOSTA
+// ==========================================
 
 async function submitAnswer(answer) {
 
@@ -136,16 +171,26 @@ async function submitAnswer(answer) {
         return;
     }
 
+
     // Se il tempo è scaduto
     if (seconds <= 0) {
         return;
     }
 
+
     answerSubmitted = true;
 
     clearInterval(timer);
 
-    disableButtons();
+
+    // Disabilita le risposte
+    document.querySelectorAll('input[name="quiz_answer"]').forEach(input => {
+        input.disabled = true;
+    });
+
+
+    document.getElementById('confirm_quiz').disabled = true;
+
 
     const { data, error } = await supabaseClient
         .rpc('score_submit_quiz_answer', {
@@ -153,72 +198,96 @@ async function submitAnswer(answer) {
             p_answer: answer
         });
 
+
     if (error) {
 
         console.error('Errore invio risposta:', error);
 
         answerSubmitted = false;
 
-        document.querySelectorAll('.option').forEach(button => {
-            button.disabled = false;
+
+        document.querySelectorAll('input[name="quiz_answer"]').forEach(input => {
+            input.disabled = false;
         });
+
+
+        document.getElementById('confirm_quiz').disabled = false;
 
         return;
     }
 
+
     console.log('Risultato quiz:', data);
 
+
     const result = data[0];
+
+
+    // ==========================================
+    // RISPOSTA CORRETTA
+    // ==========================================
 
     if (result.correct) {
 
         document.getElementById('question').textContent =
             '🎉 Complimenti! La soluzione è corretta.';
 
+
         document.getElementById('timer').textContent =
             '+' + result.credits_earned + ' CREDITI';
 
-    } else {
+    }
+
+
+    // ==========================================
+    // RISPOSTA SBAGLIATA
+    // ==========================================
+
+    else {
 
         document.getElementById('question').textContent =
             '❌ Soluzione sbagliata.';
 
+
         document.getElementById('timer').textContent =
             '0 CREDITI';
-
     }
 }
 
 
-// =========================
-// RISPOSTE A / B / C / D
-// =========================
+// ==========================================
+// CONFERMA RISPOSTA
+// ==========================================
 
-document.getElementById('option_a').addEventListener('click', () => {
-    submitAnswer('A');
-});
+document.getElementById('confirm_quiz')
+    .addEventListener('click', () => {
 
-document.getElementById('option_b').addEventListener('click', () => {
-    submitAnswer('B');
-});
-
-document.getElementById('option_c').addEventListener('click', () => {
-    submitAnswer('C');
-});
-
-document.getElementById('option_d').addEventListener('click', () => {
-    submitAnswer('D');
-});
+        const selected =
+            document.querySelector('input[name="quiz_answer"]:checked');
 
 
-// =========================
+        if (!selected) {
+
+            document.getElementById('question').textContent =
+                'Seleziona una risposta prima di confermare.';
+
+            return;
+        }
+
+
+        submitAnswer(selected.value);
+    });
+
+
+// ==========================================
 // CHIUDI QUIZ
-// =========================
+// ==========================================
 
-document.getElementById('close_quiz').addEventListener('click', () => {
+document.getElementById('close_quiz')
+    .addEventListener('click', () => {
 
-    clearInterval(timer);
+        clearInterval(timer);
 
-    document.getElementById('quiz_screen').style.display = 'none';
-
-});
+        document.getElementById('quiz_screen').style.display =
+            'none';
+    });
