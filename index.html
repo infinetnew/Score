@@ -121,8 +121,9 @@
     </div>
 
 <section id="admin_section" style="display:none;">
-    <h3>⚙️ ADMIN</h3>
-    <button id="open_admin">GESTIONE VOTI</button>
+    <button class="home-menu-button" id="open_admin">
+        ⚙️ GESTIONE VOTI
+    </button>
 </section>
 
 
@@ -142,7 +143,7 @@
     🧠 QUIZ
 </button>
 
-<section id="quiz_screen" style="display: none;">
+<section id="quiz_screen" class="score-modal" style="display: none;">
 
     <h2>QUIZ DI OGGI</h2>
 
@@ -322,12 +323,10 @@ loadNextH2H();
 document.getElementById('open_quiz')
     .addEventListener('click', () => {
 
-document.getElementById('app').style.display = 'block';
+    document.getElementById('quiz_screen').style.display = 'block';
 
-document.getElementById('quiz_screen').style.display = 'block';
-
-        loadQuestion();
-    });
+    loadQuestion();
+});
 
         });
 
