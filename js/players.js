@@ -21,12 +21,19 @@ async function showPlayersByRole(role) {
 
     const container = document.getElementById('market_role_players');
 
+    const roleButton = document.querySelector(
+        `.market-section-button[onclick="showPlayersByRole('${role}')"]`
+    );
+
     // Se clicco di nuovo sullo stesso ruolo, chiudo l'elenco
     if (container.dataset.openRole === role) {
         container.innerHTML = '';
         container.dataset.openRole = '';
         return;
     }
+
+    // Sposta l'elenco immediatamente sotto il pulsante cliccato
+    roleButton.after(container);
 
     // Apro il nuovo ruolo
     container.dataset.openRole = role;
