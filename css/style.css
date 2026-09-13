@@ -808,3 +808,60 @@ padding: 30px 25px;
 #ranking_screen #close_ranking {
     width: 180px;
 }
+/* LOGOUT FLOTTANTE */
+.welcome-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.logout-button {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 190, 255, 0.45);
+    background: linear-gradient(
+        145deg,
+        rgba(45, 80, 120, 0.75),
+        rgba(10, 35, 65, 0.9)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px rgba(0, 190, 255, 0.25),
+        inset 0 0 12px rgba(255, 255, 255, 0.05);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.logout-button svg {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: white;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.logout-button:hover {
+    transform: scale(1.08);
+    border-color: rgba(0, 210, 255, 0.85);
+
+    box-shadow:
+        0 0 16px rgba(0, 190, 255, 0.45),
+        0 0 28px rgba(0, 190, 255, 0.18),
+        inset 0 0 14px rgba(255, 255, 255, 0.08);
+}
+
+.logout-button:active {
+    transform: scale(0.94);
+}
