@@ -73,3 +73,10 @@ function disableButtons() {
         button.disabled = true;
     });
 }
+document.getElementById('close_quiz').addEventListener('click', () => {
+
+    clearInterval(timer);
+
+    document.getElementById('quiz_screen').style.display = 'none';
+
+});
