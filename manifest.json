@@ -1,1 +1,20 @@
-
+{
+  "name": "Fanta 5",
+  "short_name": "Fanta 5",
+  "start_url": "/Score/",
+  "display": "standalone",
+  "background_color": "#06121c",
+  "theme_color": "#06121c",
+  "icons": [
+    {
+      "src": "/Score/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/Score/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
