@@ -712,6 +712,10 @@ padding: 30px 25px;
 #h2h_screen #close_h2h {
     width: 180px;
 }
+/* =========================
+   I MIEI GIOCATORI
+   ========================= */
+
 #my_players_screen {
     flex-direction: column;
     align-items: center;
@@ -728,32 +732,214 @@ padding: 30px 25px;
     font-weight: bold;
 }
 
+
+/* =========================
+   CAMPO DA CALCIO
+   ========================= */
+
 #my_players_list {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
-.my-player-card {
+.formation-field {
+    position: relative;
     width: 100%;
+    min-height: 520px;
+    padding: 25px 15px;
     box-sizing: border-box;
-    padding: 14px;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
-    background: rgba(255,255,255,0.05);
-    color: white;
+
+    border-radius: 18px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #176b3a 0px,
+            #176b3a 45px,
+            #1b7540 45px,
+            #1b7540 90px
+        );
+
+    border: 2px solid rgba(255,255,255,0.75);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.45),
+        inset 0 0 30px rgba(0,0,0,0.18);
+
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    justify-content: space-between;
+
+    overflow: hidden;
 }
 
-.my-player-card strong {
-    font-size: 18px;
+
+/* LINEA CENTRALE */
+
+.formation-field::before {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 50%;
+
+    height: 2px;
+
+    background: rgba(255,255,255,0.75);
 }
 
-.my-player-card span {
+
+/* CERCHIO DI CENTRO */
+
+.formation-field::after {
+    content: "";
+
+    position: absolute;
+
+    width: 115px;
+    height: 115px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 2px solid rgba(255,255,255,0.75);
+    border-radius: 50%;
+}
+
+
+/* =========================
+   RIGHE FORMAZIONE
+   ========================= */
+
+.formation-row {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 35px;
+
+    min-height: 80px;
+}
+
+
+/* =========================
+   GIOCATORI
+   ========================= */
+
+.formation-player {
+    width: 105px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 7px 5px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+
+    background: rgba(5,15,25,0.78);
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.45),
+        0 0 12px rgba(0,190,255,0.12);
+
+    backdrop-filter: blur(5px);
+}
+
+.formation-player strong {
     font-size: 14px;
+    line-height: 1.15;
+
+    color: white;
+}
+
+.formation-player span {
+    margin-top: 3px;
+
+    font-size: 11px;
+    line-height: 1.1;
+
+    color: rgba(255,255,255,0.75);
+}
+
+
+/* =========================
+   RISERVE
+   ========================= */
+
+.my-players-reserves {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.my-players-reserves h3 {
+    margin: 0 0 12px;
+
+    font-size: 18px;
+
+    color: white;
+}
+
+#formation_reserves {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+
+    width: 100%;
+}
+
+#formation_reserves .formation-player {
+    background: rgba(255,255,255,0.07);
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 420px) {
+
+    .formation-field {
+        min-height: 470px;
+        padding: 20px 8px;
+    }
+
+    .formation-row {
+        gap: 10px;
+    }
+
+    .formation-player {
+        width: 90px;
+        padding: 6px 4px;
+    }
+
+    .formation-player strong {
+        font-size: 12px;
+    }
+
+    .formation-player span {
+        font-size: 10px;
+    }
+
+    .formation-field::after {
+        width: 90px;
+        height: 90px;
+    }
 }
 /* CLASSIFICA */
 
