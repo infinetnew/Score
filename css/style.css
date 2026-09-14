@@ -865,3 +865,32 @@ padding: 30px 25px;
 .logout-button:active {
     transform: scale(0.94);
 }
+.score-hero {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+}
+
+.logo-fanta5 {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    animation: pulseFanta 3s ease-in-out infinite;
+}
+
+@keyframes pulseFanta {
+    0%, 100% {
+        filter:
+            drop-shadow(0 0 8px rgba(0, 255, 100, 0.35))
+            drop-shadow(0 0 18px rgba(255, 200, 0, 0.20));
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 15px rgba(0, 255, 100, 0.80))
+            drop-shadow(0 0 30px rgba(255, 200, 0, 0.55))
+            drop-shadow(0 0 55px rgba(0, 255, 100, 0.30));
+    }
+}
