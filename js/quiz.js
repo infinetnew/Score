@@ -54,7 +54,8 @@ if (!data || data.length === 0) {
 
     return;
 }
-
+document.querySelector('.quiz-options').style.display = '';
+document.getElementById('confirm_quiz').style.display = '';
 
     currentQuestion = data[0];
 
