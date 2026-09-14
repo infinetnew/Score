@@ -39,13 +39,21 @@ async function loadQuestion() {
     }
 
 
-    if (!data || data.length === 0) {
+if (!data || data.length === 0) {
 
-        document.getElementById('question').textContent =
-            'Nessuna domanda disponibile.';
+    document.getElementById('question').innerHTML =
+        '🧠 <strong>Oggi niente quiz!</strong><br>' +
+        'Le sfide tornano da lunedì a giovedì. ⚡<br>' +
+        'Nel frattempo, tieniti pronto… la prossima domanda potrebbe valere crediti preziosi! 🪙';
 
-        return;
-    }
+    document.querySelector('.quiz-options').style.display = 'none';
+
+    document.getElementById('confirm_quiz').style.display = 'none';
+
+    document.getElementById('timer').textContent = '';
+
+    return;
+}
 
 
     currentQuestion = data[0];
