@@ -214,7 +214,7 @@ async function submitAnswer(answer) {
 
     const result = data[0];
 
-
+loadCredits();
     // ==========================================
     // RISPOSTA CORRETTA
     // ==========================================
