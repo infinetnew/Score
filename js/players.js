@@ -89,16 +89,125 @@ async function showPlayersByRole(role) {
         return;
     }
 
-    // Controlla se l'utente ha già acquistato questo ruolo
-    const alreadyHaveRole = myPurchases.some(
-        purchase => purchase.role === role
-    );
+// ========================================
+// CONTROLLA LA COMPOSIZIONE DELLA SQUADRA
+// ========================================
 
-    if (alreadyHaveRole) {
+const totalPlayers = myPurchases.length;
+
+const countP = myPurchases.filter(
+    purchase => purchase.role === 'P'
+).length;
+
+const countD = myPurchases.filter(
+    purchase => purchase.role === 'D'
+).length;
+
+const countC = myPurchases.filter(
+    purchase => purchase.role === 'C'
+).length;
+
+const countA = myPurchases.filter(
+    purchase => purchase.role === 'A'
+).length;
+
+
+// ========================================
+// SQUADRA COMPLETA
+// ========================================
+
+if (totalPlayers >= 5) {
+    container.innerHTML =
+        'Hai già completato la tua squadra da 5 giocatori.';
+    return;
+}
+
+
+// ========================================
+// QUINTO GIOCATORE
+// ========================================
+
+// Se abbiamo già i 4 ruoli base,
+// il quinto può essere D, C oppure A.
+// MAI P.
+
+if (
+    totalPlayers === 4 &&
+    countP === 1 &&
+    countD === 1 &&
+    countC === 1 &&
+    countA === 1
+) {
+    if (role === 'P') {
         container.innerHTML =
-            'Hai già acquistato un giocatore per questo ruolo.';
+            'Il quinto giocatore può essere solo un difensore, un centrocampista o un attaccante.';
         return;
     }
+}
+
+
+// ========================================
+// PRIMI 4 GIOCATORI
+// ========================================
+
+// Prima di completare i 4 ruoli base,
+// non permettiamo un doppio ruolo.
+
+if (totalPlayers < 4) {
+
+    if (role === 'P' && countP >= 1) {
+        container.innerHTML =
+            'Hai già acquistato un portiere.';
+        return;
+    }
+
+    if (role === 'D' && countD >= 1) {
+        container.innerHTML =
+            'Hai già acquistato un difensore.';
+        return;
+    }
+
+    if (role === 'C' && countC >= 1) {
+        container.innerHTML =
+            'Hai già acquistato un centrocampista.';
+        return;
+    }
+
+    if (role === 'A' && countA >= 1) {
+        container.innerHTML =
+            'Hai già acquistato un attaccante.';
+        return;
+    }
+}
+
+
+// ========================================
+// LIMITI DEI RUOLI
+// ========================================
+
+if (role === 'P' && countP >= 1) {
+    container.innerHTML =
+        'Puoi acquistare un solo portiere.';
+    return;
+}
+
+if (role === 'D' && countD >= 2) {
+    container.innerHTML =
+        'Puoi acquistare al massimo due difensori.';
+    return;
+}
+
+if (role === 'C' && countC >= 2) {
+    container.innerHTML =
+        'Puoi acquistare al massimo due centrocampisti.';
+    return;
+}
+
+if (role === 'A' && countA >= 2) {
+    container.innerHTML =
+        'Puoi acquistare al massimo due attaccanti.';
+    return;
+}
 
     // Elimina i giocatori già acquistati nella giornata corrente
     const purchasedPlayerIds = new Set(
