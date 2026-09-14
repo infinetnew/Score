@@ -32,6 +32,52 @@
         transform: scale(1.02);
         filter: brightness(1.08);
     }
+/* ================================
+   PULSANTI RUOLI DEL MERCATO
+   ================================ */
+
+.market-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.market-section-button.image-role-button {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: auto;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    cursor: pointer;
+    overflow: visible;
+}
+
+.market-section-button.image-role-button img {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    border: none;
+    box-shadow: none;
+
+    transition:
+        transform 0.15s ease,
+        filter 0.15s ease;
+}
+
+.market-section-button.image-role-button:hover img {
+    transform: scale(1.02);
+    filter: brightness(1.10);
+}
+
+.market-section-button.image-role-button:active img {
+    transform: scale(0.98);
+}
 </style>
 </head>
 
@@ -174,25 +220,29 @@
 <p id="credit_balance">0 crediti</p>
     <p>Scegli un ruolo:</p>
 
-    <div class="market-sections">
+<div class="market-sections">
 
-        <button class="market-section-button" onclick="showPlayersByRole('P')">
-            🧤 PORTIERI
-        </button>
+    <button class="market-section-button image-role-button"
+            onclick="showPlayersByRole('P')">
+        <img src="/Score/assets/portieri.png" alt="Portieri">
+    </button>
 
-        <button class="market-section-button" onclick="showPlayersByRole('D')">
-            🛡️ DIFENSORI
-        </button>
+    <button class="market-section-button image-role-button"
+            onclick="showPlayersByRole('D')">
+        <img src="/Score/assets/difensori.png" alt="Difensori">
+    </button>
 
-        <button class="market-section-button" onclick="showPlayersByRole('C')">
-            ⚙️ CENTROCAMPISTI
-        </button>
+    <button class="market-section-button image-role-button"
+            onclick="showPlayersByRole('C')">
+        <img src="/Score/assets/centrocampisti.png" alt="Centrocampisti">
+    </button>
 
-        <button class="market-section-button" onclick="showPlayersByRole('A')">
-            ⚡ ATTACCANTI
-        </button>
+    <button class="market-section-button image-role-button"
+            onclick="showPlayersByRole('A')">
+        <img src="/Score/assets/attaccanti.png" alt="Attaccanti">
+    </button>
 
-    </div>
+</div>
 
     <div id="market_role_players"></div>
 
