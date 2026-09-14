@@ -568,19 +568,29 @@ async function openMyPlayers() {
         );
 
     // Funzione per creare la card del giocatore
-    function createPlayerCard(player) {
+function createPlayerCard(player, isReserve = false) {
 
-        const card = document.createElement('div');
+    const card = document.createElement('div');
 
-        card.className = 'formation-player';
+    card.className = 'formation-player';
+
+    if (isReserve) {
+
+        card.innerHTML = `
+            <strong>${player.name}</strong>
+            <span>${player.team} (${player.role})</span>
+        `;
+
+    } else {
 
         card.innerHTML = `
             <strong>${player.name}</strong>
             <span>${player.team}</span>
         `;
-
-        return card;
     }
+
+    return card;
+}
 
     // ========================================
     // TITOLARI
@@ -618,18 +628,18 @@ async function openMyPlayers() {
     // RISERVE
     // ========================================
 
-    reserves.forEach(purchase => {
+reserves.forEach(purchase => {
 
-        const player =
-            playerMap.get(purchase.player_id);
+    const player =
+        playerMap.get(purchase.player_id);
 
-        if (!player) return;
+    if (!player) return;
 
-        const card =
-            createPlayerCard(player);
+    const card =
+        createPlayerCard(player, true);
 
-        reservesContainer.appendChild(card);
-    });
+    reservesContainer.appendChild(card);
+});
 }
 
 function closeMyPlayers() {
