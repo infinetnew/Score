@@ -107,9 +107,9 @@
 <main id="app" style="display: none;">
 
     <!-- IMMAGINE PRINCIPALE -->
-    <div class="score-hero">
-<img src="/Score/assets/score-home.png" alt="SCORE">
-    </div>
+<div class="score-hero">
+    <img src="/Score/assets/score-home.png" alt="Fanta 5" class="logo-fanta5">
+</div>
 
 <!-- UTENTE E CREDITI -->
 <div class="score-user-info">
@@ -459,14 +459,14 @@ if (profile.is_admin) {
 }
 loadCredits();
 loadNextH2H();
-
-});
 document.getElementById('open_quiz')
     .addEventListener('click', () => {
 
     document.getElementById('quiz_screen').style.display = 'block';
 
     loadQuestion();
+});
+
         });
 
     </script>
