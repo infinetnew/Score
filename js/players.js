@@ -93,22 +93,38 @@ async function showPlayersByRole(role) {
 // CONTROLLA LA COMPOSIZIONE DELLA SQUADRA
 // ========================================
 
-const totalPlayers = myPurchases.length;
+const starterPurchases = myPurchases.filter(
+    purchase => purchase.slot_type === 'starter'
+);
 
-const countP = myPurchases.filter(
+const reservePurchases = myPurchases.filter(
+    purchase => purchase.slot_type === 'reserve'
+);
+
+const totalPlayers = starterPurchases.length;
+
+const countP = starterPurchases.filter(
     purchase => purchase.role === 'P'
 ).length;
 
-const countD = myPurchases.filter(
+const countD = starterPurchases.filter(
     purchase => purchase.role === 'D'
 ).length;
 
-const countC = myPurchases.filter(
+const countC = starterPurchases.filter(
     purchase => purchase.role === 'C'
 ).length;
 
-const countA = myPurchases.filter(
+const countA = starterPurchases.filter(
     purchase => purchase.role === 'A'
+).length;
+
+const reserveCountP = reservePurchases.filter(
+    purchase => purchase.role === 'P'
+).length;
+
+const reserveCountOutfield = reservePurchases.filter(
+    purchase => ['D', 'C', 'A'].includes(purchase.role)
 ).length;
 
 
@@ -117,9 +133,28 @@ const countA = myPurchases.filter(
 // ========================================
 
 if (totalPlayers >= 5) {
-    container.innerHTML =
-        'Hai già completato la tua squadra da 5 giocatori.';
-    return;
+
+    if (reservePurchases.length >= 2) {
+        container.innerHTML = 'Hai già acquistato le 2 riserve disponibili.';
+        return;
+    }
+
+    if (role === 'P' && reserveCountP >= 1) {
+        container.innerHTML = 'Hai già acquistato un portiere di riserva.';
+        return;
+    }
+
+    if (
+        ['D', 'C', 'A'].includes(role) &&
+        reserveCountOutfield >= 1
+    ) {
+        container.innerHTML =
+            'Hai già acquistato una riserva tra difensore, centrocampista o attaccante.';
+        return;
+    }
+
+    // Le riserve sono acquistabili:
+    // 1 P + 1 giocatore di movimento (D/C/A)
 }
 
 
@@ -185,28 +220,31 @@ if (totalPlayers < 4) {
 // LIMITI DEI RUOLI
 // ========================================
 
-if (role === 'P' && countP >= 1) {
-    container.innerHTML =
-        'Puoi acquistare un solo portiere.';
-    return;
-}
+if (totalPlayers < 5) {
 
-if (role === 'D' && countD >= 2) {
-    container.innerHTML =
-        'Puoi acquistare al massimo due difensori.';
-    return;
-}
+    if (role === 'P' && countP >= 1) {
+        container.innerHTML =
+            'Puoi acquistare un solo portiere.';
+        return;
+    }
 
-if (role === 'C' && countC >= 2) {
-    container.innerHTML =
-        'Puoi acquistare al massimo due centrocampisti.';
-    return;
-}
+    if (role === 'D' && countD >= 2) {
+        container.innerHTML =
+            'Puoi acquistare al massimo due difensori.';
+        return;
+    }
 
-if (role === 'A' && countA >= 2) {
-    container.innerHTML =
-        'Puoi acquistare al massimo due attaccanti.';
-    return;
+    if (role === 'C' && countC >= 2) {
+        container.innerHTML =
+            'Puoi acquistare al massimo due centrocampisti.';
+        return;
+    }
+
+    if (role === 'A' && countA >= 2) {
+        container.innerHTML =
+            'Puoi acquistare al massimo due attaccanti.';
+        return;
+    }
 }
 
     // Elimina i giocatori già acquistati nella giornata corrente
@@ -258,12 +296,37 @@ async function buyPlayer(player) {
     const cancelButton = document.getElementById('purchase_cancel');
     const confirmButton = document.getElementById('purchase_confirm');
 
-    // Mostra conferma acquisto
-    title.textContent = '🛒 CONFERMA ACQUISTO';
+// Determina se è un titolare o una riserva
+const { data: currentPurchases } =
+    await supabaseClient.rpc(
+        'score_get_my_purchases',
+        {
+            p_matchday: await supabaseClient.rpc(
+                'score_get_active_matchday'
+            ).then(result => result.data)
+        }
+    );
 
-    message.innerHTML =
-        `Vuoi acquistare <strong>${player.name}</strong>?<br><br>` +
-        `Prezzo: <strong>${player.price} crediti</strong>`;
+const starterCount = (currentPurchases || []).filter(
+    purchase => purchase.slot_type === 'starter'
+).length;
+
+const isReserve = starterCount >= 5;
+
+const slotLabel = isReserve
+    ? `RISERVA – ${
+        player.role === 'P'
+            ? 'PORTIERE'
+            : 'GIOCATORE DI MOVIMENTO'
+      }`
+    : 'TITOLARE';
+
+// Mostra conferma acquisto
+title.textContent = `🛒 ${slotLabel}`;
+
+message.innerHTML =
+    `Vuoi acquistare <strong>${player.name}</strong>?<br><br>` +
+    `Prezzo: <strong>${player.price} crediti</strong>`;
     confirmButton.disabled = false;
     confirmButton.textContent = 'ACQUISTA';
 
@@ -329,26 +392,65 @@ async function buyPlayer(player) {
 
             return;
         }
+// Acquisto completato
+title.textContent = '✅ ACQUISTO COMPLETATO';
 
-        // Acquisto completato
-        title.textContent = '✅ ACQUISTO COMPLETATO';
+message.innerHTML =
+    `<strong>${player.name}</strong> è stato acquistato!<br><br>` +
+    `Prezzo: <strong>${data.price} crediti</strong><br>` +
+    `Crediti rimasti: <strong>${data.remaining_credits}</strong>`;
 
-        message.innerHTML =
-            `<strong>${player.name}</strong> è stato acquistato!<br><br>` +
-            `Prezzo: <strong>${data.price} crediti</strong><br>` +
-            `Crediti rimasti: <strong>${data.remaining_credits}</strong>`;
+buttons.style.display = 'none';
 
-        buttons.style.display = 'none';
+loadCredits();
 
-        loadCredits();
+setTimeout(async () => {
 
-        setTimeout(() => {
+    modal.style.display = 'none';
 
-            modal.style.display = 'none';
+    // Se abbiamo appena acquistato il quinto titolare,
+    // chiediamo se vuole procedere con le riserve
+    if (data.slot_type === 'starter') {
 
-            showPlayersByRole(player.role);
+        const { data: purchases } =
+            await supabaseClient.rpc(
+                'score_get_my_purchases',
+                { p_matchday: matchday }
+            );
 
-        }, 1800);
+        const starterCount = (purchases || []).filter(
+            purchase => purchase.slot_type === 'starter'
+        ).length;
+
+if (starterCount === 5) {
+
+    const reserveModal =
+        document.getElementById('reserve_modal');
+
+    const reserveYes =
+        document.getElementById('reserve_yes');
+
+    const reserveNo =
+        document.getElementById('reserve_no');
+
+    reserveModal.style.display = 'flex';
+
+    reserveNo.onclick = () => {
+        reserveModal.style.display = 'none';
+    };
+
+    reserveYes.onclick = () => {
+        reserveModal.style.display = 'none';
+        showPlayersByRole(player.role);
+    };
+
+    return;
+}
+    }
+
+    showPlayersByRole(player.role);
+
+}, 1800);
     };
 }
 
