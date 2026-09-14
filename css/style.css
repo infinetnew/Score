@@ -44,11 +44,11 @@ body {
     max-width: 480px;
     display: block;
     margin: 0 auto;
-    border-radius: 20px;
 
-    box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.55),
-        0 0 30px rgba(0, 150, 255, 0.12);
+    border-radius: 0;
+    box-shadow: none;
+
+    animation: pulseFanta 3s ease-in-out infinite;
 }
 
 
