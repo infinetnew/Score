@@ -7,6 +7,29 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="css/style.css">
+<style>
+    .home-menu-button.image-menu-button {
+        padding: 0;
+        background: transparent;
+        border: none;
+        overflow: hidden;
+        box-shadow: none;
+        width: 100%;
+    }
+
+    .home-menu-button.image-menu-button img {
+        display: block;
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .home-menu-button.image-menu-button img:hover {
+        transform: scale(1.02);
+        filter: brightness(1.08);
+    }
+</style>
 </head>
 
 <body>
@@ -131,16 +154,16 @@
 </div>
 
 <section id="admin_section" style="display:none;">
-    <button class="home-menu-button" id="open_admin">
-        ⚙️ GESTIONE VOTI
-    </button>
+<button class="home-menu-button image-menu-button" id="open_admin">
+    <img src="/Score/assets/panel-admin.png" alt="Panel Admin">
+</button>
 </section>
 
 
 
 <!-- MERCATO -->
-<button class="home-menu-button" id="open_market">
-    🛒 MERCATO
+<button class="home-menu-button image-menu-button" id="open_market">
+    <img src="/Score/assets/mercato.png" alt="Mercato">
 </button>
 <section id="market_screen" class="score-modal" style="display: none;">
 
@@ -177,14 +200,14 @@
 </section>
 
 <!-- I MIEI GIOCATORI -->
-<button class="home-menu-button" id="open_players">
-    ⚽ I MIEI GIOCATORI
+<button class="home-menu-button image-menu-button" id="open_players">
+    <img src="/Score/assets/formazione.png" alt="La mia formazione">
 </button>
 
 
 <!-- QUIZ -->
-<button class="home-menu-button" id="open_quiz">
-    🧠 QUIZ
+<button class="home-menu-button image-menu-button" id="open_quiz">
+    <img src="/Score/assets/quiz.png" alt="Quiz">
 </button>
 
 <section id="quiz_screen" class="score-modal" style="display: none;">
@@ -235,13 +258,13 @@
 
 
 <!-- CLASSIFICA -->
-<button class="home-menu-button" id="open_ranking">
-    🏆 CLASSIFICA
+<button class="home-menu-button image-menu-button" id="open_ranking">
+    <img src="/Score/assets/classifiche.png" alt="Classifiche">
 </button>
 
 <!-- TESTA A TESTA -->
-<button class="home-menu-button" id="open_h2h">
-    ⚔️ TESTA A TESTA
+<button class="home-menu-button image-menu-button" id="open_h2h">
+    <img src="/Score/assets/testa-a-testa.png" alt="Testa a testa">
 </button>
 <!-- POPUP TESTA A TESTA -->
 <section id="h2h_screen" class="score-modal" style="display: none;">
