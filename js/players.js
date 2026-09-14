@@ -462,9 +462,24 @@ async function openMyPlayers() {
     const matchdayText = document.getElementById('my_players_matchday');
     const list = document.getElementById('my_players_list');
 
+    const attackersContainer =
+        document.getElementById('formation_attackers');
+
+    const midfieldersContainer =
+        document.getElementById('formation_midfielders');
+
+    const defendersContainer =
+        document.getElementById('formation_defenders');
+
+    const goalkeeperContainer =
+        document.getElementById('formation_goalkeeper');
+
+    const reservesContainer =
+        document.getElementById('formation_reserves');
+
     screen.style.display = 'flex';
 
-    list.innerHTML = 'Caricamento...';
+    list.style.display = 'block';
     matchdayText.textContent = '';
 
     // Recupera la giornata attiva
@@ -472,14 +487,18 @@ async function openMyPlayers() {
         await supabaseClient.rpc('score_get_active_matchday');
 
     if (matchdayError || !matchday) {
-        console.error('Errore recupero giornata:', matchdayError);
+        console.error(
+            'Errore recupero giornata:',
+            matchdayError
+        );
+
         list.innerHTML = 'Nessuna giornata attiva.';
         return;
     }
 
     matchdayText.textContent = `Giornata ${matchday}`;
 
-    // Recupera SOLO i miei acquisti della giornata attiva
+    // Recupera i miei acquisti della giornata attiva
     const { data: myPurchases, error: purchasesError } =
         await supabaseClient.rpc(
             'score_get_my_purchases',
@@ -487,50 +506,131 @@ async function openMyPlayers() {
         );
 
     if (purchasesError) {
-        console.error('Errore caricamento giocatori:', purchasesError);
-        list.innerHTML = 'Errore nel caricamento dei tuoi giocatori.';
+        console.error(
+            'Errore caricamento giocatori:',
+            purchasesError
+        );
+
+        list.innerHTML =
+            'Errore nel caricamento dei tuoi giocatori.';
+
         return;
     }
 
-    list.innerHTML = '';
+    // Svuota il campo
+    attackersContainer.innerHTML = '';
+    midfieldersContainer.innerHTML = '';
+    defendersContainer.innerHTML = '';
+    goalkeeperContainer.innerHTML = '';
+    reservesContainer.innerHTML = '';
 
     if (!myPurchases || myPurchases.length === 0) {
-        list.innerHTML = 'Non hai ancora acquistato nessun giocatore.';
+        list.innerHTML =
+            'Non hai ancora acquistato nessun giocatore.';
         return;
     }
 
-// Recupera i dati completi dei giocatori acquistati
-const playerIds = myPurchases.map(purchase => purchase.player_id);
+    // Recupera i dati completi dei giocatori acquistati
+    const playerIds =
+        myPurchases.map(purchase => purchase.player_id);
 
-const { data: players, error: playersError } =
-    await supabaseClient
-        .from('score_players')
-        .select('id, name, role, team, price')
-        .in('id', playerIds);
+    const { data: players, error: playersError } =
+        await supabaseClient
+            .from('score_players')
+            .select('id, name, role, team, price')
+            .in('id', playerIds);
 
-if (playersError) {
-    console.error('Errore caricamento dati giocatori:', playersError);
-    list.innerHTML = 'Errore nel caricamento dei giocatori.';
-    return;
+    if (playersError) {
+        console.error(
+            'Errore caricamento dati giocatori:',
+            playersError
+        );
+
+        list.innerHTML =
+            'Errore nel caricamento dei giocatori.';
+
+        return;
+    }
+
+    // Mappa veloce player_id → giocatore
+    const playerMap =
+        new Map(players.map(player => [player.id, player]));
+
+    // Separa titolari e riserve
+    const starters =
+        myPurchases.filter(
+            purchase => purchase.slot_type === 'starter'
+        );
+
+    const reserves =
+        myPurchases.filter(
+            purchase => purchase.slot_type === 'reserve'
+        );
+
+    // Funzione per creare la card del giocatore
+    function createPlayerCard(player) {
+
+        const card = document.createElement('div');
+
+        card.className = 'formation-player';
+
+        card.innerHTML = `
+            <strong>${player.name}</strong>
+            <span>${player.team}</span>
+        `;
+
+        return card;
+    }
+
+    // ========================================
+    // TITOLARI
+    // ========================================
+
+    starters.forEach(purchase => {
+
+        const player =
+            playerMap.get(purchase.player_id);
+
+        if (!player) return;
+
+        const card =
+            createPlayerCard(player);
+
+        if (player.role === 'A') {
+
+            attackersContainer.appendChild(card);
+
+        } else if (player.role === 'C') {
+
+            midfieldersContainer.appendChild(card);
+
+        } else if (player.role === 'D') {
+
+            defendersContainer.appendChild(card);
+
+        } else if (player.role === 'P') {
+
+            goalkeeperContainer.appendChild(card);
+        }
+    });
+
+    // ========================================
+    // RISERVE
+    // ========================================
+
+    reserves.forEach(purchase => {
+
+        const player =
+            playerMap.get(purchase.player_id);
+
+        if (!player) return;
+
+        const card =
+            createPlayerCard(player);
+
+        reservesContainer.appendChild(card);
+    });
 }
-
-players.forEach(player => {
-
-    const row = document.createElement('div');
-
-    row.className = 'my-player-card';
-
-    row.innerHTML = `
-        <strong>${player.name}</strong>
-        <span>${player.team}</span>
-        <span>${player.role}</span>
-        <span>${player.price} crediti</span>
-    `;
-
-    list.appendChild(row);
-});
-}
-
 
 function closeMyPlayers() {
 
