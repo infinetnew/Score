@@ -1179,3 +1179,355 @@ text-overflow: ellipsis;
             drop-shadow(0 0 55px rgba(0, 255, 100, 0.30));
     }
 }
+/* ========================================
+   MERCATO - RICERCA GIOCATORI
+   ======================================== */
+
+.market-search {
+    position: relative;
+    width: 100%;
+    margin: 2px 0 12px;
+}
+
+.market-search-input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 13px 16px 13px 42px;
+
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.025)
+        );
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.market-search-input::placeholder {
+    color: rgba(255,255,255,0.50);
+}
+
+.market-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 16px;
+
+    pointer-events: none;
+}
+
+/* ========================================
+   FOCUS RICERCA - PORTIERI
+   ======================================== */
+
+.market-search.role-portieri .market-search-input:focus {
+    border-color: #12ff4d;
+
+    box-shadow:
+        0 0 12px rgba(18,255,77,0.35);
+}
+
+/* ========================================
+   FOCUS RICERCA - DIFENSORI
+   ======================================== */
+
+.market-search.role-difensori .market-search-input:focus {
+    border-color: #1677ff;
+
+    box-shadow:
+        0 0 12px rgba(22,119,255,0.35);
+}
+
+/* ========================================
+   FOCUS RICERCA - CENTROCAMPISTI
+   ======================================== */
+
+.market-search.role-centrocampisti .market-search-input:focus {
+    border-color: #b044ff;
+
+    box-shadow:
+        0 0 12px rgba(176,68,255,0.35);
+}
+
+/* ========================================
+   FOCUS RICERCA - ATTACCANTI
+   ======================================== */
+
+.market-search.role-attaccanti .market-search-input:focus {
+    border-color: #ff202d;
+
+    box-shadow:
+        0 0 12px rgba(255,32,45,0.35);
+}
+
+
+/* ========================================
+   LISTA GIOCATORI
+   ======================================== */
+
+.market-players-list {
+    width: 100%;
+}
+
+
+/* ========================================
+   CARD GIOCATORE
+   ======================================== */
+
+.market-player-row {
+
+    width: 100%;
+    min-height: 58px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 8px;
+    padding: 8px 12px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+
+/* ========================================
+   LOGO SQUADRA
+   ======================================== */
+
+.market-player-team {
+
+    width: 40px;
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.market-team-logo {
+
+    width: 32px;
+    height: 32px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* ========================================
+   NOME + SQUADRA
+   ======================================== */
+
+.market-player-info {
+
+    flex: 1;
+    min-width: 0;
+
+    text-align: left;
+
+    margin-left: 8px;
+}
+
+.market-player-info strong {
+
+    display: block;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.market-player-info span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: rgba(255,255,255,0.60);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   PREZZO
+   ======================================== */
+
+.market-player-price {
+
+    min-width: 42px;
+
+    text-align: right;
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: 900;
+}
+
+
+/* ========================================
+   HOVER PORTIERI - VERDE
+   ======================================== */
+
+.market-player-row.role-portieri:hover {
+
+    border-color: #12ff4d;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18,255,77,0.14),
+            rgba(18,255,77,0.04)
+        );
+
+    box-shadow:
+        0 0 12px rgba(18,255,77,0.30),
+        inset 0 0 12px rgba(18,255,77,0.05);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   HOVER DIFENSORI - BLU
+   ======================================== */
+
+.market-player-row.role-difensori:hover {
+
+    border-color: #1677ff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22,119,255,0.14),
+            rgba(22,119,255,0.04)
+        );
+
+    box-shadow:
+        0 0 12px rgba(22,119,255,0.30),
+        inset 0 0 12px rgba(22,119,255,0.05);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   HOVER CENTROCAMPISTI - VIOLA
+   ======================================== */
+
+.market-player-row.role-centrocampisti:hover {
+
+    border-color: #b044ff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(176,68,255,0.14),
+            rgba(176,68,255,0.04)
+        );
+
+    box-shadow:
+        0 0 12px rgba(176,68,255,0.30),
+        inset 0 0 12px rgba(176,68,255,0.05);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   HOVER ATTACCANTI - ROSSO
+   ======================================== */
+
+.market-player-row.role-attaccanti:hover {
+
+    border-color: #ff202d;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,32,45,0.14),
+            rgba(255,32,45,0.04)
+        );
+
+    box-shadow:
+        0 0 12px rgba(255,32,45,0.30),
+        inset 0 0 12px rgba(255,32,45,0.05);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   CLICK
+   ======================================== */
+
+.market-player-row:active {
+    transform: scale(0.985);
+}
+
+
+/* ========================================
+   NESSUN GIOCATORE
+   ======================================== */
+
+.market-no-players {
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    color: rgba(255,255,255,0.65);
+
+    font-size: 14px;
+    font-weight: 600;
+}
