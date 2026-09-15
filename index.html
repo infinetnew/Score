@@ -89,6 +89,19 @@
 .market-section-button.image-role-button:active img {
     transform: scale(0.98);
 }
+.market-title-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.market-title-image img {
+    display: block;
+    width: 90%;
+    max-width: 420px;
+    height: auto;
+}
 </style>
 </head>
 
@@ -227,7 +240,9 @@
 </button>
 <section id="market_screen" class="score-modal" style="display: none;">
 
-    <h2>🛒 Mercato Giocatori</h2>
+    <div class="market-title-image">
+    <img src="/Score/assets/mercato-giocatori.png" alt="Mercato Giocatori">
+</div>
 <p id="credit_balance">0 crediti</p>
     <p>Scegli un ruolo:</p>
 
@@ -276,7 +291,9 @@
 
 <section id="quiz_screen" class="score-modal" style="display: none;">
 
-    <h2>🧠 Quiz di Oggi</h2>
+<div class="market-title-image">
+    <img src="/Score/assets/quizoggi.png" alt="Quiz di Oggi">
+</div>
 
     <p id="question">Caricamento...</p>
 
@@ -333,7 +350,9 @@
 <!-- POPUP TESTA A TESTA -->
 <section id="h2h_screen" class="score-modal" style="display: none;">
 
-    <h2>⚔️ Testa a Testa </h2>
+<div class="market-title-image">
+    <img src="/Score/assets/tvst.png" alt="Testa a Testa">
+</div>
 
     <p>La tua prossima sfida:</p>
 
@@ -348,7 +367,9 @@
 <!-- POPUP I MIEI GIOCATORI -->
 <section id="my_players_screen" class="score-modal" style="display: none;">
 
-    <h2>⚽ Formazione Settimanale</h2>
+<div class="market-title-image">
+    <img src="/Score/assets/formazionesettimana.png" alt="La mia Formazione">
+</div>
 
     <p id="my_players_matchday"></p>
 
@@ -384,7 +405,9 @@
 <!-- POPUP CLASSIFICA -->
 <section id="ranking_screen" class="score-modal" style="display: none;">
 
-    <h2>🏆 Classifiche </h2>
+<div class="market-title-image">
+    <img src="/Score/assets/classifichesettimana.png" alt="Classifiche">
+</div>
 
     <div id="ranking_list"></div>
 
@@ -452,7 +475,9 @@
 </div>
 <div id="admin_page" style="display:none;">
 
-    <h2>⚙️ GESTIONE VOTI</h2>
+<div class="market-title-image">
+    <img src="/Score/assets/admin.png" alt="Pannello Admin">
+</div>
 
     <p id="admin_matchday"></p>
 
