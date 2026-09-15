@@ -1532,8 +1532,8 @@ text-overflow: ellipsis;
     font-weight: 600;
 }
 .purchase-cart-icon {
-    width: 32px;
-    height: 32px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
     vertical-align: middle;
     margin-right: 8px;
