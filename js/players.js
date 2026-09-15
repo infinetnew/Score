@@ -407,7 +407,10 @@ const slotLabel = isReserve
     : 'TITOLARE';
 
 // Mostra conferma acquisto
-title.textContent = `🛒 ${slotLabel}`;
+title.innerHTML = `
+    <img src="assets/cart.png" class="purchase-cart-icon">
+    ${slotLabel}
+`;
 
 message.innerHTML =
     `Vuoi acquistare <strong>${player.name}</strong>?<br><br>` +
