@@ -849,6 +849,14 @@ padding: 30px 25px;
 
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+.formation-team-logo {
+    width: 30px;
+    height: 30px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
 
 .formation-player strong {
     display: block;
