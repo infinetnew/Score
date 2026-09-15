@@ -537,7 +537,7 @@ async function openMyPlayers() {
     const { data: players, error: playersError } =
         await supabaseClient
             .from('score_players')
-            .select('id, name, role, team, price')
+            .select('id, name, role, team, price, team_logo')
             .in('id', playerIds);
 
     if (playersError) {
@@ -579,7 +579,7 @@ function createPlayerCard(player, isReserve = false) {
         card.innerHTML = `
             <img 
                 class="formation-team-logo" 
-                src="https://fkudvfkjjxmcbppvfinf.supabase.co/storage/v1/object/public/team-logos/juventus.png"
+                src="${player.team_logo}"
                 alt=""
             >
 
@@ -594,7 +594,7 @@ function createPlayerCard(player, isReserve = false) {
         card.innerHTML = `
             <img 
                 class="formation-team-logo" 
-                src="https://fkudvfkjjxmcbppvfinf.supabase.co/storage/v1/object/public/team-logos/juventus.png"
+                src="${player.team_logo}"
                 alt=""
             >
 
