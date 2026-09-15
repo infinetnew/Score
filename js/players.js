@@ -554,6 +554,7 @@ if (starterCount === 5) {
 
 
 document.getElementById('open_market').addEventListener('click', openMarket);
+document.getElementById('close_market').addEventListener('click', closeMarket);
 async function openMyPlayers() {
 
     const screen = document.getElementById('my_players_screen');
