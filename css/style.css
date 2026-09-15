@@ -1573,3 +1573,10 @@ text-overflow: ellipsis;
     vertical-align: middle;
     margin-right: 8px;
 }
+.purchase-completed-icon {
+    display: block;
+    width: 300px;
+    height: auto;
+    margin: 0 auto 20px auto;
+    object-fit: contain;
+}
