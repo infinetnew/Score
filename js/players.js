@@ -577,15 +577,31 @@ function createPlayerCard(player, isReserve = false) {
     if (isReserve) {
 
         card.innerHTML = `
-            <strong>${player.name}</strong>
-            <span>${player.team} (${player.role})</span>
+            <img 
+                class="formation-team-logo" 
+                src="${player.team_logo}" 
+                alt=""
+            >
+
+            <div class="formation-player-info">
+                <strong>${player.name}</strong>
+                <span>${player.team} (${player.role})</span>
+            </div>
         `;
 
     } else {
 
         card.innerHTML = `
-            <strong>${player.name}</strong>
-            <span>${player.team}</span>
+            <img 
+                class="formation-team-logo" 
+                src="${player.team_logo}" 
+                alt=""
+            >
+
+            <div class="formation-player-info">
+                <strong>${player.name}</strong>
+                <span>${player.team}</span>
+            </div>
         `;
     }
 
