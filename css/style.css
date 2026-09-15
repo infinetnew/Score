@@ -1479,33 +1479,54 @@ text-overflow: ellipsis;
 
 
 /* ========================================
-   HOVER PORTIERI - VERDE
+   HOVER PORTIERI - GIALLO
    ======================================== */
 
 .market-player-row.role-portieri:hover {
 
-    border-color: #12ff4d;
+    border-color: #f2b900;
 
     background:
         linear-gradient(
             135deg,
-            rgba(18,255,77,0.14),
-            rgba(18,255,77,0.04)
+            rgba(242,185,0,0.14),
+            rgba(242,185,0,0.04)
         );
 
     box-shadow:
-        0 0 12px rgba(18,255,77,0.30),
-        inset 0 0 12px rgba(18,255,77,0.05);
+        0 0 12px rgba(242,185,0,0.30),
+        inset 0 0 12px rgba(242,185,0,0.05);
 
     transform: translateY(-1px);
 }
 
-
 /* ========================================
-   HOVER DIFENSORI - BLU
+   HOVER DIFENSORI - VERDE
    ======================================== */
 
 .market-player-row.role-difensori:hover {
+
+    border-color: #12a957;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18,169,87,0.14),
+            rgba(18,169,87,0.04)
+        );
+
+    box-shadow:
+        0 0 12px rgba(18,169,87,0.30),
+        inset 0 0 12px rgba(18,169,87,0.05);
+
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   HOVER CENTROCAMPISTI - BLU
+   ======================================== */
+
+.market-player-row.role-centrocampisti:hover {
 
     border-color: #1677ff;
 
@@ -1525,46 +1546,23 @@ text-overflow: ellipsis;
 
 
 /* ========================================
-   HOVER CENTROCAMPISTI - VIOLA
-   ======================================== */
-
-.market-player-row.role-centrocampisti:hover {
-
-    border-color: #b044ff;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(176,68,255,0.14),
-            rgba(176,68,255,0.04)
-        );
-
-    box-shadow:
-        0 0 12px rgba(176,68,255,0.30),
-        inset 0 0 12px rgba(176,68,255,0.05);
-
-    transform: translateY(-1px);
-}
-
-
-/* ========================================
    HOVER ATTACCANTI - ROSSO
    ======================================== */
 
 .market-player-row.role-attaccanti:hover {
 
-    border-color: #ff202d;
+    border-color: #e5232f;
 
     background:
         linear-gradient(
             135deg,
-            rgba(255,32,45,0.14),
-            rgba(255,32,45,0.04)
+            rgba(229,35,47,0.14),
+            rgba(229,35,47,0.04)
         );
 
     box-shadow:
-        0 0 12px rgba(255,32,45,0.30),
-        inset 0 0 12px rgba(255,32,45,0.05);
+        0 0 12px rgba(229,35,47,0.30),
+        inset 0 0 12px rgba(229,35,47,0.05);
 
     transform: translateY(-1px);
 }
