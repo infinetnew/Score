@@ -789,12 +789,12 @@ padding: 30px 25px;
 }
 /* ATTACCANTI */
 #formation_attackers {
-    top: 12%;
+    top: 16%;
 }
 
 /* CENTROCAMPISTI */
 #formation_midfielders {
-    top: 37%;
+    top: 35%;
 }
 
 /* DIFENSORI */
@@ -804,7 +804,7 @@ padding: 30px 25px;
 
 /* PORTIERE */
 #formation_goalkeeper {
-    top: 76%;
+    top: 75%;
 }
 
 
