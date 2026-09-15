@@ -775,18 +775,36 @@ padding: 30px 25px;
    ========================= */
 
 .formation-row {
-    position: relative;
-    z-index: 2;
+    position: absolute;
+    left: 15px;
+    right: 15px;
 
-    width: 100%;
+    z-index: 2;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    gap: 35px;
+    min-height: 70px;
+}
+/* ATTACCANTI */
+#formation_attackers {
+    top: 12%;
+}
 
-    min-height: 80px;
+/* CENTROCAMPISTI */
+#formation_midfielders {
+    top: 37%;
+}
+
+/* DIFENSORI */
+#formation_defenders {
+    top: 57%;
+}
+
+/* PORTIERE */
+#formation_goalkeeper {
+    top: 76%;
 }
 
 
