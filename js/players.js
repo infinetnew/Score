@@ -415,8 +415,14 @@ title.innerHTML = `
 message.innerHTML =
     `Vuoi acquistare <strong>${player.name}</strong>?<br><br>` +
     `Prezzo: <strong>${player.price} crediti</strong>`;
-    confirmButton.disabled = false;
-    confirmButton.textContent = 'ACQUISTA';
+confirmButton.disabled = false;
+
+confirmButton.innerHTML = `
+    <img src="assets/acquista.png" alt="Acquista">
+`;
+cancelButton.innerHTML = `
+    <img src="assets/annulla.png" alt="Annulla">
+`;
 
     buttons.style.display = 'flex';
     cancelButton.style.display = 'block';
