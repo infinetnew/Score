@@ -751,62 +751,22 @@ padding: 30px 25px;
 
     border-radius: 18px;
 
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #176b3a 0px,
-            #176b3a 45px,
-            #1b7540 45px,
-            #1b7540 90px
-        );
+    background-image: url("../assets/formation-field.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     border: 2px solid rgba(255,255,255,0.75);
 
     box-shadow:
         0 10px 35px rgba(0,0,0,0.45),
-        inset 0 0 30px rgba(0,0,0,0.18);
+        0 0 25px rgba(0,180,255,0.15);
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     overflow: hidden;
-}
-
-
-/* LINEA CENTRALE */
-
-.formation-field::before {
-    content: "";
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    top: 50%;
-
-    height: 2px;
-
-    background: rgba(255,255,255,0.75);
-}
-
-
-/* CERCHIO DI CENTRO */
-
-.formation-field::after {
-    content: "";
-
-    position: absolute;
-
-    width: 115px;
-    height: 115px;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    border: 2px solid rgba(255,255,255,0.75);
-    border-radius: 50%;
 }
 
 
