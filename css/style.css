@@ -541,7 +541,32 @@ padding: 30px 25px;
         box-shadow 0.2s ease,
         filter 0.2s ease;
 }
+.image-close-button {
+    width: 180px !important;
+    height: 55px !important;
 
+    margin: 16px auto 0 !important;
+    padding: 0 !important;
+
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.image-close-button img {
+    display: block;
+
+    width: 180px;
+    height: 55px;
+
+    object-fit: contain;
+}
 .quiz-close:hover {
     transform: translateY(-2px);
 
