@@ -148,7 +148,7 @@ body {
 
     transform: translate(-50%, -50%);
 
-width: calc(100% - 40px);
+width: calc(100% - 20px);
 max-width: 460px;
 max-height: 85vh;
 overflow-y: auto;
@@ -1018,7 +1018,7 @@ text-overflow: ellipsis;
     }
 
     .formation-player {
-        width: 90px;
+        width: 150px;
         padding: 6px 4px;
     }
 
