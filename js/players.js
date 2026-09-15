@@ -579,7 +579,7 @@ function createPlayerCard(player, isReserve = false) {
         card.innerHTML = `
             <img 
                 class="formation-team-logo" 
-                src="${player.team_logo}" 
+                src="https://fkudvfkjjxmcbppvfinf.supabase.co/storage/v1/object/public/team-logos/juventus.png"
                 alt=""
             >
 
