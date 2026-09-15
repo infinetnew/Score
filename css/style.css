@@ -764,7 +764,7 @@ padding: 30px 25px;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     overflow: hidden;
 }
