@@ -247,45 +247,130 @@ if (totalPlayers < 5) {
     }
 }
 
-    // Elimina i giocatori già acquistati nella giornata corrente
-    const purchasedPlayerIds = new Set(
-        purchases.map(purchase => purchase.player_id)
-    );
+// ========================================
+// ELENCO GIOCATORI
+// ========================================
 
-    const availablePlayers = players.filter(
-        player => !purchasedPlayerIds.has(player.id)
-    );
+// Elimina i giocatori già acquistati nella giornata corrente
+const purchasedPlayerIds = new Set(
+    purchases.map(purchase => purchase.player_id)
+);
 
-    container.innerHTML = '';
+const availablePlayers = players.filter(
+    player => !purchasedPlayerIds.has(player.id)
+);
 
-    availablePlayers.forEach(player => {
+container.innerHTML = '';
+
+// Colore in base al ruolo
+const roleClass = {
+    P: 'role-portieri',
+    D: 'role-difensori',
+    C: 'role-centrocampisti',
+    A: 'role-attaccanti'
+}[role] || '';
+
+// ========================================
+// BARRA DI RICERCA
+// ========================================
+
+const searchBox = document.createElement('div');
+searchBox.className = `market-search ${roleClass}`;
+
+searchBox.innerHTML = `
+    <span class="market-search-icon">🔍</span>
+    <input
+        type="text"
+        class="market-search-input"
+        placeholder="Cerca giocatore..."
+        autocomplete="off"
+    >
+`;
+
+container.appendChild(searchBox);
+
+// ========================================
+// CONTENITORE LISTA
+// ========================================
+
+const playersList = document.createElement('div');
+playersList.className = 'market-players-list';
+
+container.appendChild(playersList);
+
+// ========================================
+// CREA LE CARD
+// ========================================
+
+function renderPlayers(list) {
+
+    playersList.innerHTML = '';
+
+    if (list.length === 0) {
+        playersList.innerHTML = `
+            <div class="market-no-players">
+                Nessun giocatore trovato.
+            </div>
+        `;
+        return;
+    }
+
+    list.forEach(player => {
 
         const row = document.createElement('div');
 
-row.style.cursor = 'pointer';
-row.style.padding = '14px';
-row.style.marginBottom = '8px';
-row.style.border = '1px solid rgba(255,255,255,0.12)';
-row.style.borderRadius = '12px';
-row.style.background = 'rgba(255,255,255,0.05)';
-row.style.color = 'white';
+        row.className = `market-player-row ${roleClass}`;
 
         row.innerHTML = `
-            <strong>${player.name}</strong>
-            - ${player.team}
-            - ${player.price}
+            <div class="market-player-team">
+                <img
+                    src="${player.team_logo}"
+                    alt=""
+                    class="market-team-logo"
+                >
+            </div>
+
+            <div class="market-player-info">
+                <strong>${player.name}</strong>
+                <span>${player.team}</span>
+            </div>
+
+            <div class="market-player-price">
+                ${player.price}
+            </div>
         `;
 
         row.addEventListener('click', () => {
             buyPlayer(player);
         });
 
-        container.appendChild(row);
+        playersList.appendChild(row);
     });
+}
 
-    if (availablePlayers.length === 0) {
-        container.innerHTML = 'Nessun giocatore disponibile.';
-    }
+// Prima visualizzazione
+renderPlayers(availablePlayers);
+
+// ========================================
+// RICERCA IN TEMPO REALE
+// ========================================
+
+const searchInput =
+    searchBox.querySelector('.market-search-input');
+
+searchInput.addEventListener('input', () => {
+
+    const search = searchInput.value
+        .trim()
+        .toLowerCase();
+
+    const filteredPlayers = availablePlayers.filter(player =>
+        player.name.toLowerCase().includes(search) ||
+        player.team.toLowerCase().includes(search)
+    );
+
+    renderPlayers(filteredPlayers);
+});
 }
 async function buyPlayer(player) {
 
