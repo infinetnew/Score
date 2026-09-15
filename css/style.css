@@ -816,16 +816,15 @@ padding: 30px 25px;
     position: relative;
 
     width: 150px;
-    min-height: 52px;
+    min-height: 58px;
 
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
 
     text-align: left;
 
-    padding: 6px 38px 6px 14px;
+    padding: 6px 42px 6px 8px;
 
     box-sizing: border-box;
 
@@ -856,10 +855,20 @@ padding: 30px 25px;
     object-fit: contain;
 
     flex-shrink: 0;
+
+    margin-right: 7px;
+}
+.formation-player-info {
+    min-width: 0;
+    flex: 1;
 }
 
 .formation-player strong {
     display: block;
+
+    max-width: 78px;
+overflow: hidden;
+text-overflow: ellipsis;
 
     font-size: 14px;
     line-height: 1.1;
@@ -893,7 +902,7 @@ padding: 30px 25px;
 
 .formation-player::after {
     position: absolute;
-    right: 8px;
+    right: 6px;
     top: 50%;
 
     transform: translateY(-50%);
