@@ -665,16 +665,46 @@ padding: 30px 25px;
 
 .purchase-button {
     flex: 1;
-    padding: 13px 10px;
+    padding: 0;
+    margin: 0;
 
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.15);
-
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
+    border: none;
+    background: transparent;
 
     cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        filter 0.18s ease;
+}
+
+.purchase-button img {
+    display: block;
+    width: 120px;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+.purchase-button:hover {
+    transform: scale(1.06);
+    filter: brightness(1.15);
+}
+
+.purchase-button:active {
+    transform: scale(0.96);
+}
+
+.purchase-button:disabled {
+    cursor: default;
+    opacity: 0.65;
+}
+
+.purchase-button:disabled:hover {
+    transform: none;
+    filter: none;
 }
 
 .purchase-button.cancel {
