@@ -52,7 +52,7 @@ async function showPlayersByRole(role) {
     // Carica i giocatori del ruolo
     const { data: players, error: playersError } = await supabaseClient
         .from('score_players')
-        .select('id, name, role, team, price')
+        .select('id, name, role, team, price, team_logo')
         .eq('available', true)
         .eq('role', role)
         .order('price', { ascending: false });
