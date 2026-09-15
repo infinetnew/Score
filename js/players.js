@@ -476,7 +476,9 @@ cancelButton.innerHTML = `
 
             console.error('Errore acquisto:', error);
 
-            title.textContent = '⚠️ ACQUISTO NON RIUSCITO';
+           title.innerHTML = `
+    <img src="assets/acquisto-non-riuscito.png" class="purchase-completed-icon">
+`;
             message.textContent = error.message;
             buttons.style.display = 'none';
 
@@ -487,7 +489,9 @@ cancelButton.innerHTML = `
             return;
         }
 // Acquisto completato
-title.textContent = '✅ ACQUISTO COMPLETATO';
+title.innerHTML = `
+    <img src="assets/acquisto-completato.png" class="purchase-completed-icon">
+`;
 
 message.innerHTML =
     `<strong>${player.name}</strong> è stato acquistato!<br><br>` +
