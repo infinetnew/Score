@@ -1021,6 +1021,18 @@ text-overflow: ellipsis;
 
     color: white;
 }
+.reserves-title-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 12px;
+}
+
+.reserves-title-image img {
+    display: block;
+    width: 180px;
+    height: auto;
+}
 
 #formation_reserves {
     display: flex;
