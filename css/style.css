@@ -813,29 +813,41 @@ padding: 30px 25px;
    ========================= */
 
 .formation-player {
-    width: 105px;
+    position: relative;
+
+    width: 150px;
+    min-height: 52px;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
 
-    text-align: center;
+    text-align: left;
 
-    padding: 7px 5px;
+    padding: 6px 38px 6px 14px;
 
     box-sizing: border-box;
 
-    border-radius: 12px;
+    border-radius: 14px;
 
-    background: rgba(5,15,25,0.78);
+    background: linear-gradient(
+        135deg,
+        rgba(3, 15, 27, 0.96),
+        rgba(8, 25, 40, 0.90)
+    );
 
     border: 1px solid rgba(255,255,255,0.35);
 
     box-shadow:
-        0 5px 15px rgba(0,0,0,0.45),
-        0 0 12px rgba(0,190,255,0.12);
+        0 5px 15px rgba(0,0,0,0.55),
+        0 0 14px rgba(0,180,255,0.18);
 
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(6px);
+
+    overflow: hidden;
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .formation-player strong {
