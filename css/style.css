@@ -680,9 +680,12 @@ padding: 30px 25px;
 
 .purchase-button img {
     display: block;
-    width: 120px;
-    height: auto;
+
+    width: 115px;
+    height: 55px;
+
     margin: 0 auto;
+
     object-fit: contain;
 
     pointer-events: none;
@@ -707,22 +710,24 @@ padding: 30px 25px;
     filter: none;
 }
 
-.purchase-button.cancel {
-    background: rgba(255,255,255,0.08);
+.purchase-button.cancel,
+.purchase-button.confirm {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
-.purchase-button.confirm {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,190,255,0.35),
-            rgba(120,60,255,0.35)
-        );
+.purchase-button img {
+    display: block;
 
-    border-color: rgba(0,190,255,0.5);
+    width: 120px;
+    height: 60px;
 
-    box-shadow:
-        0 0 15px rgba(0,190,255,0.15);
+    margin: 0 auto;
+
+    object-fit: contain;
+
+    pointer-events: none;
 }
 #h2h_screen {
     flex-direction: column;
