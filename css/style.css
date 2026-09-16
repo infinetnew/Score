@@ -1678,7 +1678,7 @@ text-overflow: ellipsis;
 
 .admin-player-row input {
     width: 45px !important;
-    height: 36px;
+    height: 20px;
     padding: 5px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
