@@ -323,8 +323,8 @@ async function loadNextH2H() {
         await supabaseClient
             .from('score_h2h_matches')
             .select(`
-                user1_id,
-                user2_id
+                player1_id,
+                player2_id
             `)
             .eq('matchday', matchday);
 
