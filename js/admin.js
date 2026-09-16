@@ -116,80 +116,198 @@ ratings.forEach(rating => {
         return;
     }
 
-// Raggruppa i giocatori per utente
-const groupedPurchases = {};
+// Raggruppa i giocatori per LEGA → UTENTE
+const groupedLeagues = {};
 
 purchases.forEach(purchase => {
 
-    if (!groupedPurchases[purchase.username]) {
-        groupedPurchases[purchase.username] = [];
+    if (!groupedLeagues[purchase.league_number]) {
+        groupedLeagues[purchase.league_number] = {};
     }
 
-    groupedPurchases[purchase.username].push(purchase);
+    if (!groupedLeagues[purchase.league_number][purchase.username]) {
+        groupedLeagues[purchase.league_number][purchase.username] = [];
+    }
+
+    groupedLeagues[purchase.league_number][purchase.username].push(purchase);
 });
 
 
-// Mostra gli utenti uno alla volta
-Object.keys(groupedPurchases).forEach(username => {
+// Mostra le leghe una alla volta
+Object.keys(groupedLeagues)
+    .sort((a, b) => Number(a) - Number(b))
+    .forEach(leagueNumber => {
 
-    const userSection = document.createElement('div');
+        const leagueSection = document.createElement('div');
 
-    userSection.style.marginBottom = '25px';
+        leagueSection.style.marginBottom = '35px';
 
-    userSection.innerHTML = `
-        <h3>👤 ${username} — Totale: 
-            <span class="user-total">0</span>
-        </h3>
-    `;
-
-    const totalElement = userSection.querySelector('.user-total');
-
-    let total = 0;
-
-    groupedPurchases[username].forEach(purchase => {
-
-        const row = document.createElement('div');
-
-        row.style.padding = '10px';
-        row.style.borderBottom = '1px solid #ddd';
-
-        const savedRating = savedRatings[purchase.player_id];
-
-        if (savedRating !== undefined) {
-            total += parseFloat(savedRating);
-        }
-
-        row.innerHTML = `
-            <strong>${purchase.player_name}</strong>
-            - ${purchase.team}
-
-            <input
-                type="number"
-                min="0"
-                max="10"
-                step="0.5"
-                placeholder="Voto"
-                id="rating_${purchase.player_id}"
-                value="${savedRating ?? ''}"
-                ${savedRating !== undefined ? 'disabled' : ''}
-                style="width:70px; margin-left:10px;"
-            >
-
-            ${
-                savedRating === undefined
-                ? `
-                    <button
-                        onclick="saveRating(${purchase.player_id}, ${matchday})"
-                        style="margin-left:5px;"
-                    >
-                        SALVA
-                    </button>
-                `
-                : ''
-            }
+        leagueSection.innerHTML = `
+            <h2>LEGA ${leagueNumber}</h2>
         `;
 
-        userSection.appendChild(row);
+        // Mostra gli utenti della lega
+        Object.keys(groupedLeagues[leagueNumber])
+            .sort()
+            .forEach(username => {
+
+                const userSection = document.createElement('div');
+
+                userSection.style.marginBottom = '25px';
+
+                userSection.innerHTML = `
+                    <h3>👤 ${username} — Totale:
+                        <span class="user-total">0</span>
+                    </h3>
+                `;
+
+                const totalElement =
+                    userSection.querySelector('.user-total');
+
+                let total = 0;
+
+                const players =
+                    groupedLeagues[leagueNumber][username];
+
+                // TITOLARI
+                const starters =
+                    players.filter(purchase =>
+                        purchase.slot_type === 'starter'
+                    );
+
+                const reserves =
+                    players.filter(purchase =>
+                        purchase.slot_type === 'reserve'
+                    );
+
+                if (starters.length > 0) {
+
+                    const startersTitle =
+                        document.createElement('h4');
+
+                    startersTitle.textContent = 'TITOLARI';
+
+                    userSection.appendChild(startersTitle);
+
+                    starters.forEach(purchase => {
+
+                        const row =
+                            document.createElement('div');
+
+                        row.style.padding = '10px';
+                        row.style.borderBottom =
+                            '1px solid #ddd';
+
+                        const savedRating =
+                            savedRatings[purchase.player_id];
+
+                        if (savedRating !== undefined) {
+                            total += parseFloat(savedRating);
+                        }
+
+                        row.innerHTML = `
+                            <strong>${purchase.player_name}</strong>
+                            - ${purchase.team}
+
+                            <input
+                                type="number"
+                                min="0"
+                                max="10"
+                                step="0.5"
+                                placeholder="Voto"
+                                id="rating_${purchase.player_id}"
+                                value="${savedRating ?? ''}"
+                                ${savedRating !== undefined ? 'disabled' : ''}
+                                style="width:70px; margin-left:10px;"
+                            >
+
+                            ${
+                                savedRating === undefined
+                                ? `
+                                    <button
+                                        onclick="saveRating(${purchase.player_id}, ${matchday})"
+                                        style="margin-left:5px;"
+                                    >
+                                        SALVA
+                                    </button>
+                                `
+                                : ''
+                            }
+                        `;
+
+                        userSection.appendChild(row);
+                    });
+                }
+
+                // RISERVE
+                if (reserves.length > 0) {
+
+                    const reservesTitle =
+                        document.createElement('h4');
+
+                    reservesTitle.textContent = 'RISERVE';
+
+                    reservesTitle.style.marginTop = '15px';
+
+                    userSection.appendChild(reservesTitle);
+
+                    reserves.forEach(purchase => {
+
+                        const row =
+                            document.createElement('div');
+
+                        row.style.padding = '10px';
+                        row.style.borderBottom =
+                            '1px solid #ddd';
+
+                        const savedRating =
+                            savedRatings[purchase.player_id];
+
+                        if (savedRating !== undefined) {
+                            total += parseFloat(savedRating);
+                        }
+
+                        row.innerHTML = `
+                            <strong>${purchase.player_name}</strong>
+                            - ${purchase.team}
+
+                            <input
+                                type="number"
+                                min="0"
+                                max="10"
+                                step="0.5"
+                                placeholder="Voto"
+                                id="rating_${purchase.player_id}"
+                                value="${savedRating ?? ''}"
+                                ${savedRating !== undefined ? 'disabled' : ''}
+                                style="width:70px; margin-left:10px;"
+                            >
+
+                            ${
+                                savedRating === undefined
+                                ? `
+                                    <button
+                                        onclick="saveRating(${purchase.player_id}, ${matchday})"
+                                        style="margin-left:5px;"
+                                    >
+                                        SALVA
+                                    </button>
+                                `
+                                : ''
+                            }
+                        `;
+
+                        userSection.appendChild(row);
+                    });
+                }
+
+                totalElement.textContent =
+                    total.toFixed(1);
+
+                leagueSection.appendChild(userSection);
+            });
+
+        container.appendChild(leagueSection);
     });
 
     totalElement.textContent = total.toFixed(1);
