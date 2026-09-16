@@ -160,7 +160,7 @@ Object.keys(groupedLeagues)
 
         const leagueSection = document.createElement('div');
 
-        leagueSection.style.marginBottom = '35px';
+leagueSection.className = 'admin-league';
 
         leagueSection.innerHTML = `
             <h2>LEGA ${leagueNumber}</h2>
@@ -171,9 +171,9 @@ Object.keys(groupedLeagues)
             .sort()
             .forEach(username => {
 
-                const userSection = document.createElement('div');
+const userSection = document.createElement('div');
 
-                userSection.style.marginBottom = '25px';
+userSection.className = 'admin-user-card';
 
                 userSection.innerHTML = `
                     <h3>👤 ${username} — Totale:
@@ -211,11 +211,10 @@ Object.keys(groupedLeagues)
 
                     starters.forEach(purchase => {
 
-                        const row =
-                            document.createElement('div');
+const row =
+    document.createElement('div');
 
-                      row.style.padding = '10px 12px';
-row.style.borderBottom = 'none';
+row.className = 'admin-player-row';
 
                         const savedRating =
                             savedRatings[purchase.player_id];
@@ -283,12 +282,10 @@ row.style.borderBottom = 'none';
 
                     reserves.forEach(purchase => {
 
-                        const row =
-                            document.createElement('div');
+const row =
+    document.createElement('div');
 
-                        row.style.padding = '10px';
-                        row.style.borderBottom =
-                            '1px solid #ddd';
+row.className = 'admin-player-row';
 
                         const savedRating =
                             savedRatings[purchase.player_id];
@@ -298,8 +295,19 @@ row.style.borderBottom = 'none';
                         }
 
                         row.innerHTML = `
-                            <strong>${purchase.player_name}</strong>
-                            - ${purchase.team}
+<strong>${purchase.player_name}</strong>
+
+<img
+    src="${purchase.team_logo}"
+    alt="${purchase.team}"
+    style="
+        width:32px;
+        height:32px;
+        object-fit:contain;
+        vertical-align:middle;
+        margin-left:20px;
+    "
+>
 
                             <input
                                 type="number"
