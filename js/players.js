@@ -464,14 +464,13 @@ cancelButton.innerHTML = `
         }
 
         // Acquista il giocatore
-        const { data, error } = await supabaseClient.rpc(
-            'score_buy_player',
-            {
-                p_player_id: player.id,
-                p_matchday: matchday
-            }
-        );
-
+const { data, error } = await supabaseClient.rpc(
+    'score_buy_player_v2',
+    {
+        p_player_id: player.id,
+        p_matchday: matchday
+    }
+);
         if (error) {
 
             console.error('Errore acquisto:', error);
