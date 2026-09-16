@@ -338,10 +338,10 @@ async function loadNextH2H() {
     const leagueUserIds = leagueMembers.map(member => member.user_id);
 
     // Teniamo solo gli scontri tra utenti della mia lega
-    const myLeagueMatches = leagueMatches.filter(match =>
-        leagueUserIds.includes(match.user1_id) &&
-        leagueUserIds.includes(match.user2_id)
-    );
+const myLeagueMatches = leagueMatches.filter(match =>
+    leagueUserIds.includes(match.player1_id) &&
+    leagueUserIds.includes(match.player2_id)
+);
 
     console.log('Scontri della mia lega:', myLeagueMatches);
 
@@ -381,13 +381,13 @@ async function loadNextH2H() {
 
     myLeagueMatches.forEach(match => {
 
-        const user1 = leagueMembers.find(
-            member => member.user_id === match.user1_id
-        );
+const user1 = leagueMembers.find(
+    member => member.user_id === match.player1_id
+);
 
-        const user2 = leagueMembers.find(
-            member => member.user_id === match.user2_id
-        );
+const user2 = leagueMembers.find(
+    member => member.user_id === match.player2_id
+);
 
         if (!user1 || !user2) return;
 
@@ -397,9 +397,9 @@ async function loadNextH2H() {
         const username2 =
             user2.score_users?.username || 'Giocatore';
 
-        const isMyMatch =
-            match.user1_id === userId ||
-            match.user2_id === userId;
+const isMyMatch =
+    match.player1_id === userId ||
+    match.player2_id === userId;
 
         html += `
             <div class="h2h-match ${isMyMatch ? 'my-h2h-match' : ''}">
