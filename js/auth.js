@@ -300,8 +300,11 @@ async function loadNextH2H() {
         return;
     }
 
-    document.getElementById('next_h2h_match').textContent =
-        `Tu 🆚 ${match[0].opponent_username}`;
+document.getElementById('next_h2h_match').innerHTML = `
+    <span>Tu</span>
+    <img src="/Score/assets/vs.png" alt="VS">
+    <span>${match[0].opponent_username}</span>
+`;
 }
 document.getElementById('open_h2h').addEventListener('click', () => {
 
