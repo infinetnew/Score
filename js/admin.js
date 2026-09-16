@@ -46,6 +46,11 @@ const calculateButton =
 
 const completeButton =
     document.getElementById('complete_matchday');
+const assignLeaguesButton =
+    document.getElementById('assign_leagues');
+
+const createLeagueMatchesButton =
+    document.getElementById('create_league_matches');
 
 // Di default: calcolo disabilitato
 calculateButton.disabled = true;
@@ -350,7 +355,90 @@ row.className = 'admin-player-row';
 
 
 }
+assignLeaguesButton.addEventListener('click', async () => {
 
+    assignLeaguesButton.disabled = true;
+    assignLeaguesButton.textContent = 'ASSEGNAZIONE IN CORSO...';
+
+    const { data: matchday, error: matchdayError } =
+        await supabaseClient.rpc('score_get_active_matchday');
+
+    if (matchdayError || !matchday) {
+        console.error(matchdayError);
+        alert('Impossibile recuperare la giornata attiva.');
+
+        assignLeaguesButton.disabled = false;
+        assignLeaguesButton.textContent = 'ASSEGNA UTENTI ALLE LEGHE';
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient.rpc(
+            'score_assign_leagues',
+            {
+                p_matchday: matchday
+            }
+        );
+
+    if (error) {
+        console.error('Errore assegnazione leghe:', error);
+        alert(error.message);
+
+        assignLeaguesButton.disabled = false;
+        assignLeaguesButton.textContent = 'ASSEGNA UTENTI ALLE LEGHE';
+        return;
+    }
+
+    console.log('Leghe assegnate:', data);
+
+    assignLeaguesButton.textContent = 'LEGHE ASSEGNATE';
+    assignLeaguesButton.disabled = true;
+
+    createLeagueMatchesButton.disabled = false;
+
+});
+createLeagueMatchesButton.addEventListener('click', async () => {
+
+    createLeagueMatchesButton.disabled = true;
+    createLeagueMatchesButton.textContent = 'CREAZIONE SCONTRI...';
+
+    const { data: matchday, error: matchdayError } =
+        await supabaseClient.rpc('score_get_active_matchday');
+
+    if (matchdayError || !matchday) {
+        console.error(matchdayError);
+        alert('Impossibile recuperare la giornata attiva.');
+
+        createLeagueMatchesButton.disabled = false;
+        createLeagueMatchesButton.textContent = 'CREA SCONTRI';
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient.rpc(
+            'score_create_league_matches',
+            {
+                p_matchday: matchday
+            }
+        );
+
+    if (error) {
+        console.error('Errore creazione scontri:', error);
+        alert(error.message);
+
+        createLeagueMatchesButton.disabled = false;
+        createLeagueMatchesButton.textContent = 'CREA SCONTRI';
+        return;
+    }
+
+    console.log('Scontri creati:', data);
+
+    createLeagueMatchesButton.textContent = 'SCONTRI CREATI';
+    createLeagueMatchesButton.disabled = true;
+
+    calculateButton.disabled = false;
+
+});
 document.getElementById('calculate_matches')
     .addEventListener('click', async () => {
 
