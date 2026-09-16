@@ -26,7 +26,7 @@ console.log('MATCHDAY ERROR:', matchdayError);
     // Recupera gli acquisti della giornata
 const { data: purchases, error: purchasesError } =
     await supabaseClient.rpc(
-        'score_get_admin_purchases_v2',
+        'score_get_admin_purchases_v3',
         { p_matchday: matchday }
     );
 
@@ -115,6 +115,26 @@ ratings.forEach(rating => {
         container.innerHTML = 'Nessun giocatore acquistato.';
         return;
     }
+// Statistiche giornata
+const participantsCount =
+    new Set(purchases.map(purchase => purchase.user_id)).size;
+
+const leaguesCount =
+    new Set(purchases.map(purchase => purchase.league_number)).size;
+
+const stats = document.createElement('div');
+
+stats.style.marginBottom = '25px';
+stats.style.fontSize = '18px';
+stats.style.fontWeight = 'bold';
+
+stats.innerHTML = `
+    👥 ${participantsCount} GIOCATORI
+    &nbsp;&nbsp;&nbsp;
+    🏆 ${leaguesCount} LEGHE
+`;
+
+container.appendChild(stats);
 
 // Raggruppa i giocatori per LEGA → UTENTE
 const groupedLeagues = {};
@@ -194,9 +214,8 @@ Object.keys(groupedLeagues)
                         const row =
                             document.createElement('div');
 
-                        row.style.padding = '10px';
-                        row.style.borderBottom =
-                            '1px solid #ddd';
+                      row.style.padding = '10px 12px';
+row.style.borderBottom = 'none';
 
                         const savedRating =
                             savedRatings[purchase.player_id];
@@ -207,7 +226,18 @@ Object.keys(groupedLeagues)
 
                         row.innerHTML = `
                             <strong>${purchase.player_name}</strong>
-                            - ${purchase.team}
+
+<img
+    src="${purchase.team_logo}"
+    alt="${purchase.team}"
+    style="
+        width:32px;
+        height:32px;
+        object-fit:contain;
+        vertical-align:middle;
+        margin-left:20px;
+    "
+>
 
                             <input
                                 type="number"
