@@ -26,10 +26,8 @@ console.log('MATCHDAY ERROR:', matchdayError);
     // Recupera gli acquisti della giornata
 const { data: purchases, error: purchasesError } =
     await supabaseClient.rpc(
-        'score_get_admin_purchases',
-        {
-            p_matchday: matchday
-        }
+        'score_get_admin_purchases_v2',
+        { p_matchday: matchday }
     );
 
 console.log('PURCHASES:', purchases);
