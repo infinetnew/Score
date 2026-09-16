@@ -275,127 +275,36 @@ async function loadNextH2H() {
         return;
     }
 
-    const { data: sessionData, error: sessionError } =
-        await supabaseClient.auth.getSession();
+    const { data: match, error: matchError } =
+        await supabaseClient.rpc(
+            'score_get_my_h2h_match',
+            {
+                p_matchday: matchday
+            }
+        );
 
-    if (sessionError || !sessionData.session) {
-        console.error('Sessione non trovata:', sessionError);
+    if (matchError) {
+        console.error('Errore scontro:', matchError);
+
+        document.getElementById('next_h2h_match').textContent =
+            'Errore nel caricamento dello scontro';
+
         return;
     }
 
-    const userId = sessionData.session.user.id;
+    if (!match || match.length === 0) {
 
-    // Recuperiamo la lega dell'utente nella giornata attiva
-    const { data: leagueData, error: leagueError } =
-        await supabaseClient
-            .from('score_league_members')
-            .select('league_number')
-            .eq('matchday', matchday)
-            .eq('user_id', userId)
-            .single();
+        document.getElementById('next_h2h_match').textContent =
+            'Nessuno scontro assegnato';
 
-    if (leagueError || !leagueData) {
-        console.error('Errore recupero lega:', leagueError);
         return;
     }
 
-    const leagueNumber = leagueData.league_number;
-
-    // Recuperiamo tutti gli scontri della giornata
-    const { data: matches, error: matchesError } =
-        await supabaseClient
-            .from('score_h2h_matches')
-            .select('player1_id, player2_id')
-            .eq('matchday', matchday);
-
-    if (matchesError) {
-        console.error('Errore recupero scontri:', matchesError);
-        return;
-    }
-
-    // Recuperiamo tutti i membri della nostra lega
-    const { data: members, error: membersError } =
-        await supabaseClient
-            .from('score_league_members')
-            .select('user_id')
-            .eq('matchday', matchday)
-            .eq('league_number', leagueNumber);
-
-    if (membersError) {
-        console.error('Errore recupero membri lega:', membersError);
-        return;
-    }
-
-    const memberIds = members.map(member => member.user_id);
-
-    // Teniamo solamente gli scontri della nostra lega
-    const leagueMatches = matches.filter(match =>
-        memberIds.includes(match.player1_id) &&
-        memberIds.includes(match.player2_id)
-    );
-
-    // Recuperiamo gli username
-    const { data: users, error: usersError } =
-        await supabaseClient
-            .from('score_users')
-            .select('id, username')
-            .in('id', memberIds);
-
-    if (usersError) {
-        console.error('Errore recupero utenti:', usersError);
-        return;
-    }
-
-    const usernames = {};
-
-    users.forEach(user => {
-        usernames[user.id] = user.username;
-    });
-
-    const matchContainer =
-        document.getElementById('next_h2h_match');
-
-    let html = `
-        <div class="h2h-league-title">
-            🏆 LEGA ${leagueNumber}
-        </div>
-    `;
-
-    leagueMatches.forEach(match => {
-
-        const username1 =
-            usernames[match.player1_id] || 'Giocatore';
-
-        const username2 =
-            usernames[match.player2_id] || 'Giocatore';
-
-        const isMyMatch =
-            match.player1_id === userId ||
-            match.player2_id === userId;
-
-        html += `
-            <div class="h2h-match ${isMyMatch ? 'my-h2h-match' : ''}">
-                <span>${username1}</span>
-
-                <img
-                    src="/Score/assets/vs.png"
-                    alt="VS"
-                >
-
-                <span>${username2}</span>
-            </div>
-        `;
-    });
-
-    if (leagueMatches.length === 0) {
-        html += `
-            <div class="h2h-no-matches">
-                Nessuno scontro assegnato
-            </div>
-        `;
-    }
-
-    matchContainer.innerHTML = html;
+document.getElementById('next_h2h_match').innerHTML = `
+    <span>Tu</span>
+    <img src="/Score/assets/vs.png" alt="VS">
+    <span>${match[0].opponent_username}</span>
+`;
 }
 document.getElementById('open_h2h').addEventListener('click', () => {
 
