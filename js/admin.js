@@ -310,10 +310,7 @@ Object.keys(groupedLeagues)
         container.appendChild(leagueSection);
     });
 
-    totalElement.textContent = total.toFixed(1);
 
-    container.appendChild(userSection);
-});
 }
 
 document.getElementById('calculate_matches')
