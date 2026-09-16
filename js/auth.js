@@ -343,8 +343,7 @@ console.log('Membri della mia lega:', leagueUsers);
     }
 
     console.log('Scontri della giornata:', leagueMatches);
-    // ID degli utenti appartenenti alla mia lega
-    const leagueUserIds = leagueMembers.map(member => member.user_id);
+
 
     // Teniamo solo gli scontri tra utenti della mia lega
 const myLeagueMatches = leagueMatches.filter(match =>
