@@ -1610,3 +1610,86 @@ text-overflow: ellipsis;
     margin: 0 auto 20px auto;
     object-fit: contain;
 }
+/* =========================
+   ADMIN - RESTYLING
+   ========================= */
+
+.admin-league {
+    margin-bottom: 30px;
+}
+
+.admin-league h2 {
+    margin: 0 0 15px 0;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #172554, #0f766e);
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.admin-user-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.admin-user-card h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 18px 0;
+    padding-bottom: 12px;
+    font-size: 18px;
+    color: white;
+}
+
+.admin-user-card h4 {
+    margin: 12px 0 8px 0;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #94a3b8;
+}
+
+.admin-player-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 6px;
+}
+
+.admin-player-row strong {
+    min-width: 150px;
+    color: white;
+    font-size: 15px;
+}
+
+.admin-player-row img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    margin-left: auto;
+}
+
+.admin-player-row input {
+    width: 65px !important;
+    height: 36px;
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.admin-player-row button {
+    height: 36px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
