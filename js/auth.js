@@ -299,25 +299,34 @@ async function loadNextH2H() {
     }
 
     const leagueNumber = leagueData.league_number;
-    // Recuperiamo tutti gli utenti della stessa lega
-    const { data: leagueMembers, error: membersError } =
-        await supabaseClient
-            .from('score_league_members')
-            .select(`
-                user_id,
-                score_users (
-                    username
-                )
-            `)
-            .eq('matchday', matchday)
-            .eq('league_number', leagueNumber);
+// Recuperiamo tutti gli utenti della stessa lega
+const { data: leagueMembers, error: membersError } =
+    await supabaseClient
+        .from('score_league_members')
+        .select('user_id')
+        .eq('matchday', matchday)
+        .eq('league_number', leagueNumber);
 
-    if (membersError) {
-        console.error('Errore recupero membri della lega:', membersError);
-        return;
-    }
+if (membersError) {
+    console.error('Errore recupero membri della lega:', membersError);
+    return;
+}
 
-    console.log('Membri della mia lega:', leagueMembers);
+// Recuperiamo gli username
+const leagueUserIds = leagueMembers.map(member => member.user_id);
+
+const { data: leagueUsers, error: usersError } =
+    await supabaseClient
+        .from('score_users')
+        .select('id, username')
+        .in('id', leagueUserIds);
+
+if (usersError) {
+    console.error('Errore recupero username:', usersError);
+    return;
+}
+
+console.log('Membri della mia lega:', leagueUsers);
     // Recuperiamo tutti gli scontri della lega
     const { data: leagueMatches, error: leagueMatchesError } =
         await supabaseClient
