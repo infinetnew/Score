@@ -1641,13 +1641,13 @@ text-overflow: ellipsis;
 .admin-user-card h3 {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 8px;
     margin: 0 0 18px 0;
     padding-bottom: 12px;
     font-size: 18px;
     color: white;
 }
-
 .admin-user-card h4 {
     margin: 12px 0 8px 0;
     font-size: 12px;
@@ -1677,7 +1677,7 @@ text-overflow: ellipsis;
 }
 
 .admin-player-row input {
-    width: 65px !important;
+    width: 45px !important;
     height: 36px;
     padding: 5px;
     border: 1px solid rgba(255, 255, 255, 0.15);
