@@ -299,6 +299,9 @@ async function loadNextH2H() {
     }
 
     const leagueNumber = leagueData.league_number;
+console.log('GIORNATA ATTIVA:', matchday);
+console.log('MIA LEGA:', leagueNumber);
+console.log('MIO USER ID:', userId);
 // Recuperiamo tutti gli utenti della stessa lega
 const { data: leagueMembers, error: membersError } =
     await supabaseClient
