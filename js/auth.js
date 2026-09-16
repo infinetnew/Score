@@ -274,7 +274,7 @@ async function loadNextH2H() {
         console.error('Errore giornata:', matchdayError);
         return;
     }
-    // Recuperiamo la lega dell'utente nella giornata attiva
+
     const { data: sessionData, error: sessionError } =
         await supabaseClient.auth.getSession();
 
@@ -285,6 +285,7 @@ async function loadNextH2H() {
 
     const userId = sessionData.session.user.id;
 
+    // Recuperiamo la lega dell'utente nella giornata attiva
     const { data: leagueData, error: leagueError } =
         await supabaseClient
             .from('score_league_members')
@@ -299,87 +300,57 @@ async function loadNextH2H() {
     }
 
     const leagueNumber = leagueData.league_number;
-console.log('GIORNATA ATTIVA:', matchday);
-console.log('MIA LEGA:', leagueNumber);
-console.log('MIO USER ID:', userId);
-// Recuperiamo tutti gli utenti della stessa lega
-const { data: leagueMembers, error: membersError } =
-    await supabaseClient
-        .from('score_league_members')
-        .select('user_id')
-        .eq('matchday', matchday)
-        .eq('league_number', leagueNumber);
 
-if (membersError) {
-    console.error('Errore recupero membri della lega:', membersError);
-    return;
-}
-
-// Recuperiamo gli username
-const leagueUserIds = leagueMembers.map(member => member.user_id);
-
-const { data: leagueUsers, error: usersError } =
-    await supabaseClient
-        .from('score_users')
-        .select('id, username')
-        .in('id', leagueUserIds);
-
-if (usersError) {
-    console.error('Errore recupero username:', usersError);
-    return;
-}
-
-console.log('Membri della mia lega:', leagueUsers);
-    // Recuperiamo tutti gli scontri della lega
-    const { data: leagueMatches, error: leagueMatchesError } =
+    // Recuperiamo tutti gli scontri della giornata
+    const { data: matches, error: matchesError } =
         await supabaseClient
             .from('score_h2h_matches')
-            .select(`
-                player1_id,
-                player2_id
-            `)
+            .select('player1_id, player2_id')
             .eq('matchday', matchday);
 
-    if (leagueMatchesError) {
-        console.error('Errore recupero scontri della lega:', leagueMatchesError);
+    if (matchesError) {
+        console.error('Errore recupero scontri:', matchesError);
         return;
     }
 
-    console.log('Scontri della giornata:', leagueMatches);
+    // Recuperiamo tutti i membri della nostra lega
+    const { data: members, error: membersError } =
+        await supabaseClient
+            .from('score_league_members')
+            .select('user_id')
+            .eq('matchday', matchday)
+            .eq('league_number', leagueNumber);
 
-
-    // Teniamo solo gli scontri tra utenti della mia lega
-const myLeagueMatches = leagueMatches.filter(match =>
-    leagueUserIds.includes(match.player1_id) &&
-    leagueUserIds.includes(match.player2_id)
-);
-
-    console.log('Scontri della mia lega:', myLeagueMatches);
-
-    const { data: match, error: matchError } =
-        await supabaseClient.rpc(
-            'score_get_my_h2h_match',
-            {
-                p_matchday: matchday
-            }
-        );
-
-    if (matchError) {
-        console.error('Errore scontro:', matchError);
-
-        document.getElementById('next_h2h_match').textContent =
-            'Errore nel caricamento dello scontro';
-
+    if (membersError) {
+        console.error('Errore recupero membri lega:', membersError);
         return;
     }
 
-    if (!match || match.length === 0) {
+    const memberIds = members.map(member => member.user_id);
 
-        document.getElementById('next_h2h_match').textContent =
-            'Nessuno scontro assegnato';
+    // Teniamo solamente gli scontri della nostra lega
+    const leagueMatches = matches.filter(match =>
+        memberIds.includes(match.player1_id) &&
+        memberIds.includes(match.player2_id)
+    );
 
+    // Recuperiamo gli username
+    const { data: users, error: usersError } =
+        await supabaseClient
+            .from('score_users')
+            .select('id, username')
+            .in('id', memberIds);
+
+    if (usersError) {
+        console.error('Errore recupero utenti:', usersError);
         return;
     }
+
+    const usernames = {};
+
+    users.forEach(user => {
+        usernames[user.id] = user.username;
+    });
 
     const matchContainer =
         document.getElementById('next_h2h_match');
@@ -390,27 +361,17 @@ const myLeagueMatches = leagueMatches.filter(match =>
         </div>
     `;
 
-    myLeagueMatches.forEach(match => {
-
-const user1 = leagueMembers.find(
-    member => member.user_id === match.player1_id
-);
-
-const user2 = leagueMembers.find(
-    member => member.user_id === match.player2_id
-);
-
-        if (!user1 || !user2) return;
+    leagueMatches.forEach(match => {
 
         const username1 =
-            user1.score_users?.username || 'Giocatore';
+            usernames[match.player1_id] || 'Giocatore';
 
         const username2 =
-            user2.score_users?.username || 'Giocatore';
+            usernames[match.player2_id] || 'Giocatore';
 
-const isMyMatch =
-    match.player1_id === userId ||
-    match.player2_id === userId;
+        const isMyMatch =
+            match.player1_id === userId ||
+            match.player2_id === userId;
 
         html += `
             <div class="h2h-match ${isMyMatch ? 'my-h2h-match' : ''}">
@@ -425,6 +386,14 @@ const isMyMatch =
             </div>
         `;
     });
+
+    if (leagueMatches.length === 0) {
+        html += `
+            <div class="h2h-no-matches">
+                Nessuno scontro assegnato
+            </div>
+        `;
+    }
 
     matchContainer.innerHTML = html;
 }
