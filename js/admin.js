@@ -1,3 +1,8 @@
+const assignLeaguesButton =
+    document.getElementById('assign_leagues');
+
+const createLeagueMatchesButton =
+    document.getElementById('create_league_matches');
 async function openAdmin() {
 
     document.getElementById('app').style.display = 'none';
@@ -46,11 +51,7 @@ const calculateButton =
 
 const completeButton =
     document.getElementById('complete_matchday');
-const assignLeaguesButton =
-    document.getElementById('assign_leagues');
 
-const createLeagueMatchesButton =
-    document.getElementById('create_league_matches');
 
 // Di default: calcolo disabilitato
 calculateButton.disabled = true;
@@ -436,7 +437,7 @@ createLeagueMatchesButton.addEventListener('click', async () => {
     createLeagueMatchesButton.textContent = 'SCONTRI CREATI';
     createLeagueMatchesButton.disabled = true;
 
-    calculateButton.disabled = false;
+document.getElementById('calculate_matches').disabled = false;
 
 });
 document.getElementById('calculate_matches')
