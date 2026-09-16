@@ -53,7 +53,34 @@ const completeButton =
     document.getElementById('complete_matchday');
 
 
-// Di default: calcolo disabilitato
+// Stato dei pulsanti in base alla giornata attiva
+
+const { data: leagueMembers, error: leagueError } =
+    await supabaseClient
+        .from('score_league_members')
+        .select('user_id, league_number')
+        .eq('matchday', matchday);
+
+console.log('LEAGUE MEMBERS:', leagueMembers);
+console.log('LEAGUE ERROR:', leagueError);
+
+if (leagueError) {
+    console.error(leagueError);
+    container.innerHTML = 'Errore nel caricamento delle leghe.';
+    return;
+}
+
+const leaguesAssigned =
+    leagueMembers &&
+    leagueMembers.length > 0;
+
+assignLeaguesButton.disabled = leaguesAssigned;
+
+assignLeaguesButton.textContent =
+    leaguesAssigned
+        ? 'LEGHE ASSEGNATE'
+        : 'ASSEGNA UTENTI ALLE LEGHE';
+
 calculateButton.disabled = true;
 completeButton.disabled = true;
 
@@ -94,20 +121,40 @@ if (h2hError) {
     console.error('H2H ERROR:', h2hError);
 } else {
 
-    const allCalculated =
-        h2hMatches &&
-        h2hMatches.length > 0 &&
-        h2hMatches.every(match =>
-            match.status === 'calculated'
-        );
+const matchesExist =
+    h2hMatches &&
+    h2hMatches.length > 0;
 
-    if (allCalculated) {
-        calculateButton.disabled = true;
-        completeButton.disabled = false;
-    } else {
-        calculateButton.disabled = !allRatingsInserted;
-        completeButton.disabled = true;
-    }
+const allCalculated =
+    matchesExist &&
+    h2hMatches.every(match =>
+        match.status === 'calculated'
+    );
+
+// CREA SCONTRI
+createLeagueMatchesButton.disabled =
+    !leaguesAssigned || matchesExist;
+
+createLeagueMatchesButton.textContent =
+    matchesExist
+        ? 'SCONTRI CREATI'
+        : 'CREA SCONTRI';
+
+// CALCOLA / CONCLUDI
+if (allCalculated) {
+
+    calculateButton.disabled = true;
+    calculateButton.textContent = 'SCONTRI CALCOLATI';
+
+    completeButton.disabled = false;
+
+} else {
+
+    calculateButton.disabled =
+        !matchesExist || !allRatingsInserted;
+
+    completeButton.disabled = true;
+}
 }
 
 container.innerHTML = '';
