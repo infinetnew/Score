@@ -290,7 +290,7 @@ const userId = sessionData.session.user.id;
 const { data: leagueData, error: leagueError } =
     await supabaseClient
         .from('score_league_members')
-        .select('league_number')
+        .select('league_number, matchday')
         .eq('matchday', matchday)
         .eq('user_id', userId)
         .single();
@@ -301,6 +301,7 @@ if (leagueError || !leagueData) {
 }
 
 const leagueNumber = leagueData.league_number;
+const leagueMatchday = leagueData.matchday;
 
 
 // Recuperiamo tutti i partecipanti della lega
@@ -361,7 +362,7 @@ const matchContainer =
 
 let html = `
     <div class="h2h-league-title">
-        🏆 LEGA ${leagueNumber}
+        🏆 LEGA ${leagueNumber} — GIORNATA ${leagueMatchday}
     </div>
 `;
 
