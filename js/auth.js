@@ -422,7 +422,10 @@ html += `
     // =========================================
 
     html += `
-        <h3>⚔️ SCONTRI DELLA LEGA</h3>
+        <h3>
+    <img src="/Score/assets/scontri-lega.png" alt="Scontri">
+    Scontri della Lega
+</h3>
     `;
 
     myLeagueMatches.forEach(match => {
