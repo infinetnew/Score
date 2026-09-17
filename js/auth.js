@@ -387,14 +387,14 @@ const user = leagueUsers.find(
 const username =
     user?.username || 'Giocatore';
 
-        const isMe =
-            member.user_id === userId;
+const isMe =
+    member.user_id === userId;
 
-        html += `
-            <div class="h2h-league-member ${isMe ? 'my-league-member' : ''}">
-                👤 ${username}${isMe ? ' <strong>(TU)</strong>' : ''}
-            </div>
-        `;
+html += `
+    <div class="h2h-league-member ${isMe ? 'my-league-member' : ''}">
+        👤 ${username}
+    </div>
+`;
     });
 
     html += `
