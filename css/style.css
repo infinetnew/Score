@@ -749,61 +749,240 @@ padding: 30px 25px;
 
     pointer-events: none;
 }
+/* =========================
+   TESTA A TESTA
+   ========================= */
+
 #h2h_screen {
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
+/* Titolo popup */
 #h2h_screen h2 {
-    margin-bottom: 10px;
+    margin: 0 0 8px;
 }
 
-#h2h_screen #next_h2h_match {
-    font-size: 22px;
-    font-weight: bold;
-    margin: 12px 0 25px;
+/* Testo introduttivo */
+#h2h_screen > p {
+    margin: 0 0 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.88);
 }
+
+/* Contenitore principale H2H */
 #h2h_screen #next_h2h_match {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* =========================
+   LEGA
+   ========================= */
+
+.h2h-league-title {
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 4px 0 18px;
+    padding: 10px 16px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 190, 0, 0.16),
+            rgba(255, 140, 0, 0.06)
+        );
+
+    border: 1px solid rgba(255, 190, 0, 0.30);
+
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 900;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 15px rgba(255, 190, 0, 0.08);
+}
+
+/* =========================
+   PARTECIPANTI
+   ========================= */
+
+.h2h-league-members {
+    width: 100%;
+    max-width: 330px;
+}
+
+.h2h-league-members h3 {
+    margin: 0 0 12px;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    color: white;
+}
+
+.h2h-league-member {
+    width: 100%;
+    box-sizing: border-box;
+
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 14px;
+
+    min-height: 38px;
+
+    margin-bottom: 6px;
+    padding: 7px 14px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    color: rgba(255,255,255,0.88);
+
+    font-size: 16px;
+    font-weight: 700;
+
+    text-align: left;
+
+    box-sizing: border-box;
 }
 
-#h2h_screen #next_h2h_match img {
-    width: 55px;
-    height: 55px;
-    object-fit: contain;
+/* TU */
+.h2h-league-member.my-league-member {
+    border-color: rgba(0, 190, 255, 0.55);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 190, 255, 0.18),
+            rgba(90, 70, 255, 0.10)
+        );
+
+    color: white;
+
+    box-shadow:
+        0 0 12px rgba(0, 190, 255, 0.12);
 }
-.h2h-league-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 18px;
+
+/* =========================
+   MESSAGGIO ATTESA
+   ========================= */
+
+.h2h-waiting-message {
+    max-width: 300px;
+
+    margin: 20px auto 0;
+
+    font-size: 16px;
+    line-height: 1.35;
+    font-weight: 700;
+
+    color: rgba(255,255,255,0.82);
+}
+
+/* =========================
+   SCONTRI
+   ========================= */
+
+#h2h_screen #next_h2h_match > h3 {
+    margin: 2px 0 16px;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    color: white;
 }
 
 .h2h-match {
+    width: 100%;
+    max-width: 330px;
+
+    box-sizing: border-box;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
-    margin-bottom: 12px;
-    padding: 10px 18px;
+
+    gap: 12px;
+
+    margin-bottom: 8px;
+    padding: 11px 12px;
+
     border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.11);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    color: white;
 }
 
+/* VS */
 .h2h-match img {
-    width: 35px;
-    height: 35px;
+    width: 38px;
+    height: 38px;
+
     object-fit: contain;
+
+    flex-shrink: 0;
 }
 
+/* Il tuo scontro */
 .h2h-match.my-h2h-match {
-    font-weight: bold;
-    border: 2px solid #ffffff;
+    border: 1px solid rgba(0, 200, 255, 0.75);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 190, 255, 0.18),
+            rgba(100, 60, 255, 0.12)
+        );
+
+    box-shadow:
+        0 0 16px rgba(0, 190, 255, 0.16);
+
+    font-weight: 900;
 }
+
+/* =========================
+   CHIUDI
+   ========================= */
+
 #h2h_screen #close_h2h {
     width: 180px;
+
+    margin-top: 18px;
 }
 /* =========================
    I MIEI GIOCATORI
