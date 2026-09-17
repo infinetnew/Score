@@ -537,8 +537,8 @@ padding: 30px 25px;
         filter 0.2s ease;
 }
 .image-close-button {
-    width: 180px !important;
-    height: 55px !important;
+    width: 240px !important;
+    height: 75px !important;
 
     margin: 16px auto 0 !important;
     padding: 0 !important;
@@ -557,8 +557,8 @@ padding: 30px 25px;
 .image-close-button img {
     display: block;
 
-    width: 180px;
-    height: 55px;
+    width: 240px;
+    height: 75px;
 
     object-fit: contain;
 }
