@@ -307,15 +307,29 @@ const leagueNumber = leagueData.league_number;
 const { data: leagueMembers, error: membersError } =
     await supabaseClient
         .from('score_league_members')
-        .select(`
-            user_id,
-            score_users (
-                username
-            )
-        `)
+        .select('user_id')
         .eq('matchday', matchday)
         .eq('league_number', leagueNumber);
 
+if (membersError) {
+    console.error('Errore recupero partecipanti:', membersError);
+    return;
+}
+
+
+// Recuperiamo gli username
+const leagueUserIds = leagueMembers.map(member => member.user_id);
+
+const { data: leagueUsers, error: usersError } =
+    await supabaseClient
+        .from('score_users')
+        .select('id, username')
+        .in('id', leagueUserIds);
+
+if (usersError) {
+    console.error('Errore recupero username:', usersError);
+    return;
+}
 if (membersError) {
     console.error('Errore recupero partecipanti:', membersError);
     return;
@@ -370,8 +384,12 @@ if (myLeagueMatches.length === 0) {
 
     leagueMembers.forEach(member => {
 
-        const username =
-            member.score_users?.username || 'Giocatore';
+const user = leagueUsers.find(
+    u => u.id === member.user_id
+);
+
+const username =
+    user?.username || 'Giocatore';
 
         const isMe =
             member.user_id === userId;
