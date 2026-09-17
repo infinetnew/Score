@@ -361,9 +361,13 @@ const matchContainer =
 
 
 let html = `
-    <div class="h2h-league-title">
-        🏆 LEGA ${leagueNumber} — GIORNATA ${leagueMatchday}
-    </div>
+<div class="h2h-league-title">
+    <img src="/Score/assets/giornata.png" alt="Giornata">
+    Giornata ${leagueMatchday}
+    <span>—</span>
+    <img src="/Score/assets/lega.png" alt="Lega">
+    Lega ${leagueNumber}
+</div>
 `;
 
 
@@ -376,7 +380,10 @@ if (myLeagueMatches.length === 0) {
     html += `
         <div class="h2h-league-members">
 
-            <h3>👥 PARTECIPANTI</h3>
+            <h3>
+    <img src="/Score/assets/partecipanti.png" alt="Partecipanti">
+    PARTECIPANTI
+</h3>
     `;
 
     leagueMembers.forEach(member => {
@@ -393,15 +400,17 @@ const isMe =
 
 html += `
     <div class="h2h-league-member ${isMe ? 'my-league-member' : ''}">
-        👤 ${username}
+        <img src="/Score/assets/giocatore.png" alt="Giocatore">
+        ${username}
     </div>
 `;
     });
 
     html += `
             <p class="h2h-waiting-message">
-                ⏳ Gli scontri non sono ancora stati creati.
-            </p>
+    <img src="/Score/assets/clessidra.png" alt="Attesa">
+    Gli scontri non sono ancora stati creati.
+</p>
 
         </div>
     `;
