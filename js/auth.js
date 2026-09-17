@@ -437,11 +437,11 @@ html += `
 
         if (!user1 || !user2) return;
 
-        const username1 =
-            user1.score_users?.username || 'Giocatore';
+const username1 =
+    leagueUsers.find(u => u.id === match.player1_id)?.username || 'Giocatore';
 
-        const username2 =
-            user2.score_users?.username || 'Giocatore';
+const username2 =
+    leagueUsers.find(u => u.id === match.player2_id)?.username || 'Giocatore';
 
         const isMyMatch =
             match.player1_id === userId ||
