@@ -330,10 +330,7 @@ if (usersError) {
     console.error('Errore recupero username:', usersError);
     return;
 }
-if (membersError) {
-    console.error('Errore recupero partecipanti:', membersError);
-    return;
-}
+
 
 
 // Recuperiamo tutti gli scontri della giornata
@@ -349,7 +346,6 @@ if (leagueMatchesError) {
 }
 
 
-const leagueUserIds = leagueMembers.map(member => member.user_id);
 
 
 // Solo gli scontri della nostra lega
@@ -461,11 +457,7 @@ const username =
 
 matchContainer.innerHTML = html;
 
-document.getElementById('next_h2h_match').innerHTML = `
-    <span>Tu</span>
-    <img src="/Score/assets/vs.png" alt="VS">
-    <span>${match[0].opponent_username}</span>
-`;
+
 }
 document.getElementById('open_h2h').addEventListener('click', () => {
 
