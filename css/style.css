@@ -818,6 +818,39 @@ padding: 30px 25px;
     box-shadow:
         0 0 15px rgba(255, 190, 0, 0.08);
 }
+/* ICONE TESTA A TESTA */
+
+.h2h-league-title img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin: 0 6px;
+}
+
+.h2h-league-members h3 img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+.h2h-league-member img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.h2h-waiting-message img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}
 
 /* =========================
    PARTECIPANTI
