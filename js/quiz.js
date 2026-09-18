@@ -218,7 +218,7 @@ async function submitAnswer(answer) {
     }
 
 
-    console.log('Risultato quiz:', data);
+console.log('Risultato quiz:', JSON.stringify(data, null, 2));
 
 
     const result = data[0];
