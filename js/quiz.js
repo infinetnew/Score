@@ -226,6 +226,22 @@ const result = data[0];
 console.log('Risposta corretta:', result.correct_answer);
 
 loadCredits();
+// Evidenzia la risposta corretta
+document.querySelectorAll('.quiz-option').forEach(option => {
+    option.classList.remove('quiz-correct');
+});
+
+const correctInput = document.querySelector(
+    `input[name="quiz_answer"][value="${result.correct_answer}"]`
+);
+
+if (correctInput) {
+    const correctOption = correctInput.closest('.quiz-option');
+
+    if (correctOption) {
+        correctOption.classList.add('quiz-correct');
+    }
+}
     // ==========================================
     // RISPOSTA CORRETTA
     // ==========================================
