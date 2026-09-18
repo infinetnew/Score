@@ -218,10 +218,12 @@ async function submitAnswer(answer) {
     }
 
 
-console.log('Risultato quiz:', JSON.stringify(data, null, 2));
+console.log('Risultato quiz:', data);
 
 
-    const result = data[0];
+const result = data[0];
+
+console.log('Risposta corretta:', result.correct_answer);
 
 loadCredits();
     // ==========================================
