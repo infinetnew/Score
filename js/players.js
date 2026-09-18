@@ -1,7 +1,67 @@
-function openMarket() {
+async function openMarket() {
+
+    // Recupera la giornata attiva
+    const { data: matchday, error: matchdayError } =
+        await supabaseClient.rpc('score_get_active_matchday');
+
+    if (matchdayError || !matchday) {
+        console.error(
+            'Errore recupero giornata attiva:',
+            matchdayError
+        );
+        return;
+    }
+
+    // Recupera la scadenza del mercato
+    const { data: matchdayData, error: deadlineError } =
+        await supabaseClient
+            .from('score_matchdays')
+            .select('market_deadline')
+            .eq('id', matchday)
+            .single();
+
+    if (deadlineError) {
+        console.error(
+            'Errore recupero scadenza mercato:',
+            deadlineError
+        );
+        return;
+    }
+
+    // Se il mercato è chiuso, mostriamo subito il popup
+    if (
+        matchdayData.market_deadline &&
+        new Date() >= new Date(matchdayData.market_deadline)
+    ) {
+
+        const modal = document.getElementById('purchase_modal');
+        const title = document.getElementById('purchase_title');
+        const message = document.getElementById('purchase_message');
+        const buttons = document.getElementById('purchase_buttons');
+
+        title.innerHTML = `
+            🔒 MERCATO CHIUSO
+        `;
+
+        message.textContent =
+            'Il mercato è chiuso per questa giornata.';
+
+        buttons.style.display = 'none';
+
+        modal.style.display = 'flex';
+
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 2200);
+
+        return;
+    }
+
+    // Mercato aperto
     document.getElementById('app').style.display = 'block';
 
-    const marketScreen = document.getElementById('market_screen');
+    const marketScreen =
+        document.getElementById('market_screen');
 
     marketScreen.style.display = 'flex';
 }
