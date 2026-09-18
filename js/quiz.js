@@ -241,19 +241,20 @@ document.getElementById('timer').innerHTML =
     }
 
 
-    // ==========================================
-    // RISPOSTA SBAGLIATA
-    // ==========================================
+// ==========================================
+// RISPOSTA SBAGLIATA
+// ==========================================
 
-    else {
- document.getElementById('question').innerHTML =
-    '<img src="/Score/assets/sbagliata.png" class="quiz-correct-icon" alt="Peccato">' +
-    ' Peccato! Soluzione sbagliata.';
+else {
 
-document.getElementById('timer').innerHTML =
-    'Hai guadagnato: <span class="quiz-credits-earned">+'
-    ' 0 Crediti</span>';
- 
+    document.getElementById('question').innerHTML =
+        '<img src="/Score/assets/sbagliata.png" class="quiz-correct-icon" alt="Peccato">' +
+        ' Peccato! Soluzione sbagliata.';
+
+    document.getElementById('timer').innerHTML =
+        'Hai guadagnato: <span class="quiz-credits-earned">0 CREDITI</span>';
+}
+
 }
 
 
