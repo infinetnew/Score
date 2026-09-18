@@ -1949,3 +1949,11 @@ text-overflow: ellipsis;
     font-weight: 700;
     cursor: pointer;
 }
+.market-closed-image {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
