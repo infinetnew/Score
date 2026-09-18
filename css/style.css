@@ -1958,8 +1958,8 @@ text-overflow: ellipsis;
     box-sizing: border-box;
 }
 .quiz-correct-icon {
-    width: 75px;
-    height: 75px;
+    width: 105px;
+    height: 105px;
     object-fit: contain;
     vertical-align: middle;
     margin-right: 8px;
@@ -1970,4 +1970,8 @@ text-overflow: ellipsis;
     object-fit: contain;
     vertical-align: middle;
     margin-right: 4px;
+}
+.quiz-credits-earned {
+    font-size: 1.25em;
+    font-weight: 700;
 }
