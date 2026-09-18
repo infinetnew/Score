@@ -409,7 +409,7 @@ html += `
     html += `
             <p class="h2h-waiting-message">
     <img src="/Score/assets/clessidra.png" alt="Attesa">
-    Gli scontri non sono ancora stati creati.
+    Scontri da creare.
 </p>
 
         </div>
