@@ -1957,3 +1957,10 @@ text-overflow: ellipsis;
     margin: 0 auto;
     box-sizing: border-box;
 }
+.quiz-correct-icon {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}
