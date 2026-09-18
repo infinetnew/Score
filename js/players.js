@@ -39,10 +39,13 @@ async function openMarket() {
         const message = document.getElementById('purchase_message');
         const buttons = document.getElementById('purchase_buttons');
 
-        title.innerHTML = `
-            🔒 MERCATO CHIUSO
-        `;
-
+title.innerHTML = `
+    <img 
+        src="/Score/assets/mercato-chiuso.png" 
+        alt="Mercato chiuso"
+        class="market-closed-image"
+    >
+`;
         message.textContent =
             'Il mercato è chiuso per questa giornata.';
 
