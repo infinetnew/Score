@@ -233,8 +233,10 @@ loadCredits();
     ' Complimenti! La soluzione è corretta.';
 
 
-        document.getElementById('timer').textContent =
-            '+' + result.credits_earned + ' CREDITI';
+document.getElementById('timer').innerHTML =
+    'Hai guadagnato: <span class="quiz-credits-earned">+' +
+    result.credits_earned +
+    ' CREDITI</span>';
 
     }
 
@@ -245,13 +247,13 @@ loadCredits();
 
     else {
  document.getElementById('question').innerHTML =
-    '<img src="/Score/assets/sbagliata.png" class="quiz-correct-icon" alt="Complimenti">' +
-    ' Peccato! Soluzione sbagliata..';
+    '<img src="/Score/assets/sbagliata.png" class="quiz-correct-icon" alt="Peccato">' +
+    ' Peccato! Soluzione sbagliata.';
 
-
-        document.getElementById('timer').textContent =
-            '0 CREDITI';
-    }
+document.getElementById('timer').innerHTML =
+    'Hai guadagnato: <span class="quiz-credits-earned">+'
+    ' 0 Crediti</span>';
+ 
 }
 
 
