@@ -1996,23 +1996,31 @@ text-overflow: ellipsis;
     display: inline-block;
 }
 /* ==========================================
-   RISPOSTA CORRETTA QUIZ
+   RISPOSTA CORRETTA - EFFETTO LUCE PULSATA
    ========================================== */
 
 .quiz-option.quiz-correct {
     border-color: #00ff66 !important;
-    background: rgba(0, 255, 102, 0.18) !important;
-    animation: quizCorrectBlink 0.7s ease-in-out infinite;
+    background: rgba(0, 255, 102, 0.20) !important;
+    animation: quizCorrectPulse 1.2s ease-in-out infinite;
 }
 
-@keyframes quizCorrectBlink {
+@keyframes quizCorrectPulse {
+
     0%, 100% {
-        border-color: #00ff66;
-        background: rgba(0, 255, 102, 0.18);
+        background: rgba(0, 255, 102, 0.12);
+        border-color: rgba(0, 255, 102, 0.65);
+        box-shadow:
+            0 0 5px rgba(0, 255, 102, 0.35),
+            inset 0 0 5px rgba(0, 255, 102, 0.15);
     }
 
     50% {
-        border-color: transparent;
-        background: rgba(0, 255, 102, 0.04);
+        background: rgba(0, 255, 102, 0.35);
+        border-color: #00ff66;
+        box-shadow:
+            0 0 12px rgba(0, 255, 102, 0.75),
+            0 0 25px rgba(0, 255, 102, 0.45),
+            inset 0 0 12px rgba(0, 255, 102, 0.30);
     }
 }
