@@ -236,7 +236,7 @@ loadCredits();
 document.getElementById('timer').innerHTML =
     'Hai guadagnato: <span class="quiz-credits-earned">+' +
     result.credits_earned +
-    ' CREDITI</span>';
+    ' Crediti</span>';
 
     }
 
@@ -252,7 +252,7 @@ else {
         ' Peccato! Soluzione sbagliata.';
 
     document.getElementById('timer').innerHTML =
-        'Hai guadagnato: <span class="quiz-credits-earned">0 CREDITI</span>';
+        'Hai guadagnato: <span class="quiz-credits-earned">0 Crediti</span>';
 }
 
 }
