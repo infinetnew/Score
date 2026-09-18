@@ -56,6 +56,7 @@ if (!data || data.length === 0) {
 }
 document.querySelector('.quiz-options').style.display = '';
 document.getElementById('confirm_quiz').style.display = '';
+document.getElementById('timer').style.display = '';
 
     currentQuestion = data[0];
 
@@ -75,13 +76,11 @@ if (currentQuestion.completed_at) {
     // Nascondi completamente il pulsante conferma
     document.getElementById('confirm_quiz').style.display = 'none';
 
-    // Mostra lo stato del quiz
-    document.getElementById('timer').textContent =
-        'QUIZ COMPLETATO';
+    // Nascondi completamente il timer
+    document.getElementById('timer').style.display = 'none';
 
     return;
 }
-
 
     // ==========================================
     // QUIZ NON ANCORA COMPLETATO
@@ -139,8 +138,8 @@ function updateTimer() {
     seconds = Math.max(0, 120 - elapsedSeconds);
 
 
-    document.getElementById('timer').textContent =
-        seconds;
+    document.getElementById('timer').innerHTML =
+        `<img src="/Score/assets/orologio.png" class="quiz-timer-icon" alt="Tempo"> : ${seconds}`;
 
 
     if (seconds <= 0) {
@@ -148,7 +147,7 @@ function updateTimer() {
         clearInterval(timer);
 
         document.getElementById('timer').textContent =
-            'TEMPO SCADUTO';
+            'Tempo Scaduto';
 
 
         document.querySelectorAll('input[name="quiz_answer"]').forEach(input => {
@@ -159,7 +158,6 @@ function updateTimer() {
         document.getElementById('confirm_quiz').disabled = true;
     }
 }
-
 
 // ==========================================
 // INVIA RISPOSTA
@@ -230,8 +228,9 @@ loadCredits();
 
     if (result.correct) {
 
-        document.getElementById('question').textContent =
-            '🎉 Complimenti! La soluzione è corretta.';
+ document.getElementById('question').innerHTML =
+    '<img src="/Score/assets/complimenti.png" class="quiz-correct-icon" alt="Complimenti">' +
+    ' Complimenti! La soluzione è corretta.';
 
 
         document.getElementById('timer').textContent =
@@ -245,9 +244,9 @@ loadCredits();
     // ==========================================
 
     else {
-
-        document.getElementById('question').textContent =
-            '❌ Soluzione sbagliata.';
+ document.getElementById('question').innerHTML =
+    '<img src="/Score/assets/sbagliata.png" class="quiz-correct-icon" alt="Complimenti">' +
+    ' Peccato! Soluzione sbagliata..';
 
 
         document.getElementById('timer').textContent =
