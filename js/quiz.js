@@ -86,8 +86,10 @@ if (currentQuestion.completed_at) {
     // QUIZ NON ANCORA COMPLETATO
     // ==========================================
 
-    document.getElementById('question').textContent =
-        currentQuestion.question;
+document.getElementById('question').classList.remove('quiz-result');
+
+document.getElementById('question').textContent =
+    currentQuestion.question;
 
 
     document.getElementById('option_a_text').textContent =
@@ -228,9 +230,11 @@ loadCredits();
 
     if (result.correct) {
 
- document.getElementById('question').innerHTML =
+document.getElementById('question').classList.add('quiz-result');
+
+document.getElementById('question').innerHTML =
     '<img src="/Score/assets/complimenti.png" class="quiz-correct-icon" alt="Complimenti">' +
-    ' Complimenti! La soluzione è corretta.';
+    '<span>Complimenti! La soluzione è corretta.</span>';
 
 
 document.getElementById('timer').innerHTML =
@@ -247,9 +251,11 @@ document.getElementById('timer').innerHTML =
 
 else {
 
-    document.getElementById('question').innerHTML =
-        '<img src="/Score/assets/sbagliata.png" class="quiz-correct-icon" alt="Peccato">' +
-        ' Peccato! Soluzione sbagliata.';
+document.getElementById('question').classList.add('quiz-result');
+
+document.getElementById('question').innerHTML =
+    '<img src="/Score/assets/sbagliata.png" class="quiz-correct-icon" alt="Peccato">' +
+    '<span>Peccato! Soluzione sbagliata.</span>';
 
     document.getElementById('timer').innerHTML =
         'Hai guadagnato: <span class="quiz-credits-earned">0 Crediti</span>';
