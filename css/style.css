@@ -1995,3 +1995,24 @@ text-overflow: ellipsis;
 #question.quiz-result span {
     display: inline-block;
 }
+/* ==========================================
+   RISPOSTA CORRETTA QUIZ
+   ========================================== */
+
+.quiz-option.quiz-correct {
+    border-color: #00ff66 !important;
+    background: rgba(0, 255, 102, 0.18) !important;
+    animation: quizCorrectBlink 0.7s ease-in-out infinite;
+}
+
+@keyframes quizCorrectBlink {
+    0%, 100% {
+        border-color: #00ff66;
+        background: rgba(0, 255, 102, 0.18);
+    }
+
+    50% {
+        border-color: transparent;
+        background: rgba(0, 255, 102, 0.04);
+    }
+}
