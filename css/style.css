@@ -2140,5 +2140,12 @@ text-overflow: ellipsis;
     max-width: 420px;
     margin: 0 auto;
 
+    padding-top: 25px;
+    box-sizing: border-box;
+
     text-align: center;
+}
+#welcome_screen p:first-of-type {
+    font-size: 19px;
+    font-weight: 600;
 }
