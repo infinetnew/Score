@@ -2176,3 +2176,35 @@ text-overflow: ellipsis;
     margin: 8px 0 18px;
     text-align: center;
 }
+#register_screen input {
+    display: block;
+    width: 320px;
+    max-width: 90%;
+
+    height: 44px;
+    box-sizing: border-box;
+
+    margin: 8px auto;
+
+    padding: 0 12px;
+
+    border-radius: 10px;
+    border: 1px solid rgba(0, 200, 255, 0.35);
+
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+
+    font-size: 15px;
+    outline: none;
+}
+
+#register_screen input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+#register_screen input:focus {
+    border-color: rgba(0, 200, 255, 0.8);
+
+    box-shadow:
+        0 0 10px rgba(0, 200, 255, 0.25);
+}
