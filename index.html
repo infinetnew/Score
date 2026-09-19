@@ -148,13 +148,17 @@
                 placeholder="Password"
             >
 
-            <button onclick="loginUser()">
-                ACCEDI
-            </button>
+<div class="login-buttons">
 
-            <button id="back_from_login">
-                ← Indietro
-            </button>
+    <button id="back_from_login" class="auth-image-button">
+        <img src="/Score/assets/indietro.png" alt="Indietro">
+    </button>
+
+    <button onclick="loginUser()" class="auth-image-button">
+        <img src="/Score/assets/accedi.png" alt="Accedi">
+    </button>
+
+</div>
 
         </section>
 
