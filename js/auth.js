@@ -497,3 +497,35 @@ document.getElementById('logout_button').addEventListener('click', async () => {
 
     location.reload();
 });
+document.getElementById('send_reset_email')
+    .addEventListener('click', async () => {
+
+        const email =
+            document.getElementById('forgot_password_email').value.trim();
+
+        const message =
+            document.getElementById('forgot_password_message');
+
+        if (!email) {
+            message.textContent = 'Inserisci la tua email.';
+            return;
+        }
+
+        message.textContent = 'Invio link...';
+
+        const { error } =
+            await supabaseClient.auth.resetPasswordForEmail(email, {
+                redirectTo: window.location.origin + window.location.pathname
+            });
+
+        if (error) {
+            console.error('Errore recupero password:', error);
+
+            message.textContent =
+                'Non è stato possibile inviare il link.';
+            return;
+        }
+
+        message.textContent =
+            'Controlla la tua email: ti abbiamo inviato il link per reimpostare la password.';
+    });
