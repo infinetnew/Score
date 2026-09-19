@@ -693,59 +693,105 @@ document.getElementById('back_from_forgot_password')
 
     </script>
 
-    <script>
+<script>
 
-        supabaseClient.auth.getSession().then(async ({ data }) => {
+    const resetPasswordScreen =
+        document.getElementById('reset_password_screen');
 
-            if (!data.session) {
-                return;
-            }
-
-            const user = data.session.user;
-
-            console.log('Sessione trovata:', user.id);
+    let isPasswordRecovery = false;
 
 
-            // Recuperiamo il nome dell'utente
-            const { data: profile, error } =
-                await supabaseClient
-                    .from('score_users')
-                    .select('username, is_admin')
-                    .eq('id', user.id)
-                    .single();
+    // Intercettiamo il recupero password
+    supabaseClient.auth.onAuthStateChange((event) => {
 
+        if (event === 'PASSWORD_RECOVERY') {
 
-            if (error) {
-                console.error('Errore recupero profilo:', error);
-                return;
-            }
+            isPasswordRecovery = true;
 
-
-            const username = profile.username || 'giocatore';
-
-
-            // Nascondiamo la schermata di accesso
+            // Mostriamo la schermata di autenticazione
             document.querySelector('.auth-container').style.display =
-                'none';
-
-
-            // Mostriamo l'app
-            document.getElementById('app').style.display =
                 'block';
 
+            // Nascondiamo l'app
+            document.getElementById('app').style.display =
+                'none';
 
-            // Mostriamo il nome
-            document.getElementById('welcome_user').textContent =
-                'Bentornato ' + username + '!';
-if (profile.is_admin) {
-    document.getElementById('admin_section').style.display = 'block';
-}
-loadCredits();
-loadNextH2H();
+            // Nascondiamo tutte le altre schermate
+            document.getElementById('welcome_screen').style.display =
+                'none';
 
-        });
+            document.getElementById('login_screen').style.display =
+                'none';
 
-    </script>
+            document.getElementById('register_screen').style.display =
+                'none';
+
+            document.getElementById('forgot_password_screen').style.display =
+                'none';
+
+            // Mostriamo la schermata nuova password
+            resetPasswordScreen.style.display =
+                'block';
+        }
+
+    });
+
+
+    // Controlliamo se esiste già una sessione
+    supabaseClient.auth.getSession().then(async ({ data }) => {
+
+        if (!data.session || isPasswordRecovery) {
+            return;
+        }
+
+        const user = data.session.user;
+
+        console.log('Sessione trovata:', user.id);
+
+
+        // Recuperiamo il nome dell'utente
+        const { data: profile, error } =
+            await supabaseClient
+                .from('score_users')
+                .select('username, is_admin')
+                .eq('id', user.id)
+                .single();
+
+
+        if (error) {
+            console.error('Errore recupero profilo:', error);
+            return;
+        }
+
+
+        const username = profile.username || 'giocatore';
+
+
+        // Nascondiamo la schermata di accesso
+        document.querySelector('.auth-container').style.display =
+            'none';
+
+
+        // Mostriamo l'app
+        document.getElementById('app').style.display =
+            'block';
+
+
+        // Mostriamo il nome
+        document.getElementById('welcome_user').textContent =
+            'Bentornato ' + username + '!';
+
+        if (profile.is_admin) {
+            document.getElementById('admin_section').style.display =
+                'block';
+        }
+
+        loadCredits();
+        loadNextH2H();
+
+    });
+
+</script>
 <script>
     document.getElementById('open_quiz')
         .addEventListener('click', () => {
