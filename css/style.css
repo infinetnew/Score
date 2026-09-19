@@ -141,6 +141,12 @@ body {
 .home-tool-button:active {
     transform: scale(0.95);
 }
+.home-tool-image {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: block;
+}
 
 .home-tool-button svg {
     width: 21px;
