@@ -2135,7 +2135,8 @@ text-overflow: ellipsis;
 
 #welcome_screen,
 #login_screen,
-#register_screen {
+#register_screen,
+#forgot_password_screen {
     width: 100%;
     max-width: 420px;
     margin: 0 auto;
