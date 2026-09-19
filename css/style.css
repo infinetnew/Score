@@ -2270,3 +2270,24 @@ text-overflow: ellipsis;
 .login-buttons button {
     flex: 1;
 }
+#forgot_password {
+    margin: 12px 0 4px;
+
+    color: #4dcfff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        text-shadow 0.15s ease;
+}
+
+#forgot_password:hover {
+    color: white;
+
+    text-shadow:
+        0 0 8px rgba(0, 200, 255, 0.7);
+}
