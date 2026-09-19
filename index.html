@@ -698,7 +698,10 @@ document.getElementById('back_from_forgot_password')
     const resetPasswordScreen =
         document.getElementById('reset_password_screen');
 
-    let isPasswordRecovery = false;
+let isPasswordRecovery =
+    window.location.hash.includes('type=recovery') ||
+    window.location.search.includes('type=recovery') ||
+    window.location.search.includes('code=');
 
 
     // Intercettiamo il recupero password
