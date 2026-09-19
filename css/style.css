@@ -2255,3 +2255,18 @@ text-overflow: ellipsis;
     box-shadow:
         0 0 10px rgba(0, 200, 255, 0.25);
 }
+.login-buttons {
+    width: 400px;
+    max-width: 90%;
+
+    margin: 10px auto 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-buttons button {
+    flex: 1;
+}
