@@ -2122,3 +2122,10 @@ text-overflow: ellipsis;
             inset 0 0 12px rgba(0, 255, 102, 0.30);
     }
 }
+.auth-logo {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
