@@ -2291,3 +2291,33 @@ text-overflow: ellipsis;
     text-shadow:
         0 0 8px rgba(0, 200, 255, 0.7);
 }
+.auth-text-button {
+    height: 38px;
+    padding: 0 18px;
+
+    border: 1px solid rgba(0, 200, 255, 0.5);
+    border-radius: 8px;
+
+    background: rgba(0, 120, 180, 0.18);
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.auth-text-button:hover {
+    transform: scale(1.03);
+
+    background: rgba(0, 180, 255, 0.25);
+
+    box-shadow:
+        0 0 12px rgba(0, 200, 255, 0.35);
+}
