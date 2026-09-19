@@ -136,8 +136,8 @@ body {
     transform: scale(0.95);
 }
 .home-tool-image {
-    width: 85px;
-    height: 85px;
+    width: 75px;
+    height: 75px;
     object-fit: contain;
     display: block;
 }
@@ -159,8 +159,8 @@ body {
 }
 
 .home-tool-button span:last-child {
-    font-size: 15px;
-    font-weight: 900;
+    font-size: 13px;
+    font-weight: 800;
     white-space: nowrap;
 }
 .score-user-info h2 {
