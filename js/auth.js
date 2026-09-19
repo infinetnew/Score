@@ -69,15 +69,15 @@ if (usernameExists) {
         });
 
 
-    if (error) {
+if (error) {
 
-        console.error(error);
+    console.error(error);
 
-        document.getElementById('auth_message').textContent =
-            error.message;
+    document.getElementById('auth_message').textContent =
+        'Questa email è già associata a un altro utente.';
 
-        return;
-    }
+    return;
+}
 
 
     const user = data.user;
