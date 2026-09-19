@@ -598,6 +598,8 @@ auth: {
 
         const registerScreen =
             document.getElementById('register_screen');
+const forgotPasswordScreen =
+    document.getElementById('forgot_password_screen');
 
 
         document.getElementById('show_login')
@@ -627,6 +629,20 @@ auth: {
                 welcomeScreen.style.display = 'block';
 
             });
+document.getElementById('forgot_password')
+    .addEventListener('click', () => {
+
+        loginScreen.style.display = 'none';
+        forgotPasswordScreen.style.display = 'block';
+
+    });
+document.getElementById('back_from_forgot_password')
+    .addEventListener('click', () => {
+
+        forgotPasswordScreen.style.display = 'none';
+        loginScreen.style.display = 'block';
+
+    });
 
 
         document.getElementById('back_from_register')
