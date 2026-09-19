@@ -740,9 +740,13 @@ document.getElementById('back_from_forgot_password')
     // Controlliamo se esiste già una sessione
     supabaseClient.auth.getSession().then(async ({ data }) => {
 
-        if (!data.session || isPasswordRecovery) {
-            return;
-        }
+if (
+    !data.session ||
+    isPasswordRecovery ||
+    window.location.hash.includes('type=recovery')
+) {
+    return;
+}
 
         const user = data.session.user;
 
