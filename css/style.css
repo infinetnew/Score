@@ -25,7 +25,7 @@ body {
 #app {
     max-width: 500px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 14px 18px 24px;
     text-align: center;
 }
 
@@ -36,7 +36,7 @@ body {
 
 .score-hero {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     position: relative;
 }
 
@@ -58,9 +58,8 @@ body {
    ========================= */
 
 .score-user-info {
-    margin-bottom: 25px;
+    margin-bottom: 16px;
 }
-
 .score-user-info h2 {
     margin: 10px 0 5px;
     font-size: 25px;
