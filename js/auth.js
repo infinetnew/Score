@@ -529,3 +529,62 @@ document.getElementById('send_reset_email')
         message.textContent =
             'Controlla la tua email: ti abbiamo inviato il link per reimpostare la password.';
     });
+// SALVATAGGIO NUOVA PASSWORD
+document.getElementById('save_new_password')
+    .addEventListener('click', async () => {
+
+        const password =
+            document.getElementById('reset_password').value;
+
+        const confirmPassword =
+            document.getElementById('reset_password_confirm').value;
+
+        const message =
+            document.getElementById('reset_password_message');
+
+
+        // Controllo campi vuoti
+        if (!password || !confirmPassword) {
+
+            message.textContent =
+                'Compila entrambi i campi.';
+
+            return;
+        }
+
+
+        // Controllo corrispondenza
+        if (password !== confirmPassword) {
+
+            message.textContent =
+                'Le password non coincidono.';
+
+            return;
+        }
+
+
+        // Aggiornamento password
+        const { error } =
+            await supabaseClient.auth.updateUser({
+                password: password
+            });
+
+
+        if (error) {
+
+            console.error(
+                'Errore aggiornamento password:',
+                error
+            );
+
+            message.textContent =
+                'Non è stato possibile aggiornare la password.';
+
+            return;
+        }
+
+
+        message.textContent =
+            'Password aggiornata con successo!';
+
+    });
