@@ -2149,3 +2149,25 @@ text-overflow: ellipsis;
     font-size: 19px;
     font-weight: 600;
 }
+.auth-image-button {
+    width: 280px;
+    height: auto;
+
+    padding: 0;
+    margin: 10px auto 0;
+
+    display: block;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    cursor: pointer;
+}
+.auth-image-button img {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    background: transparent;
+}
