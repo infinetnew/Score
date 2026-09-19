@@ -2390,3 +2390,19 @@ text-overflow: ellipsis;
     margin: 8px 0 18px;
     font-size: 28px;
 }
+/* =========================================
+   MESSAGGI AUTENTICAZIONE
+   ========================================= */
+
+#auth_message,
+#forgot_password_message,
+#reset_password_message {
+    width: 400px;
+    max-width: 90%;
+    margin: 12px auto 0;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+}
