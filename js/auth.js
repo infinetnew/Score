@@ -31,13 +31,14 @@ async function registerUser() {
     }
 
 
-    // Controlliamo se il nickname è già utilizzato
-    const { data: existingUser, error: nicknameError } =
-        await supabaseClient
-            .from('score_users')
-            .select('id')
-            .eq('username', username)
-            .maybeSingle();
+// Controlliamo se il nickname è già utilizzato
+const { data: usernameExists, error: nicknameError } =
+    await supabaseClient.rpc(
+        'score_username_exists',
+        {
+            p_username: username
+        }
+    );
 
 
     if (nicknameError) {
@@ -51,13 +52,13 @@ async function registerUser() {
     }
 
 
-    if (existingUser) {
+if (usernameExists) {
 
-        document.getElementById('auth_message').textContent =
-            'Questo nickname è già utilizzato. Scegline un altro.';
+    document.getElementById('auth_message').textContent =
+        'Questo nickname è già utilizzato. Scegline un altro.';
 
-        return;
-    }
+    return;
+}
 
 
     // Creazione account
