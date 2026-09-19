@@ -584,7 +584,22 @@ document.getElementById('save_new_password')
         }
 
 
-        message.textContent =
-            'Password aggiornata con successo!';
+message.textContent =
+    'Password aggiornata con successo!';
+
+setTimeout(() => {
+
+    // Rimuoviamo il riferimento al recupero password
+    window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+    );
+
+    // Ricarichiamo la pagina
+    // Supabase troverà la sessione e aprirà direttamente il gioco
+    window.location.reload();
+
+}, 1000);
 
     });
