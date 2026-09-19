@@ -2385,3 +2385,8 @@ text-overflow: ellipsis;
     border-color: rgba(0, 200, 255, 0.8);
     box-shadow: 0 0 10px rgba(0, 200, 255, 0.25);
 }
+#reset_password_screen h1 {
+    text-align: center;
+    margin: 8px 0 18px;
+    font-size: 28px;
+}
