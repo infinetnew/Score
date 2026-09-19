@@ -703,6 +703,29 @@ let isPasswordRecovery =
     window.location.search.includes('type=recovery') ||
     window.location.search.includes('code=');
 
+if (isPasswordRecovery) {
+
+    document.querySelector('.auth-container').style.display =
+        'block';
+
+    document.getElementById('app').style.display =
+        'none';
+
+    document.getElementById('welcome_screen').style.display =
+        'none';
+
+    document.getElementById('login_screen').style.display =
+        'none';
+
+    document.getElementById('register_screen').style.display =
+        'none';
+
+    document.getElementById('forgot_password_screen').style.display =
+        'none';
+
+    document.getElementById('reset_password_screen').style.display =
+        'block';
+}
 
     // Intercettiamo il recupero password
     supabaseClient.auth.onAuthStateChange((event) => {
