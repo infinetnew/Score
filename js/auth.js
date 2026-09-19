@@ -172,16 +172,15 @@ async function loginUser() {
         });
 
 
-    if (error) {
+if (error) {
 
-        console.error(error);
+    console.error(error);
 
-        document.getElementById('auth_message').textContent =
-            error.message;
+    document.getElementById('auth_message').textContent =
+        'Email o password non corrette.';
 
-        return;
-    }
-
+    return;
+}
 
     console.log('Utente collegato:', data.user.id);
 
