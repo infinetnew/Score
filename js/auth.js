@@ -20,7 +20,17 @@ async function registerUser() {
 
         return;
     }
+// Controllo formato email
+const emailRegex =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+if (!emailRegex.test(email)) {
+
+    document.getElementById('auth_message').textContent =
+        'Inserisci un indirizzo email valido.';
+
+    return;
+}
 
     if (password !== passwordConfirm) {
 
