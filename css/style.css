@@ -2209,7 +2209,7 @@ text-overflow: ellipsis;
         0 0 10px rgba(0, 200, 255, 0.25);
 }
 .register-buttons {
-    width: 320px;
+    width: 400px;
     max-width: 90%;
 
     margin: 10px auto 0;
