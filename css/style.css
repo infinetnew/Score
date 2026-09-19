@@ -87,6 +87,15 @@ body {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
+.home-tools-box .logout-button {
+    width: 42px;
+    height: 42px;
+}
+
+.home-tools-box .logout-button svg {
+    width: 22px;
+    height: 22px;
+}
 .score-user-info h2 {
     margin: 10px 0 5px;
     font-size: 25px;
@@ -1494,11 +1503,7 @@ text-overflow: ellipsis;
 .logout-button:active {
     transform: scale(0.94);
 }
-.score-hero .logout-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
+
 .score-hero {
     background: transparent !important;
     border: none !important;
