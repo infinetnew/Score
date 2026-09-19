@@ -2419,3 +2419,8 @@ text-overflow: ellipsis;
     box-shadow:
         0 0 10px rgba(0, 200, 255, 0.08);
 }
+#auth_message:empty,
+#forgot_password_message:empty,
+#reset_password_message:empty {
+    display: none;
+}
