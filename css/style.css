@@ -2391,18 +2391,31 @@ text-overflow: ellipsis;
     font-size: 28px;
 }
 /* =========================================
-   MESSAGGI AUTENTICAZIONE
+   BOX MESSAGGI AUTENTICAZIONE
    ========================================= */
 
 #auth_message,
 #forgot_password_message,
 #reset_password_message {
-    width: 400px;
+    width: 320px;
     max-width: 90%;
-    margin: 12px auto 0;
+    box-sizing: border-box;
+
+    margin: 14px auto 0;
+    padding: 10px 14px;
+
     text-align: center;
+
     color: white;
     font-size: 14px;
     font-weight: 600;
     line-height: 1.4;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(0, 200, 255, 0.35);
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 10px rgba(0, 200, 255, 0.08);
 }
