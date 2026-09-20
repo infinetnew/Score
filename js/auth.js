@@ -303,7 +303,7 @@ const { data: leagueData, error: leagueError } =
         .select('league_number, matchday')
         .eq('matchday', matchday)
         .eq('user_id', userId)
-        .single();
+        .maybeSingle();
 
 if (leagueError || !leagueData) {
     console.error('Errore recupero lega:', leagueError);
