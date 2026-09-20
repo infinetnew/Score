@@ -714,6 +714,7 @@ document.getElementById('admin_users_list')
             .eq('user_id', userId);
 console.log('UTENTE:', userId);
 console.log('MOVIMENTI:', transactions);
+console.log('ERRORE CREDITI:', error);
 
     if (error) {
         console.error('Errore recupero crediti:', error);
