@@ -693,7 +693,7 @@ userCard.innerHTML = `
 
 });
 document.getElementById('admin_users_list')
-    .addEventListener('click', (event) => {
+    .addEventListener('click', async (event) => {
 
     const button =
         event.target.closest('.admin-user-select');
@@ -707,6 +707,29 @@ document.getElementById('admin_users_list')
 
     const username =
         button.textContent.trim();
+    const { data: transactions, error } =
+        await supabaseClient
+            .from('score_credit_transactions')
+            .select('amount')
+            .eq('user_id', userId);
+
+    if (error) {
+        console.error('Errore recupero crediti:', error);
+        return;
+    }
+
+    const credits =
+        (transactions || []).reduce(
+            (total, transaction) =>
+                total + Number(transaction.amount || 0),
+            0
+        );
+document.getElementById('admin_user_detail_content')
+    .innerHTML = `
+        <div class="admin-user-credits">
+            💰 Crediti: <strong>${credits}</strong>
+        </div>
+    `;
 
     document.getElementById('admin_users_list')
         .style.display = 'none';
