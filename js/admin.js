@@ -732,8 +732,19 @@ document.getElementById('admin_user_detail_content')
         <div class="admin-user-credits">
             💰 Crediti: <strong>${credits}</strong>
         </div>
-    `;
 
+        <div class="admin-credit-edit">
+            <input
+                type="number"
+                id="admin_credit_amount"
+                placeholder="Inserisci crediti"
+            >
+
+            <button id="admin_credit_submit">
+                INVIA
+            </button>
+        </div>
+    `;
     document.getElementById('admin_users_list')
         .style.display = 'none';
 
