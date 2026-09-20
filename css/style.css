@@ -2046,6 +2046,8 @@ text-overflow: ellipsis;
     width: 58px !important;
     height: 34px;
 
+    margin-left: 8px !important;
+
     padding: 4px;
     box-sizing: border-box;
 
@@ -3065,10 +3067,10 @@ text-overflow: ellipsis;
     overflow-y: auto;
     overflow-x: hidden;
 
-    border: 1px solid rgba(0, 190, 255, 0.25);
+    border: none;
     border-radius: 16px;
 
-    background: rgba(5, 18, 32, 0.55);
+    background: transparent;
 
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 190, 255, 0.55) transparent;
