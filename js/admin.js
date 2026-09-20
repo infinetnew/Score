@@ -635,6 +635,47 @@ async function saveRating(playerId, matchday) {
 
     await openAdmin();
 }
+async function loadAdminUsers() {
+
+    const container =
+        document.getElementById('admin_users_list');
+
+    container.innerHTML = 'Caricamento utenti...';
+
+    const { data: users, error } =
+        await supabaseClient
+            .from('score_users')
+            .select('id, username')
+            .order('username');
+
+    if (error) {
+        console.error('Errore caricamento utenti:', error);
+        container.innerHTML = 'Errore nel caricamento degli utenti.';
+        return;
+    }
+
+    if (!users || users.length === 0) {
+        container.innerHTML = 'Nessun utente trovato.';
+        return;
+    }
+
+    container.innerHTML = '';
+
+    users.forEach(user => {
+
+        const userCard =
+            document.createElement('div');
+
+        userCard.className = 'admin-user-card';
+
+        userCard.innerHTML = `
+            <strong>${user.username}</strong>
+        `;
+
+        container.appendChild(userCard);
+
+    });
+}
 document.getElementById('open_admin')
     .addEventListener('click', () => {
 
@@ -653,10 +694,12 @@ document.getElementById('admin_votes')
 
 });
 document.getElementById('admin_users')
-    .addEventListener('click', () => {
+    .addEventListener('click', async () => {
 
     document.getElementById('admin_menu').style.display = 'none';
     document.getElementById('admin_users_page').style.display = 'block';
+
+    await loadAdminUsers();
 
 });
 document.getElementById('back_admin_users')
