@@ -680,34 +680,76 @@
 
     <p id="admin_h2h_matchday"></p>
 
-<div class="admin-matchday-buttons">
+<div
+    class="admin-matchday-buttons"
+    style="
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:15px;
+    "
+>
 
-    <button id="assign_leagues" class="admin-image-button">
+    <button
+        id="assign_leagues"
+        class="admin-image-button"
+        style="display:block;"
+    >
         <img
             id="assign_leagues_img"
             src="/Score/assets/assegna-leghe.png"
             alt="Assegna leghe">
     </button>
 
-    <button id="create_league_matches" class="admin-image-button" disabled>
+
+    <button
+        id="create_league_matches"
+        class="admin-image-button"
+        disabled
+        style="display:none;"
+    >
         <img
             id="create_league_matches_img"
             src="/Score/assets/crea-scontri.png"
             alt="Crea scontri">
     </button>
 
-    <button id="calculate_matches" class="admin-image-button" disabled>
+
+    <div
+        id="waiting_votes"
+        style="display:none;"
+    >
+        <img
+            src="/Score/assets/in-attesa-voti.png"
+            alt="In attesa dei voti"
+        >
+    </div>
+
+
+    <button
+        id="calculate_matches"
+        class="admin-image-button"
+        disabled
+        style="display:none;"
+    >
         <img
             id="calculate_matches_img"
             src="/Score/assets/calcola-scontri.png"
             alt="Calcola scontri">
     </button>
 
-    <button id="complete_matchday" class="admin-image-button" disabled>
+
+    <button
+        id="complete_matchday"
+        class="admin-image-button"
+        disabled
+        style="display:none;"
+    >
         <img
             id="complete_matchday_img"
             src="/Score/assets/concludi-giornata.png"
-            alt="Concludi giornata">
+            alt="Concludi giornata"
+        >
     </button>
 
 </div>
