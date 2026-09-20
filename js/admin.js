@@ -721,6 +721,19 @@ document.getElementById('admin_users_list')
         .style.display = 'block';
 
 });
+document.getElementById('back_admin_user_list')
+    .addEventListener('click', () => {
+
+    document.getElementById('admin_user_detail')
+        .style.display = 'none';
+
+    document.getElementById('admin_user_search')
+        .style.display = 'block';
+
+    document.getElementById('admin_users_list')
+        .style.display = 'block';
+
+});
 document.getElementById('open_admin')
     .addEventListener('click', () => {
 
@@ -743,6 +756,15 @@ document.getElementById('admin_users')
 
     document.getElementById('admin_menu').style.display = 'none';
     document.getElementById('admin_users_page').style.display = 'block';
+
+    document.getElementById('admin_user_search').value = '';
+
+    document.getElementById('admin_users_list').innerHTML = '';
+
+    document.getElementById('admin_users_list').style.display = 'block';
+    document.getElementById('admin_user_search').style.display = 'block';
+
+    document.getElementById('admin_user_detail').style.display = 'none';
 
 });
 document.getElementById('back_admin_users')
