@@ -727,6 +727,60 @@ console.log('ERRORE CREDITI:', error);
                 total + Number(transaction.amount || 0),
             0
         );
+const { data: h2hMatches, error: h2hError } =
+    await supabaseClient
+        .from('score_h2h_matches')
+        .select('*')
+        .or(`player1_id.eq.${userId},player2_id.eq.${userId}`)
+        .eq('status', 'completed')
+        .order('matchday', { ascending: false })
+        .limit(5);
+
+if (h2hError) {
+    console.error('Errore recupero scontri:', h2hError);
+    return;
+}
+const h2hResults = (h2hMatches || []).map(match => {
+
+    const isPlayer1 =
+        match.player1_id === userId;
+
+    const userPoints =
+        isPlayer1
+            ? match.player1_points
+            : match.player2_points;
+
+    const opponentPoints =
+        isPlayer1
+            ? match.player2_points
+            : match.player1_points;
+
+    let resultText = 'PAREGGIO';
+
+    if (userPoints > opponentPoints) {
+        resultText = 'VITTORIA';
+    } else if (userPoints < opponentPoints) {
+        resultText = 'SCONFITTA';
+    }
+
+    return {
+        matchday: match.matchday,
+        result: resultText
+    };
+
+});
+const h2hHtml = h2hResults.length > 0
+    ? h2hResults.map(match => `
+        <div class="admin-h2h-result">
+            Giornata ${match.matchday} → ${match.result}
+        </div>
+    `).join('')
+    : `
+        <div class="admin-h2h-empty">
+            Nessuno scontro giocato
+        </div>
+    `;
+
 document.getElementById('admin_user_detail_content')
     .innerHTML = `
         <div class="admin-user-credits">
@@ -743,6 +797,11 @@ document.getElementById('admin_user_detail_content')
             <button id="admin_credit_submit">
                 INVIA
             </button>
+        </div>
+
+        <div class="admin-h2h-section">
+            <h3>⚔️ Ultimi 5 scontri</h3>
+            ${h2hHtml}
         </div>
     `;
 document.getElementById('admin_credit_submit')
