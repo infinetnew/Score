@@ -2544,3 +2544,165 @@ text-overflow: ellipsis;
 .admin-user-select:active {
     transform: scale(0.98);
 }
+/* =========================================
+   ADMIN - DETTAGLIO UTENTE
+   ========================================= */
+
+#admin_user_detail_name {
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    text-align: center;
+}
+
+/* CREDITI */
+
+.admin-user-credits {
+    margin-bottom: 18px;
+
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.admin-user-credits strong {
+    font-size: 17px;
+}
+
+/* MODIFICA CREDITI */
+
+.admin-credit-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 28px;
+}
+
+.admin-credit-edit input {
+    width: 145px;
+    height: 32px;
+    padding: 0 10px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(0, 190, 255, 0.25);
+    border-radius: 8px;
+
+    color: white;
+    font-size: 14px;
+}
+
+.admin-credit-edit input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.admin-credit-edit button {
+    height: 32px;
+    padding: 0 13px;
+
+    border: 1px solid rgba(0, 190, 255, 0.30);
+    border-radius: 8px;
+
+    background: rgba(0, 150, 255, 0.15);
+
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* SCONTRI */
+
+.admin-h2h-section {
+    margin-top: 8px;
+}
+
+.admin-h2h-section h3 {
+    margin: 0 0 16px;
+
+    color: white;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+/* SINGOLO SCONTRO */
+
+.admin-h2h-result {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 32px;
+
+    margin-bottom: 8px;
+    padding: 6px 8px;
+
+    box-sizing: border-box;
+
+    text-align: left;
+}
+
+/* PALLINO */
+
+.admin-h2h-dot {
+    width: 9px;
+    height: 9px;
+
+    flex-shrink: 0;
+
+    margin-right: 9px;
+
+    border-radius: 50%;
+}
+
+/* VERDE - VITTORIA */
+
+.admin-h2h-result.win .admin-h2h-dot {
+    background: #22c55e;
+    box-shadow: 0 0 7px rgba(34, 197, 94, 0.65);
+}
+
+/* GIALLO - PAREGGIO */
+
+.admin-h2h-result.draw .admin-h2h-dot {
+    background: #facc15;
+    box-shadow: 0 0 7px rgba(250, 204, 21, 0.60);
+}
+
+/* ROSSO - SCONFITTA */
+
+.admin-h2h-result.loss .admin-h2h-dot {
+    background: #ef4444;
+    box-shadow: 0 0 7px rgba(239, 68, 68, 0.60);
+}
+
+/* GIORNATA */
+
+.admin-h2h-matchday {
+    margin-right: 8px;
+
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* RISULTATO */
+
+.admin-h2h-result-text {
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+/* NESSUNO SCONTRO */
+
+.admin-h2h-empty {
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 14px;
+    font-weight: 600;
+}
