@@ -712,6 +712,8 @@ document.getElementById('admin_users_list')
             .from('score_credit_transactions')
             .select('amount')
             .eq('user_id', userId);
+console.log('UTENTE:', userId);
+console.log('MOVIMENTI:', transactions);
 
     if (error) {
         console.error('Errore recupero crediti:', error);
