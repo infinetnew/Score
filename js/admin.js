@@ -910,15 +910,33 @@ document.getElementById('open_admin')
     console.log('CLICK ADMIN');
 
     document.getElementById('admin_management').style.display = 'none';
+    document.getElementById('admin_h2h_management').style.display = 'none';
     document.getElementById('admin_menu').style.display = 'block';
 
     openAdmin();
 });
+
 document.getElementById('admin_votes')
     .addEventListener('click', () => {
 
     document.getElementById('admin_menu').style.display = 'none';
+    document.getElementById('admin_h2h_management').style.display = 'none';
     document.getElementById('admin_management').style.display = 'block';
+
+});
+document.getElementById('admin_matchday_menu')
+    .addEventListener('click', () => {
+
+    document.getElementById('admin_menu').style.display = 'none';
+    document.getElementById('admin_management').style.display = 'none';
+    document.getElementById('admin_h2h_management').style.display = 'block';
+
+});
+document.getElementById('back_admin_h2h_menu')
+    .addEventListener('click', () => {
+
+    document.getElementById('admin_h2h_management').style.display = 'none';
+    document.getElementById('admin_menu').style.display = 'block';
 
 });
 document.getElementById('admin_users')
@@ -948,6 +966,7 @@ document.getElementById('back_admin_menu')
     .addEventListener('click', () => {
 
     document.getElementById('admin_management').style.display = 'none';
+    document.getElementById('admin_h2h_management').style.display = 'none';
     document.getElementById('admin_menu').style.display = 'block';
 
 });
