@@ -102,6 +102,63 @@
     max-width: 420px;
     height: auto;
 }
+/* =========================================
+   PULSANTI IMMAGINE CLASSIFICA
+   ========================================= */
+
+.ranking-tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 10px 0 15px 0;
+}
+
+.ranking-tab.image-ranking-tab {
+    display: block;
+    width: 90%;
+    max-width: 430px;
+    height: auto;
+
+    padding: 0;
+    margin: 0;
+
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+
+    cursor: pointer;
+    overflow: visible;
+}
+
+.ranking-tab.image-ranking-tab img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-width: 100%;
+
+    object-fit: contain;
+
+    border: none;
+    box-shadow: none;
+
+    transition:
+        transform 0.15s ease,
+        filter 0.15s ease;
+}
+
+.ranking-tab.image-ranking-tab:hover img {
+    transform: scale(1.02);
+    filter: brightness(1.08);
+}
+
+.ranking-tab.image-ranking-tab:active img {
+    transform: scale(0.98);
+}
 </style>
 </head>
 
