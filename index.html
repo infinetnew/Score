@@ -566,45 +566,75 @@
 </div>
 <div id="admin_page" style="display:none;">
 
-<div class="market-title-image">
-    <img src="/Score/assets/admin.png" alt="Pannello Admin">
-</div>
-
-    <p id="admin_matchday"></p>
-
-    <div id="admin_players">
-        Caricamento...
+    <div class="market-title-image">
+        <img src="/Score/assets/admin.png" alt="Pannello Admin">
     </div>
 
-<br>
+    <!-- MENU ADMIN -->
+    <div id="admin_menu">
 
-<button id="create_league_matches" disabled>
-    CREA SCONTRI
-</button>
+        <button id="admin_votes">
+            📝 GESTIONE VOTI
+        </button>
 
-<br><br>
+        <button id="admin_users">
+            👥 GESTIONE UTENTI
+        </button>
 
-<button id="calculate_matches" disabled>
-    CALCOLA SCONTRI
-</button>
+        <button id="admin_matchday_menu">
+            🏆 GESTIONE GIORNATA
+        </button>
 
-<br><br>
+        <button id="admin_h2h">
+            ⚔️ GESTIONE SCONTRI
+        </button>
 
-<button id="complete_matchday" disabled>
-    CONCLUDI GIORNATA
-</button>
+        <button id="admin_stats">
+            📊 STATISTICHE ADMIN
+        </button>
 
-<br><br>
+    </div>
 
-<button id="assign_leagues">
-    ASSEGNA UTENTI ALLE LEGHE
-</button>
+    <!-- GESTIONE ATTUALE -->
+    <div id="admin_management" style="display:none;">
 
-<br><br>
+        <p id="admin_matchday"></p>
 
-<button id="close_admin">
-    ← TORNA ALLA HOME
-</button>
+        <div id="admin_players">
+            Caricamento...
+        </div>
+
+        <br>
+
+        <button id="create_league_matches" disabled>
+            CREA SCONTRI
+        </button>
+
+        <br><br>
+
+        <button id="calculate_matches" disabled>
+            CALCOLA SCONTRI
+        </button>
+
+        <br><br>
+
+        <button id="complete_matchday" disabled>
+            CONCLUDI GIORNATA
+        </button>
+
+        <br><br>
+
+        <button id="assign_leagues">
+            ASSEGNA UTENTI ALLE LEGHE
+        </button>
+
+        <br><br>
+
+        <button id="close_admin">
+            ← TORNA ALLA HOME
+        </button>
+
+    </div>
 
 </div>
     <script>
