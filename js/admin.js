@@ -489,12 +489,15 @@ row.innerHTML = `
                             ${
                                 savedRating === undefined
                                 ? `
-                                    <button
-                                        onclick="saveRating(${purchase.player_id}, ${matchday})"
-                                        style="margin-left:5px;"
-                                    >
-                                        SALVA
-                                    </button>
+<button
+    onclick="saveRating(${purchase.player_id}, ${matchday})"
+    class="admin-save-vote"
+>
+    <img
+        src="/Score/assets/salva-voto.png"
+        alt="Salva voto"
+    >
+</button>
                                 `
                                 : ''
                             }
