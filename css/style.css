@@ -2043,8 +2043,8 @@ text-overflow: ellipsis;
 }
 
 .admin-player-row input {
-    width: 58px !important;
-    height: 34px;
+    width: 50px !important;
+    height: 30px;
 
     margin-left: 8px !important;
 
@@ -3067,10 +3067,10 @@ text-overflow: ellipsis;
     overflow-y: auto;
     overflow-x: hidden;
 
-    border: none;
+    border: 1px solid rgba(0, 190, 255, 0.25);
     border-radius: 16px;
 
-    background: transparent;
+    background: rgba(5, 18, 32, 0.55);
 
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 190, 255, 0.55) transparent;
