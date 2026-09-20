@@ -2559,6 +2559,11 @@ text-overflow: ellipsis;
 /* CREDITI */
 
 .admin-user-credits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
     margin-bottom: 18px;
 
     color: white;
@@ -2568,6 +2573,17 @@ text-overflow: ellipsis;
 
 .admin-user-credits strong {
     font-size: 17px;
+}
+
+.admin-credit-icon {
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+    display: block;
 }
 
 /* MODIFICA CREDITI */
@@ -2636,12 +2652,14 @@ text-overflow: ellipsis;
 }
 
 .admin-h2h-icon {
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
 
     object-fit: contain;
 
     flex-shrink: 0;
+
+    display: block;
 }
 
 /* SINGOLO SCONTRO */
