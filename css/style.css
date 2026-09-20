@@ -3177,3 +3177,55 @@ text-overflow: ellipsis;
 .admin-save-vote:active {
     transform: scale(0.94);
 }
+/* =========================================
+   MENU ADMIN - PULSANTI IMMAGINE CENTRATI
+   ========================================= */
+
+#admin_menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.admin-menu-image-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 85%;
+    max-width: 420px;
+
+    padding: 0;
+    margin: 0 auto;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    cursor: pointer;
+}
+
+.admin-menu-image-button img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border: none;
+    box-shadow: none;
+
+    transition:
+        transform 0.15s ease,
+        filter 0.15s ease;
+}
+
+.admin-menu-image-button:hover img {
+    transform: scale(1.02);
+    filter: brightness(1.08);
+}
+
+.admin-menu-image-button:active img {
+    transform: scale(0.98);
+}
