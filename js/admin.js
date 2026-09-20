@@ -267,15 +267,37 @@ userSection.className = 'admin-user-card';
                     groupedLeagues[leagueNumber][username];
 
                 // TITOLARI
-                const starters =
-                    players.filter(purchase =>
-                        purchase.slot_type === 'starter'
-                    );
+const starters =
+    players
+        .filter(purchase =>
+            purchase.slot_type === 'starter'
+        )
+        .sort((a, b) => {
+            const order = {
+                P: 1,
+                D: 2,
+                C: 3,
+                A: 4
+            };
 
-                const reserves =
-                    players.filter(purchase =>
-                        purchase.slot_type === 'reserve'
-                    );
+            return (order[a.role] || 99) - (order[b.role] || 99);
+        });
+
+const reserves =
+    players
+        .filter(purchase =>
+            purchase.slot_type === 'reserve'
+        )
+        .sort((a, b) => {
+            const order = {
+                P: 1,
+                D: 2,
+                C: 3,
+                A: 4
+            };
+
+            return (order[a.role] || 99) - (order[b.role] || 99);
+        });
 
                 if (starters.length > 0) {
 
@@ -291,17 +313,21 @@ userSection.className = 'admin-user-card';
 const row =
     document.createElement('div');
 
-row.className = 'admin-player-row';
+row.className = `admin-player-row role-${purchase.role}`;
 
-                        const savedRating =
-                            savedRatings[purchase.player_id];
+const savedRating =
+    savedRatings[purchase.player_id];
 
                         if (savedRating !== undefined) {
                             total += parseFloat(savedRating);
                         }
 
                         row.innerHTML = `
-                            <strong>${purchase.player_name}</strong>
+    <div class="admin-role-badge">
+        ${purchase.role}
+    </div>
+
+    <strong>${purchase.player_name}</strong>
 
 <img
     src="${purchase.team_logo}"
@@ -360,16 +386,20 @@ row.className = 'admin-player-row';
 const row =
     document.createElement('div');
 
-row.className = 'admin-player-row';
+row.className = `admin-player-row role-${purchase.role}`;
 
-                        const savedRating =
-                            savedRatings[purchase.player_id];
+const savedRating =
+    savedRatings[purchase.player_id];
 
                         if (savedRating !== undefined) {
                             total += parseFloat(savedRating);
                         }
 
-                        row.innerHTML = `
+row.innerHTML = `
+<div class="admin-role-badge">
+    ${purchase.role}
+</div>
+
 <strong>${purchase.player_name}</strong>
 
 <img
