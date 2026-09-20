@@ -229,9 +229,33 @@ stats.style.fontSize = '18px';
 stats.style.fontWeight = 'bold';
 
 stats.innerHTML = `
-    👥 ${participantsCount} GIOCATORI
+    <img
+        src="/Score/assets/partecipanti.png"
+        alt="Partecipanti"
+        style="
+            width:24px;
+            height:24px;
+            object-fit:contain;
+            vertical-align:middle;
+            margin-right:6px;
+        "
+    >
+    ${participantsCount} Giocatori
+
     &nbsp;&nbsp;&nbsp;
-    🏆 ${leaguesCount} LEGHE
+
+    <img
+        src="/Score/assets/lega.png"
+        alt="Leghe"
+        style="
+            width:24px;
+            height:24px;
+            object-fit:contain;
+            vertical-align:middle;
+            margin-right:6px;
+        "
+    >
+    ${leaguesCount} Leghe
 `;
 
 container.appendChild(stats);
@@ -275,11 +299,23 @@ const userSection = document.createElement('div');
 
 userSection.className = 'admin-user-card';
 
-                userSection.innerHTML = `
-                    <h3>👤 ${username} — Totale:
-                        <span class="user-total">0</span>
-                    </h3>
-                `;
+userSection.innerHTML = `
+    <h3>
+        <img
+            src="/Score/assets/giocatore.png"
+            alt="Giocatore"
+            style="
+                width:22px;
+                height:22px;
+                object-fit:contain;
+                vertical-align:middle;
+                margin-right:6px;
+            "
+        >
+        ${username} — Totale:
+        <span class="user-total">0</span>
+    </h3>
+`;
 
                 const totalElement =
                     userSection.querySelector('.user-total');
