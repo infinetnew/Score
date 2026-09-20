@@ -3121,3 +3121,16 @@ text-overflow: ellipsis;
     background: #e5232f;
     box-shadow: 0 0 10px rgba(229,35,47,0.60);
 }
+/* =========================================
+   ADMIN - TITOLO GIORNATA
+   ========================================= */
+
+#admin_matchday {
+    margin: 12px 0 20px;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    color: white;
+    text-align: center;
+}
