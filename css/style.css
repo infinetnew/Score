@@ -2424,3 +2424,39 @@ text-overflow: ellipsis;
 #reset_password_message:empty {
     display: none;
 }
+/* =========================================
+   ADMIN - SCHEDA UTENTE
+   ========================================= */
+
+#admin_user_detail {
+    width: 100%;
+    margin: 18px auto 0;
+    padding: 20px 16px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(0, 190, 255, 0.14),
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(120, 60, 255, 0.12),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(11, 29, 50, 0.96),
+            rgba(7, 16, 30, 0.96)
+        );
+
+    border: 1px solid rgba(0, 190, 255, 0.28);
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.50),
+        0 0 25px rgba(0, 150, 255, 0.08);
+
+    box-sizing: border-box;
+}
