@@ -729,6 +729,7 @@ document.getElementById('back_admin_user_list')
 
     document.getElementById('admin_user_search')
         .style.display = 'block';
+document.getElementById('admin_user_search').value = '';
 
     document.getElementById('admin_users_list')
         .style.display = 'block';
