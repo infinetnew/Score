@@ -647,6 +647,13 @@ document.getElementById('admin_votes')
     document.getElementById('admin_management').style.display = 'block';
 
 });
+document.getElementById('back_admin_menu')
+    .addEventListener('click', () => {
+
+    document.getElementById('admin_management').style.display = 'none';
+    document.getElementById('admin_menu').style.display = 'block';
+
+});
 
 document.getElementById('close_admin')
     .addEventListener('click', () => {
