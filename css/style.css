@@ -3051,3 +3051,51 @@ text-overflow: ellipsis;
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 190, 255, 0.55) transparent;
 }
+/* =========================================
+   ADMIN - BADGE RUOLO GIOCATORE
+   ========================================= */
+
+.admin-role-badge {
+    width: 26px;
+    height: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    box-sizing: border-box;
+
+    color: white;
+
+    flex-shrink: 0;
+}
+
+/* PORTIERE */
+.admin-player-row.role-P .admin-role-badge {
+    background: #f2b900;
+    color: #111;
+    box-shadow: 0 0 10px rgba(242,185,0,0.65);
+}
+
+/* DIFENSORE */
+.admin-player-row.role-D .admin-role-badge {
+    background: #12a957;
+    box-shadow: 0 0 10px rgba(18,169,87,0.60);
+}
+
+/* CENTROCAMPISTA */
+.admin-player-row.role-C .admin-role-badge {
+    background: #1677ff;
+    box-shadow: 0 0 10px rgba(22,119,255,0.60);
+}
+
+/* ATTACCANTE */
+.admin-player-row.role-A .admin-role-badge {
+    background: #e5232f;
+    box-shadow: 0 0 10px rgba(229,35,47,0.60);
+}
