@@ -317,8 +317,6 @@ row.className = 'admin-player-row';
 
                             <input
                                 type="number"
-                                min="0"
-                                max="10"
                                 step="0.5"
                                 placeholder="Voto"
                                 id="rating_${purchase.player_id}"
@@ -388,8 +386,6 @@ row.className = 'admin-player-row';
 
                             <input
                                 type="number"
-                                min="0"
-                                max="10"
                                 step="0.5"
                                 placeholder="Voto"
                                 id="rating_${purchase.player_id}"
@@ -593,10 +589,6 @@ async function saveRating(playerId, matchday) {
         return;
     }
 
-    if (rating < 0 || rating > 10) {
-        alert('Il voto deve essere compreso tra 0 e 10.');
-        return;
-    }
 
     const { data, error } =
         await supabaseClient.rpc(
