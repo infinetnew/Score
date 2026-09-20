@@ -848,6 +848,32 @@ async function openRanking() {
 
     list.innerHTML = 'Caricamento...';
 
+    // Recupera l'utente attualmente collegato
+    const { data: sessionData, error: sessionError } =
+        await supabaseClient.auth.getSession();
+
+    if (sessionError || !sessionData.session) {
+        console.error('Sessione non trovata:', sessionError);
+        list.innerHTML = 'Errore nel caricamento della classifica.';
+        return;
+    }
+
+    const userId = sessionData.session.user.id;
+
+    // Recupera il nome dell'utente
+    const { data: userData, error: userError } =
+        await supabaseClient
+            .from('score_users')
+            .select('username')
+            .eq('id', userId)
+            .single();
+
+    if (userError || !userData) {
+        console.error('Errore recupero utente:', userError);
+        list.innerHTML = 'Errore nel caricamento della classifica.';
+        return;
+    }
+
     // Recupera la classifica dal database
     const { data: ranking, error } =
         await supabaseClient.rpc('score_get_ranking');
@@ -865,7 +891,13 @@ async function openRanking() {
         return;
     }
 
-    ranking.forEach((player, index) => {
+    // ================================
+    // TOP 10
+    // ================================
+
+    const top10 = ranking.slice(0, 10);
+
+    top10.forEach((player, index) => {
 
         const row = document.createElement('div');
 
@@ -879,8 +911,49 @@ async function openRanking() {
 
         list.appendChild(row);
     });
-}
 
+    // ================================
+    // POSIZIONE PERSONALE
+    // ================================
+
+    const myPosition = ranking.findIndex(
+        player => player.username === userData.username
+    );
+
+    // Se l'utente è oltre la Top 10
+    if (myPosition >= 10) {
+
+        const separator = document.createElement('div');
+
+        separator.innerHTML = `
+            <div style="
+                text-align:center;
+                margin:18px 0 10px;
+                font-weight:bold;
+                font-size:14px;
+                opacity:0.8;
+            ">
+                LA TUA POSIZIONE
+            </div>
+        `;
+
+        list.appendChild(separator);
+
+        const player = ranking[myPosition];
+
+        const row = document.createElement('div');
+
+        row.className = 'ranking-row';
+
+        row.innerHTML = `
+            <span class="ranking-position">${myPosition + 1}°</span>
+            <strong>${player.username}</strong>
+            <span class="ranking-points">${player.points} pt</span>
+        `;
+
+        list.appendChild(row);
+    }
+}
 
 function closeRanking() {
 
