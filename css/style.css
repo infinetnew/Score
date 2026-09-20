@@ -2461,22 +2461,86 @@ text-overflow: ellipsis;
     box-sizing: border-box;
 }
 /* =========================================
-   ADMIN - GESTIONE UTENTI
+   ADMIN - SCHEDA UTENTE
    ========================================= */
 
-#admin_users_page {
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 20px 20px 40px;
+#admin_user_detail {
+    width: 400px;
+    max-width: 90%;
+    margin: 25px auto 0;
+    padding: 25px 22px;
     box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(0, 190, 255, 0.12),
+            transparent 45%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(10, 28, 48, 0.96),
+            rgba(7, 16, 30, 0.96)
+        );
+
+    border: 1px solid rgba(0, 190, 255, 0.30);
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(0, 150, 255, 0.08);
+
     text-align: center;
 }
+/* =========================================
+   ADMIN - RISULTATO RICERCA UTENTE
+   ========================================= */
 
-#admin_users_page > h2 {
-    margin: 10px 0 25px;
-    font-size: 24px;
-    font-weight: 800;
+.admin-user-select {
+    display: block;
+    width: 100%;
+    padding: 14px 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 150, 255, 0.12),
+            rgba(30, 60, 120, 0.18)
+        );
+
+    border: 1px solid rgba(0, 190, 255, 0.25);
+    border-radius: 12px;
+
     color: white;
+    font-size: 16px;
+    font-weight: 700;
     text-align: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.20);
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.admin-user-select:hover {
+    transform: scale(1.02);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 170, 255, 0.22),
+            rgba(50, 80, 150, 0.25)
+        );
+
+    box-shadow:
+        0 0 15px rgba(0, 170, 255, 0.18);
+}
+
+.admin-user-select:active {
+    transform: scale(0.98);
 }
