@@ -2012,9 +2012,9 @@ text-overflow: ellipsis;
 
 .admin-player-row {
     display: grid;
-    grid-template-columns: 28px minmax(0, 1fr) 34px 56px 54px;
+    grid-template-columns: 28px minmax(0, 1fr) 38px 56px 54px;
     align-items: center;
-    gap: 6px;
+    gap: 9px;
 
     width: 100%;
     box-sizing: border-box;
