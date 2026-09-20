@@ -3134,3 +3134,44 @@ text-overflow: ellipsis;
     color: white;
     text-align: center;
 }
+/* =========================================
+   ADMIN - SALVA VOTO
+   ========================================= */
+
+.admin-save-vote {
+    width: 54px !important;
+    height: 34px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    cursor: pointer;
+
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.admin-save-vote img {
+    width: 54px;
+    height: 34px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.admin-save-vote:hover {
+    transform: scale(1.06);
+    filter: brightness(1.10);
+}
+
+.admin-save-vote:active {
+    transform: scale(0.94);
+}
