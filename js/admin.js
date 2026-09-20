@@ -135,25 +135,52 @@ const allCalculated =
 createLeagueMatchesButton.disabled =
     !leaguesAssigned || matchesExist;
 
-createLeagueMatchesButton.textContent =
-    matchesExist
-        ? 'SCONTRI CREATI'
-        : 'CREA SCONTRI';
+// STATI GRAFICI DELLA GIORNATA
+const waitingVotes =
+    document.getElementById('waiting_votes');
 
-// CALCOLA / CONCLUDI
-if (allCalculated) {
+// Nascondiamo tutti gli stati
+assignLeaguesButton.style.display = 'none';
+createLeagueMatchesButton.style.display = 'none';
+waitingVotes.style.display = 'none';
+calculateButton.style.display = 'none';
+completeButton.style.display = 'none';
 
-    calculateButton.disabled = true;
-    calculateButton.textContent = 'SCONTRI CALCOLATI';
+// 1. LEGHE NON ANCORA ASSEGNATE
+if (!leaguesAssigned) {
+
+    assignLeaguesButton.style.display = 'block';
+
+}
+
+// 2. LEGHE ASSEGNATE, SCONTRI NON CREATI
+else if (!matchesExist) {
+
+    createLeagueMatchesButton.style.display = 'block';
+
+}
+
+// 3. SCONTRI CREATI, MA MANCANO DEI VOTI
+else if (!allRatingsInserted) {
+
+    waitingVotes.style.display = 'block';
+
+}
+
+// 4. TUTTI I VOTI INSERITI
+else if (!allCalculated) {
+
+    calculateButton.disabled = false;
+    calculateButton.style.display = 'block';
+
+}
+
+// 5. SCONTRI CALCOLATI
+else {
 
     completeButton.disabled = false;
+    completeButton.style.display = 'block';
 
-} else {
-
-    calculateButton.disabled =
-        !matchesExist || !allRatingsInserted;
-
-    completeButton.disabled = true;
 }
 }
 
@@ -437,12 +464,11 @@ assignLeaguesButton.addEventListener('click', async () => {
         return;
     }
 
-    console.log('Leghe assegnate:', data);
+console.log('Leghe assegnate:', data);
 
-    assignLeaguesButton.textContent = 'LEGHE ASSEGNATE';
-    assignLeaguesButton.disabled = true;
+assignLeaguesButton.disabled = true;
 
-    createLeagueMatchesButton.disabled = false;
+await openAdmin();
 
 });
 createLeagueMatchesButton.addEventListener('click', async () => {
@@ -513,15 +539,9 @@ document.getElementById('calculate_matches')
             return;
         }
 
-        console.log('Scontri calcolati:', data);
+console.log('Scontri calcolati:', data);
 
-        const button =
-            document.getElementById('calculate_matches');
-
-        button.textContent = 'SCONTRI CALCOLATI';
-        button.disabled = true;
-
-        document.getElementById('complete_matchday').disabled = false;
+await openAdmin();
     });
 
 
