@@ -2011,40 +2011,62 @@ text-overflow: ellipsis;
 }
 
 .admin-player-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) 30px 58px 54px;
     align-items: center;
-    gap: 10px;
-    padding: 10px 6px;
+    gap: 4px;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 8px 2px;
 }
 
 .admin-player-row strong {
-    min-width: 150px;
+    min-width: 0;
+
     color: white;
     font-size: 15px;
+    font-weight: 800;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .admin-player-row img {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
-    margin-left: auto;
+
+    margin: 0;
 }
 
 .admin-player-row input {
-    width: 45px !important;
-    height: 20px;
-    padding: 5px;
+    width: 58px !important;
+    height: 34px;
+
+    padding: 4px;
+    box-sizing: border-box;
+
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
+
     text-align: center;
 }
 
 .admin-player-row button {
-    height: 36px;
-    padding: 0 14px;
+    width: 54px;
+    height: 34px;
+
+    padding: 0;
+
     border: none;
     border-radius: 8px;
+
     font-weight: 700;
+    font-size: 12px;
+
     cursor: pointer;
 }
 .market-closed-image {
