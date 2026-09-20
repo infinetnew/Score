@@ -795,9 +795,14 @@ const h2hHtml = h2hResults.length > 0
 
 document.getElementById('admin_user_detail_content')
     .innerHTML = `
-        <div class="admin-user-credits">
-            💰 Crediti: <strong>${credits}</strong>
-        </div>
+<div class="admin-user-credits">
+    <img
+        src="/Score/assets/crediti-admin.png"
+        alt="Crediti"
+        class="admin-credit-icon"
+    >
+    <span>Crediti: <strong>${credits}</strong></span>
+</div>
 
         <div class="admin-credit-edit">
             <input
@@ -811,10 +816,18 @@ document.getElementById('admin_user_detail_content')
             </button>
         </div>
 
-        <div class="admin-h2h-section">
-            <h3>⚔️ Ultimi 5 scontri</h3>
-            ${h2hHtml}
-        </div>
+<div class="admin-h2h-section">
+    <h3>
+        <img
+            src="/Score/assets/scontri-admin.png"
+            alt="Scontri"
+            class="admin-h2h-icon"
+        >
+        <span>Ultimi 5 scontri</span>
+    </h3>
+
+    ${h2hHtml}
+</div>
     `;
 document.getElementById('admin_credit_submit')
     .addEventListener('click', async () => {
