@@ -755,21 +755,21 @@ const h2hResults = (h2hMatches || []).map(match => {
             ? match.player2_points
             : match.player1_points;
 
-    let resultText = 'PAREGGIO';
+    let resultText = 'Pareggio';
 
     if (userPoints > opponentPoints) {
-        resultText = 'VITTORIA';
+        resultText = 'Vittoria';
     } else if (userPoints < opponentPoints) {
-        resultText = 'SCONFITTA';
+        resultText = 'Sconfitta';
     }
 
 return {
     matchday: match.matchday,
     result: resultText,
     resultClass:
-        resultText === 'VITTORIA'
+        resultText === 'Vittoria'
             ? 'win'
-            : resultText === 'SCONFITTA'
+            : resultText === 'Sconfitta'
                 ? 'loss'
                 : 'draw'
 };
@@ -807,7 +807,7 @@ document.getElementById('admin_user_detail_content')
             >
 
             <button id="admin_credit_submit">
-                INVIA
+                Invia
             </button>
         </div>
 
