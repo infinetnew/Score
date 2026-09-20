@@ -844,6 +844,9 @@ async function openRanking() {
     const screen = document.getElementById('ranking_screen');
     const list = document.getElementById('ranking_list');
 
+    const gButton = document.getElementById('ranking_g_button');
+    const scoreButton = document.getElementById('ranking_score_button');
+
     screen.style.display = 'flex';
 
     list.innerHTML = 'Caricamento...';
@@ -874,87 +877,160 @@ async function openRanking() {
         return;
     }
 
-    // Recupera la classifica dal database
-    const { data: ranking, error } =
-        await supabaseClient.rpc('score_get_ranking');
+    // ========================================
+    // FUNZIONE GENERICA PER MOSTRARE LA CLASSIFICA
+    // ========================================
 
-    if (error) {
-        console.error('Errore caricamento classifica:', error);
-        list.innerHTML = 'Errore nel caricamento della classifica.';
-        return;
+    async function loadRanking(type) {
+
+        list.innerHTML = 'Caricamento...';
+
+        let rpcName;
+
+        if (type === 'g') {
+            rpcName = 'score_get_ranking';
+        } else {
+            rpcName = 'score_get_score_ranking';
+        }
+
+        const { data: ranking, error } =
+            await supabaseClient.rpc(rpcName);
+
+        if (error) {
+            console.error('Errore caricamento classifica:', error);
+            list.innerHTML =
+                'Errore nel caricamento della classifica.';
+            return;
+        }
+
+        list.innerHTML = '';
+
+        if (!ranking || ranking.length === 0) {
+            list.innerHTML =
+                'Nessun giocatore in classifica.';
+            return;
+        }
+
+        // ========================================
+        // TOP 10
+        // ========================================
+
+        const top10 = ranking.slice(0, 10);
+
+        top10.forEach((player, index) => {
+
+            const row = document.createElement('div');
+
+            row.className = 'ranking-row';
+
+            const points =
+                type === 'g'
+                    ? player.points
+                    : player.total_score;
+
+            row.innerHTML = `
+                <span class="ranking-position">
+                    ${index + 1}°
+                </span>
+
+                <strong>${player.username}</strong>
+
+                <span class="ranking-points">
+                    ${points} pt
+                </span>
+            `;
+
+            list.appendChild(row);
+        });
+
+        // ========================================
+        // POSIZIONE PERSONALE
+        // ========================================
+
+        const myPosition = ranking.findIndex(
+            player => player.id === userId
+        );
+
+        if (myPosition >= 10) {
+
+            const separator =
+                document.createElement('div');
+
+            separator.innerHTML = `
+                <div style="
+                    text-align:center;
+                    margin:18px 0 10px;
+                    font-weight:bold;
+                    font-size:14px;
+                    opacity:0.8;
+                ">
+                    LA TUA POSIZIONE
+                </div>
+            `;
+
+            list.appendChild(separator);
+
+            const player = ranking[myPosition];
+
+            const row =
+                document.createElement('div');
+
+            row.className = 'ranking-row';
+
+            const points =
+                type === 'g'
+                    ? player.points
+                    : player.total_score;
+
+            row.innerHTML = `
+                <span class="ranking-position">
+                    ${myPosition + 1}°
+                </span>
+
+                <strong>${player.username}</strong>
+
+                <span class="ranking-points">
+                    ${points} pt
+                </span>
+            `;
+
+            list.appendChild(row);
+        }
     }
 
-    list.innerHTML = '';
+    // ========================================
+    // PULSANTE CLASSIFICA G
+    // ========================================
 
-    if (!ranking || ranking.length === 0) {
-        list.innerHTML = 'Nessun giocatore in classifica.';
-        return;
-    }
+    gButton.onclick = () => {
 
-    // ================================
-    // TOP 10
-    // ================================
+        gButton.classList.add('active');
+        scoreButton.classList.remove('active');
 
-    const top10 = ranking.slice(0, 10);
+        loadRanking('g');
+    };
 
-    top10.forEach((player, index) => {
+    // ========================================
+    // PULSANTE PUNTEGGIO
+    // ========================================
 
-        const row = document.createElement('div');
+    scoreButton.onclick = () => {
 
-        row.className = 'ranking-row';
+        scoreButton.classList.add('active');
+        gButton.classList.remove('active');
 
-        row.innerHTML = `
-            <span class="ranking-position">${index + 1}°</span>
-            <strong>${player.username}</strong>
-            <span class="ranking-points">${player.points} pt</span>
-        `;
+        loadRanking('score');
+    };
 
-        list.appendChild(row);
-    });
+    // ========================================
+    // APERTURA → CLASSIFICA G
+    // ========================================
 
-    // ================================
-    // POSIZIONE PERSONALE
-    // ================================
+    gButton.classList.add('active');
+    scoreButton.classList.remove('active');
 
-    const myPosition = ranking.findIndex(
-        player => player.username === userData.username
-    );
-
-    // Se l'utente è oltre la Top 10
-    if (myPosition >= 10) {
-
-        const separator = document.createElement('div');
-
-        separator.innerHTML = `
-            <div style="
-                text-align:center;
-                margin:18px 0 10px;
-                font-weight:bold;
-                font-size:14px;
-                opacity:0.8;
-            ">
-                LA TUA POSIZIONE
-            </div>
-        `;
-
-        list.appendChild(separator);
-
-        const player = ranking[myPosition];
-
-        const row = document.createElement('div');
-
-        row.className = 'ranking-row';
-
-        row.innerHTML = `
-            <span class="ranking-position">${myPosition + 1}°</span>
-            <strong>${player.username}</strong>
-            <span class="ranking-points">${player.points} pt</span>
-        `;
-
-        list.appendChild(row);
-    }
+    loadRanking('g');
 }
-
 function closeRanking() {
 
     document.getElementById('ranking_screen').style.display = 'none';
