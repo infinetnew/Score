@@ -43,6 +43,29 @@ if (purchasesError) {
     container.innerHTML = 'Errore nel caricamento degli acquisti.';
     return;
 }
+// Recupera i ruoli dei giocatori
+const playerIds = purchases.map(purchase => purchase.player_id);
+
+const { data: playerRoles, error: playerRolesError } =
+    await supabaseClient
+        .from('score_players')
+        .select('id, role')
+        .in('id', playerIds);
+
+if (playerRolesError) {
+    console.error('Errore recupero ruoli:', playerRolesError);
+    container.innerHTML = 'Errore nel caricamento dei ruoli.';
+    return;
+}
+
+// Aggiunge il ruolo a ogni acquisto
+purchases.forEach(purchase => {
+    const player = playerRoles.find(
+        player => player.id === purchase.player_id
+    );
+
+    purchase.role = player ? player.role : null;
+});
 // Il calcolo degli scontri è possibile solo quando
 // tutti i giocatori acquistati hanno ricevuto un voto.
 
