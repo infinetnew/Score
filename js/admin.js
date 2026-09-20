@@ -745,6 +745,39 @@ document.getElementById('admin_user_detail_content')
             </button>
         </div>
     `;
+document.getElementById('admin_credit_submit')
+    .addEventListener('click', async () => {
+
+    const amountInput =
+        document.getElementById('admin_credit_amount');
+
+    const amount =
+        Number(amountInput.value);
+
+    if (!Number.isInteger(amount) || amount === 0) {
+        alert('Inserisci un numero di crediti valido.');
+        return;
+    }
+
+    const { error } =
+        await supabaseClient
+            .from('score_credit_transactions')
+            .insert({
+                user_id: userId,
+                amount: amount,
+                reason: 'Modifica crediti admin',
+                type: 'admin_bonus'
+            });
+
+    if (error) {
+        console.error('Errore registrazione crediti:', error);
+        alert('Errore durante la registrazione dei crediti.');
+        return;
+    }
+
+    alert('Movimento registrato correttamente.');
+
+});
     document.getElementById('admin_users_list')
         .style.display = 'none';
 
