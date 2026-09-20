@@ -679,9 +679,13 @@ document.getElementById('admin_user_search')
 
         userCard.className = 'admin-user-card';
 
-        userCard.innerHTML = `
-            <strong>${user.username}</strong>
-        `;
+userCard.innerHTML = `
+    <button
+        class="admin-user-select"
+        data-user-id="${user.id}">
+        ${user.username}
+    </button>
+`;
 
         container.appendChild(userCard);
 
