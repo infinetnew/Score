@@ -3005,3 +3005,26 @@ text-overflow: ellipsis;
 #admin_message_ok:active {
     transform: scale(0.94);
 }
+/* =========================================
+   ADMIN - GESTIONE VOTI CENTRATA
+   ========================================= */
+
+#admin_management {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 10px 0 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#admin_management > #admin_matchday {
+    text-align: center;
+}
+
+#admin_players {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
