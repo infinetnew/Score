@@ -659,6 +659,13 @@ document.getElementById('back_admin_menu')
     document.getElementById('admin_menu').style.display = 'block';
 
 });
+document.getElementById('admin_home')
+    .addEventListener('click', () => {
+
+    document.getElementById('admin_page').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+
+});
 
 document.getElementById('close_admin')
     .addEventListener('click', () => {
