@@ -3028,3 +3028,26 @@ text-overflow: ellipsis;
     margin: 0 auto;
     box-sizing: border-box;
 }
+/* =========================================
+   ADMIN - LISTA GIOCATORI SCORRIBILE
+   ========================================= */
+
+#admin_players {
+    width: 100%;
+    max-width: 420px;
+    max-height: 420px;
+    margin: 0 auto;
+    padding: 8px;
+    box-sizing: border-box;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    border: 1px solid rgba(0, 190, 255, 0.25);
+    border-radius: 16px;
+
+    background: rgba(5, 18, 32, 0.55);
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 190, 255, 0.55) transparent;
+}
