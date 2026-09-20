@@ -60,13 +60,16 @@ title.innerHTML = `
         return;
     }
 
-    // Mercato aperto
-    document.getElementById('app').style.display = 'block';
+// Mercato aperto
+document.getElementById('app').style.display = 'block';
 
-    const marketScreen =
-        document.getElementById('market_screen');
+// Aggiorna subito il saldo dei crediti
+loadCredits();
 
-    marketScreen.style.display = 'flex';
+const marketScreen =
+    document.getElementById('market_screen');
+
+marketScreen.style.display = 'flex';
 }
 
 
