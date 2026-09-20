@@ -479,12 +479,12 @@ createLeagueMatchesButton.addEventListener('click', async () => {
         return;
     }
 
-    console.log('Scontri creati:', data);
+console.log('Scontri creati:', data);
 
-    createLeagueMatchesButton.textContent = 'SCONTRI CREATI';
-    createLeagueMatchesButton.disabled = true;
+createLeagueMatchesButton.textContent = 'SCONTRI CREATI';
+createLeagueMatchesButton.disabled = true;
 
-document.getElementById('calculate_matches').disabled = false;
+await openAdmin();
 
 });
 document.getElementById('calculate_matches')
