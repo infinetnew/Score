@@ -2623,11 +2623,25 @@ text-overflow: ellipsis;
 }
 
 .admin-h2h-section h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
     margin: 0 0 16px;
 
     color: white;
     font-size: 17px;
     font-weight: 800;
+}
+
+.admin-h2h-icon {
+    width: 32px;
+    height: 32px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
 }
 
 /* SINGOLO SCONTRO */
