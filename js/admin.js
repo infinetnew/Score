@@ -732,7 +732,7 @@ const { data: h2hMatches, error: h2hError } =
         .from('score_h2h_matches')
         .select('*')
         .or(`player1_id.eq.${userId},player2_id.eq.${userId}`)
-        .eq('status', 'completed')
+        .eq('status', 'calculated')
         .order('matchday', { ascending: false })
         .limit(5);
 
