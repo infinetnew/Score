@@ -635,31 +635,42 @@ async function saveRating(playerId, matchday) {
 
     await openAdmin();
 }
-async function loadAdminUsers() {
+document.getElementById('admin_user_search')
+    .addEventListener('input', async () => {
+
+    const search =
+        document.getElementById('admin_user_search').value
+            .trim();
 
     const container =
         document.getElementById('admin_users_list');
 
-    container.innerHTML = 'Caricamento utenti...';
+    container.innerHTML = '';
+
+    if (search.length < 2) {
+        return;
+    }
 
     const { data: users, error } =
         await supabaseClient
             .from('score_users')
             .select('id, username')
-            .order('username');
+            .ilike('username', `%${search}%`)
+            .order('username')
+            .limit(10);
 
     if (error) {
-        console.error('Errore caricamento utenti:', error);
-        container.innerHTML = 'Errore nel caricamento degli utenti.';
+        console.error('Errore ricerca utenti:', error);
+        container.innerHTML =
+            'Errore nella ricerca degli utenti.';
         return;
     }
 
     if (!users || users.length === 0) {
-        container.innerHTML = 'Nessun utente trovato.';
+        container.innerHTML =
+            'Nessun utente trovato.';
         return;
     }
-
-    container.innerHTML = '';
 
     users.forEach(user => {
 
@@ -675,7 +686,8 @@ async function loadAdminUsers() {
         container.appendChild(userCard);
 
     });
-}
+
+});
 document.getElementById('open_admin')
     .addEventListener('click', () => {
 
@@ -694,12 +706,10 @@ document.getElementById('admin_votes')
 
 });
 document.getElementById('admin_users')
-    .addEventListener('click', async () => {
+    .addEventListener('click', () => {
 
     document.getElementById('admin_menu').style.display = 'none';
     document.getElementById('admin_users_page').style.display = 'block';
-
-    await loadAdminUsers();
 
 });
 document.getElementById('back_admin_users')
