@@ -659,6 +659,13 @@ document.getElementById('admin_users')
     document.getElementById('admin_users_page').style.display = 'block';
 
 });
+document.getElementById('back_admin_users')
+    .addEventListener('click', () => {
+
+    document.getElementById('admin_users_page').style.display = 'none';
+    document.getElementById('admin_menu').style.display = 'block';
+
+});
 document.getElementById('back_admin_menu')
     .addEventListener('click', () => {
 
