@@ -776,6 +776,12 @@ document.getElementById('admin_credit_submit')
     }
 
     alert('Movimento registrato correttamente.');
+amountInput.value = '';
+const newCredits = credits + amount;
+
+document.getElementById('admin_user_detail_content')
+    .querySelector('.admin-user-credits strong')
+    .textContent = newCredits;
 
 });
     document.getElementById('admin_users_list')
