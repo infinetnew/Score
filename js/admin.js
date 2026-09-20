@@ -692,6 +692,35 @@ userCard.innerHTML = `
     });
 
 });
+document.getElementById('admin_users_list')
+    .addEventListener('click', (event) => {
+
+    const button =
+        event.target.closest('.admin-user-select');
+
+    if (!button) {
+        return;
+    }
+
+    const userId =
+        button.dataset.userId;
+
+    const username =
+        button.textContent.trim();
+
+    document.getElementById('admin_users_list')
+        .style.display = 'none';
+
+    document.getElementById('admin_user_search')
+        .style.display = 'none';
+
+    document.getElementById('admin_user_detail_name')
+        .textContent = username;
+
+    document.getElementById('admin_user_detail')
+        .style.display = 'block';
+
+});
 document.getElementById('open_admin')
     .addEventListener('click', () => {
 
