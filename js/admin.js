@@ -233,8 +233,8 @@ stats.innerHTML = `
         src="/Score/assets/partecipanti.png"
         alt="Partecipanti"
         style="
-            width:24px;
-            height:24px;
+            width:36px;
+            height:36px;
             object-fit:contain;
             vertical-align:middle;
             margin-right:6px;
@@ -248,8 +248,8 @@ stats.innerHTML = `
         src="/Score/assets/lega.png"
         alt="Leghe"
         style="
-            width:24px;
-            height:24px;
+            width:36px;
+            height:36px;
             object-fit:contain;
             vertical-align:middle;
             margin-right:6px;
@@ -305,8 +305,8 @@ userSection.innerHTML = `
             src="/Score/assets/giocatore.png"
             alt="Giocatore"
             style="
-                width:22px;
-                height:22px;
+                width:30px;
+                height:30px;
                 object-fit:contain;
                 vertical-align:middle;
                 margin-right:6px;
