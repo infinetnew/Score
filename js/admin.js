@@ -998,11 +998,7 @@ document.getElementById('admin_home')
 
 });
 
-document.getElementById('close_admin')
-    .addEventListener('click', () => {
-        document.getElementById('admin_page').style.display = 'none';
-        document.getElementById('app').style.display = 'block';
-    });
+
 function showAdminMessage(title, message) {
 
     document.querySelector('.admin-message-title').textContent =
