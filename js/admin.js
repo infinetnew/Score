@@ -840,13 +840,21 @@ document.getElementById('admin_credit_submit')
                 type: 'admin_bonus'
             });
 
-    if (error) {
-        console.error('Errore registrazione crediti:', error);
-        alert('Errore durante la registrazione dei crediti.');
-        return;
-    }
+if (error) {
+    console.error('Errore registrazione crediti:', error);
 
-    alert('Movimento registrato correttamente.');
+    showAdminMessage(
+        'Operazione non riuscita',
+        'Errore durante la registrazione dei crediti.'
+    );
+
+    return;
+}
+
+showAdminMessage(
+    'Operazione completata',
+    'Movimento registrato correttamente.'
+);
 amountInput.value = '';
 const newCredits = credits + amount;
 
@@ -942,4 +950,24 @@ document.getElementById('close_admin')
     .addEventListener('click', () => {
         document.getElementById('admin_page').style.display = 'none';
         document.getElementById('app').style.display = 'block';
+    });
+function showAdminMessage(title, message) {
+
+    document.querySelector('.admin-message-title').textContent =
+        title;
+
+    document.getElementById('admin_message_text').textContent =
+        message;
+
+    document.getElementById('admin_message_modal').style.display =
+        'flex';
+}
+
+
+document.getElementById('admin_message_ok')
+    .addEventListener('click', () => {
+
+        document.getElementById('admin_message_modal')
+            .style.display = 'none';
+
     });
