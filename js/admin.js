@@ -763,16 +763,28 @@ const h2hResults = (h2hMatches || []).map(match => {
         resultText = 'SCONFITTA';
     }
 
-    return {
-        matchday: match.matchday,
-        result: resultText
-    };
+return {
+    matchday: match.matchday,
+    result: resultText,
+    resultClass:
+        resultText === 'VITTORIA'
+            ? 'win'
+            : resultText === 'SCONFITTA'
+                ? 'loss'
+                : 'draw'
+};
 
 });
 const h2hHtml = h2hResults.length > 0
     ? h2hResults.map(match => `
-        <div class="admin-h2h-result">
-            Giornata ${match.matchday} → ${match.result}
+        <div class="admin-h2h-result ${match.resultClass}">
+            <span class="admin-h2h-dot"></span>
+            <span class="admin-h2h-matchday">
+                Giornata ${match.matchday}
+            </span>
+            <span class="admin-h2h-result-text">
+                ${match.result}
+            </span>
         </div>
     `).join('')
     : `
