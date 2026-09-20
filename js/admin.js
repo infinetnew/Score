@@ -76,10 +76,7 @@ const leaguesAssigned =
 
 assignLeaguesButton.disabled = leaguesAssigned;
 
-assignLeaguesButton.textContent =
-    leaguesAssigned
-        ? 'LEGHE ASSEGNATE'
-        : 'ASSEGNA UTENTI ALLE LEGHE';
+
 
 calculateButton.disabled = true;
 completeButton.disabled = true;
