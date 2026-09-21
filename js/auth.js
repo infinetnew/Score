@@ -678,6 +678,15 @@ container.innerHTML = `
                             <strong>
                                 ${purchase.player_name}
                             </strong>
+    <span class="h2h-player-role">
+        ${
+            purchase.role === 'P' ? 'PORTIERE' :
+            purchase.role === 'D' ? 'DIFENSORE' :
+            purchase.role === 'C' ? 'CENTROCAMPISTA' :
+            purchase.role === 'A' ? 'ATTACCANTE' :
+            ''
+        }
+    </span>
                         </div>
                     `)
                     .join('')}
@@ -703,6 +712,15 @@ container.innerHTML = `
                             <strong>
                                 ${purchase.player_name}
                             </strong>
+    <span class="h2h-player-role">
+        ${
+            purchase.role === 'P' ? 'PORTIERE' :
+            purchase.role === 'D' ? 'DIFENSORE' :
+            purchase.role === 'C' ? 'CENTROCAMPISTA' :
+            purchase.role === 'A' ? 'ATTACCANTE' :
+            ''
+        }
+    </span>
                         </div>
                     `)
                     .join('')}
@@ -731,9 +749,15 @@ container.innerHTML = `
                                 ${purchase.player_name}
                             </strong>
 
-                            <span>
-                                ${purchase.team}
-                            </span>
+    <span class="h2h-player-role">
+        ${
+            purchase.role === 'P' ? 'PORTIERE' :
+            purchase.role === 'D' ? 'DIFENSORE' :
+            purchase.role === 'C' ? 'CENTROCAMPISTA' :
+            purchase.role === 'A' ? 'ATTACCANTE' :
+            ''
+        }
+    </span>
                         </div>
                     `)
                     .join('')}
@@ -757,9 +781,15 @@ container.innerHTML = `
                                 ${purchase.player_name}
                             </strong>
 
-                            <span>
-                                ${purchase.team}
-                            </span>
+    <span class="h2h-player-role">
+        ${
+            purchase.role === 'P' ? 'PORTIERE' :
+            purchase.role === 'D' ? 'DIFENSORE' :
+            purchase.role === 'C' ? 'CENTROCAMPISTA' :
+            purchase.role === 'A' ? 'ATTACCANTE' :
+            ''
+        }
+    </span>
                         </div>
                     `)
                     .join('')}
