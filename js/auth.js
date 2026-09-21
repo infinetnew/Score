@@ -460,26 +460,80 @@ const username2 =
             match.player1_id === userId ||
             match.player2_id === userId;
 
-        html += `
-            <div class="h2h-match ${isMyMatch ? 'my-h2h-match' : ''}">
+html += `
+    <div
+        class="h2h-match ${isMyMatch ? 'my-h2h-match' : ''}"
+        data-player1="${match.player1_id}"
+        data-player2="${match.player2_id}"
+        data-matchday="${matchday}"
+    >
 
-                <span>${username1}</span>
+        <span>${username1}</span>
 
-                <img
-                    src="/Score/assets/vs.png"
-                    alt="VS"
-                >
+        <img
+            src="/Score/assets/vs.png"
+            alt="VS"
+        >
 
-                <span>${username2}</span>
+        <span>${username2}</span>
 
-            </div>
-        `;
+        <button
+            class="h2h-view-formations"
+            type="button"
+        >
+            VEDI FORMAZIONI
+        </button>
+
+    </div>
+`;
     });
 }
 
 
 matchContainer.innerHTML = html;
+matchContainer
+    .querySelectorAll('.h2h-view-formations')
+    .forEach(button => {
 
+        button.addEventListener('click', async (event) => {
+
+            event.stopPropagation();
+
+            const match = button.closest('.h2h-match');
+
+            if (!match) {
+                return;
+            }
+
+            const player1Id = match.dataset.player1;
+            const player2Id = match.dataset.player2;
+            const matchday = Number(match.dataset.matchday);
+
+            await openH2HFormations(
+                player1Id,
+                player2Id,
+                matchday
+            );
+
+        });
+
+    });
+
+}
+async function openH2HFormations(
+    player1Id,
+    player2Id,
+    matchday
+) {
+
+    console.log(
+        'Apertura formazioni H2H:',
+        {
+            player1Id,
+            player2Id,
+            matchday
+        }
+    );
 
 }
 document.getElementById('open_h2h').addEventListener('click', () => {
