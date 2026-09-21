@@ -3419,13 +3419,8 @@ margin: 0 auto;
     overflow: hidden;
 }
 
-
 /* =========================================================
-   LE DUE FORMAZIONI
-   ========================================================= */
-
-/* =========================================================
-   LE DUE FORMAZIONI
+   LE DUE FORMAZIONI H2H
    ========================================================= */
 
 .h2h-team-side {
@@ -3438,91 +3433,98 @@ margin: 0 auto;
 
     display: grid;
 
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     grid-template-rows: repeat(4, 1fr);
 
-    column-gap: 4px;
-    row-gap: 5px;
+    row-gap: 0;
 
     align-items: center;
-    justify-items: center;
 
     z-index: 2;
 }
 
 
 /* =========================================================
-   POSIZIONE DELLE DUE SQUADRE
+   RIGHE DEI RUOLI
+   ========================================================= */
+
+.h2h-role-row {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+}
+
+
+/* =========================================================
+   GIOCATORE 1 — PARTE ALTA
    ========================================================= */
 
 .h2h-team-1 {
     top: 1%;
 }
 
+.h2h-team-1 .h2h-role-row-A {
+    grid-row: 1;
+}
+
+.h2h-team-1 .h2h-role-row-C {
+    grid-row: 2;
+}
+
+.h2h-team-1 .h2h-role-row-D {
+    grid-row: 3;
+}
+
+.h2h-team-1 .h2h-role-row-P {
+    grid-row: 4;
+}
+
+
+/* =========================================================
+   GIOCATORE 2 — PARTE BASSA
+   ========================================================= */
+
 .h2h-team-2 {
     bottom: 1%;
 }
 
-
-/* =========================================================
-   GIOCATORE 1
-   ========================================================= */
-
-/* PORTIERE */
-.h2h-team-1 .h2h-role-P {
-    grid-row: 4;
-    grid-column: 3;
-}
-
-/* DIFENSORI */
-.h2h-team-1 .h2h-role-D {
-    grid-row: 3;
-}
-
-/* CENTROCAMPISTI */
-.h2h-team-1 .h2h-role-C {
-    grid-row: 2;
-}
-
-/* ATTACCANTI */
-.h2h-team-1 .h2h-role-A {
+.h2h-team-2 .h2h-role-row-P {
     grid-row: 1;
 }
 
-
-/* =========================================================
-   GIOCATORE 2
-   ========================================================= */
-
-/* PORTIERE */
-.h2h-team-2 .h2h-role-P {
-    grid-row: 1;
-    grid-column: 3;
-}
-
-/* DIFENSORI */
-.h2h-team-2 .h2h-role-D {
+.h2h-team-2 .h2h-role-row-D {
     grid-row: 2;
 }
 
-/* CENTROCAMPISTI */
-.h2h-team-2 .h2h-role-C {
+.h2h-team-2 .h2h-role-row-C {
     grid-row: 3;
 }
 
-/* ATTACCANTI */
-.h2h-team-2 .h2h-role-A {
+.h2h-team-2 .h2h-role-row-A {
     grid-row: 4;
 }
+
+
 /* =========================================================
-   SINGOLO GIOCATORE SUL CAMPO
+   SINGOLO GIOCATORE
    ========================================================= */
 
 .h2h-field-player {
     position: relative;
 
-    width: 180px;
-    min-height: 58px;
+    width: 110px;
+    min-width: 0;
+    max-width: 110px;
+
+    flex: 1 1 110px;
+
+    min-height: 48px;
 
     display: flex;
     flex-direction: row;
@@ -3530,11 +3532,11 @@ margin: 0 auto;
 
     text-align: left;
 
-    padding: 6px 42px 6px 8px;
+    padding: 5px 30px 5px 6px;
 
     box-sizing: border-box;
 
-    border-radius: 14px;
+    border-radius: 11px;
 
     background: linear-gradient(
         135deg,
@@ -3556,31 +3558,37 @@ margin: 0 auto;
 }
 
 
-/* LOGO SQUADRA */
+/* =========================================================
+   LOGO
+   ========================================================= */
 
 .h2h-field-player img {
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
 
     object-fit: contain;
 
     flex-shrink: 0;
 
-    margin-right: 7px;
+    margin-right: 5px;
 }
 
-/* NOME */
+
+/* =========================================================
+   NOME
+   ========================================================= */
 
 .h2h-field-player strong {
     display: block;
 
-    max-width: 105px;
+    min-width: 0;
+    max-width: 100%;
 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    font-size: 11px;
+    font-size: 9px;
     line-height: 1.1;
 
     font-weight: 800;
@@ -3589,23 +3597,31 @@ margin: 0 auto;
 
     text-transform: uppercase;
 }
+
+
+/* =========================================================
+   BADGE RUOLO
+   ========================================================= */
+
 .h2h-field-player::after {
     position: absolute;
-    right: 6px;
+
+    right: 4px;
     top: 50%;
 
     transform: translateY(-50%);
 
-    width: 26px;
-    height: 26px;
+    width: 21px;
+    height: 21px;
 
     display: flex;
+
     justify-content: center;
     align-items: center;
 
-    border-radius: 7px;
+    border-radius: 6px;
 
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 900;
 
     color: white;
@@ -3613,37 +3629,45 @@ margin: 0 auto;
     box-sizing: border-box;
 }
 
+
 /* ATTACCANTE */
+
 .h2h-field-player.h2h-role-A::after {
     content: "A";
 
     background: #e5232f;
 
     box-shadow:
-        0 0 10px rgba(229,35,47,0.60);
+        0 0 9px rgba(229,35,47,0.60);
 }
 
+
 /* CENTROCAMPISTA */
+
 .h2h-field-player.h2h-role-C::after {
     content: "C";
 
     background: #1677ff;
 
     box-shadow:
-        0 0 10px rgba(22,119,255,0.60);
+        0 0 9px rgba(22,119,255,0.60);
 }
 
+
 /* DIFENSORE */
+
 .h2h-field-player.h2h-role-D::after {
     content: "D";
 
     background: #16a85a;
 
     box-shadow:
-        0 0 10px rgba(22,168,90,0.60);
+        0 0 9px rgba(22,168,90,0.60);
 }
 
+
 /* PORTIERE */
+
 .h2h-field-player.h2h-role-P::after {
     content: "P";
 
@@ -3652,19 +3676,8 @@ margin: 0 auto;
     color: #111111;
 
     box-shadow:
-        0 0 10px rgba(242,196,0,0.60);
+        0 0 9px rgba(242,196,0,0.60);
 }
-.h2h-player-role {
-    display: block;
-    margin-top: 3px;
-    font-size: 8px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 0.4px;
-    opacity: 0.75;
-    white-space: nowrap;
-}
-
 /* =========================================================
    RISERVE
    ========================================================= */
