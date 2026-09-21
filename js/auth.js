@@ -642,9 +642,23 @@ const player2Name =
 container.innerHTML = `
     <div class="h2h-formations-test">
 
-        <h3>Formazioni</h3>
+ <h3>Formazioni</h3>
 
-        <div class="h2h-field">
+<div class="h2h-players-legend">
+
+    <div class="h2h-player-legend">
+        <span class="h2h-player-dot h2h-player-1-dot"></span>
+        <strong>${player1Name}</strong>
+    </div>
+
+    <div class="h2h-player-legend">
+        <span class="h2h-player-dot h2h-player-2-dot"></span>
+        <strong>${player2Name}</strong>
+    </div>
+
+</div>
+
+<div class="h2h-field">
 
             <!-- GIOCATORE 1 -->
             <div class="h2h-team-side h2h-team-1">
@@ -655,6 +669,7 @@ container.innerHTML = `
                         <div
                             class="h2h-field-player h2h-role-${purchase.role}"
                         >
+ <span class="h2h-player-dot h2h-player-1-dot"></span>
                             <img
                                 src="${purchase.team_logo}"
                                 alt=""
@@ -669,8 +684,6 @@ container.innerHTML = `
 
             </div>
 
-            <!-- LINEA CENTRALE -->
-            <div class="h2h-field-center-line"></div>
 
             <!-- GIOCATORE 2 -->
             <div class="h2h-team-side h2h-team-2">
@@ -681,6 +694,7 @@ container.innerHTML = `
                         <div
                             class="h2h-field-player h2h-role-${purchase.role}"
                         >
+  <span class="h2h-player-dot h2h-player-2-dot"></span>
                             <img
                                 src="${purchase.team_logo}"
                                 alt=""
