@@ -636,73 +636,118 @@ container.innerHTML = `
 
         <h3>FORMAZIONI</h3>
 
-        <div class="h2h-formation-player">
+        <div class="h2h-field">
 
-            <strong>GIOCATORE 1</strong>
+            <!-- GIOCATORE 1 -->
+            <div class="h2h-team-side h2h-team-1">
 
-            <h4>TITOLARI</h4>
+                ${formation1
+                    .filter(purchase => purchase.slot_type === 'starter')
+                    .map(purchase => `
+                        <div
+                            class="h2h-field-player h2h-role-${purchase.role}"
+                        >
+                            <img
+                                src="${purchase.team_logo}"
+                                alt=""
+                            >
 
-            ${formation1
-                .filter(purchase => purchase.slot_type === 'starter')
-                .map(purchase => `
-                    <div class="h2h-player">
-                        <strong>${purchase.player_name}</strong>
-                        <span>${purchase.role}</span>
-                        <span>${purchase.team}</span>
-                    </div>
-                `)
-                .join('')}
+                            <strong>
+                                ${purchase.player_name}
+                            </strong>
+                        </div>
+                    `)
+                    .join('')}
 
-            <h4>RISERVE</h4>
+            </div>
 
-            ${formation1
-                .filter(purchase => purchase.slot_type === 'reserve')
-                .map(purchase => `
-                    <div class="h2h-player">
-                        <strong>${purchase.player_name}</strong>
-                        <span>${purchase.role}</span>
-                        <span>${purchase.team}</span>
-                    </div>
-                `)
-                .join('')}
+            <!-- LINEA CENTRALE -->
+            <div class="h2h-field-center-line"></div>
+
+            <!-- GIOCATORE 2 -->
+            <div class="h2h-team-side h2h-team-2">
+
+                ${formation2
+                    .filter(purchase => purchase.slot_type === 'starter')
+                    .map(purchase => `
+                        <div
+                            class="h2h-field-player h2h-role-${purchase.role}"
+                        >
+                            <img
+                                src="${purchase.team_logo}"
+                                alt=""
+                            >
+
+                            <strong>
+                                ${purchase.player_name}
+                            </strong>
+                        </div>
+                    `)
+                    .join('')}
+
+            </div>
 
         </div>
 
-        <div class="h2h-formation-player">
+        <!-- RISERVE -->
+        <div class="h2h-reserves">
 
-            <strong>GIOCATORE 2</strong>
+            <div class="h2h-reserve-column">
 
-            <h4>TITOLARI</h4>
+                <h4>RISERVE</h4>
 
-            ${formation2
-                .filter(purchase => purchase.slot_type === 'starter')
-                .map(purchase => `
-                    <div class="h2h-player">
-                        <strong>${purchase.player_name}</strong>
-                        <span>${purchase.role}</span>
-                        <span>${purchase.team}</span>
-                    </div>
-                `)
-                .join('')}
+                ${formation1
+                    .filter(purchase => purchase.slot_type === 'reserve')
+                    .map(purchase => `
+                        <div class="h2h-reserve-player">
+                            <img
+                                src="${purchase.team_logo}"
+                                alt=""
+                            >
 
-            <h4>RISERVE</h4>
+                            <strong>
+                                ${purchase.player_name}
+                            </strong>
 
-            ${formation2
-                .filter(purchase => purchase.slot_type === 'reserve')
-                .map(purchase => `
-                    <div class="h2h-player">
-                        <strong>${purchase.player_name}</strong>
-                        <span>${purchase.role}</span>
-                        <span>${purchase.team}</span>
-                    </div>
-                `)
-                .join('')}
+                            <span>
+                                ${purchase.team}
+                            </span>
+                        </div>
+                    `)
+                    .join('')}
+
+            </div>
+
+            <div class="h2h-reserve-column">
+
+                <h4>RISERVE</h4>
+
+                ${formation2
+                    .filter(purchase => purchase.slot_type === 'reserve')
+                    .map(purchase => `
+                        <div class="h2h-reserve-player">
+                            <img
+                                src="${purchase.team_logo}"
+                                alt=""
+                            >
+
+                            <strong>
+                                ${purchase.player_name}
+                            </strong>
+
+                            <span>
+                                ${purchase.team}
+                            </span>
+                        </div>
+                    `)
+                    .join('')}
+
+            </div>
 
         </div>
 
     </div>
 `;
-
 
 document
     .getElementById('close_h2h_formations')
