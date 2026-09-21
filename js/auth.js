@@ -758,6 +758,7 @@ container.innerHTML = `
     )}
 
 </div>
+</div>
 
         <!-- RISERVE -->
         <div class="h2h-reserves">
