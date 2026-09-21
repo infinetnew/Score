@@ -702,8 +702,7 @@ container.innerHTML = `
 
     </div>
 `;
-    </div>
-`;
+
 
 document
     .getElementById('close_h2h_formations')
