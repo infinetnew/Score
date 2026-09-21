@@ -3378,6 +3378,8 @@ padding: 30px 14px 20px;
 
 .h2h-formations-test {
     width: 100%;
+    max-width: 400px;
+    margin: 20px auto 0;
     box-sizing: border-box;
 }
 
