@@ -601,7 +601,26 @@ const { data: purchases, error: purchasesError } =
             purchase =>
                 purchase.user_id === player2Id
         );
+const { data: h2hUsers, error: h2hUsersError } =
+    await supabaseClient
+        .from('score_users')
+        .select('id, username')
+        .in('id', [player1Id, player2Id]);
 
+if (h2hUsersError) {
+    console.error(
+        'Errore recupero nomi giocatori H2H:',
+        h2hUsersError
+    );
+}
+
+const player1Name =
+    h2hUsers?.find(user => user.id === player1Id)?.username
+    || 'PLAYER 1';
+
+const player2Name =
+    h2hUsers?.find(user => user.id === player2Id)?.username
+    || 'PLAYER 2';
 
     console.log(
         'Formazione giocatore 1:',
@@ -621,20 +640,9 @@ const { data: purchases, error: purchasesError } =
     container.style.display = 'block';
 
 container.innerHTML = `
-    <button
-        class="quiz-close image-close-button"
-        id="close_h2h_formations"
-        type="button"
-    >
-        <img
-            src="/Score/assets/chiudi.png"
-            alt="Chiudi"
-        >
-    </button>
-
     <div class="h2h-formations-test">
 
-        <h3>FORMAZIONI</h3>
+        <h3>Formazioni</h3>
 
         <div class="h2h-field">
 
