@@ -627,17 +627,58 @@ const player2Name =
         formation1
     );
 
-    console.log(
-        'Formazione giocatore 2:',
-        formation2
+console.log(
+    'Formazione giocatore 2:',
+    formation2
+);
+
+
+// =========================================
+// ORGANIZZIAMO I GIOCATORI PER RUOLO
+// =========================================
+
+const renderH2HRoleRow = (formation, role, dotClass) => {
+
+    const players = formation.filter(
+        purchase =>
+            purchase.slot_type === 'starter' &&
+            purchase.role === role
     );
 
+    if (!players.length) {
+        return '';
+    }
 
-    // =========================================
-    // MOSTRIAMO IL CONTENITORE
-    // =========================================
+    return `
+        <div class="h2h-role-row h2h-role-row-${role}">
 
-    container.style.display = 'block';
+            ${players.map(purchase => `
+                <div
+                    class="h2h-field-player h2h-role-${purchase.role}"
+                >
+                    <span class="h2h-player-dot ${dotClass}"></span>
+
+                    <img
+                        src="${purchase.team_logo}"
+                        alt=""
+                    >
+
+                    <strong>
+                        ${purchase.player_name}
+                    </strong>
+                </div>
+            `).join('')}
+
+        </div>
+    `;
+};
+
+
+// =========================================
+// MOSTRIAMO IL CONTENITORE
+// =========================================
+
+container.style.display = 'block';
 
 container.innerHTML = `
     <div class="h2h-formations-test">
@@ -660,58 +701,63 @@ container.innerHTML = `
 
 <div class="h2h-field">
 
-            <!-- GIOCATORE 1 -->
-            <div class="h2h-team-side h2h-team-1">
+           <!-- GIOCATORE 1 -->
+<div class="h2h-team-side h2h-team-1">
 
-                ${formation1
-                    .filter(purchase => purchase.slot_type === 'starter')
-                    .map(purchase => `
-                        <div
-                            class="h2h-field-player h2h-role-${purchase.role}"
-                        >
- <span class="h2h-player-dot h2h-player-1-dot"></span>
-                            <img
-                                src="${purchase.team_logo}"
-                                alt=""
-                            >
+    ${renderH2HRoleRow(
+        formation1,
+        'A',
+        'h2h-player-1-dot'
+    )}
 
-                            <strong>
-                                ${purchase.player_name}
-                            </strong>
+    ${renderH2HRoleRow(
+        formation1,
+        'C',
+        'h2h-player-1-dot'
+    )}
 
-                        </div>
-                    `)
-                    .join('')}
+    ${renderH2HRoleRow(
+        formation1,
+        'D',
+        'h2h-player-1-dot'
+    )}
 
-            </div>
+    ${renderH2HRoleRow(
+        formation1,
+        'P',
+        'h2h-player-1-dot'
+    )}
 
+</div>
 
-            <!-- GIOCATORE 2 -->
-            <div class="h2h-team-side h2h-team-2">
+    <!-- GIOCATORE 2 -->
+<div class="h2h-team-side h2h-team-2">
 
-                ${formation2
-                    .filter(purchase => purchase.slot_type === 'starter')
-                    .map(purchase => `
-                        <div
-                            class="h2h-field-player h2h-role-${purchase.role}"
-                        >
-  <span class="h2h-player-dot h2h-player-2-dot"></span>
-                            <img
-                                src="${purchase.team_logo}"
-                                alt=""
-                            >
+    ${renderH2HRoleRow(
+        formation2,
+        'P',
+        'h2h-player-2-dot'
+    )}
 
-                            <strong>
-                                ${purchase.player_name}
-                            </strong>
+    ${renderH2HRoleRow(
+        formation2,
+        'D',
+        'h2h-player-2-dot'
+    )}
 
-                        </div>
-                    `)
-                    .join('')}
+    ${renderH2HRoleRow(
+        formation2,
+        'C',
+        'h2h-player-2-dot'
+    )}
 
-            </div>
+    ${renderH2HRoleRow(
+        formation2,
+        'A',
+        'h2h-player-2-dot'
+    )}
 
-        </div>
+</div>
 
         <!-- RISERVE -->
         <div class="h2h-reserves">
