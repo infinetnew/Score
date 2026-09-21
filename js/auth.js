@@ -620,47 +620,77 @@ const { data: purchases, error: purchasesError } =
 
     container.style.display = 'block';
 
-    container.innerHTML = `
-        <div class="h2h-formations-test">
+container.innerHTML = `
+    <div class="h2h-formations-test">
 
-            <h3>FORMAZIONI</h3>
+        <h3>FORMAZIONI</h3>
 
-            <div>
-                <strong>Giocatore 1</strong>
-            </div>
+        <div class="h2h-formation-player">
 
-            <div>
-                ${formation1.map(purchase => `
-                    <div>
-                        ${purchase.score_players?.name || 'Giocatore'}
-                        -
-                        ${purchase.score_players?.role || ''}
-                        -
-                        ${purchase.slot_type}
+            <strong>GIOCATORE 1</strong>
+
+            <h4>TITOLARI</h4>
+
+            ${formation1
+                .filter(purchase => purchase.slot_type === 'starter')
+                .map(purchase => `
+                    <div class="h2h-player">
+                        <strong>${purchase.player_name}</strong>
+                        <span>${purchase.role}</span>
+                        <span>${purchase.team}</span>
                     </div>
-                `).join('')}
-            </div>
+                `)
+                .join('')}
 
-            <br>
+            <h4>RISERVE</h4>
 
-            <div>
-                <strong>Giocatore 2</strong>
-            </div>
-
-            <div>
-                ${formation2.map(purchase => `
-                    <div>
-                        ${purchase.score_players?.name || 'Giocatore'}
-                        -
-                        ${purchase.score_players?.role || ''}
-                        -
-                        ${purchase.slot_type}
+            ${formation1
+                .filter(purchase => purchase.slot_type === 'reserve')
+                .map(purchase => `
+                    <div class="h2h-player">
+                        <strong>${purchase.player_name}</strong>
+                        <span>${purchase.role}</span>
+                        <span>${purchase.team}</span>
                     </div>
-                `).join('')}
-            </div>
+                `)
+                .join('')}
 
         </div>
-    `;
+
+        <div class="h2h-formation-player">
+
+            <strong>GIOCATORE 2</strong>
+
+            <h4>TITOLARI</h4>
+
+            ${formation2
+                .filter(purchase => purchase.slot_type === 'starter')
+                .map(purchase => `
+                    <div class="h2h-player">
+                        <strong>${purchase.player_name}</strong>
+                        <span>${purchase.role}</span>
+                        <span>${purchase.team}</span>
+                    </div>
+                `)
+                .join('')}
+
+            <h4>RISERVE</h4>
+
+            ${formation2
+                .filter(purchase => purchase.slot_type === 'reserve')
+                .map(purchase => `
+                    <div class="h2h-player">
+                        <strong>${purchase.player_name}</strong>
+                        <span>${purchase.role}</span>
+                        <span>${purchase.team}</span>
+                    </div>
+                `)
+                .join('')}
+
+        </div>
+
+    </div>
+`;
 
 }
 document.getElementById('open_h2h').addEventListener('click', () => {
