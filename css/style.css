@@ -3396,9 +3396,10 @@ padding: 30px 14px 20px;
 
 .h2h-field {
     position: relative;
-
-    width: 100%;
-    height: 480px;
+width: 100%;
+max-width: 400px;
+height: 520px;
+margin: 0 auto;
 
     border-radius: 18px;
 
