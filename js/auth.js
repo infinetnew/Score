@@ -711,7 +711,6 @@ document
     });
 
 }
-}
 document.getElementById('open_h2h').addEventListener('click', () => {
 
     document.getElementById('h2h_screen').style.display = 'flex';
