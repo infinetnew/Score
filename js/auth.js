@@ -550,24 +550,17 @@ async function openH2HFormations(
     // RECUPERIAMO I GIOCATORI DEI DUE UTENTI
     // =========================================
 
-    const { data: purchases, error: purchasesError } =
-        await supabaseClient
-            .from('score_purchases')
-            .select(`
-                user_id,
-                player_id,
-                slot_type,
-                league_number,
-                score_players (
-                    id,
-                    name,
-                    role,
-                    team,
-                    team_logo
-                )
-            `)
-            .in('user_id', [player1Id, player2Id])
-            .eq('matchday', matchday);
+const { data: purchases, error: purchasesError } =
+    await supabaseClient
+        .from('score_purchases')
+        .select(`
+            user_id,
+            player_id,
+            slot_type,
+            league_number
+        `)
+        .in('user_id', [player1Id, player2Id])
+        .eq('matchday', matchday);
 
 
     if (purchasesError) {
