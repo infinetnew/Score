@@ -551,16 +551,14 @@ async function openH2HFormations(
     // =========================================
 
 const { data: purchases, error: purchasesError } =
-    await supabaseClient
-        .from('score_purchases')
-        .select(`
-            user_id,
-            player_id,
-            slot_type,
-            league_number
-        `)
-        .in('user_id', [player1Id, player2Id])
-        .eq('matchday', matchday);
+    await supabaseClient.rpc(
+        'score_get_h2h_formations',
+        {
+            p_player1_id: player1Id,
+            p_player2_id: player2Id,
+            p_matchday: matchday
+        }
+    );
 
 
     if (purchasesError) {
