@@ -3469,19 +3469,19 @@ margin: 0 auto;
     top: 1%;
 }
 
-.h2h-team-1 .h2h-role-row-A {
+.h2h-team-1 .h2h-role-row-P {
     grid-row: 1;
 }
 
-.h2h-team-1 .h2h-role-row-C {
+.h2h-team-1 .h2h-role-row-D {
     grid-row: 2;
 }
 
-.h2h-team-1 .h2h-role-row-D {
+.h2h-team-1 .h2h-role-row-C {
     grid-row: 3;
 }
 
-.h2h-team-1 .h2h-role-row-P {
+.h2h-team-1 .h2h-role-row-A {
     grid-row: 4;
 }
 
@@ -3494,19 +3494,19 @@ margin: 0 auto;
     bottom: 1%;
 }
 
-.h2h-team-2 .h2h-role-row-P {
+.h2h-team-2 .h2h-role-row-A {
     grid-row: 1;
 }
 
-.h2h-team-2 .h2h-role-row-D {
+.h2h-team-2 .h2h-role-row-C {
     grid-row: 2;
 }
 
-.h2h-team-2 .h2h-role-row-C {
+.h2h-team-2 .h2h-role-row-D {
     grid-row: 3;
 }
 
-.h2h-team-2 .h2h-role-row-A {
+.h2h-team-2 .h2h-role-row-P {
     grid-row: 4;
 }
 
@@ -3835,10 +3835,10 @@ margin: 0 auto;
 }
 
 .h2h-player-1-dot {
-    background: #00c8ff;
+background: #9b00ff;
 
-    box-shadow:
-        0 0 8px rgba(0,200,255,0.9);
+box-shadow:
+    0 0 8px rgba(155,0,255,0.9);
 }
 
 .h2h-player-2-dot {
