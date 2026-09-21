@@ -3429,7 +3429,7 @@ margin: 0 auto;
     left: 3%;
     right: 3%;
 
-    height: 47%;
+    height: 30%;
 
     display: grid;
 
@@ -3441,6 +3441,22 @@ margin: 0 auto;
     align-items: center;
 
     z-index: 2;
+}
+/* STRINGE LE DISTANZE TRA LE LINEE */
+.h2h-team-side > .h2h-field-row:nth-child(1) {
+    transform: translateY(18px);
+}
+
+.h2h-team-side > .h2h-field-row:nth-child(2) {
+    transform: translateY(6px);
+}
+
+.h2h-team-side > .h2h-field-row:nth-child(3) {
+    transform: translateY(-6px);
+}
+
+.h2h-team-side > .h2h-field-row:nth-child(4) {
+    transform: translateY(-18px);
 }
 
 
@@ -3466,7 +3482,7 @@ margin: 0 auto;
    ========================================================= */
 
 .h2h-team-1 {
-    top: 1%;
+    top: 2%;
 }
 
 .h2h-team-1 .h2h-role-row-P {
@@ -3491,7 +3507,7 @@ margin: 0 auto;
    ========================================================= */
 
 .h2h-team-2 {
-    bottom: 1%;
+    bottom: 3%;
 }
 
 .h2h-team-2 .h2h-role-row-A {
@@ -3854,8 +3870,8 @@ box-shadow:
 .h2h-field-player > .h2h-player-dot {
     position: absolute;
 
-    top: 6px;
-    left: 6px;
+    top: 5px;
+    left: 10px;
 
     width: 8px;
     height: 8px;
