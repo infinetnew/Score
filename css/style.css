@@ -3429,7 +3429,7 @@ margin: 0 auto;
     left: 3%;
     right: 3%;
 
-    height: 30%;
+    height: 45%;
 
     display: grid;
 
@@ -3482,7 +3482,7 @@ margin: 0 auto;
    ========================================================= */
 
 .h2h-team-1 {
-    top: 7%;
+    top: 4%;
 }
 
 .h2h-team-1 .h2h-role-row-P {
@@ -3507,7 +3507,7 @@ margin: 0 auto;
    ========================================================= */
 
 .h2h-team-2 {
-    bottom: 20%;
+    bottom: 10%;
 }
 
 .h2h-team-2 .h2h-role-row-A {
