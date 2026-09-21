@@ -3338,3 +3338,365 @@ text-overflow: ellipsis;
 
     padding: 25px 20px;
 }
+/* =========================================================
+   H2H - CAMPO FORMAZIONI
+   ========================================================= */
+
+#h2h_formations_container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(94vw, 900px);
+    max-height: 92vh;
+    overflow-y: auto;
+
+    padding: 30px 20px 25px;
+    box-sizing: border-box;
+
+    z-index: 9999;
+
+    background: linear-gradient(
+        180deg,
+        #102d45 0%,
+        #071525 100%
+    );
+
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.65),
+        0 0 30px rgba(0,180,255,0.15);
+}
+
+
+/* CONTENITORE PRINCIPALE */
+
+.h2h-formations-test {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.h2h-formations-test h3 {
+    text-align: center;
+    margin: 0 0 18px;
+    color: #ffffff;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   CAMPO
+   ========================================================= */
+
+.h2h-field {
+    position: relative;
+
+    width: 100%;
+    height: 620px;
+
+    border-radius: 18px;
+
+    background-image: url("../assets/formation-field.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border: 2px solid rgba(255,255,255,0.75);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.45),
+        0 0 25px rgba(0,180,255,0.15);
+
+    overflow: hidden;
+}
+
+
+/* LINEA CENTRALE */
+
+.h2h-field-center-line {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 50%;
+
+    height: 2px;
+
+    background: rgba(255,255,255,0.85);
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,0.35);
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   LE DUE FORMAZIONI
+   ========================================================= */
+
+.h2h-team-side {
+    position: absolute;
+
+    left: 3%;
+    right: 3%;
+
+    height: 47%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    grid-template-rows:
+        repeat(4, 1fr);
+
+    column-gap: 12px;
+    row-gap: 5px;
+
+    align-items: center;
+    justify-items: center;
+
+    z-index: 2;
+}
+
+
+/* GIOCATORE 1 - PARTE ALTA */
+
+.h2h-team-1 {
+    top: 1%;
+}
+
+
+/* GIOCATORE 2 - PARTE BASSA */
+
+.h2h-team-2 {
+    bottom: 1%;
+}
+
+
+/* =========================================================
+   DISPOSIZIONE RUOLI - GIOCATORE 1
+   ========================================================= */
+
+.h2h-team-1 .h2h-role-P {
+    grid-row: 4;
+}
+
+.h2h-team-1 .h2h-role-D {
+    grid-row: 3;
+}
+
+.h2h-team-1 .h2h-role-C {
+    grid-row: 2;
+}
+
+.h2h-team-1 .h2h-role-A {
+    grid-row: 1;
+}
+
+
+/* =========================================================
+   DISPOSIZIONE RUOLI - GIOCATORE 2
+   ========================================================= */
+
+.h2h-team-2 .h2h-role-P {
+    grid-row: 1;
+}
+
+.h2h-team-2 .h2h-role-D {
+    grid-row: 2;
+}
+
+.h2h-team-2 .h2h-role-C {
+    grid-row: 3;
+}
+
+.h2h-team-2 .h2h-role-A {
+    grid-row: 4;
+}
+
+
+/* =========================================================
+   SINGOLO GIOCATORE SUL CAMPO
+   ========================================================= */
+
+.h2h-field-player {
+    width: 105px;
+    min-height: 72px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    background: rgba(5, 18, 30, 0.82);
+
+    border: 1px solid rgba(255,255,255,0.22);
+
+    box-shadow:
+        0 5px 14px rgba(0,0,0,0.45),
+        0 0 10px rgba(0,180,255,0.12);
+
+    backdrop-filter: blur(4px);
+
+    color: #ffffff;
+
+    text-align: center;
+}
+
+
+/* LOGO SQUADRA */
+
+.h2h-field-player img {
+    width: 30px;
+    height: 30px;
+
+    object-fit: contain;
+
+    margin-bottom: 3px;
+}
+
+
+/* NOME */
+
+.h2h-field-player strong {
+    display: block;
+
+    max-width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 11px;
+    line-height: 1.1;
+}
+
+
+/* =========================================================
+   RISERVE
+   ========================================================= */
+
+.h2h-reserves {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+
+.h2h-reserve-column {
+    padding: 12px;
+
+    background: rgba(0,0,0,0.25);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 12px;
+}
+
+
+.h2h-reserve-column h4 {
+    margin: 0 0 10px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+
+/* SINGOLA RISERVA */
+
+.h2h-reserve-player {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    min-height: 38px;
+
+    padding: 5px 7px;
+
+    margin-bottom: 5px;
+
+    border-radius: 7px;
+
+    background: rgba(255,255,255,0.06);
+}
+
+
+.h2h-reserve-player:last-child {
+    margin-bottom: 0;
+}
+
+
+/* LOGO RISERVA */
+
+.h2h-reserve-player img {
+    width: 25px;
+    height: 25px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+
+/* NOME RISERVA */
+
+.h2h-reserve-player strong {
+    flex: 1;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* SQUADRA RISERVA */
+
+.h2h-reserve-player span {
+    color: rgba(255,255,255,0.6);
+
+    font-size: 9px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PULSANTE CHIUDI
+   ========================================================= */
+
+#close_h2h_formations {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    z-index: 20;
+}
