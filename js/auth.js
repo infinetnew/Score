@@ -621,6 +621,17 @@ const { data: purchases, error: purchasesError } =
     container.style.display = 'block';
 
 container.innerHTML = `
+    <button
+        class="quiz-close image-close-button"
+        id="close_h2h_formations"
+        type="button"
+    >
+        <img
+            src="/Score/assets/chiudi.png"
+            alt="Chiudi"
+        >
+    </button>
+
     <div class="h2h-formations-test">
 
         <h3>FORMAZIONI</h3>
@@ -691,7 +702,16 @@ container.innerHTML = `
 
     </div>
 `;
+    </div>
+`;
 
+document
+    .getElementById('close_h2h_formations')
+    .addEventListener('click', () => {
+        container.style.display = 'none';
+    });
+
+}
 }
 document.getElementById('open_h2h').addEventListener('click', () => {
 
