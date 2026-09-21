@@ -3424,6 +3424,10 @@ margin: 0 auto;
    LE DUE FORMAZIONI
    ========================================================= */
 
+/* =========================================================
+   LE DUE FORMAZIONI
+   ========================================================= */
+
 .h2h-team-side {
     position: absolute;
 
@@ -3447,14 +3451,13 @@ margin: 0 auto;
 }
 
 
-/* GIOCATORE 1 - PARTE ALTA */
+/* =========================================================
+   POSIZIONE DELLE DUE SQUADRE
+   ========================================================= */
 
 .h2h-team-1 {
     top: 1%;
 }
-
-
-/* GIOCATORE 2 - PARTE BASSA */
 
 .h2h-team-2 {
     bottom: 1%;
@@ -3510,27 +3513,7 @@ margin: 0 auto;
 /* ATTACCANTI */
 .h2h-team-2 .h2h-role-A {
     grid-row: 4;
-}/* =========================================================
-   DISPOSIZIONE RUOLI - GIOCATORE 2
-   ========================================================= */
-
-.h2h-team-2 .h2h-role-P {
-    grid-row: 1;
 }
-
-.h2h-team-2 .h2h-role-D {
-    grid-row: 2;
-}
-
-.h2h-team-2 .h2h-role-C {
-    grid-row: 3;
-}
-
-.h2h-team-2 .h2h-role-A {
-    grid-row: 4;
-}
-
-
 /* =========================================================
    SINGOLO GIOCATORE SUL CAMPO
    ========================================================= */
