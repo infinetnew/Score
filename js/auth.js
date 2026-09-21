@@ -526,14 +526,150 @@ async function openH2HFormations(
     matchday
 ) {
 
+    const container =
+        document.getElementById('h2h_formations_container');
+
+    if (!container) {
+        console.error(
+            'Contenitore formazioni H2H non trovato.'
+        );
+        return;
+    }
+
     console.log(
-        'Apertura formazioni H2H:',
+        'Caricamento formazioni H2H:',
         {
             player1Id,
             player2Id,
             matchday
         }
     );
+
+
+    // =========================================
+    // RECUPERIAMO I GIOCATORI DEI DUE UTENTI
+    // =========================================
+
+    const { data: purchases, error: purchasesError } =
+        await supabaseClient
+            .from('score_purchases')
+            .select(`
+                user_id,
+                player_id,
+                slot_type,
+                league_number,
+                score_players (
+                    id,
+                    name,
+                    role,
+                    team,
+                    team_logo
+                )
+            `)
+            .in('user_id', [player1Id, player2Id])
+            .eq('matchday', matchday);
+
+
+    if (purchasesError) {
+
+        console.error(
+            'Errore caricamento formazioni H2H:',
+            purchasesError
+        );
+
+        container.innerHTML = `
+            <p>
+                Errore nel caricamento delle formazioni.
+            </p>
+        `;
+
+        container.style.display = 'block';
+
+        return;
+    }
+
+
+    console.log(
+        'Giocatori H2H recuperati:',
+        purchases
+    );
+
+
+    // =========================================
+    // DIVIDIAMO LE DUE FORMAZIONI
+    // =========================================
+
+    const formation1 =
+        purchases.filter(
+            purchase =>
+                purchase.user_id === player1Id
+        );
+
+    const formation2 =
+        purchases.filter(
+            purchase =>
+                purchase.user_id === player2Id
+        );
+
+
+    console.log(
+        'Formazione giocatore 1:',
+        formation1
+    );
+
+    console.log(
+        'Formazione giocatore 2:',
+        formation2
+    );
+
+
+    // =========================================
+    // MOSTRIAMO IL CONTENITORE
+    // =========================================
+
+    container.style.display = 'block';
+
+    container.innerHTML = `
+        <div class="h2h-formations-test">
+
+            <h3>FORMAZIONI</h3>
+
+            <div>
+                <strong>Giocatore 1</strong>
+            </div>
+
+            <div>
+                ${formation1.map(purchase => `
+                    <div>
+                        ${purchase.score_players?.name || 'Giocatore'}
+                        -
+                        ${purchase.score_players?.role || ''}
+                        -
+                        ${purchase.slot_type}
+                    </div>
+                `).join('')}
+            </div>
+
+            <br>
+
+            <div>
+                <strong>Giocatore 2</strong>
+            </div>
+
+            <div>
+                ${formation2.map(purchase => `
+                    <div>
+                        ${purchase.score_players?.name || 'Giocatore'}
+                        -
+                        ${purchase.score_players?.role || ''}
+                        -
+                        ${purchase.slot_type}
+                    </div>
+                `).join('')}
+            </div>
+
+        </div>
+    `;
 
 }
 document.getElementById('open_h2h').addEventListener('click', () => {
