@@ -1467,6 +1467,46 @@ text-overflow: ellipsis;
     align-items: center;
     text-align: center;
 }
+/* PULSANTI CLASSIFICHE AFFIANCATI */
+
+#ranking_screen .ranking-tabs {
+    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 10px 0 18px;
+}
+
+#ranking_screen .ranking-tabs .ranking-tab {
+    flex: 1 1 0;
+    width: 50%;
+    min-width: 0;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+#ranking_screen .ranking-tabs .ranking-tab img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+#ranking_screen .ranking-tabs .ranking-tab:hover img {
+    transform: scale(1.03);
+    filter: brightness(1.08);
+}
+
+#ranking_screen .ranking-tabs .ranking-tab:active img {
+    transform: scale(0.97);
+}
 
 #ranking_screen h2 {
     margin-top: 0;
@@ -3228,57 +3268,4 @@ text-overflow: ellipsis;
 
 .admin-menu-image-button:active img {
     transform: scale(0.98);
-}
-/* =========================
-   PULSANTI CLASSIFICHE
-   ========================= */
-
-.ranking-tabs {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin: 10px 0 18px;
-}
-
-.ranking-tabs .ranking-tab {
-    flex: 1 1 0;
-    width: 50%;
-    max-width: none;
-
-    padding: 0;
-    margin: 0;
-
-    border: none;
-    outline: none;
-    background: transparent;
-    box-shadow: none;
-
-    cursor: pointer;
-}
-
-.ranking-tabs .ranking-tab img {
-    display: block;
-    width: 100%;
-    height: auto;
-
-    object-fit: contain;
-
-    border: none;
-    box-shadow: none;
-
-    transition:
-        transform 0.15s ease,
-        filter 0.15s ease;
-}
-
-.ranking-tabs .ranking-tab:hover img {
-    transform: scale(1.03);
-    filter: brightness(1.08);
-}
-
-.ranking-tabs .ranking-tab:active img {
-    transform: scale(0.97);
 }
