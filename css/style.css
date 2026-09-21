@@ -3434,13 +3434,10 @@ margin: 0 auto;
 
     display: grid;
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(4, 1fr);
 
-    grid-template-rows:
-        repeat(4, 1fr);
-
-    column-gap: 12px;
+    column-gap: 4px;
     row-gap: 5px;
 
     align-items: center;
@@ -3465,27 +3462,55 @@ margin: 0 auto;
 
 
 /* =========================================================
-   DISPOSIZIONE RUOLI - GIOCATORE 1
+   GIOCATORE 1
    ========================================================= */
 
+/* PORTIERE */
 .h2h-team-1 .h2h-role-P {
     grid-row: 4;
+    grid-column: 3;
 }
 
+/* DIFENSORI */
 .h2h-team-1 .h2h-role-D {
     grid-row: 3;
 }
 
+/* CENTROCAMPISTI */
 .h2h-team-1 .h2h-role-C {
     grid-row: 2;
 }
 
+/* ATTACCANTI */
 .h2h-team-1 .h2h-role-A {
     grid-row: 1;
 }
 
 
 /* =========================================================
+   GIOCATORE 2
+   ========================================================= */
+
+/* PORTIERE */
+.h2h-team-2 .h2h-role-P {
+    grid-row: 1;
+    grid-column: 3;
+}
+
+/* DIFENSORI */
+.h2h-team-2 .h2h-role-D {
+    grid-row: 2;
+}
+
+/* CENTROCAMPISTI */
+.h2h-team-2 .h2h-role-C {
+    grid-row: 3;
+}
+
+/* ATTACCANTI */
+.h2h-team-2 .h2h-role-A {
+    grid-row: 4;
+}/* =========================================================
    DISPOSIZIONE RUOLI - GIOCATORE 2
    ========================================================= */
 
