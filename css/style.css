@@ -3580,24 +3580,19 @@ margin: 0 auto;
     gap: 10px;
 
     width: 100%;
-    max-width: 100%;
+    max-width: 400px;
+
+    margin: 18px auto 0;
 
     box-sizing: border-box;
-
-    margin-top: 18px;
-
     overflow: hidden;
 }
-
 
 .h2h-reserve-column {
     min-width: 0;
     width: 100%;
     max-width: 100%;
-
     box-sizing: border-box;
-
-    overflow: hidden;
 
     padding: 12px;
 
@@ -3606,6 +3601,8 @@ margin: 0 auto;
     border: 1px solid rgba(255,255,255,0.12);
 
     border-radius: 12px;
+
+    overflow: hidden;
 }
 
 
