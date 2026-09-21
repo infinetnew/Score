@@ -3687,10 +3687,66 @@ margin: 0 auto;
    ========================================================= */
 
 #close_h2h_formations {
+    position: static;
+    z-index: 20;
+}
+/* =========================================================
+   LEGENDA GIOCATORI H2H
+   ========================================================= */
+
+.h2h-players-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+
+    margin: 0 auto 15px;
+
+    font-size: 13px;
+}
+
+.h2h-player-legend {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #ffffff;
+}
+
+.h2h-player-dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+}
+
+.h2h-player-1-dot {
+    background: #00c8ff;
+
+    box-shadow:
+        0 0 8px rgba(0,200,255,0.9);
+}
+
+.h2h-player-2-dot {
+    background: #ffd700;
+
+    box-shadow:
+        0 0 8px rgba(255,215,0,0.9);
+}
+.h2h-field-player {
+    position: relative;
+}
+
+.h2h-field-player > .h2h-player-dot {
     position: absolute;
 
-    top: 12px;
-    right: 12px;
+    top: 6px;
+    left: 6px;
 
-    z-index: 20;
+    width: 8px;
+    height: 8px;
 }
