@@ -3482,7 +3482,7 @@ margin: 0 auto;
    ========================================================= */
 
 .h2h-team-1 {
-    top: 10%;
+    top: 7%;
 }
 
 .h2h-team-1 .h2h-role-row-P {
@@ -3534,13 +3534,13 @@ margin: 0 auto;
 .h2h-field-player {
     position: relative;
 
-    width: 110px;
+    width: 130px;
     min-width: 0;
-    max-width: 110px;
+    max-width: 130px;
 
     flex: 1 1 110px;
 
-    min-height: 48px;
+    min-height: 40px;
 
     display: flex;
     flex-direction: row;
