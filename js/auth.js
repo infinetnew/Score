@@ -754,9 +754,19 @@ container.innerHTML = `
 
         </div>
 
+        <button
+            class="quiz-close image-close-button"
+            id="close_h2h_formations"
+            type="button"
+        >
+            <img
+                src="/Score/assets/chiudi.png"
+                alt="Chiudi"
+            >
+        </button>
+
     </div>
 `;
-
 document
     .getElementById('close_h2h_formations')
     .addEventListener('click', () => {
