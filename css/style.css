@@ -3312,3 +3312,29 @@ text-overflow: ellipsis;
 .admin-menu-image-button:active img {
     transform: scale(0.98);
 }
+#h2h_formations_container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(92vw, 900px);
+    max-height: 85vh;
+    overflow-y: auto;
+    z-index: 9999;
+
+    background: linear-gradient(
+        180deg,
+        #102d45 0%,
+        #071525 100%
+    );
+
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.65),
+        0 0 30px rgba(0,180,255,0.15);
+
+    padding: 25px 20px;
+}
