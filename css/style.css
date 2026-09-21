@@ -3593,7 +3593,16 @@ margin: 0 auto;
     font-size: 11px;
     line-height: 1.1;
 }
-
+.h2h-player-role {
+    display: block;
+    margin-top: 3px;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.4px;
+    opacity: 0.75;
+    white-space: nowrap;
+}
 
 /* =========================================================
    RISERVE
