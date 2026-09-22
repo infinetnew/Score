@@ -3381,6 +3381,7 @@ padding: 30px 14px 20px;
     max-width: 400px;
     margin: 20px auto 0;
     box-sizing: border-box;
+overflow-x: hidden;
 }
 
 .h2h-formations-test h3 {
