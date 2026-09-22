@@ -495,27 +495,31 @@ matchContainer
     .querySelectorAll('.h2h-view-formations')
     .forEach(button => {
 
-        button.addEventListener('click', async (event) => {
+button.addEventListener('click', async (event) => {
 
-            event.stopPropagation();
+    event.stopPropagation();
 
-            const match = button.closest('.h2h-match');
+    const match = button.closest('.h2h-match');
 
-            if (!match) {
-                return;
-            }
+    if (!match) {
+        return;
+    }
 
-            const player1Id = match.dataset.player1;
-            const player2Id = match.dataset.player2;
-            const matchday = Number(match.dataset.matchday);
+    const player1Id = match.dataset.player1;
+    const player2Id = match.dataset.player2;
+    const matchday = Number(match.dataset.matchday);
 
-            await openH2HFormations(
-                player1Id,
-                player2Id,
-                matchday
-            );
+    document.querySelector('#h2h_screen > .market-title-image').style.display = 'none';
+    document.getElementById('next_h2h_match').style.display = 'none';
+    document.getElementById('close_h2h').style.display = 'none';
 
-        });
+    await openH2HFormations(
+        player1Id,
+        player2Id,
+        matchday
+    );
+
+});
 
     });
 
