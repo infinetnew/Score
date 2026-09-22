@@ -3907,33 +3907,27 @@ padding: 5px 30px 5px 8px;
     justify-content: center;
     align-items: center;
     gap: 25px;
-
     margin: 0 auto 15px;
-
-    font-size: 13px;
-}
-.h2h-player-legend strong {
-    font-size: 15px;
-    font-weight: 900;
-}
-
-.h2h-legend-vs {
-    width: 38px;
-    height: 38px;
-
-    object-fit: contain;
-
-    flex-shrink: 0;
 }
 
 .h2h-player-legend {
     display: flex;
     align-items: center;
     gap: 7px;
-
     color: #ffffff;
 }
 
+.h2h-player-legend strong {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.h2h-legend-vs {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
 .h2h-player-dot {
     width: 10px;
     height: 10px;
