@@ -684,13 +684,18 @@ container.innerHTML = `
     <div class="h2h-formations-test">
 
  <h3>Formazioni</h3>
-
 <div class="h2h-players-legend">
 
     <div class="h2h-player-legend">
         <span class="h2h-player-dot h2h-player-1-dot"></span>
         <strong>${player1Name}</strong>
     </div>
+
+    <img
+        class="h2h-legend-vs"
+        src="/Score/assets/vs.png"
+        alt="VS"
+    >
 
     <div class="h2h-player-legend">
         <span class="h2h-player-dot h2h-player-2-dot"></span>
@@ -779,9 +784,13 @@ container.innerHTML = `
         alt=""
     >
 
-    <strong>
-        ${purchase.player_name}
-    </strong>
+<strong>
+    ${purchase.player_name}
+</strong>
+
+<span class="h2h-reserve-role h2h-reserve-role-${purchase.role}">
+    ${purchase.role}
+</span>
 
     <span class="h2h-reserve-role">
         ${purchase.role}
@@ -808,9 +817,13 @@ container.innerHTML = `
         alt=""
     >
 
-    <strong>
-        ${purchase.player_name}
-    </strong>
+<strong>
+    ${purchase.player_name}
+</strong>
+
+<span class="h2h-reserve-role h2h-reserve-role-${purchase.role}">
+    ${purchase.role}
+</span>
 
     <span class="h2h-reserve-role">
         ${purchase.role}
