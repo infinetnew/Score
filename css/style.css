@@ -3323,7 +3323,7 @@ text-overflow: ellipsis;
     left: 50%;
     transform: translate(-50%, -50%);
 
-width: 100%;
+width: min(92vw, 400px);
 max-height: 90vh;
 
 overflow-x: hidden;
