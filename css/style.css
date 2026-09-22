@@ -3458,7 +3458,23 @@ margin: 0 auto;
 .h2h-team-side > .h2h-field-row:nth-child(4) {
     transform: translateY(-18px);
 }
+/* SPAZIATURA MAGGIORE SOLO SQUADRA INFERIORE */
 
+.h2h-team-2 > .h2h-field-row:nth-child(1) {
+    transform: translateY(-6px);
+}
+
+.h2h-team-2 > .h2h-field-row:nth-child(2) {
+    transform: translateY(6px);
+}
+
+.h2h-team-2 > .h2h-field-row:nth-child(3) {
+    transform: translateY(18px);
+}
+
+.h2h-team-2 > .h2h-field-row:nth-child(4) {
+    transform: translateY(30px);
+}
 
 /* =========================================================
    RIGHE DEI RUOLI
@@ -3870,8 +3886,8 @@ box-shadow:
 .h2h-field-player > .h2h-player-dot {
     position: absolute;
 
-    top: 5px;
-    left: 10px;
+    top: 4px;
+    left: 31px;
 
     width: 8px;
     height: 8px;
