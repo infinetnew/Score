@@ -792,9 +792,6 @@ container.innerHTML = `
     ${purchase.role}
 </span>
 
-    <span class="h2h-reserve-role">
-        ${purchase.role}
-    </span>
 </div>
                     `)
                     .join('')}
@@ -825,9 +822,6 @@ container.innerHTML = `
     ${purchase.role}
 </span>
 
-    <span class="h2h-reserve-role">
-        ${purchase.role}
-    </span>
 </div>
                     `)
                     .join('')}
