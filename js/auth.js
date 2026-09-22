@@ -763,49 +763,59 @@ container.innerHTML = `
         <!-- RISERVE -->
         <div class="h2h-reserves">
 
-            <div class="h2h-reserve-column">
+<div class="h2h-reserve-column">
 
-                <h4>RISERVE</h4>
+    <h4>
+        <strong>${player1Name}</strong>
+        <span>Riserve</span>
+    </h4>
 
-                ${formation1
+    ${formation1
                     .filter(purchase => purchase.slot_type === 'reserve')
                     .map(purchase => `
-                        <div class="h2h-reserve-player">
-                            <img
-                                src="${purchase.team_logo}"
-                                alt=""
-                            >
+<div class="h2h-reserve-player">
+    <img
+        src="${purchase.team_logo}"
+        alt=""
+    >
 
-                            <strong>
-                                ${purchase.player_name}
-                            </strong>
+    <strong>
+        ${purchase.player_name}
+    </strong>
 
-
-                        </div>
+    <span class="h2h-reserve-role">
+        ${purchase.role}
+    </span>
+</div>
                     `)
                     .join('')}
 
             </div>
 
-            <div class="h2h-reserve-column">
+<div class="h2h-reserve-column">
 
-                <h4>RISERVE</h4>
+    <h4>
+        <strong>${player2Name}</strong>
+        <span>Riserve</span>
+    </h4>
 
-                ${formation2
+    ${formation2
                     .filter(purchase => purchase.slot_type === 'reserve')
                     .map(purchase => `
-                        <div class="h2h-reserve-player">
-                            <img
-                                src="${purchase.team_logo}"
-                                alt=""
-                            >
+<div class="h2h-reserve-player">
+    <img
+        src="${purchase.team_logo}"
+        alt=""
+    >
 
-                            <strong>
-                                ${purchase.player_name}
-                            </strong>
+    <strong>
+        ${purchase.player_name}
+    </strong>
 
-
-                        </div>
+    <span class="h2h-reserve-role">
+        ${purchase.role}
+    </span>
+</div>
                     `)
                     .join('')}
 
