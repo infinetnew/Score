@@ -3312,32 +3312,7 @@ text-overflow: ellipsis;
 .admin-menu-image-button:active img {
     transform: scale(0.98);
 }
-#h2h_formations_container {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(92vw, 900px);
-    max-height: 85vh;
-    overflow-y: auto;
-    z-index: 9999;
 
-    background: linear-gradient(
-        180deg,
-        #102d45 0%,
-        #071525 100%
-    );
-
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 18px;
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.65),
-        0 0 30px rgba(0,180,255,0.15);
-
-    padding: 25px 20px;
-}
 /* =========================================================
    H2H - CAMPO FORMAZIONI
    ========================================================= */
@@ -3348,7 +3323,7 @@ text-overflow: ellipsis;
     left: 50%;
     transform: translate(-50%, -50%);
 
-width: min(92vw, 620px);
+width: 100%;
 max-height: 90vh;
 
 overflow-x: hidden;
@@ -3371,6 +3346,24 @@ padding: 30px 14px 20px;
     box-shadow:
         0 20px 60px rgba(0,0,0,0.65),
         0 0 30px rgba(0,180,255,0.15);
+}
+#h2h_formations_container {
+    top: 0;
+    left: 0;
+    transform: none;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+    max-height: none;
+
+    margin: 0;
+
+    border-radius: 0;
+
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
