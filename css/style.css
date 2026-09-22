@@ -3459,23 +3459,6 @@ margin: 0 auto;
     transform: translateY(-18px);
 }
 
-/* SPAZIATURA SQUADRA INFERIORE */
-
-.h2h-team-2 .h2h-role-row:nth-child(1) {
-    transform: translateY(-10px);
-}
-
-.h2h-team-2 .h2h-role-row:nth-child(2) {
-    transform: translateY(-3px);
-}
-
-.h2h-team-2 .h2h-role-row:nth-child(3) {
-    transform: translateY(5px);
-}
-
-.h2h-team-2 .h2h-role-row:nth-child(4) {
-    transform: translateY(13px);
-}
 /* =========================================================
    RIGHE DEI RUOLI
    ========================================================= */
@@ -3524,6 +3507,7 @@ margin: 0 auto;
 
 .h2h-team-2 {
     bottom: 12%;
+   height: 55%;
 }
 
 .h2h-team-2 .h2h-role-row-A {
