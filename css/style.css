@@ -3347,24 +3347,6 @@ padding: 30px 14px 20px;
         0 20px 60px rgba(0,0,0,0.65),
         0 0 30px rgba(0,180,255,0.15);
 }
-#h2h_formations_container {
-    top: 0;
-    left: 0;
-    transform: none;
-
-    width: 100%;
-    height: 100%;
-
-    max-width: none;
-    max-height: none;
-
-    margin: 0;
-
-    border-radius: 0;
-
-    overflow-x: hidden;
-    overflow-y: auto;
-}
 
 
 /* CONTENITORE PRINCIPALE */
