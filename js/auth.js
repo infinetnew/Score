@@ -509,10 +509,6 @@ button.addEventListener('click', async (event) => {
     const player2Id = match.dataset.player2;
     const matchday = Number(match.dataset.matchday);
 
-    document.querySelector('#h2h_screen > .market-title-image').style.display = 'none';
-    document.getElementById('next_h2h_match').style.display = 'none';
-    document.getElementById('close_h2h').style.display = 'none';
-
     await openH2HFormations(
         player1Id,
         player2Id,
