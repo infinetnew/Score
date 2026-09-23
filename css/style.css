@@ -4531,3 +4531,56 @@ body.market-open {
 #stats_screen #close_stats {
     margin-top: 12px !important;
 }
+
+/* =========================
+   ULTIMA PARTITA - NUOVO STILE
+   ========================= */
+
+#stats_screen .stats-last-match-card {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 18px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 14px;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+#stats_screen .stats-info-row {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 16px;
+}
+
+#stats_screen .stats-info-row span {
+    font-weight: 600;
+}
+
+#stats_screen .stats-info-row strong {
+    font-weight: 700;
+}
+
+#stats_screen .stats-result {
+    margin: 2px 0;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+#stats_screen .stats-result strong {
+    font-weight: 800;
+}
