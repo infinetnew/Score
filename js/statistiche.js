@@ -224,3 +224,4 @@ if (myGoals === 0) {
 
     return `Spettacolo ed emozioni contro ${opponentName}! La sfida termina con un combattutissimo ${myGoals}-${opponentGoals}, dopo una partita ricca di gol. La tua prestazione è stata ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
 }
+}
