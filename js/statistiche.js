@@ -1,4 +1,13 @@
 document.getElementById('open_stats').addEventListener('click', () => {
-    document.getElementById('home_screen').style.display = 'none';
-    document.getElementById('stats_screen').style.display = 'flex';
+
+    const app = document.getElementById('app');
+    const statsScreen = document.getElementById('stats_screen');
+
+    Array.from(app.children).forEach(element => {
+        if (element.id !== 'stats_screen') {
+            element.style.display = 'none';
+        }
+    });
+
+    statsScreen.style.display = 'flex';
 });
