@@ -1581,6 +1581,14 @@ text-overflow: ellipsis;
 #ranking_list.ranking-g-mode {
     max-width: 400px;
 }
+#ranking_list.ranking-score-mode .ranking-row {
+    grid-template-columns: 45px minmax(0, 1fr) 65px;
+}
+
+#ranking_list.ranking-score-mode .ranking-points {
+    text-align: right;
+    white-space: nowrap;
+}
 
 .ranking-row {
     width: 100%;
