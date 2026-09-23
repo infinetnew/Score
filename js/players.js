@@ -641,7 +641,9 @@ async function openMyPlayers() {
     const reservesContainer =
         document.getElementById('formation_reserves');
 
-    screen.style.display = 'flex';
+document.body.classList.add('my-players-open');
+
+screen.style.display = 'flex';
 
     list.style.display = 'block';
     matchdayText.textContent = '';
@@ -825,6 +827,8 @@ reserves.forEach(purchase => {
 function closeMyPlayers() {
 
     document.getElementById('my_players_screen').style.display = 'none';
+
+    document.body.classList.remove('my-players-open');
 
 }
 
