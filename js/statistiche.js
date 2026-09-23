@@ -94,5 +94,32 @@ if (matches.length > 0) {
     console.log('Avversario ultima partita:', opponent);
 document.getElementById('stats_last_opponent').textContent =
     opponent.username;
+const myGoals =
+    lastMatch.player1_id === user.id
+        ? lastMatch.player1_goals
+        : lastMatch.player2_goals;
+
+const opponentGoals =
+    lastMatch.player1_id === user.id
+        ? lastMatch.player2_goals
+        : lastMatch.player1_goals;
+
+document.getElementById('stats_last_goals').textContent =
+    `${myGoals} - ${opponentGoals}`;
+const myScore =
+    lastMatch.player1_id === user.id
+        ? lastMatch.player1_score
+        : lastMatch.player2_score;
+
+const opponentScore =
+    lastMatch.player1_id === user.id
+        ? lastMatch.player2_score
+        : lastMatch.player1_score;
+
+document.getElementById('stats_last_my_score').textContent =
+    myScore;
+
+document.getElementById('stats_last_opponent_score').textContent =
+    opponentScore;
 }
 }
