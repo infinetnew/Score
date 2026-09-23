@@ -1583,9 +1583,9 @@ text-overflow: ellipsis;
     width: 100%;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 45px 1fr 65px;
+    grid-template-columns: 35px minmax(0, 1fr) 32px 32px 40px 52px;
     align-items: center;
-    padding: 12px 14px;
+    padding: 12px 10px;
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 12px;
     background: rgba(255,255,255,0.05);
@@ -1600,12 +1600,53 @@ text-overflow: ellipsis;
 .ranking-row strong {
     text-align: left;
     font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ranking-stat {
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .ranking-points {
     text-align: right;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
+}
+
+/* =========================
+   INTESTAZIONE CLASSIFICA G
+   ========================= */
+
+.ranking-header {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 35px minmax(0, 1fr) 32px 32px 40px 52px;
+    align-items: center;
+
+    padding: 8px 10px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.05);
+    color: white;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.ranking-header span {
+    text-align: center;
+}
+
+.ranking-header span:nth-child(2) {
+    text-align: left;
 }
 
 #ranking_screen #close_ranking {
