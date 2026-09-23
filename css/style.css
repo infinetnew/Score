@@ -1169,6 +1169,9 @@ padding: 30px 25px;
 .formation-field {
     position: relative;
     width: 420px;
+    max-width: 100%;
+    margin: 0 auto;
+
     min-height: 520px;
     padding: 25px 15px;
     box-sizing: border-box;
