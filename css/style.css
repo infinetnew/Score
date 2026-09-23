@@ -4005,3 +4005,34 @@ body.h2h-open {
 body.h2h-formations-open {
     overflow: hidden !important;
 }
+/* =========================
+   CLASSIFICHE - SCHERMATA
+   ========================= */
+
+#ranking_screen {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    transform: none !important;
+    box-sizing: border-box;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    z-index: 10000 !important;
+}
+
+body.ranking-open {
+    overflow: hidden !important;
+}
