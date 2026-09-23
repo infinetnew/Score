@@ -4256,3 +4256,23 @@ body.market-open {
 #reserve_modal {
     z-index: 20000 !important;
 }
+/* =========================
+   STATISTICHE
+   ========================= */
+
+#stats_screen {
+    width: 100%;
+    max-width: 420px;
+    min-height: 100vh;
+
+    margin: 0 auto;
+    padding: 20px 15px 30px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
