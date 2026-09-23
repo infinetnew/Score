@@ -1,13 +1,35 @@
+let statsPreviousDisplay = new Map();
+
 document.getElementById('open_stats').addEventListener('click', () => {
 
     const app = document.getElementById('app');
     const statsScreen = document.getElementById('stats_screen');
 
+    statsPreviousDisplay.clear();
+
     Array.from(app.children).forEach(element => {
+
         if (element.id !== 'stats_screen') {
+            statsPreviousDisplay.set(element, element.style.display);
             element.style.display = 'none';
         }
+
     });
 
     statsScreen.style.display = 'flex';
+});
+
+
+document.getElementById('close_stats').addEventListener('click', () => {
+
+    const app = document.getElementById('app');
+    const statsScreen = document.getElementById('stats_screen');
+
+    statsScreen.style.display = 'none';
+
+    statsPreviousDisplay.forEach((display, element) => {
+        element.style.display = display;
+    });
+
+    statsPreviousDisplay.clear();
 });
