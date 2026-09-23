@@ -128,6 +128,17 @@ if (myGoals > opponentGoals) {
 
 document.getElementById('stats_last_result').textContent =
     lastResult;
+const commentary = generateMatchCommentary(
+    opponent.username,
+    myGoals,
+    opponentGoals,
+    myScore,
+    opponentScore,
+    myH2HPoints
+);
+
+document.getElementById('stats_last_commentary').textContent =
+    commentary;
 const myH2HPoints =
     lastMatch.player1_id === user.id
         ? lastMatch.player1_score
@@ -136,4 +147,79 @@ const myH2HPoints =
 document.getElementById('stats_last_h2h_points').textContent =
     myH2HPoints;
 }
+}
+function generateMatchCommentary(
+    opponentName,
+    myGoals,
+    opponentGoals,
+    myScore,
+    opponentScore,
+    myH2HPoints
+) {
+
+    const goalDifference = Math.abs(myGoals - opponentGoals);
+let performanceDescription;
+
+if (myScore <= 20) {
+    performanceDescription = 'una prestazione sottotono';
+} else if (myScore <= 25) {
+    performanceDescription = 'una prestazione discreta';
+} else if (myScore <= 30) {
+    performanceDescription = 'una buona prestazione';
+} else if (myScore <= 35) {
+    performanceDescription = 'un’ottima prestazione';
+} else {
+    performanceDescription = 'una prestazione stratosferica';
+}
+
+  // VITTORIA
+if (myGoals > opponentGoals) {
+
+    let opening;
+
+    if (goalDifference === 1) {
+        opening = `Hai superato ${opponentName} per ${myGoals}-${opponentGoals}, in una sfida decisa sul filo di lana. Una vittoria di misura`;
+    } else if (goalDifference === 2) {
+        opening = `Hai superato ${opponentName} per ${myGoals}-${opponentGoals}, con una prestazione convincente. Una vittoria meritata`;
+    } else if (goalDifference <= 4) {
+        opening = `Hai dominato la sfida contro ${opponentName}, imponendoti ${myGoals}-${opponentGoals}. Una vittoria netta`;
+    } else {
+        opening = `Prestazione stratosferica contro ${opponentName}! Hai chiuso la partita con un incredibile ${myGoals}-${opponentGoals}. Una vittoria devastante`;
+    }
+
+    return `${opening}, con ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+}
+
+
+// SCONFITTA
+if (myGoals < opponentGoals) {
+
+    let opening;
+
+    if (goalDifference === 1) {
+        opening = `Hai ceduto a ${opponentName} per ${myGoals}-${opponentGoals}, al termine di una sfida decisa sul filo di lana. Una sconfitta di misura`;
+    } else if (goalDifference === 2) {
+        opening = `Contro ${opponentName} arriva una sconfitta per ${myGoals}-${opponentGoals}. L'avversario ha avuto la meglio`;
+    } else if (goalDifference <= 4) {
+        opening = `Una partita difficile contro ${opponentName}, che si impone ${myGoals}-${opponentGoals}. Una sconfitta pesante`;
+    } else {
+        opening = `Serata da dimenticare contro ${opponentName}: arriva una pesante sconfitta per ${myGoals}-${opponentGoals}. L'avversario domina la sfida`;
+    }
+
+    return `${opening}, con ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+}
+
+
+// PAREGGIO
+if (myGoals === 0) {
+
+    return `Una sfida bloccata contro ${opponentName}: finisce ${myGoals}-${opponentGoals}, dopo una partita senza gol. La tua prestazione è stata ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+
+} else if (myGoals <= 2) {
+
+    return `Grande equilibrio contro ${opponentName}: la sfida termina ${myGoals}-${opponentGoals}, con entrambe le squadre incapaci di prevalere. La tua prestazione è stata ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+
+} else {
+
+    return `Spettacolo ed emozioni contro ${opponentName}! La sfida termina con un combattutissimo ${myGoals}-${opponentGoals}, dopo una partita ricca di gol. La tua prestazione è stata ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
 }
