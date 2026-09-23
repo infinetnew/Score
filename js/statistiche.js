@@ -159,69 +159,191 @@ function generateMatchCommentary(
 ) {
 
     const goalDifference = Math.abs(myGoals - opponentGoals);
-let performanceDescription;
+    const scoreDifference = Math.abs(myScore - opponentScore);
 
-if (myScore <= 20) {
-    performanceDescription = 'una prestazione sottotono';
-} else if (myScore <= 25) {
-    performanceDescription = 'una prestazione discreta';
-} else if (myScore <= 30) {
-    performanceDescription = 'una buona prestazione';
-} else if (myScore <= 35) {
-    performanceDescription = 'un’ottima prestazione';
-} else {
-    performanceDescription = 'una prestazione stratosferica';
-}
+    let performanceDescription;
 
-  // VITTORIA
-if (myGoals > opponentGoals) {
-
-    let opening;
-
-    if (goalDifference === 1) {
-        opening = `Hai superato ${opponentName} per ${myGoals}-${opponentGoals}, in una sfida decisa sul filo di lana. Una vittoria di misura`;
-    } else if (goalDifference === 2) {
-        opening = `Hai superato ${opponentName} per ${myGoals}-${opponentGoals}, con una prestazione convincente. Una vittoria meritata`;
-    } else if (goalDifference <= 4) {
-        opening = `Hai dominato la sfida contro ${opponentName}, imponendoti ${myGoals}-${opponentGoals}. Una vittoria netta`;
+    if (myScore <= 20) {
+        performanceDescription = 'una prestazione sottotono';
+    } else if (myScore <= 25) {
+        performanceDescription = 'una prestazione discreta';
+    } else if (myScore <= 30) {
+        performanceDescription = 'una buona prestazione';
+    } else if (myScore <= 35) {
+        performanceDescription = 'un’ottima prestazione';
     } else {
-        opening = `Prestazione stratosferica contro ${opponentName}! Hai chiuso la partita con un incredibile ${myGoals}-${opponentGoals}. Una vittoria devastante`;
+        performanceDescription = 'una prestazione stratosferica';
     }
 
-    return `${opening}, con ${performanceDescription}: ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. Guadagni ${myH2HPoints} punti in classifica e ${myScore} punti nella classifica F1.`;
-}
 
+    // ==================================================
+    // VITTORIA
+    // ==================================================
 
-// SCONFITTA
-if (myGoals < opponentGoals) {
+    if (myGoals > opponentGoals) {
 
-    let opening;
+        let commentary;
 
-    if (goalDifference === 1) {
-        opening = `Hai ceduto a ${opponentName} per ${myGoals}-${opponentGoals}, al termine di una sfida decisa sul filo di lana. Una sconfitta di misura`;
-    } else if (goalDifference === 2) {
-        opening = `Contro ${opponentName} arriva una sconfitta per ${myGoals}-${opponentGoals}. L'avversario ha avuto la meglio`;
-    } else if (goalDifference <= 4) {
-        opening = `Una partita difficile contro ${opponentName}, che si impone ${myGoals}-${opponentGoals}. Una sconfitta pesante`;
-    } else {
-        opening = `Serata da dimenticare contro ${opponentName}: arriva una pesante sconfitta per ${myGoals}-${opponentGoals}. L'avversario domina la sfida`;
+        // Vittoria di misura
+        if (goalDifference === 1) {
+
+            if (scoreDifference <= 3) {
+
+                commentary =
+                    `Che battaglia contro ${opponentName}! ` +
+                    `La sfida termina ${myGoals}-${opponentGoals} e viene decisa da un margine davvero minimo. ` +
+                    `Hai resistito alla pressione fino all'ultimo e trovato il modo di portare a casa una vittoria di misura. ` +
+                    `Anche i punteggi F1 raccontano una partita estremamente equilibrata: ` +
+                    `${myScore} punti F1 contro gli ${opponentScore} dell'avversario. ` +
+                    `Una gara combattuta fino all'ultimo, nella quale la tua concretezza ha fatto la differenza.`;
+
+            } else {
+
+                commentary =
+                    `Hai superato ${opponentName} per ${myGoals}-${opponentGoals} al termine di una sfida combattuta. ` +
+                    `Il risultato è stretto, ma la tua prestazione ha fatto la differenza nei momenti decisivi. ` +
+                    `Hai totalizzato ${myScore} punti F1 contro gli ${opponentScore} dell'avversario, ` +
+                    `mettendo in campo ${performanceDescription}. ` +
+                    `Una vittoria di misura, ma tutt'altro che casuale.`;
+            }
+
+        // Vittoria con 2 gol di differenza
+        } else if (goalDifference === 2) {
+
+            commentary =
+                `Hai avuto la meglio su ${opponentName} per ${myGoals}-${opponentGoals}, ` +
+                `al termine di una partita nella quale sei riuscito progressivamente a prendere il controllo della sfida. ` +
+                `Il vantaggio di due reti certifica una vittoria convincente, costruita con attenzione e concretezza. ` +
+                `Il tuo punteggio F1 è stato di ${myScore} punti contro i ${opponentScore} dell'avversario, ` +
+                `con ${performanceDescription}. ` +
+                `Una prestazione solida che ti permette di conquistare una vittoria meritata.`;
+
+        // Vittoria larga
+        } else if (goalDifference <= 4) {
+
+            commentary =
+                `Vittoria netta contro ${opponentName}! ` +
+                `Hai chiuso la sfida sul ${myGoals}-${opponentGoals}, creando un divario importante e mantenendo il controllo della partita. ` +
+                `La differenza di ${goalDifference} reti racconta una gara nella quale sei riuscito a fare la differenza con continuità. ` +
+                `Anche il confronto F1 premia la tua prestazione: ${myScore} punti contro i ${opponentScore} dell'avversario. ` +
+                `Con ${performanceDescription}, hai costruito un successo convincente e senza particolari rischi.`;
+
+        // Goleada
+        } else {
+
+            commentary =
+                `Prestazione devastante contro ${opponentName}! ` +
+                `Hai letteralmente dominato la sfida, chiudendola con un incredibile ${myGoals}-${opponentGoals}. ` +
+                `Un divario enorme che lascia pochissimi dubbi sull'andamento della partita: ` +
+                `hai preso il controllo dell'incontro e non hai più lasciato spazio all'avversario. ` +
+                `Il confronto F1 è altrettanto impressionante, con ${myScore} punti contro gli ${opponentScore} dell'avversario. ` +
+                `Una prestazione di altissimo livello, difficile da migliorare.`;
+        }
+
+        return `${commentary} Grazie a questa vittoria guadagni ${myH2HPoints} punti in classifica.`;
     }
 
-    return `${opening}, con ${performanceDescription}: ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
-}
+
+    // ==================================================
+    // SCONFITTA
+    // ==================================================
+
+    if (myGoals < opponentGoals) {
+
+        let commentary;
+
+        // Sconfitta di misura
+        if (goalDifference === 1) {
+
+            if (scoreDifference <= 3) {
+
+                commentary =
+                    `Che beffa contro ${opponentName}. ` +
+                    `La sfida termina ${myGoals}-${opponentGoals}, con una sola rete a separare le due squadre. ` +
+                    `Una partita equilibratissima, nella quale hai lottato fino alla fine senza riuscire a trovare l'episodio decisivo. ` +
+                    `Anche i punteggi F1 confermano l'equilibrio: ${myScore} punti contro i ${opponentScore} dell'avversario. ` +
+                    `Una sconfitta arrivata davvero sul filo di lana.`;
+
+            } else {
+
+                commentary =
+                    `Hai ceduto a ${opponentName} per ${myGoals}-${opponentGoals}, ` +
+                    `al termine di una partita decisa da un margine minimo. ` +
+                    `Il risultato non racconta una gara dominata dall'avversario: hai combattuto fino alla fine, ` +
+                    `ma questa volta è mancato quel guizzo necessario per cambiare l'esito della sfida. ` +
+                    `Hai totalizzato ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. ` +
+                    `Una sconfitta di misura che lascia qualche rimpianto.`;
+            }
+
+        // Sconfitta con 2 gol
+        } else if (goalDifference === 2) {
+
+            commentary =
+                `Contro ${opponentName} arriva una sconfitta per ${myGoals}-${opponentGoals}. ` +
+                `La partita è rimasta in equilibrio per diversi momenti, ma l'avversario è riuscito a trovare quel qualcosa in più per portare a casa il risultato. ` +
+                `Il confronto F1 termina ${myScore}-${opponentScore}, mentre la tua prestazione è stata ${performanceDescription}. ` +
+                `Un risultato da archiviare e dal quale ripartire nella prossima sfida.`;
+
+        // Sconfitta pesante
+        } else if (goalDifference <= 4) {
+
+            commentary =
+                `Partita difficile contro ${opponentName}, che si impone ${myGoals}-${opponentGoals}. ` +
+                `Il divario di ${goalDifference} reti racconta una sfida nella quale l'avversario è riuscito a prendere il sopravvento. ` +
+                `Anche il confronto F1 evidenzia la difficoltà della serata: ${myScore} punti contro i ${opponentScore} dell'avversario. ` +
+                `Una sconfitta pesante, nonostante ${performanceDescription}.`;
+
+        // Sconfitta pesantissima
+        } else {
+
+            commentary =
+                `Serata da dimenticare contro ${opponentName}. ` +
+                `L'avversario domina completamente la sfida e chiude con un pesantissimo ${myGoals}-${opponentGoals}. ` +
+                `Il divario è enorme e la partita prende presto una direzione molto difficile da ribaltare. ` +
+                `Il punteggio F1 conferma la serata complicata: ${myScore} punti contro i ${opponentScore} dell'avversario. ` +
+                `Una battuta d'arresto netta dalla quale sarà importante ripartire.`;
+        }
+
+        return `${commentary} Con questa sconfitta non guadagni punti in classifica.`;
+    }
 
 
-// PAREGGIO
-if (myGoals === 0) {
+    // ==================================================
+    // PAREGGIO
+    // ==================================================
 
-    return `Una sfida bloccata contro ${opponentName}: finisce ${myGoals}-${opponentGoals}, dopo una partita senza gol. La tua prestazione è stata ${performanceDescription}: ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+    if (myGoals === 0) {
 
-} else if (myGoals <= 2) {
+        return (
+            `Una sfida completamente bloccata contro ${opponentName}: ` +
+            `la partita termina ${myGoals}-${opponentGoals}, senza che nessuna delle due squadre riesca a trovare la giocata decisiva. ` +
+            `Una gara fatta di equilibrio e attenzione, nella quale ogni dettaglio avrebbe potuto cambiare l'esito dell'incontro. ` +
+            `Il tuo punteggio F1 è di ${myScore} punti contro i ${opponentScore} dell'avversario, ` +
+            `per una prestazione che lascia entrambe le squadre con un punto. ` +
+            `Con questo pareggio guadagni ${myH2HPoints} punto in classifica.`
+        );
 
-    return `Grande equilibrio contro ${opponentName}: la sfida termina ${myGoals}-${opponentGoals}, con entrambe le squadre incapaci di prevalere. La tua prestazione è stata ${performanceDescription}: ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+    } else if (myGoals <= 2) {
 
-} else {
+        return (
+            `Grande equilibrio contro ${opponentName}! ` +
+            `La sfida termina ${myGoals}-${opponentGoals} dopo una partita combattuta e ricca di duelli. ` +
+            `Nessuno dei due è riuscito a trovare l'allungo decisivo e il risultato rimane in bilico fino al fischio finale. ` +
+            `Hai totalizzato ${myScore} punti F1 contro i ${opponentScore} dell'avversario, ` +
+            `in una gara nella quale le due squadre hanno dimostrato di potersi affrontare alla pari. ` +
+            `Con questo pareggio guadagni ${myH2HPoints} punto in classifica.`
+        );
 
-    return `Spettacolo ed emozioni contro ${opponentName}! La sfida termina con un combattutissimo ${myGoals}-${opponentGoals}, dopo una partita ricca di gol. La tua prestazione è stata ${performanceDescription}: ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
-}
+    } else {
+
+        return (
+            `Che spettacolo contro ${opponentName}! ` +
+            `La sfida termina con un combattutissimo ${myGoals}-${opponentGoals}, ` +
+            `dopo una partita ricca di gol, emozioni e continui capovolgimenti di fronte. ` +
+            `Ogni volta che sembrava poter arrivare una svolta, l'avversario è riuscito a rispondere, ` +
+            `portando entrambe le squadre fino al fischio finale senza un vincitore. ` +
+            `Hai chiuso con ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. ` +
+            `Con questo pareggio guadagni ${myH2HPoints} punto in classifica.`
+        );
+    }
 }
