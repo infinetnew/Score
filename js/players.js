@@ -847,7 +847,9 @@ async function openRanking() {
     const gButton = document.getElementById('ranking_g_button');
     const scoreButton = document.getElementById('ranking_score_button');
 
-    screen.style.display = 'flex';
+document.body.classList.add('ranking-open');
+
+screen.style.display = 'flex';
 
     list.innerHTML = 'Caricamento...';
 
@@ -1035,8 +1037,9 @@ function closeRanking() {
 
     document.getElementById('ranking_screen').style.display = 'none';
 
-}
+    document.body.classList.remove('ranking-open');
 
+}
 
 document.getElementById('open_ranking').addEventListener(
     'click',
