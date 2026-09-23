@@ -1515,6 +1515,7 @@ text-overflow: ellipsis;
 
 #ranking_screen .ranking-tabs {
     width: 100%;
+    max-width: 420px;
     display: flex !important;
     flex-direction: row !important;
     align-items: center;
@@ -1522,7 +1523,6 @@ text-overflow: ellipsis;
     gap: 12px;
     margin: 10px 0 18px;
 }
-
 #ranking_screen .ranking-tabs .ranking-tab {
     flex: 1 1 0;
     width: 50%;
@@ -1559,6 +1559,7 @@ text-overflow: ellipsis;
 
 #ranking_list {
     width: 100%;
+    max-width: 330px;
     display: flex;
     flex-direction: column;
     gap: 8px;
