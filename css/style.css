@@ -3959,7 +3959,7 @@ box-shadow:
     max-height: none !important;
 
     margin: 0 !important;
-
+    transform: none !important;
     box-sizing: border-box;
 
     overflow-x: hidden !important;
