@@ -92,5 +92,7 @@ if (matches.length > 0) {
     }
 
     console.log('Avversario ultima partita:', opponent);
+document.getElementById('stats_last_opponent').textContent =
+    opponent.username;
 }
 }
