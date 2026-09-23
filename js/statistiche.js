@@ -128,6 +128,14 @@ if (myGoals > opponentGoals) {
 
 document.getElementById('stats_last_result').textContent =
     lastResult;
+
+const myH2HPoints =
+    lastMatch.player1_id === user.id
+        ? lastMatch.player1_score
+        : lastMatch.player2_score;
+
+document.getElementById('stats_last_h2h_points').textContent =
+    myH2HPoints;
 const commentary = generateMatchCommentary(
     opponent.username,
     myGoals,
@@ -139,13 +147,6 @@ const commentary = generateMatchCommentary(
 
 document.getElementById('stats_last_commentary').textContent =
     commentary;
-const myH2HPoints =
-    lastMatch.player1_id === user.id
-        ? lastMatch.player1_score
-        : lastMatch.player2_score;
-
-document.getElementById('stats_last_h2h_points').textContent =
-    myH2HPoints;
 }
 }
 function generateMatchCommentary(
@@ -222,5 +223,4 @@ if (myGoals === 0) {
 } else {
 
     return `Spettacolo ed emozioni contro ${opponentName}! La sfida termina con un combattutissimo ${myGoals}-${opponentGoals}, dopo una partita ricca di gol. La tua prestazione è stata ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
-}
 }
