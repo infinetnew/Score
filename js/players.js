@@ -63,6 +63,9 @@ title.innerHTML = `
 // Mercato aperto
 document.getElementById('app').style.display = 'block';
 
+// Blocca lo scroll della home
+document.body.classList.add('market-open');
+
 // Aggiorna subito il saldo dei crediti
 loadCredits();
 
@@ -74,11 +77,15 @@ marketScreen.style.display = 'flex';
 
 
 function closeMarket() {
-    const marketScreen = document.getElementById('market_screen');
+
+    const marketScreen =
+        document.getElementById('market_screen');
 
     if (marketScreen) {
         marketScreen.style.display = 'none';
     }
+
+    document.body.classList.remove('market-open');
 
     document.getElementById('app').style.display = 'block';
 }
