@@ -4142,3 +4142,56 @@ body.my-players-open {
 body.market-open {
     overflow: hidden !important;
 }
+/* =========================
+   MERCATO - DIMENSIONI
+   ========================= */
+
+/* Titolo MERCATO GIOCATORI */
+#market_screen .market-title-image img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Immagini dei ruoli */
+#market_screen .image-role-button img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+/* =========================
+   LISTA GIOCATORI - 330px
+   ========================= */
+
+#market_screen #market_role_players {
+    width: 100%;
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+#market_screen .market-search {
+    width: 100%;
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+#market_screen .market-players-list {
+    width: 100%;
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+#market_screen .market-player-row {
+    width: 100%;
+    box-sizing: border-box;
+}
