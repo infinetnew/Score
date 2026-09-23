@@ -935,7 +935,7 @@ if (type === 'g') {
 
     header.innerHTML = `
         <span></span>
-        <span>Giocatore</span>
+        <span>MISTER</span>
         <span>GF</span>
         <span>GS</span>
         <span>DR</span>
