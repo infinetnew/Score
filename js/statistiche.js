@@ -131,8 +131,8 @@ document.getElementById('stats_last_result').textContent =
 
 const myH2HPoints =
     lastMatch.player1_id === user.id
-        ? lastMatch.player1_score
-        : lastMatch.player2_score;
+        ? lastMatch.player1_points
+        : lastMatch.player2_points;
 
 document.getElementById('stats_last_h2h_points').textContent =
     myH2HPoints;
@@ -188,7 +188,7 @@ if (myGoals > opponentGoals) {
         opening = `Prestazione stratosferica contro ${opponentName}! Hai chiuso la partita con un incredibile ${myGoals}-${opponentGoals}. Una vittoria devastante`;
     }
 
-    return `${opening}, con ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+    return `${opening}, con ${performanceDescription}: ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. Guadagni ${myH2HPoints} punti in classifica e ${myScore} punti nella classifica F1.`;
 }
 
 
@@ -207,21 +207,21 @@ if (myGoals < opponentGoals) {
         opening = `Serata da dimenticare contro ${opponentName}: arriva una pesante sconfitta per ${myGoals}-${opponentGoals}. L'avversario domina la sfida`;
     }
 
-    return `${opening}, con ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+    return `${opening}, con ${performanceDescription}: ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
 }
 
 
 // PAREGGIO
 if (myGoals === 0) {
 
-    return `Una sfida bloccata contro ${opponentName}: finisce ${myGoals}-${opponentGoals}, dopo una partita senza gol. La tua prestazione è stata ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+    return `Una sfida bloccata contro ${opponentName}: finisce ${myGoals}-${opponentGoals}, dopo una partita senza gol. La tua prestazione è stata ${performanceDescription}: ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
 
 } else if (myGoals <= 2) {
 
-    return `Grande equilibrio contro ${opponentName}: la sfida termina ${myGoals}-${opponentGoals}, con entrambe le squadre incapaci di prevalere. La tua prestazione è stata ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+    return `Grande equilibrio contro ${opponentName}: la sfida termina ${myGoals}-${opponentGoals}, con entrambe le squadre incapaci di prevalere. La tua prestazione è stata ${performanceDescription}: ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
 
 } else {
 
-    return `Spettacolo ed emozioni contro ${opponentName}! La sfida termina con un combattutissimo ${myGoals}-${opponentGoals}, dopo una partita ricca di gol. La tua prestazione è stata ${performanceDescription}: ${myScore} punti FW1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
+    return `Spettacolo ed emozioni contro ${opponentName}! La sfida termina con un combattutissimo ${myGoals}-${opponentGoals}, dopo una partita ricca di gol. La tua prestazione è stata ${performanceDescription}: ${myScore} punti F1 contro gli ${opponentScore} dell'avversario. In classifica guadagni ${myH2HPoints} punti.`;
 }
 }
