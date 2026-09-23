@@ -916,7 +916,25 @@ screen.style.display = 'flex';
             return;
         }
 
-        list.innerHTML = '';
+list.innerHTML = '';
+
+if (type === 'g') {
+
+    const header = document.createElement('div');
+
+    header.className = 'ranking-header';
+
+    header.innerHTML = `
+        <span></span>
+        <span>Giocatore</span>
+        <span>GF</span>
+        <span>GS</span>
+        <span>DR</span>
+        <span>PT</span>
+    `;
+
+    list.appendChild(header);
+}
 
         if (!ranking || ranking.length === 0) {
             list.innerHTML =
@@ -936,22 +954,55 @@ screen.style.display = 'flex';
 
             row.className = 'ranking-row';
 
-            const points =
-                type === 'g'
-                    ? player.points
-                    : player.total_score;
+const points =
+    type === 'g'
+        ? player.points
+        : player.total_score;
 
-            row.innerHTML = `
-                <span class="ranking-position">
-                    ${index + 1}°
-                </span>
+if (type === 'g') {
 
-                <strong>${player.username}</strong>
+    const goalsFor = Number(player.goals_for) || 0;
+    const goalsAgainst = Number(player.goals_against) || 0;
+    const goalDifference = goalsFor - goalsAgainst;
 
-                <span class="ranking-points">
-                    ${points} pt
-                </span>
-            `;
+    row.innerHTML = `
+        <span class="ranking-position">
+            ${index + 1}°
+        </span>
+
+        <strong>${player.username}</strong>
+
+        <span class="ranking-stat">
+            ${goalsFor}
+        </span>
+
+        <span class="ranking-stat">
+            ${goalsAgainst}
+        </span>
+
+        <span class="ranking-stat">
+            ${goalDifference > 0 ? '+' : ''}${goalDifference}
+        </span>
+
+        <span class="ranking-points">
+            ${player.points} pt
+        </span>
+    `;
+
+} else {
+
+    row.innerHTML = `
+        <span class="ranking-position">
+            ${index + 1}°
+        </span>
+
+        <strong>${player.username}</strong>
+
+        <span class="ranking-points">
+            ${points} pt
+        </span>
+    `;
+}
 
             list.appendChild(row);
         });
