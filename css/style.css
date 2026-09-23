@@ -1,0 +1,4246 @@
+/* =========================
+   SCORE - STILE PRINCIPALE
+   ========================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background:
+        radial-gradient(circle at 15% 15%, rgba(0, 180, 255, 0.22), transparent 35%),
+        radial-gradient(circle at 85% 20%, rgba(120, 60, 255, 0.20), transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(0, 255, 180, 0.12), transparent 40%),
+        linear-gradient(145deg, #030914, #081a2e 45%, #050b18);
+
+    background-attachment: fixed;
+}
+
+
+/* =========================
+   HOME
+   ========================= */
+
+#app {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 14px 18px 24px;
+    text-align: center;
+}
+
+
+/* =========================
+   IMMAGINE PRINCIPALE
+   ========================= */
+
+.score-hero {
+    width: 100%;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.score-hero img {
+    width: 100%;
+    max-width: 480px;
+    display: block;
+    margin: 0 auto;
+
+    border-radius: 0;
+    box-shadow: none;
+
+    animation: pulseFanta 3s ease-in-out infinite;
+}
+
+
+/* =========================
+   UTENTE E CREDITI
+   ========================= */
+
+.score-user-info {
+    margin-bottom: 16px;
+}
+/* =========================
+   STRUMENTI HOME
+   ========================= */
+
+.home-tools-box {
+    width: 100%;
+    min-height: 108px;
+    margin-top: 12px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(5, 18, 32, 0.72);
+
+    border: 1px solid rgba(100, 210, 255, 0.18);
+    border-radius: 16px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 6px 18px rgba(0, 0, 0, 0.22);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.home-tools-box .logout-button {
+    width: 42px;
+    height: 42px;
+}
+
+.home-tools-box .logout-button svg {
+    width: 22px;
+    height: 22px;
+}
+.home-tools-box {
+    gap: 10px;
+    padding: 10px 10px;
+}
+.home-tool-button {
+    flex: 1;
+    min-width: 0;
+
+    height: 70px;
+    padding: 4px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: white;
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        filter 0.15s ease;
+}
+
+.home-tool-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.15);
+}
+
+.home-tool-button:active {
+    transform: scale(0.95);
+}
+.home-tool-image {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    display: block;
+}
+
+.home-tool-button svg {
+    width: 21px;
+    height: 21px;
+
+    fill: none;
+    stroke: white;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.home-tool-icon {
+    font-size: 21px;
+    line-height: 21px;
+}
+
+.home-tool-button span:last-child {
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+.score-user-info h2 {
+    margin: 10px 0 5px;
+    font-size: 25px;
+}
+
+#credit_balance {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #66d9ff,
+        #a98cff
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+/* =========================
+   MENU PRINCIPALE
+   ========================= */
+
+.home-menu-button {
+    display: block;
+    width: 100%;
+    margin: 12px 0;
+    padding: 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22, 65, 100, 0.95),
+            rgba(20, 30, 65, 0.95)
+        );
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.home-menu-button:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(80, 200, 255, 0.45);
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.45),
+        0 0 18px rgba(0, 170, 255, 0.12);
+}
+
+.home-menu-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   POPUP SCORE
+   ========================= */
+
+.score-modal {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+width: calc(100% - 20px);
+max-width: 460px;
+max-height: 85vh;
+overflow-y: auto;
+
+padding: 30px 25px;
+
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(0, 190, 255, 0.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(120, 60, 255, 0.16),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            #0b1d32,
+            #07101e 55%,
+            #0b1024
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.75),
+        0 0 40px rgba(0, 150, 255, 0.08);
+
+    z-index: 1000;
+}
+.score-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.score-modal::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.score-modal::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #00bfff,
+        #7a3cff
+    );
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 190, 255, 0.5);
+}
+
+.score-modal::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #00d9ff,
+        #914dff
+    );
+}
+
+/* =========================
+   QUIZ
+   ========================= */
+
+#quiz_screen {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+}
+
+#market_screen {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+}
+/* =========================
+   ORDINE ELEMENTI QUIZ
+   ========================= */
+
+#quiz_screen h2 {
+    order: 1;
+
+    margin: 0 0 25px;
+
+    font-size: 24px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #55d8ff,
+            #a982ff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+#quiz_screen #question {
+    order: 2;
+
+    width: 100%;
+    max-width: 420px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#quiz_screen .quiz-options {
+    order: 3;
+}
+
+#quiz_screen #confirm_quiz {
+    order: 4;
+}
+
+#quiz_screen .quiz-timer {
+    order: 5;
+}
+
+#quiz_screen .quiz-close {
+    order: 6;
+}
+
+
+/* =========================
+   DOMANDA
+   ========================= */
+
+#question {
+    margin: 0 0 25px;
+
+    font-size: 20px;
+    line-height: 1.4;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   CONTENITORE RISPOSTE
+   ========================= */
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    width: 100%;
+    max-width: 330px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================
+   SINGOLA RISPOSTA
+   ========================= */
+
+.quiz-option {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 52px;
+
+    padding: 12px 15px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.075),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Nasconde il radio originale */
+
+.quiz-option input {
+    position: absolute;
+    opacity: 0;
+}
+
+
+/* =========================
+   PALLINO
+   ========================= */
+
+.radio-circle {
+    width: 20px;
+    height: 20px;
+
+    min-width: 20px;
+
+    margin-right: 12px;
+
+    border: 2px solid rgba(255, 255, 255, 0.55);
+
+    border-radius: 50%;
+
+    box-sizing: border-box;
+
+    transition:
+        border 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* Pallino selezionato */
+
+.quiz-option input:checked + .radio-circle {
+    border: 6px solid white;
+
+    box-shadow:
+        0 0 10px rgba(80, 210, 255, 0.6);
+}
+
+
+/* =========================
+   RISPOSTA SELEZIONATA
+   ========================= */
+
+.quiz-option:has(input:checked) {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 180, 255, 0.20),
+            rgba(110, 70, 255, 0.16)
+        );
+
+    border-color: rgba(80, 210, 255, 0.65);
+
+    box-shadow:
+        0 0 18px rgba(0, 170, 255, 0.12);
+
+    transform: translateX(2px);
+}
+
+
+/* Effetto al passaggio */
+
+.quiz-option:hover {
+    border-color: rgba(255, 255, 255, 0.30);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.10),
+            rgba(255, 255, 255, 0.04)
+        );
+}
+
+
+/* =========================
+   TESTO RISPOSTA
+   ========================= */
+
+.option-text {
+    font-size: 17px;
+    line-height: 1.3;
+}
+
+
+/* =========================
+   PULSANTE CONFERMA
+   ========================= */
+
+.quiz-confirm {
+    width: 100%;
+    margin-top: 22px;
+    padding: 0;
+
+    border: none;
+    border-radius: 0;
+    background: transparent;
+
+    cursor: pointer;
+    box-shadow: none;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+.quiz-confirm img {
+    display: block;
+    width: 280px;
+    max-width: 100%;
+    height: auto;
+
+    margin: 0 auto;
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+.quiz-confirm:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 28px rgba(0, 150, 255, 0.35);
+}
+
+.quiz-confirm:active {
+    transform: scale(0.98);
+}
+
+.quiz-confirm:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* =========================
+   TIMER
+   ========================= */
+
+.quiz-timer {
+    margin: 18px 0 0;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* =========================
+   CHIUDI
+   ========================= */
+
+.quiz-close {
+    display: block;
+    width: 100%;
+
+    margin: 16px 0 0;
+    padding: 13px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(0, 200, 255, 0.45);
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #087fc1,
+        #3156c9 55%,
+        #713fc1
+    );
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 20px rgba(0, 120, 255, 0.30);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+.image-close-button {
+    width: 240px !important;
+    height: 75px !important;
+
+    margin: 16px auto 0 !important;
+    padding: 0 !important;
+
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.image-close-button img {
+    display: block;
+
+    width: 240px;
+    height: 75px;
+
+    object-fit: contain;
+}
+.quiz-close:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.12);
+
+    box-shadow:
+        0 9px 26px rgba(0, 150, 255, 0.45);
+}
+
+.quiz-close:active {
+    transform: scale(0.98);
+}
+.market-section-button {
+    width: 100%;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+
+    border: 1px solid rgba(0, 190, 255, 0.35);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 190, 255, 0.16),
+            rgba(120, 60, 255, 0.12)
+        );
+
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px rgba(0, 190, 255, 0.08),
+        inset 0 0 15px rgba(255, 255, 255, 0.03);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.market-section-button:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(0, 200, 255, 0.7);
+
+    box-shadow:
+        0 0 20px rgba(0, 190, 255, 0.25),
+        0 0 35px rgba(120, 60, 255, 0.12);
+}
+
+.market-section-button:active {
+    transform: scale(0.98);
+}
+.purchase-modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 2000;
+}
+
+.purchase-box {
+    width: calc(100% - 50px);
+    max-width: 380px;
+    padding: 28px 24px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(0, 190, 255, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(120, 60, 255, 0.18),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            #0b1d32,
+            #07101e 55%,
+            #0b1024
+        );
+
+    border: 1px solid rgba(0, 190, 255, 0.35);
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.8),
+        0 0 35px rgba(0, 150, 255, 0.15);
+}
+
+.purchase-box h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 22px;
+}
+
+.purchase-box p {
+    margin-bottom: 25px;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.purchase-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.purchase-button {
+    flex: 1;
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        filter 0.18s ease;
+}
+
+.purchase-button img {
+    display: block;
+
+    width: 115px;
+    height: 55px;
+
+    margin: 0 auto;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+.purchase-button:hover {
+    transform: scale(1.06);
+    filter: brightness(1.15);
+}
+
+.purchase-button:active {
+    transform: scale(0.96);
+}
+
+.purchase-button:disabled {
+    cursor: default;
+    opacity: 0.65;
+}
+
+.purchase-button:disabled:hover {
+    transform: none;
+    filter: none;
+}
+
+.purchase-button.cancel,
+.purchase-button.confirm {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.purchase-button img {
+    display: block;
+
+    width: 120px;
+    height: 60px;
+
+    margin: 0 auto;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+/* =========================
+   TESTA A TESTA
+   ========================= */
+
+#h2h_screen {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Titolo popup */
+#h2h_screen h2 {
+    margin: 0 0 8px;
+}
+
+/* Testo introduttivo */
+#h2h_screen > p {
+    margin: 0 0 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.88);
+}
+
+/* Contenitore principale H2H */
+#h2h_screen #next_h2h_match {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* =========================
+   LEGA
+   ========================= */
+
+.h2h-league-title {
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
+
+    margin: 4px 0 18px;
+    padding: 10px 16px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 190, 0, 0.16),
+            rgba(255, 140, 0, 0.06)
+        );
+
+    border: 1px solid rgba(255, 190, 0, 0.30);
+
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 900;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 15px rgba(255, 190, 0, 0.08);
+}
+/* ICONE TESTA A TESTA */
+
+.h2h-league-title img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin: 0 6px;
+}
+
+.h2h-league-members h3 img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+.h2h-league-member img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.h2h-waiting-message img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* =========================
+   PARTECIPANTI
+   ========================= */
+
+.h2h-league-members {
+    width: 100%;
+    max-width: 330px;
+}
+
+.h2h-league-members h3 {
+    margin: 0 0 12px;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    color: white;
+}
+
+.h2h-league-member {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 38px;
+
+    margin-bottom: 6px;
+    padding: 7px 14px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    color: rgba(255,255,255,0.88);
+
+    font-size: 16px;
+    font-weight: 700;
+
+    text-align: left;
+
+    box-sizing: border-box;
+}
+
+/* TU */
+.h2h-league-member.my-league-member {
+    border-color: rgba(0, 190, 255, 0.55);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 190, 255, 0.18),
+            rgba(90, 70, 255, 0.10)
+        );
+
+    color: white;
+
+    box-shadow:
+        0 0 12px rgba(0, 190, 255, 0.12);
+}
+
+/* =========================
+   MESSAGGIO ATTESA
+   ========================= */
+
+.h2h-waiting-message {
+    max-width: 300px;
+
+    margin: 20px auto 0;
+
+    font-size: 16px;
+    line-height: 1.35;
+    font-weight: 700;
+
+    color: rgba(255,255,255,0.82);
+}
+
+/* =========================
+   SCONTRI
+   ========================= */
+
+#h2h_screen #next_h2h_match > h3 {
+    margin: 2px 0 16px;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    color: white;
+}
+#h2h_screen #next_h2h_match > h3 img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+.h2h-match {
+    width: 100%;
+    max-width: 330px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-bottom: 8px;
+    padding: 11px 12px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.11);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    color: white;
+}
+
+/* VS */
+.h2h-match img {
+    width: 38px;
+    height: 38px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+/* Il tuo scontro */
+.h2h-match.my-h2h-match {
+    border: 1px solid rgba(0, 200, 255, 0.75);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 190, 255, 0.18),
+            rgba(100, 60, 255, 0.12)
+        );
+
+    box-shadow:
+        0 0 16px rgba(0, 190, 255, 0.16);
+
+    font-weight: 900;
+}
+
+/* =========================
+   CHIUDI
+   ========================= */
+
+#h2h_screen #close_h2h {
+    width: 180px;
+
+    margin-top: 18px;
+}
+/* =========================
+   I MIEI GIOCATORI
+   ========================= */
+
+#my_players_screen {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#my_players_screen h2 {
+    margin-bottom: 8px;
+}
+
+#my_players_matchday {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   CAMPO DA CALCIO
+   ========================= */
+
+#my_players_list {
+    width: 100%;
+}
+
+.formation-field {
+    position: relative;
+    width: 420px;
+    max-width: 100%;
+    margin: 0 auto;
+
+    min-height: 520px;
+    padding: 25px 15px;
+    box-sizing: border-box;
+
+    border-radius: 18px;
+
+    background-image: url("../assets/formation-field.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border: 2px solid rgba(255,255,255,0.75);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.45),
+        0 0 25px rgba(0,180,255,0.15);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   RIGHE FORMAZIONE
+   ========================= */
+
+.formation-row {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 70px;
+}
+/* ATTACCANTI */
+#formation_attackers {
+    top: 16%;
+}
+
+/* CENTROCAMPISTI */
+#formation_midfielders {
+    top: 35%;
+}
+
+/* DIFENSORI */
+#formation_defenders {
+    top: 57%;
+}
+
+/* PORTIERE */
+#formation_goalkeeper {
+    top: 75%;
+}
+
+
+/* =========================
+   GIOCATORI
+   ========================= */
+
+.formation-player {
+    position: relative;
+
+    width: 180px;
+    min-height: 58px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    text-align: left;
+
+    padding: 6px 42px 6px 8px;
+
+    box-sizing: border-box;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(3, 15, 27, 0.96),
+        rgba(8, 25, 40, 0.90)
+    );
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.55),
+        0 0 14px rgba(0,180,255,0.18);
+
+    backdrop-filter: blur(6px);
+
+    overflow: hidden;
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.formation-team-logo {
+    width: 30px;
+    height: 30px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+    margin-right: 7px;
+}
+.formation-player-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.formation-player strong {
+    display: block;
+
+    max-width: 105px;
+overflow: hidden;
+text-overflow: ellipsis;
+
+    font-size: 11px;
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    color: #ffffff;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+.formation-player span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 10px;
+    line-height: 1.1;
+
+    font-weight: 600;
+
+    color: rgba(255,255,255,0.65);
+
+    text-transform: uppercase;
+}
+/* =========================
+   BADGE RUOLO
+   ========================= */
+
+.formation-player::after {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 26px;
+    height: 26px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    color: white;
+
+    box-sizing: border-box;
+}
+
+
+/* ATTACCANTE */
+#formation_attackers .formation-player::after {
+    content: "A";
+
+    background: #e5232f;
+
+    box-shadow:
+        0 0 10px rgba(229,35,47,0.60);
+}
+
+
+/* CENTROCAMPISTA */
+#formation_midfielders .formation-player::after {
+    content: "C";
+
+    background: #1677ff;
+
+    box-shadow:
+        0 0 10px rgba(22,119,255,0.60);
+}
+
+
+/* DIFENSORE */
+#formation_defenders .formation-player::after {
+    content: "D";
+
+    background: #12a957;
+
+    box-shadow:
+        0 0 10px rgba(18,169,87,0.60);
+}
+
+
+/* PORTIERE */
+#formation_goalkeeper .formation-player::after {
+    content: "P";
+
+    background: #f2b900;
+
+    color: #111;
+
+    box-shadow:
+        0 0 10px rgba(242,185,0,0.65);
+}
+
+/* =========================
+   RISERVE
+   ========================= */
+
+.my-players-reserves {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.my-players-reserves h3 {
+    margin: 0 0 12px;
+
+    font-size: 18px;
+
+    color: white;
+}
+.reserves-title-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 12px;
+}
+
+.reserves-title-image img {
+    display: block;
+    width: 180px;
+    height: auto;
+}
+
+#formation_reserves {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+
+    width: 100%;
+}
+
+#formation_reserves .formation-player {
+    background: rgba(255,255,255,0.07);
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 420px) {
+
+    .formation-field {
+        min-height: 470px;
+        padding: 20px 8px;
+    }
+
+    .formation-row {
+        gap: 10px;
+    }
+
+    .formation-player {
+        width: 150px;
+        padding: 6px 4px;
+    }
+
+    .formation-player strong {
+        font-size: 12px;
+    }
+
+    .formation-player span {
+        font-size: 10px;
+    }
+
+    .formation-field::after {
+        width: 90px;
+        height: 90px;
+    }
+}
+/* CLASSIFICA */
+
+#ranking_screen {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+/* =========================
+   CLASSIFICA ATTIVA
+   ========================= */
+
+#ranking_screen .ranking-tabs .ranking-tab {
+    position: relative;
+
+    transition:
+        transform 0.18s ease,
+        filter 0.18s ease,
+        opacity 0.18s ease;
+}
+
+/* CLASSIFICA NON SELEZIONATA */
+#ranking_screen .ranking-tabs .ranking-tab:not(.active) img {
+    opacity: 0.55;
+    filter: brightness(0.75) saturate(0.75);
+}
+
+/* CLASSIFICA SELEZIONATA */
+#ranking_screen .ranking-tabs .ranking-tab.active img {
+    opacity: 1;
+    filter: brightness(1.08) saturate(1.10);
+
+    transform: scale(1.02);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 0 2px rgba(0, 210, 255, 0.85),
+        0 0 12px rgba(0, 210, 255, 0.75),
+        0 0 25px rgba(0, 120, 255, 0.45);
+}
+
+/* HOVER */
+#ranking_screen .ranking-tabs .ranking-tab:hover img {
+    filter: brightness(1.08);
+}
+
+/* QUANDO È ATTIVA, MANTIENE IL GLOW */
+#ranking_screen .ranking-tabs .ranking-tab.active:hover img {
+    filter: brightness(1.12) saturate(1.12);
+}
+/* PULSANTI CLASSIFICHE AFFIANCATI */
+
+#ranking_screen .ranking-tabs {
+    width: 100%;
+    max-width: 420px;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 10px 0 18px;
+}
+#ranking_screen .ranking-tabs .ranking-tab {
+    flex: 1 1 0;
+    width: 50%;
+    min-width: 0;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+#ranking_screen .ranking-tabs .ranking-tab img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+#ranking_screen .ranking-tabs .ranking-tab:hover img {
+    transform: scale(1.03);
+    filter: brightness(1.08);
+}
+
+#ranking_screen .ranking-tabs .ranking-tab:active img {
+    transform: scale(0.97);
+}
+
+#ranking_screen h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+#ranking_list {
+    width: 100%;
+    max-width: 330px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.ranking-row {
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 35px minmax(0, 1fr) 32px 32px 40px 52px;
+    align-items: center;
+    padding: 12px 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    color: white;
+}
+
+.ranking-position {
+    font-weight: bold;
+    text-align: left;
+}
+
+.ranking-row strong {
+    text-align: left;
+    font-size: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ranking-stat {
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.ranking-points {
+    text-align: right;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* =========================
+   INTESTAZIONE CLASSIFICA G
+   ========================= */
+
+.ranking-header {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 35px minmax(0, 1fr) 32px 32px 40px 52px;
+    align-items: center;
+
+    padding: 8px 10px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.05);
+    color: white;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.ranking-header span {
+    text-align: center;
+}
+
+.ranking-header span:nth-child(2) {
+    text-align: left;
+}
+
+#ranking_screen #close_ranking {
+    width: 180px;
+}
+/* LOGOUT FLOTTANTE */
+.welcome-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.logout-button {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 190, 255, 0.45);
+    background: linear-gradient(
+        145deg,
+        rgba(45, 80, 120, 0.75),
+        rgba(10, 35, 65, 0.9)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px rgba(0, 190, 255, 0.25),
+        inset 0 0 12px rgba(255, 255, 255, 0.05);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.logout-button svg {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: white;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.logout-button:hover {
+    transform: scale(1.08);
+    border-color: rgba(0, 210, 255, 0.85);
+
+    box-shadow:
+        0 0 16px rgba(0, 190, 255, 0.45),
+        0 0 28px rgba(0, 190, 255, 0.18),
+        inset 0 0 14px rgba(255, 255, 255, 0.08);
+}
+
+.logout-button:active {
+    transform: scale(0.94);
+}
+
+.score-hero {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+}
+
+.logo-fanta5 {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    animation: pulseFanta 3s ease-in-out infinite;
+}
+
+@keyframes pulseFanta {
+    0%, 100% {
+        filter:
+            drop-shadow(0 0 8px rgba(0, 255, 100, 0.35))
+            drop-shadow(0 0 18px rgba(255, 200, 0, 0.20));
+    }
+
+    50% {
+        filter:
+            drop-shadow(0 0 15px rgba(0, 255, 100, 0.80))
+            drop-shadow(0 0 30px rgba(255, 200, 0, 0.55))
+            drop-shadow(0 0 55px rgba(0, 255, 100, 0.30));
+    }
+}
+/* ========================================
+   MERCATO - RICERCA GIOCATORI
+   ======================================== */
+
+.market-search {
+    position: relative;
+    width: 100%;
+    margin: 2px 0 12px;
+}
+
+.market-search-input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 13px 16px 13px 42px;
+
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.025)
+        );
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.market-search-input::placeholder {
+    color: rgba(255,255,255,0.50);
+}
+
+.market-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 16px;
+
+    pointer-events: none;
+}
+
+/* ========================================
+   FOCUS RICERCA - PORTIERI
+   ======================================== */
+
+.market-search.role-portieri .market-search-input:focus {
+    border-color: #12ff4d;
+
+    box-shadow:
+        0 0 12px rgba(18,255,77,0.35);
+}
+
+/* ========================================
+   FOCUS RICERCA - DIFENSORI
+   ======================================== */
+
+.market-search.role-difensori .market-search-input:focus {
+    border-color: #1677ff;
+
+    box-shadow:
+        0 0 12px rgba(22,119,255,0.35);
+}
+
+/* ========================================
+   FOCUS RICERCA - CENTROCAMPISTI
+   ======================================== */
+
+.market-search.role-centrocampisti .market-search-input:focus {
+    border-color: #b044ff;
+
+    box-shadow:
+        0 0 12px rgba(176,68,255,0.35);
+}
+
+/* ========================================
+   FOCUS RICERCA - ATTACCANTI
+   ======================================== */
+
+.market-search.role-attaccanti .market-search-input:focus {
+    border-color: #ff202d;
+
+    box-shadow:
+        0 0 12px rgba(255,32,45,0.35);
+}
+
+
+/* ========================================
+   LISTA GIOCATORI
+   ======================================== */
+
+.market-players-list {
+    width: 100%;
+}
+
+
+/* ========================================
+   CARD GIOCATORE
+   ======================================== */
+
+.market-player-row {
+
+    width: 100%;
+    min-height: 58px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 8px;
+    padding: 8px 12px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+
+/* ========================================
+   LOGO SQUADRA
+   ======================================== */
+
+.market-player-team {
+
+    width: 40px;
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.market-team-logo {
+
+    width: 32px;
+    height: 32px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* ========================================
+   NOME + SQUADRA
+   ======================================== */
+
+.market-player-info {
+
+    flex: 1;
+    min-width: 0;
+
+    text-align: left;
+
+    margin-left: 8px;
+}
+
+.market-player-info strong {
+
+    display: block;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.market-player-info span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: rgba(255,255,255,0.60);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   PREZZO
+   ======================================== */
+
+.market-player-price {
+
+    min-width: 42px;
+
+    text-align: right;
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: 900;
+}
+
+
+/* ========================================
+   HOVER PORTIERI - GIALLO
+   ======================================== */
+
+.market-player-row.role-portieri:hover {
+
+    border-color: #f2b900;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(242,185,0,0.14),
+            rgba(242,185,0,0.04)
+        );
+
+    box-shadow:
+        0 0 12px rgba(242,185,0,0.30),
+        inset 0 0 12px rgba(242,185,0,0.05);
+
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   HOVER DIFENSORI - VERDE
+   ======================================== */
+
+.market-player-row.role-difensori:hover {
+
+    border-color: #12a957;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18,169,87,0.14),
+            rgba(18,169,87,0.04)
+        );
+
+    box-shadow:
+        0 0 12px rgba(18,169,87,0.30),
+        inset 0 0 12px rgba(18,169,87,0.05);
+
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   HOVER CENTROCAMPISTI - BLU
+   ======================================== */
+
+.market-player-row.role-centrocampisti:hover {
+
+    border-color: #1677ff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22,119,255,0.14),
+            rgba(22,119,255,0.04)
+        );
+
+    box-shadow:
+        0 0 12px rgba(22,119,255,0.30),
+        inset 0 0 12px rgba(22,119,255,0.05);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   HOVER ATTACCANTI - ROSSO
+   ======================================== */
+
+.market-player-row.role-attaccanti:hover {
+
+    border-color: #e5232f;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(229,35,47,0.14),
+            rgba(229,35,47,0.04)
+        );
+
+    box-shadow:
+        0 0 12px rgba(229,35,47,0.30),
+        inset 0 0 12px rgba(229,35,47,0.05);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   CLICK
+   ======================================== */
+
+.market-player-row:active {
+    transform: scale(0.985);
+}
+
+
+/* ========================================
+   NESSUN GIOCATORE
+   ======================================== */
+
+.market-no-players {
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    color: rgba(255,255,255,0.65);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+.purchase-cart-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.purchase-completed-icon {
+    display: block;
+    width: 300px;
+    height: auto;
+    margin: 0 auto 20px auto;
+    object-fit: contain;
+}
+/* =========================
+   ADMIN - RESTYLING
+   ========================= */
+
+.admin-league {
+    margin-bottom: 30px;
+}
+
+.admin-league h2 {
+    margin: 0 0 15px 0;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #172554, #0f766e);
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.admin-user-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.admin-user-card h3 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin: 0 0 18px 0;
+    padding-bottom: 12px;
+    font-size: 18px;
+    color: white;
+}
+.admin-user-card h4 {
+    margin: 12px 0 8px 0;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #94a3b8;
+}
+
+.admin-player-row {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) 38px 56px 54px;
+    align-items: center;
+    gap: 9px;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 8px 2px;
+}
+
+.admin-player-row strong {
+    min-width: 0;
+
+    color: white;
+    font-size: 15px;
+    font-weight: 800;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-player-row img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+
+    margin: 0;
+}
+
+.admin-player-row input {
+    width: 50px !important;
+    height: 30px;
+
+    margin-left: 8px !important;
+
+    padding: 4px;
+    box-sizing: border-box;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+
+    text-align: center;
+}
+
+.admin-player-row button {
+    width: 54px;
+    height: 34px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    font-weight: 700;
+    font-size: 12px;
+
+    cursor: pointer;
+}
+.market-closed-image {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.quiz-correct-icon {
+    width: 105px;
+    height: 105px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.quiz-timer-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+.quiz-credits-earned {
+    font-size: 1.25em;
+    font-weight: 700;
+}
+#question.quiz-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+#question.quiz-result .quiz-correct-icon {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    object-fit: contain;
+    margin: 0;
+}
+
+#question.quiz-result span {
+    display: inline-block;
+}
+/* ==========================================
+   RISPOSTA CORRETTA - EFFETTO LUCE PULSATA
+   ========================================== */
+
+.quiz-option.quiz-correct {
+    border-color: #00ff66 !important;
+    background: rgba(0, 255, 102, 0.20) !important;
+    animation: quizCorrectPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes quizCorrectPulse {
+
+    0%, 100% {
+        background: rgba(0, 255, 102, 0.12);
+        border-color: rgba(0, 255, 102, 0.65);
+        box-shadow:
+            0 0 5px rgba(0, 255, 102, 0.35),
+            inset 0 0 5px rgba(0, 255, 102, 0.15);
+    }
+
+    50% {
+        background: rgba(0, 255, 102, 0.35);
+        border-color: #00ff66;
+        box-shadow:
+            0 0 12px rgba(0, 255, 102, 0.75),
+            0 0 25px rgba(0, 255, 102, 0.45),
+            inset 0 0 12px rgba(0, 255, 102, 0.30);
+    }
+}
+.auth-logo {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+/* =========================================
+   LOGIN / REGISTRAZIONE
+   ========================================= */
+
+#welcome_screen,
+#login_screen,
+#register_screen,
+#forgot_password_screen {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+
+    padding-top: 25px;
+    box-sizing: border-box;
+
+    text-align: center;
+}
+#welcome_screen p:first-of-type {
+    font-size: 19px;
+    font-weight: 600;
+}
+.auth-image-button {
+    width: 280px;
+    height: auto;
+
+    padding: 0;
+    margin: 10px auto 0;
+
+    display: block;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    cursor: pointer;
+}
+.auth-image-button img {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    background: transparent;
+}
+#register_screen h1 {
+    font-size: 28px;
+    margin: 8px 0 18px;
+    text-align: center;
+}
+#register_screen input {
+    display: block;
+    width: 320px;
+    max-width: 90%;
+
+    height: 44px;
+    box-sizing: border-box;
+
+    margin: 8px auto;
+
+    padding: 0 12px;
+
+    border-radius: 10px;
+    border: 1px solid rgba(0, 200, 255, 0.35);
+
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+
+    font-size: 15px;
+    outline: none;
+}
+
+#register_screen input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+#register_screen input:focus {
+    border-color: rgba(0, 200, 255, 0.8);
+
+    box-shadow:
+        0 0 10px rgba(0, 200, 255, 0.25);
+}
+.register-buttons {
+    width: 400px;
+    max-width: 90%;
+
+    margin: 10px auto 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.register-buttons button {
+    flex: 1;
+}
+#login_screen input {
+    display: block;
+    width: 320px;
+    max-width: 90%;
+
+    height: 44px;
+    box-sizing: border-box;
+
+    margin: 8px auto;
+
+    padding: 0 12px;
+
+    border-radius: 10px;
+    border: 1px solid rgba(0, 200, 255, 0.35);
+
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+
+    font-size: 15px;
+    outline: none;
+}
+
+#login_screen input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+#login_screen input:focus {
+    border-color: rgba(0, 200, 255, 0.8);
+
+    box-shadow:
+        0 0 10px rgba(0, 200, 255, 0.25);
+}
+.login-buttons {
+    width: 400px;
+    max-width: 90%;
+
+    margin: 10px auto 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-buttons button {
+    flex: 1;
+}
+#forgot_password {
+    margin: 12px 0 4px;
+
+    color: #4dcfff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        text-shadow 0.15s ease;
+}
+
+#forgot_password:hover {
+    color: white;
+
+    text-shadow:
+        0 0 8px rgba(0, 200, 255, 0.7);
+}
+.auth-text-button {
+    height: 38px;
+    padding: 0 18px;
+
+    border: 1px solid rgba(0, 200, 255, 0.5);
+    border-radius: 8px;
+
+    background: rgba(0, 120, 180, 0.18);
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.auth-text-button:hover {
+    transform: scale(1.03);
+
+    background: rgba(0, 180, 255, 0.25);
+
+    box-shadow:
+        0 0 12px rgba(0, 200, 255, 0.35);
+}
+#forgot_password_screen h1 {
+    font-size: 28px;
+    margin: 8px 0 18px;
+    text-align: center;
+}
+
+#forgot_password_screen input {
+    display: block;
+    width: 320px;
+    max-width: 90%;
+
+    height: 44px;
+    box-sizing: border-box;
+
+    margin: 8px auto;
+
+    padding: 0 12px;
+
+    border-radius: 10px;
+    border: 1px solid rgba(0, 200, 255, 0.35);
+
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+
+    font-size: 15px;
+    outline: none;
+}
+
+#forgot_password_screen input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+#forgot_password_screen input:focus {
+    border-color: rgba(0, 200, 255, 0.8);
+
+    box-shadow:
+        0 0 10px rgba(0, 200, 255, 0.25);
+}
+/* CAMPI NUOVA PASSWORD */
+#reset_password_screen input {
+    display: block;
+    width: 320px;
+    max-width: 90%;
+    height: 44px;
+    box-sizing: border-box;
+    margin: 8px auto;
+    padding: 0 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 200, 255, 0.35);
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-size: 15px;
+    outline: none;
+}
+
+#reset_password_screen input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+#reset_password_screen input:focus {
+    border-color: rgba(0, 200, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.25);
+}
+#reset_password_screen h1 {
+    text-align: center;
+    margin: 8px 0 18px;
+    font-size: 28px;
+}
+/* =========================================
+   BOX MESSAGGI AUTENTICAZIONE
+   ========================================= */
+
+#auth_message,
+#forgot_password_message,
+#reset_password_message {
+    width: 320px;
+    max-width: 90%;
+    box-sizing: border-box;
+
+    margin: 14px auto 0;
+    padding: 10px 14px;
+
+    text-align: center;
+
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(0, 200, 255, 0.35);
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 10px rgba(0, 200, 255, 0.08);
+}
+#auth_message:empty,
+#forgot_password_message:empty,
+#reset_password_message:empty {
+    display: none;
+}
+/* =========================================
+   ADMIN - SCHEDA UTENTE
+   ========================================= */
+
+#admin_user_detail {
+    width: 100%;
+    margin: 18px auto 0;
+    padding: 20px 16px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(0, 190, 255, 0.14),
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(120, 60, 255, 0.12),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(11, 29, 50, 0.96),
+            rgba(7, 16, 30, 0.96)
+        );
+
+    border: 1px solid rgba(0, 190, 255, 0.28);
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.50),
+        0 0 25px rgba(0, 150, 255, 0.08);
+
+    box-sizing: border-box;
+}
+/* =========================================
+   ADMIN - SCHEDA UTENTE
+   ========================================= */
+
+#admin_user_detail {
+    width: 400px;
+    max-width: 90%;
+    margin: 25px auto 0;
+    padding: 25px 22px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(0, 190, 255, 0.12),
+            transparent 45%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(10, 28, 48, 0.96),
+            rgba(7, 16, 30, 0.96)
+        );
+
+    border: 1px solid rgba(0, 190, 255, 0.30);
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(0, 150, 255, 0.08);
+
+    text-align: center;
+}
+/* =========================================
+   ADMIN - RISULTATO RICERCA UTENTE
+   ========================================= */
+
+.admin-user-select {
+    display: block;
+    width: 100%;
+    padding: 14px 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 150, 255, 0.12),
+            rgba(30, 60, 120, 0.18)
+        );
+
+    border: 1px solid rgba(0, 190, 255, 0.25);
+    border-radius: 12px;
+
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.20);
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.admin-user-select:hover {
+    transform: scale(1.02);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 170, 255, 0.22),
+            rgba(50, 80, 150, 0.25)
+        );
+
+    box-shadow:
+        0 0 15px rgba(0, 170, 255, 0.18);
+}
+
+.admin-user-select:active {
+    transform: scale(0.98);
+}
+/* =========================================
+   ADMIN - DETTAGLIO UTENTE
+   ========================================= */
+
+#admin_user_detail_name {
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    text-align: center;
+}
+
+/* CREDITI */
+
+.admin-user-credits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-bottom: 18px;
+
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.admin-user-credits strong {
+    font-size: 17px;
+}
+
+.admin-credit-icon {
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+    display: block;
+}
+
+/* MODIFICA CREDITI */
+
+.admin-credit-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 28px;
+}
+
+.admin-credit-edit input {
+    width: 145px;
+    height: 32px;
+    padding: 0 10px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(0, 190, 255, 0.25);
+    border-radius: 8px;
+
+    color: white;
+    font-size: 14px;
+}
+
+.admin-credit-edit input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.admin-credit-edit button {
+    height: 32px;
+    padding: 0 13px;
+
+    border: 1px solid rgba(0, 190, 255, 0.30);
+    border-radius: 8px;
+
+    background: rgba(0, 150, 255, 0.15);
+
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* SCONTRI */
+
+.admin-h2h-section {
+    margin-top: 8px;
+}
+
+.admin-h2h-section h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin: 0 0 16px;
+
+    color: white;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.admin-h2h-icon {
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+    display: block;
+}
+
+/* SINGOLO SCONTRO */
+
+.admin-h2h-result {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 32px;
+
+    margin-bottom: 8px;
+    padding: 6px 8px;
+
+    box-sizing: border-box;
+
+    text-align: left;
+}
+
+/* PALLINO */
+
+.admin-h2h-dot {
+    width: 9px;
+    height: 9px;
+
+    flex-shrink: 0;
+
+    margin-right: 9px;
+
+    border-radius: 50%;
+}
+
+/* VERDE - VITTORIA */
+
+.admin-h2h-result.win .admin-h2h-dot {
+    background: #22c55e;
+    box-shadow: 0 0 7px rgba(34, 197, 94, 0.65);
+}
+
+/* GIALLO - PAREGGIO */
+
+.admin-h2h-result.draw .admin-h2h-dot {
+    background: #facc15;
+    box-shadow: 0 0 7px rgba(250, 204, 21, 0.60);
+}
+
+/* ROSSO - SCONFITTA */
+
+.admin-h2h-result.loss .admin-h2h-dot {
+    background: #ef4444;
+    box-shadow: 0 0 7px rgba(239, 68, 68, 0.60);
+}
+
+/* GIORNATA */
+
+.admin-h2h-matchday {
+    margin-right: 8px;
+
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* RISULTATO */
+
+.admin-h2h-result-text {
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+/* NESSUNO SCONTRO */
+
+.admin-h2h-empty {
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 14px;
+    font-weight: 600;
+}
+/* =========================================
+   ADMIN - PAGINA GESTIONE UTENTI
+   ========================================= */
+
+#admin_users_page {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 10px 0 30px;
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+#admin_users_page > h2 {
+    margin: 10px 0 24px;
+
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+
+    text-align: center;
+}
+
+/* RICERCA */
+
+#admin_user_search {
+    display: block;
+
+    width: 100%;
+    height: 42px;
+
+    padding: 0 14px;
+    box-sizing: border-box;
+
+    margin: 0 auto 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(0,190,255,0.25);
+    border-radius: 12px;
+
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+
+    outline: none;
+}
+
+#admin_user_search::placeholder {
+    color: rgba(255,255,255,0.50);
+}
+
+/* LISTA RISULTATI */
+
+#admin_users_list {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ELIMINA LO STILE VECCHIO DELLA CARD */
+
+#admin_users_list .admin-user-card {
+    width: 100%;
+    margin: 0 0 10px;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* NOME UTENTE */
+
+#admin_users_list .admin-user-select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* SCHEDA UTENTE */
+
+#admin_user_detail {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto 0;
+}
+
+/* PULSANTI IN FONDO */
+
+#back_admin_users,
+#back_admin_menu {
+    display: block;
+
+    margin: 16px auto 0;
+}
+/* =========================================
+   ADMIN - TORNA AL MENU ADMIN
+   ========================================= */
+
+.admin-image-button {
+    display: block;
+
+    width: 90%;
+    max-width: 420px;
+
+    margin: 20px auto 0;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    cursor: pointer;
+}
+
+.admin-image-button img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border: none;
+    box-shadow: none;
+
+    transition:
+        transform 0.15s ease,
+        filter 0.15s ease;
+}
+
+.admin-image-button:hover img {
+    transform: scale(1.02);
+    filter: brightness(1.08);
+}
+
+.admin-image-button:active img {
+    transform: scale(0.98);
+}
+/* =========================================
+   POPUP MESSAGGIO ADMIN
+   ========================================= */
+
+#admin_message_modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.68);
+
+    z-index: 5000;
+}
+
+.admin-message-box {
+    width: calc(100% - 50px);
+    max-width: 380px;
+
+    padding: 28px 24px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(0, 190, 255, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(120, 60, 255, 0.18),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            #0b1d32,
+            #07101e 55%,
+            #0b1024
+        );
+
+    border: 1px solid rgba(0, 190, 255, 0.40);
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.80),
+        0 0 35px rgba(0, 150, 255, 0.18);
+}
+
+.admin-message-title {
+    margin-bottom: 16px;
+
+    font-size: 21px;
+    font-weight: 900;
+
+    color: white;
+
+    text-shadow:
+        0 0 8px rgba(0, 190, 255, 0.35);
+}
+
+#admin_message_text {
+    margin-bottom: 22px;
+
+    font-size: 16px;
+    line-height: 1.45;
+    font-weight: 600;
+
+    color: rgba(255, 255, 255, 0.88);
+}
+
+#admin_message_ok {
+    width: 90px !important;
+    height: 90px !important;
+
+    padding: 0 !important;
+    margin: 8px auto 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+
+    background: transparent !important;
+    box-shadow: none !important;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        filter 0.18s ease;
+}
+
+#admin_message_ok img {
+    display: block !important;
+
+    width: 90px !important;
+    height: 90px !important;
+
+    max-width: 90px !important;
+    max-height: 90px !important;
+
+    object-fit: contain !important;
+
+    border: none !important;
+    box-shadow: none !important;
+
+    pointer-events: none;
+}
+
+#admin_message_ok:hover {
+    transform: scale(1.06);
+    filter: brightness(1.10);
+}
+
+#admin_message_ok:active {
+    transform: scale(0.94);
+}
+/* =========================================
+   ADMIN - GESTIONE VOTI CENTRATA
+   ========================================= */
+
+#admin_management {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 10px 0 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#admin_management > #admin_matchday {
+    text-align: center;
+}
+
+#admin_players {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+/* =========================================
+   ADMIN - LISTA GIOCATORI SCORRIBILE
+   ========================================= */
+
+#admin_players {
+    width: 100%;
+    max-width: 420px;
+    max-height: 600px;
+    margin: 0 auto;
+    padding: 8px;
+    box-sizing: border-box;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    border: 1px solid rgba(0, 190, 255, 0.25);
+    border-radius: 16px;
+
+    background: rgba(5, 18, 32, 0.55);
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 190, 255, 0.55) transparent;
+}
+/* =========================================
+   ADMIN - BADGE RUOLO GIOCATORE
+   ========================================= */
+
+.admin-role-badge {
+    width: 26px;
+    height: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    box-sizing: border-box;
+
+    color: white;
+
+    flex-shrink: 0;
+}
+
+/* PORTIERE */
+.admin-player-row.role-P .admin-role-badge {
+    background: #f2b900;
+    color: #111;
+    box-shadow: 0 0 10px rgba(242,185,0,0.65);
+}
+
+/* DIFENSORE */
+.admin-player-row.role-D .admin-role-badge {
+    background: #12a957;
+    box-shadow: 0 0 10px rgba(18,169,87,0.60);
+}
+
+/* CENTROCAMPISTA */
+.admin-player-row.role-C .admin-role-badge {
+    background: #1677ff;
+    box-shadow: 0 0 10px rgba(22,119,255,0.60);
+}
+
+/* ATTACCANTE */
+.admin-player-row.role-A .admin-role-badge {
+    background: #e5232f;
+    box-shadow: 0 0 10px rgba(229,35,47,0.60);
+}
+/* =========================================
+   ADMIN - TITOLO GIORNATA
+   ========================================= */
+
+#admin_matchday {
+    margin: 12px 0 20px;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    color: white;
+    text-align: center;
+}
+/* =========================================
+   ADMIN - SALVA VOTO
+   ========================================= */
+
+.admin-save-vote {
+    width: 54px !important;
+    height: 34px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    cursor: pointer;
+
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.admin-save-vote img {
+    width: 54px;
+    height: 34px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.admin-save-vote:hover {
+    transform: scale(1.06);
+    filter: brightness(1.10);
+}
+
+.admin-save-vote:active {
+    transform: scale(0.94);
+}
+/* =========================================
+   MENU ADMIN - PULSANTI IMMAGINE CENTRATI
+   ========================================= */
+
+#admin_menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+}
+
+.admin-menu-image-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 85%;
+    max-width: 420px;
+
+    padding: 0;
+    margin: 0 auto;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    cursor: pointer;
+}
+
+.admin-menu-image-button img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border: none;
+    box-shadow: none;
+
+    transition:
+        transform 0.15s ease,
+        filter 0.15s ease;
+}
+
+.admin-menu-image-button:hover img {
+    transform: scale(1.02);
+    filter: brightness(1.08);
+}
+
+.admin-menu-image-button:active img {
+    transform: scale(0.98);
+}
+
+/* =========================================================
+   H2H - CAMPO FORMAZIONI
+   ========================================================= */
+
+#h2h_formations_container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+width: min(92vw, 420px);
+max-height: 90vh;
+
+overflow-x: hidden;
+overflow-y: auto;
+
+padding: 30px 14px 20px;
+    box-sizing: border-box;
+
+    z-index: 9999;
+
+    background: linear-gradient(
+        180deg,
+        #102d45 0%,
+        #071525 100%
+    );
+
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.65),
+        0 0 30px rgba(0,180,255,0.15);
+}
+
+
+/* CONTENITORE PRINCIPALE */
+
+.h2h-formations-test {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto 0;
+    box-sizing: border-box;
+overflow-x: hidden;
+}
+
+.h2h-formations-test h3 {
+    text-align: center;
+    margin: 0 0 18px;
+    color: #ffffff;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   CAMPO
+   ========================================================= */
+
+.h2h-field {
+    position: relative;
+width: 100%;
+max-width: 400px;
+height: 520px;
+margin: 0 auto;
+
+    border-radius: 18px;
+
+    background-image: url("../assets/formation-field.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border: 2px solid rgba(255,255,255,0.75);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.45),
+        0 0 25px rgba(0,180,255,0.15);
+
+    overflow: hidden;
+}
+
+/* =========================================================
+   LE DUE FORMAZIONI H2H
+   ========================================================= */
+
+.h2h-team-side {
+    position: absolute;
+
+    left: 3%;
+    right: 3%;
+
+    height: 37%;
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+
+    row-gap: 0;
+
+    align-items: center;
+
+    z-index: 2;
+}
+/* STRINGE LE DISTANZE TRA LE LINEE */
+.h2h-team-side > .h2h-field-row:nth-child(1) {
+    transform: translateY(18px);
+}
+
+.h2h-team-side > .h2h-field-row:nth-child(2) {
+    transform: translateY(6px);
+}
+
+.h2h-team-side > .h2h-field-row:nth-child(3) {
+    transform: translateY(-6px);
+}
+
+.h2h-team-side > .h2h-field-row:nth-child(4) {
+    transform: translateY(-18px);
+}
+
+/* =========================================================
+   RIGHE DEI RUOLI
+   ========================================================= */
+
+.h2h-role-row {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+}
+
+
+/* =========================================================
+   GIOCATORE 1 — PARTE ALTA
+   ========================================================= */
+
+.h2h-team-1 {
+    top: 4%;
+}
+
+.h2h-team-1 .h2h-role-row-P {
+    grid-row: 1;
+}
+
+.h2h-team-1 .h2h-role-row-D {
+    grid-row: 2;
+}
+
+.h2h-team-1 .h2h-role-row-C {
+    grid-row: 3;
+}
+
+.h2h-team-1 .h2h-role-row-A {
+    grid-row: 4;
+}
+
+
+/* =========================================================
+   GIOCATORE 2 — PARTE BASSA
+   ========================================================= */
+
+.h2h-team-2 {
+    bottom: 12%;
+   height: 43%;
+}
+
+.h2h-team-2 .h2h-role-row-A {
+    grid-row: 1;
+}
+
+.h2h-team-2 .h2h-role-row-C {
+    grid-row: 2;
+}
+
+.h2h-team-2 .h2h-role-row-D {
+    grid-row: 3;
+}
+
+.h2h-team-2 .h2h-role-row-P {
+    grid-row: 4;
+}
+
+
+/* =========================================================
+   SINGOLO GIOCATORE
+   ========================================================= */
+
+.h2h-field-player {
+    position: relative;
+
+    width: 130px;
+    min-width: 0;
+    max-width: 130px;
+
+    flex: 1 1 110px;
+
+    min-height: 40px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    text-align: left;
+
+padding: 5px 30px 5px 8px;
+
+    box-sizing: border-box;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(3, 15, 27, 0.96),
+        rgba(8, 25, 40, 0.90)
+    );
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.55),
+        0 0 14px rgba(0,180,255,0.18);
+
+    backdrop-filter: blur(6px);
+
+    overflow: hidden;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.h2h-field-player img {
+    width: 22px;
+    height: 22px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+    margin-right: 0;
+}
+.h2h-field-player {
+    gap: 5px;
+}
+
+
+/* =========================================================
+   NOME
+   ========================================================= */
+
+.h2h-field-player strong {
+    display: block;
+
+    min-width: 0;
+    max-width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 9px;
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    color: #ffffff;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   BADGE RUOLO
+   ========================================================= */
+
+.h2h-field-player::after {
+    position: absolute;
+
+    right: 4px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 21px;
+    height: 21px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 6px;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    color: white;
+
+    box-sizing: border-box;
+}
+
+
+/* ATTACCANTE */
+
+.h2h-field-player.h2h-role-A::after {
+    content: "A";
+
+    background: #e5232f;
+
+    box-shadow:
+        0 0 9px rgba(229,35,47,0.60);
+}
+
+
+/* CENTROCAMPISTA */
+
+.h2h-field-player.h2h-role-C::after {
+    content: "C";
+
+    background: #1677ff;
+
+    box-shadow:
+        0 0 9px rgba(22,119,255,0.60);
+}
+
+
+/* DIFENSORE */
+
+.h2h-field-player.h2h-role-D::after {
+    content: "D";
+
+    background: #16a85a;
+
+    box-shadow:
+        0 0 9px rgba(22,168,90,0.60);
+}
+
+
+/* PORTIERE */
+
+.h2h-field-player.h2h-role-P::after {
+    content: "P";
+
+    background: #f2c400;
+
+    color: #111111;
+
+    box-shadow:
+        0 0 9px rgba(242,196,0,0.60);
+}
+/* =========================================================
+   RISERVE
+   ========================================================= */
+
+.h2h-reserves {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+    gap: 10px;
+
+    width: 100%;
+    max-width: 400px;
+
+    margin: 18px auto 0;
+
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.h2h-reserve-column {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    background: rgba(0,0,0,0.25);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+
+.h2h-reserve-column h4 {
+    margin: 0 0 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.h2h-reserve-column h4 strong {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0;
+}
+
+.h2h-reserve-column h4 span {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.65);
+}
+
+
+/* SINGOLA RISERVA */
+
+.h2h-reserve-player {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    min-height: 38px;
+
+    padding: 5px 7px;
+
+    margin-bottom: 5px;
+
+    border-radius: 7px;
+
+    background: rgba(255,255,255,0.06);
+}
+
+
+.h2h-reserve-player:last-child {
+    margin-bottom: 0;
+}
+
+
+/* LOGO RISERVA */
+
+.h2h-reserve-player img {
+    width: 25px;
+    height: 25px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+
+/* NOME RISERVA */
+
+.h2h-reserve-player strong {
+    flex: 1;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/* ATTACCANTE */
+
+.h2h-reserve-role-A {
+    background: #e5232f;
+
+    box-shadow:
+        0 0 9px rgba(229,35,47,0.60);
+}
+
+
+/* CENTROCAMPISTA */
+
+.h2h-reserve-role-C {
+    background: #1677ff;
+
+    box-shadow:
+        0 0 9px rgba(22,119,255,0.60);
+}
+
+
+/* DIFENSORE */
+
+.h2h-reserve-role-D {
+    background: #16a85a;
+
+    box-shadow:
+        0 0 9px rgba(22,168,90,0.60);
+}
+
+
+/* PORTIERE */
+
+.h2h-reserve-role-P {
+    background: #f2c400;
+
+    color: #111111;
+
+    box-shadow:
+        0 0 9px rgba(242,196,0,0.60);
+}
+
+/* RUOLO RISERVA */
+
+.h2h-reserve-role {
+    width: 21px;
+    height: 21px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 6px;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    color: white;
+
+    box-sizing: border-box;
+}
+.h2h-reserve-role {
+    margin-left: auto;
+
+    color: #ffffff !important;
+
+    font-size: 11px !important;
+    font-weight: 900;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PULSANTE CHIUDI
+   ========================================================= */
+
+#close_h2h_formations {
+    position: static;
+    z-index: 20;
+}
+/* =========================================================
+   LEGENDA GIOCATORI H2H
+   ========================================================= */
+
+.h2h-players-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin: 0 auto 15px;
+}
+
+.h2h-player-legend {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #ffffff;
+}
+
+.h2h-player-legend strong {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.h2h-legend-vs {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.h2h-player-dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+}
+
+.h2h-player-1-dot {
+background: #9b00ff;
+
+box-shadow:
+    0 0 8px rgba(155,0,255,0.9);
+}
+
+.h2h-player-2-dot {
+    background: #ffd700;
+
+    box-shadow:
+        0 0 8px rgba(255,215,0,0.9);
+}
+.h2h-field-player {
+    position: relative;
+}
+
+.h2h-field-player > .h2h-player-dot {
+    position: static;
+
+    width: 8px;
+    height: 8px;
+
+    flex-shrink: 0;
+
+    margin: 0;
+}
+/* =========================
+   TESTA A TESTA - SCHERMATA
+   ========================= */
+
+#h2h_screen {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    transform: none !important;
+    box-sizing: border-box;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    z-index: 10000 !important;
+}
+
+body.h2h-open {
+    overflow: hidden !important;
+}
+/* =========================
+   H2H FORMAZIONI - SCHERMATA
+   ========================= */
+
+#h2h_formations_container {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    transform: none !important;
+    box-sizing: border-box;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    z-index: 11000 !important;
+}
+
+body.h2h-formations-open {
+    overflow: hidden !important;
+}
+/* =========================
+   CLASSIFICHE - SCHERMATA
+   ========================= */
+
+#ranking_screen {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    transform: none !important;
+    box-sizing: border-box;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    z-index: 10000 !important;
+}
+
+body.ranking-open {
+    overflow: hidden !important;
+}
+#quiz_screen {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    transform: none !important;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    z-index: 10000 !important;
+}
+
+body.quiz-open {
+    overflow: hidden !important;
+}
+/* =========================
+   LA MIA FORMAZIONE - SCHERMATA
+   ========================= */
+
+#my_players_screen {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    transform: none !important;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    z-index: 10000 !important;
+}
+
+body.my-players-open {
+    overflow: hidden !important;
+}
+/* =========================
+   MERCATO - SCHERMATA
+   ========================= */
+
+#market_screen {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    transform: none !important;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    z-index: 10000 !important;
+}
+
+body.market-open {
+    overflow: hidden !important;
+}
+/* =========================
+   MERCATO - DIMENSIONI
+   ========================= */
+
+/* Titolo MERCATO GIOCATORI */
+#market_screen .market-title-image img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Immagini dei ruoli */
+#market_screen .image-role-button img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+/* =========================
+   LISTA GIOCATORI - 330px
+   ========================= */
+
+#market_screen #market_role_players {
+    width: 100%;
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+#market_screen .market-search {
+    width: 100%;
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+#market_screen .market-players-list {
+    width: 100%;
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+#market_screen .market-player-row {
+    width: 100%;
+    box-sizing: border-box;
+}
+/* =========================
+   POPUP ACQUISTO SOPRA IL MERCATO
+   ========================= */
+
+#purchase_modal,
+#reserve_modal {
+    z-index: 20000 !important;
+}
