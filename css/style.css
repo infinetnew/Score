@@ -3942,3 +3942,34 @@ box-shadow:
 
     margin: 0;
 }
+/* =========================
+   TESTA A TESTA - SCHERMATA
+   ========================= */
+
+#h2h_screen {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    z-index: 10000 !important;
+}
+
+body.h2h-open {
+    overflow: hidden !important;
+}
