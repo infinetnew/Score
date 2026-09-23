@@ -90,10 +90,7 @@ if (matches.length > 0) {
         console.error('Errore recupero avversario:', opponentError);
         return;
     }
-
-    console.log('Avversario ultima partita:', opponent);
-document.getElementById('stats_last_opponent').textContent =
-    opponent.username;
+console.log('Avversario ultima partita:', opponent);
 const myGoals =
     lastMatch.player1_id === user.id
         ? lastMatch.player1_goals
@@ -104,8 +101,7 @@ const opponentGoals =
         ? lastMatch.player2_goals
         : lastMatch.player1_goals;
 
-document.getElementById('stats_last_goals').textContent =
-    `${myGoals} - ${opponentGoals}`;
+
 const myScore =
     lastMatch.player1_id === user.id
         ? lastMatch.player1_score
@@ -116,26 +112,13 @@ const opponentScore =
         ? lastMatch.player2_score
         : lastMatch.player1_score;
 
-let lastResult;
-
-if (myGoals > opponentGoals) {
-    lastResult = 'Vittoria';
-} else if (myGoals < opponentGoals) {
-    lastResult = 'Sconfitta';
-} else {
-    lastResult = 'Pareggio';
-}
-
-document.getElementById('stats_last_result').textContent =
-    lastResult;
 
 const myH2HPoints =
     lastMatch.player1_id === user.id
         ? lastMatch.player1_points
         : lastMatch.player2_points;
 
-document.getElementById('stats_last_h2h_points').textContent =
-    myH2HPoints;
+
 const commentary = generateMatchCommentary(
     opponent.username,
     myGoals,
