@@ -1572,7 +1572,7 @@ text-overflow: ellipsis;
 
 #ranking_list {
     width: 100%;
-    max-width: 330px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -1623,6 +1623,7 @@ text-overflow: ellipsis;
 
 .ranking-header {
     width: 100%;
+ max-width: 420px;
     box-sizing: border-box;
 
     display: grid;
