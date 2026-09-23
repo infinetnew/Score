@@ -317,4 +317,6 @@ document.getElementById('close_quiz')
 
         document.getElementById('quiz_screen').style.display =
             'none';
+
+        document.body.classList.remove('quiz-open');
     });
