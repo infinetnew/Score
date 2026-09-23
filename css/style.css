@@ -4296,3 +4296,238 @@ body.market-open {
 
     object-fit: contain;
 }
+/* =========================
+   STATISTICHE - SEZIONI
+   ========================= */
+
+#stats_screen {
+    width: 100%;
+    max-width: 420px;
+    min-height: 100vh;
+
+    margin: 0 auto;
+    padding: 20px 15px 30px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+#stats_screen .stats-title h1 {
+    margin: 0 0 20px;
+}
+
+#stats_screen > h2 {
+    margin: 0 0 20px;
+}
+
+.stats-section {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.stats-section h2 {
+    margin: 0 0 12px;
+    font-size: 20px;
+}
+
+/* =========================
+   ULTIMA PARTITA
+   ========================= */
+
+.stats-last-match-card {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 16px;
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.stats-opponent {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.stats-opponent span,
+.stats-scores span,
+.stats-points span {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+.stats-opponent strong {
+    font-size: 19px;
+}
+
+.stats-goals strong {
+    font-size: 34px;
+    line-height: 1;
+}
+
+.stats-scores {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.stats-scores > div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.stats-scores strong {
+    font-size: 20px;
+}
+
+.stats-result strong {
+    font-size: 18px;
+}
+
+.stats-points {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.stats-points strong {
+    font-size: 20px;
+}
+
+/* =========================
+   ULTIME 5 PARTITE
+   ========================= */
+
+.stats-last-five-list {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stats-last-five-row {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: center;
+    gap: 8px;
+
+    padding: 11px 12px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.stats-last-five-result {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.stats-last-five-opponent {
+    text-align: left;
+    font-weight: 600;
+}
+
+.stats-last-five-score {
+    font-weight: 700;
+}
+
+/* =========================
+   VITTORIE / PAREGGI / SCONFITTE
+   ========================= */
+
+.stats-record-grid {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.stats-record-item {
+    padding: 13px 5px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stats-record-item strong {
+    font-size: 25px;
+}
+
+.stats-record-item span {
+    font-size: 11px;
+    opacity: 0.75;
+}
+
+/* =========================
+   RECORD PERSONALI
+   ========================= */
+
+.stats-records-list {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stats-record-row {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    text-align: left;
+}
+
+.stats-record-row span {
+    font-size: 14px;
+}
+
+.stats-record-row strong {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* =========================
+   CHIUDI STATISTICHE
+   ========================= */
+
+#stats_screen #close_stats {
+    margin-top: 12px !important;
+}
