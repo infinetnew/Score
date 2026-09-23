@@ -121,5 +121,24 @@ document.getElementById('stats_last_my_score').textContent =
 
 document.getElementById('stats_last_opponent_score').textContent =
     opponentScore;
+let lastResult;
+
+if (myGoals > opponentGoals) {
+    lastResult = 'Vittoria';
+} else if (myGoals < opponentGoals) {
+    lastResult = 'Sconfitta';
+} else {
+    lastResult = 'Pareggio';
+}
+
+document.getElementById('stats_last_result').textContent =
+    lastResult;
+const myH2HPoints =
+    lastMatch.player1_id === user.id
+        ? lastMatch.player1_points
+        : lastMatch.player2_points;
+
+document.getElementById('stats_last_h2h_points').textContent =
+    myH2HPoints;
 }
 }
