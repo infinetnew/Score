@@ -130,8 +130,8 @@ document.getElementById('stats_last_result').textContent =
     lastResult;
 const myH2HPoints =
     lastMatch.player1_id === user.id
-        ? lastMatch.player1_points
-        : lastMatch.player2_points;
+        ? lastMatch.player1_score
+        : lastMatch.player2_score;
 
 document.getElementById('stats_last_h2h_points').textContent =
     myH2HPoints;
