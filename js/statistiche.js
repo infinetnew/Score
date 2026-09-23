@@ -33,3 +33,17 @@ document.getElementById('close_stats').addEventListener('click', () => {
 
     statsPreviousDisplay.clear();
 });
+async function loadStats() {
+
+    const { data: { user }, error } = await supabaseClient.auth.getUser();
+
+    if (error || !user) {
+        console.error('Errore recupero utente:', error);
+        return;
+    }
+
+    console.log('Utente statistiche:', user.id);
+}
+document.getElementById('open_stats').addEventListener('click', async () => {
+    await loadStats();
+});
