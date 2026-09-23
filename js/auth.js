@@ -678,6 +678,7 @@ const renderH2HRoleRow = (formation, role, dotClass) => {
 // MOSTRIAMO IL CONTENITORE
 // =========================================
 
+document.body.classList.add('h2h-formations-open');
 container.style.display = 'block';
 
 container.innerHTML = `
@@ -847,6 +848,7 @@ document
     .getElementById('close_h2h_formations')
     .addEventListener('click', () => {
         container.style.display = 'none';
+        document.body.classList.remove('h2h-formations-open');
     });
 
 }
