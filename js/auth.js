@@ -852,6 +852,8 @@ document
 }
 document.getElementById('open_h2h').addEventListener('click', () => {
 
+    document.body.classList.add('h2h-open');
+
     document.getElementById('h2h_screen').style.display = 'flex';
 
     loadNextH2H();
@@ -862,6 +864,8 @@ document.getElementById('open_h2h').addEventListener('click', () => {
 document.getElementById('close_h2h').addEventListener('click', () => {
 
     document.getElementById('h2h_screen').style.display = 'none';
+
+    document.body.classList.remove('h2h-open');
 
 });
 document.getElementById('logout_button').addEventListener('click', async () => {
