@@ -3974,3 +3974,34 @@ box-shadow:
 body.h2h-open {
     overflow: hidden !important;
 }
+/* =========================
+   H2H FORMAZIONI - SCHERMATA
+   ========================= */
+
+#h2h_formations_container {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    transform: none !important;
+    box-sizing: border-box;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    z-index: 11000 !important;
+}
+
+body.h2h-formations-open {
+    overflow: hidden !important;
+}
