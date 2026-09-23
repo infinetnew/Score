@@ -897,6 +897,15 @@ screen.style.display = 'flex';
     async function loadRanking(type) {
 
         list.innerHTML = 'Caricamento...';
+list.classList.toggle(
+    'ranking-g-mode',
+    type === 'g'
+);
+
+list.classList.toggle(
+    'ranking-score-mode',
+    type === 'score'
+);
 
         let rpcName;
 
