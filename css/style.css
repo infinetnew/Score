@@ -1572,11 +1572,14 @@ text-overflow: ellipsis;
 
 #ranking_list {
     width: 100%;
-    max-width: 400px;
+    max-width: 330px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     margin-bottom: 20px;
+}
+#ranking_list.ranking-g-mode {
+    max-width: 400px;
 }
 
 .ranking-row {
