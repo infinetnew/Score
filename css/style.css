@@ -4276,3 +4276,23 @@ body.market-open {
 
     text-align: center;
 }
+#stats_screen #close_stats {
+    width: 180px !important;
+    height: auto !important;
+
+    margin: 20px auto 0 !important;
+    padding: 0 !important;
+
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+#stats_screen #close_stats img {
+    display: block;
+
+    width: 180px !important;
+    height: auto !important;
+
+    object-fit: contain;
+}
