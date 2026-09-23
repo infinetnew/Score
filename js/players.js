@@ -1055,17 +1055,50 @@ if (type === 'g') {
                     ? player.points
                     : player.total_score;
 
-            row.innerHTML = `
-                <span class="ranking-position">
-                    ${myPosition + 1}°
-                </span>
+if (type === 'g') {
 
-                <strong>${player.username}</strong>
+    const goalsFor = Number(player.goals_for) || 0;
+    const goalsAgainst = Number(player.goals_against) || 0;
+    const goalDifference = goalsFor - goalsAgainst;
 
-                <span class="ranking-points">
-                    ${points} pt
-                </span>
-            `;
+    row.innerHTML = `
+        <span class="ranking-position">
+            ${myPosition + 1}°
+        </span>
+
+        <strong>${player.username}</strong>
+
+        <span class="ranking-stat">
+            ${goalsFor}
+        </span>
+
+        <span class="ranking-stat">
+            ${goalsAgainst}
+        </span>
+
+        <span class="ranking-stat">
+            ${goalDifference > 0 ? '+' : ''}${goalDifference}
+        </span>
+
+        <span class="ranking-points">
+            ${player.points} pt
+        </span>
+    `;
+
+} else {
+
+    row.innerHTML = `
+        <span class="ranking-position">
+            ${myPosition + 1}°
+        </span>
+
+        <strong>${player.username}</strong>
+
+        <span class="ranking-points">
+            ${points} pt
+        </span>
+    `;
+}
 
             list.appendChild(row);
         }
