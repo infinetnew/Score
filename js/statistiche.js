@@ -1,6 +1,6 @@
 let statsPreviousDisplay = new Map();
 
-document.getElementById('open_stats').addEventListener('click', () => {
+document.getElementById('open_stats').addEventListener('click', async () => {
 
     const app = document.getElementById('app');
     const statsScreen = document.getElementById('stats_screen');
@@ -17,6 +17,8 @@ document.getElementById('open_stats').addEventListener('click', () => {
     });
 
     statsScreen.style.display = 'flex';
+
+    await loadStats();
 });
 
 
@@ -69,7 +71,26 @@ async function loadStats() {
     }
 
     console.log('Partite H2H statistiche:', matches);
+if (matches.length > 0) {
+
+    const lastMatch = matches[0];
+
+    const opponentId =
+        lastMatch.player1_id === user.id
+            ? lastMatch.player2_id
+            : lastMatch.player1_id;
+
+    const { data: opponent, error: opponentError } = await supabaseClient
+        .from('score_users')
+        .select('username')
+        .eq('id', opponentId)
+        .single();
+
+    if (opponentError) {
+        console.error('Errore recupero avversario:', opponentError);
+        return;
+    }
+
+    console.log('Avversario ultima partita:', opponent);
 }
-document.getElementById('open_stats').addEventListener('click', async () => {
-    await loadStats();
-});
+}
