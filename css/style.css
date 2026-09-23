@@ -894,6 +894,7 @@ padding: 30px 25px;
 
 .h2h-league-title {
     width: 100%;
+    max-width: 420px;
     box-sizing: border-box;
 
     margin: 4px 0 18px;
