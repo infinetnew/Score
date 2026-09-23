@@ -357,6 +357,12 @@ padding: 30px 25px;
 
 #quiz_screen #question {
     order: 2;
+
+    width: 100%;
+    max-width: 420px;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #quiz_screen .quiz-options {
@@ -401,6 +407,10 @@ padding: 30px 25px;
     gap: 12px;
 
     width: 100%;
+    max-width: 330px;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
