@@ -116,11 +116,6 @@ const opponentScore =
         ? lastMatch.player2_score
         : lastMatch.player1_score;
 
-document.getElementById('stats_last_my_score').textContent =
-    myScore;
-
-document.getElementById('stats_last_opponent_score').textContent =
-    opponentScore;
 let lastResult;
 
 if (myGoals > opponentGoals) {
