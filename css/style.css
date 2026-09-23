@@ -4110,3 +4110,35 @@ body.quiz-open {
 body.my-players-open {
     overflow: hidden !important;
 }
+/* =========================
+   MERCATO - SCHERMATA
+   ========================= */
+
+#market_screen {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    transform: none !important;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    z-index: 10000 !important;
+}
+
+body.market-open {
+    overflow: hidden !important;
+}
