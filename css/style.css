@@ -4722,3 +4722,21 @@ position: relative;
         0 2px 4px rgba(0, 0, 0, 0.9),
         0 0 8px rgba(0, 0, 0, 0.7);
 }
+.h2h-view-formations {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    width: 105px;
+
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.h2h-view-formations img {
+    width: 100%;
+    height: auto;
+
+    display: block;
+}
