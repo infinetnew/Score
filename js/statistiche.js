@@ -73,6 +73,47 @@ created_at
     }
 
     console.log('Partite H2H statistiche:', matches);
+const lastFiveMatches = matches.slice(0, 5);
+
+console.log('Ultime 5 partite calcolate:', lastFiveMatches);
+const lastFiveContainer =
+    document.getElementById('stats_last_five_list');
+
+lastFiveContainer.innerHTML = '';
+
+lastFiveMatches.forEach(match => {
+
+    const isPlayer1 = match.player1_id === user.id;
+
+    const myGoals = isPlayer1
+        ? match.player1_goals
+        : match.player2_goals;
+
+    const opponentGoals = isPlayer1
+        ? match.player2_goals
+        : match.player1_goals;
+
+    let resultClass;
+
+    if (myGoals > opponentGoals) {
+        resultClass = 'win';
+    } else if (myGoals < opponentGoals) {
+        resultClass = 'loss';
+    } else {
+        resultClass = 'draw';
+    }
+
+    const matchElement = document.createElement('div');
+
+    matchElement.className = 'stats-last-five-match';
+
+    matchElement.innerHTML = `
+        <strong>${myGoals} - ${opponentGoals}</strong>
+        <span class="stats-result-dot ${resultClass}"></span>
+    `;
+
+    lastFiveContainer.appendChild(matchElement);
+});
 if (matches.length > 0) {
 
     const lastMatch = matches[0];
