@@ -4569,11 +4569,11 @@ body.market-open {
 #stats_screen .stats-last-match-card {
     width: 100%;
     max-width: 420px;
-    height: 630px;
+    height: 500px;
 
     box-sizing: border-box;
 
-    padding: 170px 28px 210px;
+  padding: 65px 28px 150px;
 
 background-image: url("/Score/assets/telecronaca.png");
     background-size: 100% 100%;
