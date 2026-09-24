@@ -4414,25 +4414,46 @@ body.market-open {
 .stats-last-five-list {
     width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
 }
 
 .stats-last-five-match {
+    min-width: 0;
+    min-height: 82px;
+
+    box-sizing: border-box;
+
+    padding: 10px 4px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    gap: 5px;
+    gap: 6px;
 }
 
-.stats-last-five-match strong {
-    font-size: 18px;
+.stats-last-five-matchday {
+    font-size: 11px;
     font-weight: 700;
+
+    opacity: 0.75;
+
+    white-space: nowrap;
+}
+
+.stats-last-five-score {
+    font-size: 17px;
+    font-weight: 800;
+
+    white-space: nowrap;
 }
 
 .stats-result-dot {
@@ -4455,7 +4476,6 @@ body.market-open {
 .stats-result-dot.loss {
     background: #ef4444;
 }
-
 /* =========================
    VITTORIE / PAREGGI / SCONFITTE
    ========================= */
