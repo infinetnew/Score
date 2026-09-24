@@ -4591,6 +4591,7 @@ background-image: url("/Score/assets/telecronaca.png");
     box-shadow: none;
 
     overflow: hidden;
+position: relative;
 }
 #stats_screen .stats-last-match-card p {
     width: 100%;
@@ -4689,6 +4690,16 @@ background-image: url("/Score/assets/telecronaca.png");
     justify-content: flex-start;
 
     overflow: hidden;
+position: relative;
+}
+#stats_screen .stats-last-match-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    z-index: 0;
 }
 
 #stats_screen .stats-last-match-card p {
@@ -4702,7 +4713,10 @@ background-image: url("/Score/assets/telecronaca.png");
 
     text-align: center;
 
-    transform: translateY(-90px);
+    transform: translateY(-70px);
+
+    position: relative;
+    z-index: 1;
 
     text-shadow:
         0 2px 4px rgba(0, 0, 0, 0.9),
