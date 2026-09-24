@@ -81,7 +81,26 @@ const lastFiveContainer =
 
 lastFiveContainer.innerHTML = '';
 
-lastFiveMatches.forEach(match => {
+for (let i = 0; i < 5; i++) {
+
+    const match = lastFiveMatches[i];
+
+    const matchElement = document.createElement('div');
+
+    matchElement.className = 'stats-last-five-match';
+
+    // BOX VUOTO
+if (!match) {
+
+    matchElement.innerHTML = `
+        <strong class="stats-last-five-score">
+            —
+        </strong>
+    `;
+
+    lastFiveContainer.appendChild(matchElement);
+    continue;
+}
 
     const isPlayer1 = match.player1_id === user.id;
 
@@ -103,17 +122,20 @@ lastFiveMatches.forEach(match => {
         resultClass = 'draw';
     }
 
-    const matchElement = document.createElement('div');
-
-    matchElement.className = 'stats-last-five-match';
-
     matchElement.innerHTML = `
-        <strong>${myGoals} - ${opponentGoals}</strong>
+        <span class="stats-last-five-matchday">
+            Giornata ${match.matchday}
+        </span>
+
+        <strong class="stats-last-five-score">
+            ${myGoals} - ${opponentGoals}
+        </strong>
+
         <span class="stats-result-dot ${resultClass}"></span>
     `;
 
     lastFiveContainer.appendChild(matchElement);
-});
+}
 if (matches.length > 0) {
 
     const lastMatch = matches[0];
