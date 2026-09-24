@@ -4416,38 +4416,44 @@ body.market-open {
 
     display: flex;
     flex-direction: column;
-    gap: 8px;
-}
-
-.stats-last-five-row {
-    width: 100%;
-    box-sizing: border-box;
-
-    display: grid;
-    grid-template-columns: 28px 1fr auto;
     align-items: center;
-    gap: 8px;
 
-    padding: 11px 12px;
-
-    border-radius: 12px;
-
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    gap: 12px;
 }
 
-.stats-last-five-result {
+.stats-last-five-match {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+}
+
+.stats-last-five-match strong {
     font-size: 18px;
     font-weight: 700;
 }
 
-.stats-last-five-opponent {
-    text-align: left;
-    font-weight: 600;
+.stats-result-dot {
+    width: 9px;
+    height: 9px;
+
+    display: block;
+
+    border-radius: 50%;
 }
 
-.stats-last-five-score {
-    font-weight: 700;
+.stats-result-dot.win {
+    background: #22c55e;
+}
+
+.stats-result-dot.draw {
+    background: #eab308;
+}
+
+.stats-result-dot.loss {
+    background: #ef4444;
 }
 
 /* =========================
