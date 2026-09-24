@@ -139,20 +139,19 @@ matches.forEach(match => {
     }
 
 
-    // =========================
-    // MIGLIORE VITTORIA
-    // =========================
+// =========================
+// MIGLIORE VITTORIA
+// =========================
 
-    if (myGoals > opponentGoals) {
+if (myGoals > opponentGoals) {
 
-        const goalDifference = myGoals - opponentGoals;
+    const goalDifference = myGoals - opponentGoals;
 
-        if (goalDifference > recordBestWinDifference) {
-            recordBestWinDifference = goalDifference;
-            recordBestWin = `${myGoals} - ${opponentGoals}`;
-        }
-
-// La striscia viene calcolata separatamente
+    if (goalDifference > recordBestWinDifference) {
+        recordBestWinDifference = goalDifference;
+        recordBestWin = `${myGoals} - ${opponentGoals}`;
+    }
+}
 
 
     // =========================
