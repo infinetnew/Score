@@ -477,12 +477,15 @@ html += `
 
         <span>${username2}</span>
 
-        <button
-            class="h2h-view-formations"
-            type="button"
-        >
-            VEDI FORMAZIONI
-        </button>
+<button
+    class="h2h-view-formations"
+    type="button"
+>
+    <img
+        src="/Score/assets/vedi-formazioni.png"
+        alt="Vedi formazioni"
+    >
+</button>
 
     </div>
 `;
