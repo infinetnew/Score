@@ -4317,8 +4317,12 @@ body.market-open {
     text-align: center;
 }
 
-#stats_screen .stats-title h1 {
-    margin: 0 0 20px;
+#stats_screen .stats-title img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
 }
 
 #stats_screen > h2 {
