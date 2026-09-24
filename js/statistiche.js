@@ -101,6 +101,121 @@ matches.forEach(match => {
 document.getElementById('stats_wins').textContent = wins;
 document.getElementById('stats_draws').textContent = draws;
 document.getElementById('stats_losses').textContent = losses;
+// =========================
+// RECORD PERSONALI
+// =========================
+
+let recordGoals = 0;
+let recordBestWinDifference = -1;
+let recordBestWin = '—';
+let recordBestScore = 0;
+
+let currentWinStreak = 0;
+let bestWinStreak = 0;
+
+matches.forEach(match => {
+
+    const isPlayer1 = match.player1_id === user.id;
+
+    const myGoals = isPlayer1
+        ? match.player1_goals
+        : match.player2_goals;
+
+    const opponentGoals = isPlayer1
+        ? match.player2_goals
+        : match.player1_goals;
+
+    const myScore = isPlayer1
+        ? match.player1_score
+        : match.player2_score;
+
+
+    // =========================
+    // PIÙ GOL IN UNA PARTITA
+    // =========================
+
+    if (myGoals > recordGoals) {
+        recordGoals = myGoals;
+    }
+
+
+    // =========================
+    // MIGLIORE VITTORIA
+    // =========================
+
+    if (myGoals > opponentGoals) {
+
+        const goalDifference = myGoals - opponentGoals;
+
+        if (goalDifference > recordBestWinDifference) {
+            recordBestWinDifference = goalDifference;
+            recordBestWin = `${myGoals} - ${opponentGoals}`;
+        }
+
+// La striscia viene calcolata separatamente
+
+
+    // =========================
+    // MIGLIOR PUNTEGGIO
+    // =========================
+
+    if (myScore > recordBestScore) {
+        recordBestScore = myScore;
+    }
+
+});
+
+// =========================
+// STRISCIA DI VITTORIE
+// =========================
+
+const chronologicalMatches = [...matches].sort(
+    (a, b) => a.matchday - b.matchday
+);
+
+currentWinStreak = 0;
+bestWinStreak = 0;
+
+chronologicalMatches.forEach(match => {
+
+    const isPlayer1 = match.player1_id === user.id;
+
+    const myGoals = isPlayer1
+        ? match.player1_goals
+        : match.player2_goals;
+
+    const opponentGoals = isPlayer1
+        ? match.player2_goals
+        : match.player1_goals;
+
+    if (myGoals > opponentGoals) {
+
+        currentWinStreak++;
+
+        if (currentWinStreak > bestWinStreak) {
+            bestWinStreak = currentWinStreak;
+        }
+
+    } else {
+
+        currentWinStreak = 0;
+    }
+});
+// =========================
+// RIEMPIAMO I RECORD
+// =========================
+
+document.getElementById('stats_record_goals').textContent =
+    recordGoals;
+
+document.getElementById('stats_record_best_win').textContent =
+    recordBestWin;
+
+document.getElementById('stats_record_best_score').textContent =
+    recordBestScore;
+
+document.getElementById('stats_record_win_streak').textContent =
+    bestWinStreak;
 const lastFiveMatches = matches.slice(0, 5);
 
 console.log('Ultime 5 partite calcolate:', lastFiveMatches);
