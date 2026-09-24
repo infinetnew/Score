@@ -60,9 +60,11 @@ async function loadStats() {
             result,
             player1_points,
             player2_points,
-            created_at
+            status,
+created_at
         `)
         .or(`player1_id.eq.${user.id},player2_id.eq.${user.id}`)
+.eq('status', 'calculated')
         .order('created_at', { ascending: false });
 
     if (matchesError) {
