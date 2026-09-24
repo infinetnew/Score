@@ -4569,7 +4569,7 @@ body.market-open {
 #stats_screen .stats-last-match-card {
     width: 100%;
     max-width: 420px;
-    height: 500px;
+    height: 460px;
 
     box-sizing: border-box;
 
@@ -4593,16 +4593,17 @@ background-image: url("/Score/assets/telecronaca.png");
     overflow: hidden;
 }
 #stats_screen .stats-last-match-card p {
+    width: 100%;
     margin: 0;
 
-    width: 100%;
+    color: white;
 
     font-size: 16px;
     line-height: 1.15;
 
     text-align: center;
 
-    color: white;
+    transform: translateY(-90px);
 
     text-shadow:
         0 2px 4px rgba(0, 0, 0, 0.9),
