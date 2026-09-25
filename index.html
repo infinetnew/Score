@@ -1448,7 +1448,7 @@ if (musicEnabled) {
 // AVVIO AL PRIMO GESTO DELL'UTENTE
 // =========================================
 
-document.addEventListener('click', () => {
+document.addEventListener('pointerdown', () => {
 
     if (
         musicEnabled &&
@@ -1459,8 +1459,7 @@ document.addEventListener('click', () => {
 
     }
 
-}, { once: true });
-
+});
 
 // =========================================
 // SALVA IMPOSTAZIONE
