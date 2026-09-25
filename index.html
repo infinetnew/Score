@@ -1224,33 +1224,6 @@ if (isPasswordRecovery) {
 
 supabaseClient.auth.getSession().then(async ({ data }) => {
 
-    // =========================================
-    // TENTATIVO AVVIO MUSICA DURANTE IL LOADING
-    // =========================================
-
-    const music = document.getElementById('fanta5_music');
-
-    music.volume = 0.15;
-
-    const musicEnabled =
-        localStorage.getItem('fanta5_music_enabled') !== 'false';
-
-    if (musicEnabled) {
-
-        music.play().catch(() => {
-
-            console.log(
-                'Autoplay bloccato dal browser.'
-            );
-
-        });
-
-    }
-
-    // =========================================
-    // LOADING
-    // =========================================
-
     const loadingScreen =
         document.getElementById('loading_screen');
 
