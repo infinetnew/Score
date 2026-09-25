@@ -164,10 +164,29 @@
 
 <body>
 
-    <main class="auth-container">
+<main class="auth-container">
 
-        <!-- SCHERMATA INIZIALE -->
-<section id="welcome_screen">
+    <!-- SCHERMATA DI CARICAMENTO -->
+    <section id="loading_screen">
+
+        <img
+            src="/Score/assets/score-home.png"
+            alt="Fanta 5"
+            class="auth-logo"
+        >
+
+        <p>Caricamento...</p>
+
+        <div id="loading_bar_container">
+            <div id="loading_bar"></div>
+        </div>
+
+        <p id="loading_percent">0%</p>
+
+    </section>
+
+    <!-- SCHERMATA INIZIALE -->
+    <section id="welcome_screen" style="display: none;">
 
     <img src="/Score/assets/score-home.png" alt="Fanta 5" class="auth-logo">
 
@@ -1115,63 +1134,152 @@ if (isPasswordRecovery) {
     });
 
 
-    // Controlliamo se esiste già una sessione
-    supabaseClient.auth.getSession().then(async ({ data }) => {
+  // =========================================
+// AVVIO APP + SCHERMATA DI CARICAMENTO
+// =========================================
 
-if (
-    !data.session ||
-    isPasswordRecovery ||
-    window.location.hash.includes('type=recovery')
-) {
-    return;
-}
+supabaseClient.auth.getSession().then(async ({ data }) => {
 
-        const user = data.session.user;
+    const loadingScreen =
+        document.getElementById('loading_screen');
 
-        console.log('Sessione trovata:', user.id);
+    const loadingBar =
+        document.getElementById('loading_bar');
 
+    const loadingPercent =
+        document.getElementById('loading_percent');
 
-        // Recuperiamo il nome dell'utente
-        const { data: profile, error } =
-            await supabaseClient
-                .from('score_users')
-                .select('username, is_admin')
-                .eq('id', user.id)
-                .single();
+    const welcomeScreen =
+        document.getElementById('welcome_screen');
 
+    // Partiamo da 0%
+    loadingBar.style.width = '0%';
+    loadingPercent.textContent = '0%';
 
-        if (error) {
-            console.error('Errore recupero profilo:', error);
-            return;
+    // Animazione della barra
+    let progress = 0;
+
+    const loadingInterval = setInterval(() => {
+
+        if (progress < 90) {
+            progress += 2;
+
+            loadingBar.style.width = progress + '%';
+            loadingPercent.textContent = progress + '%';
         }
 
+    }, 30);
 
-        const username = profile.username || 'giocatore';
+
+    // =========================================
+    // CONTROLLO SESSIONE
+    // =========================================
+
+    if (
+        !data.session ||
+        isPasswordRecovery ||
+        window.location.hash.includes('type=recovery')
+    ) {
+
+        clearInterval(loadingInterval);
+
+        loadingBar.style.width = '100%';
+        loadingPercent.textContent = '100%';
+
+        setTimeout(() => {
+
+            loadingScreen.style.display = 'none';
+            welcomeScreen.style.display = 'block';
+
+        }, 300);
+
+        return;
+    }
 
 
-        // Nascondiamo la schermata di accesso
+    // =========================================
+    // SESSIONE TROVATA
+    // =========================================
+
+    const user = data.session.user;
+
+    console.log('Sessione trovata:', user.id);
+
+
+    // Recuperiamo il nome dell'utente
+    const { data: profile, error } =
+        await supabaseClient
+            .from('score_users')
+            .select('username, is_admin')
+            .eq('id', user.id)
+            .single();
+
+
+    if (error) {
+
+        console.error(
+            'Errore recupero profilo:',
+            error
+        );
+
+        clearInterval(loadingInterval);
+
+        loadingBar.style.width = '100%';
+        loadingPercent.textContent = '100%';
+
+        setTimeout(() => {
+
+            loadingScreen.style.display = 'none';
+            welcomeScreen.style.display = 'block';
+
+        }, 300);
+
+        return;
+    }
+
+
+    const username =
+        profile.username || 'giocatore';
+
+
+    // =========================================
+    // COMPLETIAMO IL CARICAMENTO
+    // =========================================
+
+    clearInterval(loadingInterval);
+
+    loadingBar.style.width = '100%';
+    loadingPercent.textContent = '100%';
+
+
+    setTimeout(() => {
+
+        // Nascondiamo autenticazione
         document.querySelector('.auth-container').style.display =
             'none';
-
 
         // Mostriamo l'app
         document.getElementById('app').style.display =
             'block';
 
-
         // Mostriamo il nome
         document.getElementById('welcome_user').textContent =
             'Bentornato ' + username + '!';
 
+        // Mostriamo Admin se necessario
         if (profile.is_admin) {
+
             document.getElementById('admin_section').style.display =
                 'block';
+
         }
 
         loadCredits();
         loadNextH2H();
 
-    });
+    }, 300);
+
+});
 
 </script>
 <script>
