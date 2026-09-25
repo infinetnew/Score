@@ -765,6 +765,17 @@
 </section>
 
 </main>
+<!-- MUSICA FANTA 5 -->
+<audio
+    id="fanta5_music"
+    src="/Score/assets/fanta5-theme.mp3"
+    loop
+    preload="auto">
+</audio>
+
+<button id="music_toggle" type="button" aria-label="Musica">
+    🔊
+</button>
 
 <!-- POPUP ACQUISTO -->
 <div id="purchase_modal" class="purchase-modal" style="display: none;">
@@ -1299,6 +1310,58 @@ supabaseClient.auth.getSession().then(async ({ data }) => {
 
         loadingBar.style.width = '100%';
         loadingPercent.textContent = '100%';
+// =========================================
+// MUSICA FANTA 5
+// =========================================
+
+const music = document.getElementById('fanta5_music');
+const musicToggle = document.getElementById('music_toggle');
+
+music.volume = 0.15;
+
+// Recuperiamo la preferenza dell'utente
+const musicEnabled =
+    localStorage.getItem('fanta5_music_enabled') !== 'false';
+
+if (musicEnabled) {
+
+    musicToggle.textContent = '🔊';
+
+    music.play().catch(() => {
+        console.log('Autoplay musica bloccato dal browser.');
+    });
+
+} else {
+
+    musicToggle.textContent = '🔇';
+}
+
+
+// Pulsante musica
+musicToggle.addEventListener('click', () => {
+
+    if (music.paused) {
+
+        music.play().catch(() => {});
+        musicToggle.textContent = '🔊';
+
+        localStorage.setItem(
+            'fanta5_music_enabled',
+            'true'
+        );
+
+    } else {
+
+        music.pause();
+        musicToggle.textContent = '🔇';
+
+        localStorage.setItem(
+            'fanta5_music_enabled',
+            'false'
+        );
+    }
+
+});
 
         setTimeout(() => {
 
