@@ -1419,14 +1419,15 @@ let musicEnabled =
 
 function updateMusicUI(enabled) {
 
-    settingsMusicToggle.textContent =
-        enabled ? '🔊' : '🔇';
+    settingsMusicToggle.classList.toggle(
+        'active',
+        enabled
+    );
 
     musicStatus.textContent =
         enabled ? 'Attiva' : 'Disattivata';
 
 }
-
 
 // =========================================
 // APPLICA STATO INIZIALE
