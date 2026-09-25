@@ -1373,7 +1373,6 @@ supabaseClient.auth.getSession().then(async ({ data }) => {
 // =========================================
 
 const music = document.getElementById('fanta5_music');
-const musicToggle = document.getElementById('music_toggle');
 const settingsMusicToggle =
     document.getElementById('settings_music_toggle');
 const musicStatus =
@@ -1416,9 +1415,6 @@ let musicEnabled =
 // =========================================
 
 function updateMusicUI(enabled) {
-
-    musicToggle.textContent =
-        enabled ? '🔊' : '🔇';
 
     settingsMusicToggle.textContent =
         enabled ? '🔊' : '🔇';
@@ -1490,31 +1486,6 @@ async function saveMusicSetting(enabled) {
     }
 
 }
-
-
-// =========================================
-// PULSANTE MUSICA PRINCIPALE
-// =========================================
-
-musicToggle.addEventListener('click', async () => {
-
-    musicEnabled = !musicEnabled;
-
-    if (musicEnabled) {
-
-        music.play().catch(() => {});
-
-    } else {
-
-        music.pause();
-
-    }
-
-    updateMusicUI(musicEnabled);
-
-    await saveMusicSetting(musicEnabled);
-
-});
 
 
 // =========================================
@@ -1644,50 +1615,7 @@ document.getElementById('close_settings')
     settingsPreviousDisplay.clear();
 
 });
-document.getElementById('settings_music_toggle')
-    .addEventListener('click', async () => {
 
-    if (music.paused) {
-
-        music.play().catch(() => {});
-
-        document.getElementById('settings_music_toggle').textContent = '🔊';
-        document.getElementById('music_status').textContent = 'Attiva';
-
-        const { error } = await supabaseClient
-            .from('score_user_settings')
-            .update({
-                music_enabled: true,
-                updated_at: new Date().toISOString()
-            })
-            .eq('user_id', user.id);
-
-        if (error) {
-            console.error('Errore salvataggio musica:', error);
-        }
-
-    } else {
-
-        music.pause();
-
-        document.getElementById('settings_music_toggle').textContent = '🔇';
-        document.getElementById('music_status').textContent = 'Disattivata';
-
-        const { error } = await supabaseClient
-            .from('score_user_settings')
-            .update({
-                music_enabled: false,
-                updated_at: new Date().toISOString()
-            })
-            .eq('user_id', user.id);
-
-        if (error) {
-            console.error('Errore salvataggio musica:', error);
-        }
-
-    }
-
-});
 </script>
 <script src="js/auth.js"></script>
 <script src="js/players.js"></script>
