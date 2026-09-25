@@ -4853,3 +4853,58 @@ position: relative;
 
     display: block;
 }
+/* =========================
+   TOGGLE MUSICA
+   ========================= */
+
+.settings-toggle {
+    position: relative;
+
+    width: 52px;
+    height: 30px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 30px;
+
+    background: #26384a;
+
+    cursor: pointer;
+
+    transition: background 0.25s ease;
+}
+
+.settings-toggle-knob {
+    position: absolute;
+
+    top: 4px;
+    left: 4px;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+
+    transition: transform 0.25s ease;
+}
+
+/* MUSICA ATTIVA */
+
+.settings-toggle.active {
+    background: #12a957;
+}
+
+.settings-toggle.active .settings-toggle-knob {
+    transform: translateX(22px);
+}
+
+/* EFFETTO PRESSIONE */
+
+.settings-toggle:active {
+    transform: scale(0.95);
+}
