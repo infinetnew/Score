@@ -770,7 +770,7 @@
 
 
 <!-- IMPOSTAZIONI -->
-<section id="settings_screen" class="score-modal" style="display: none;">
+<section id="settings_screen" style="display: none;">
 
     <div class="stats-title">
         <img src="/Score/assets/impostazioni.png" alt="Impostazioni">
@@ -1501,10 +1501,50 @@ document.getElementById('open_quiz')
 
     loadQuestion();
 });
+let settingsPreviousDisplay = new Map();
+
 document.getElementById('open_settings')
     .addEventListener('click', () => {
 
-    document.getElementById('settings_screen').style.display = 'flex';
+    const app = document.getElementById('app');
+    const settingsScreen = document.getElementById('settings_screen');
+
+    settingsPreviousDisplay.clear();
+
+    Array.from(app.children).forEach(element => {
+
+        if (element.id !== 'settings_screen') {
+
+            settingsPreviousDisplay.set(
+                element,
+                element.style.display
+            );
+
+            element.style.display = 'none';
+        }
+
+    });
+
+    settingsScreen.style.display = 'flex';
+
+});
+
+
+document.getElementById('close_settings')
+    .addEventListener('click', () => {
+
+    const app = document.getElementById('app');
+    const settingsScreen = document.getElementById('settings_screen');
+
+    settingsScreen.style.display = 'none';
+
+    settingsPreviousDisplay.forEach((display, element) => {
+
+        element.style.display = display;
+
+    });
+
+    settingsPreviousDisplay.clear();
 
 });
 </script>
