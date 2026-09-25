@@ -768,6 +768,55 @@
 
 </section>
 
+
+<!-- IMPOSTAZIONI -->
+<section id="settings_screen" style="display: none;">
+
+    <div class="stats-title">
+        <img src="/Score/assets/impostazioni.png" alt="Impostazioni">
+    </div>
+
+    <h2>IMPOSTAZIONI</h2>
+
+    <div class="settings-option">
+
+        <div class="settings-option-text">
+            <strong>🎵 Musica</strong>
+            <span id="music_status">Attiva</span>
+        </div>
+
+        <button
+            id="settings_music_toggle"
+            class="settings-toggle"
+            type="button">
+            🔊
+        </button>
+
+    </div>
+
+    <div class="settings-option">
+
+        <div class="settings-option-text">
+            <strong>🔔 Notifiche</strong>
+            <span id="notifications_status">Attive</span>
+        </div>
+
+        <button
+            id="settings_notifications_toggle"
+            class="settings-toggle"
+            type="button">
+            🔔
+        </button>
+
+    </div>
+
+    <button class="quiz-close image-close-button" id="close_settings">
+        <img src="/Score/assets/chiudi.png" alt="Chiudi">
+    </button>
+
+</section>
+
+
 </main>
 <!-- MUSICA FANTA 5 -->
 <audio
@@ -1451,6 +1500,12 @@ document.getElementById('open_quiz')
     document.getElementById('quiz_screen').style.display = 'flex';
 
     loadQuestion();
+});
+document.getElementById('open_settings')
+    .addEventListener('click', () => {
+
+    document.getElementById('settings_screen').style.display = 'flex';
+
 });
 </script>
 <script src="js/auth.js"></script>
