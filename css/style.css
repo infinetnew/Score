@@ -4279,11 +4279,12 @@ body.market-open {
 
 /* Icona impostazioni */
 
-#settings_screen .stats-title img {
-    width: 260px;
+#settings_screen .settings-title img {
+    width: 420px;
+    max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto 10px;
+    margin: 0 auto 30px;
 }
 
 /* Titolo */
