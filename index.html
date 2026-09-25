@@ -1377,15 +1377,68 @@ supabaseClient.auth.getSession().then(async ({ data }) => {
 
 const music = document.getElementById('fanta5_music');
 const musicToggle = document.getElementById('music_toggle');
+const settingsMusicToggle =
+    document.getElementById('settings_music_toggle');
+const musicStatus =
+    document.getElementById('music_status');
 
 music.volume = 0.08;
 
-const musicEnabled =
-    localStorage.getItem('fanta5_music_enabled') !== 'false';
+
+// =========================================
+// RECUPERO IMPOSTAZIONE MUSICA
+// =========================================
+
+const { data: musicSettings, error: musicSettingsError } =
+    await supabaseClient
+        .from('score_user_settings')
+        .select('music_enabled')
+        .eq('user_id', user.id)
+        .single();
+
+if (musicSettingsError) {
+
+    console.error(
+        'Errore recupero impostazione musica:',
+        musicSettingsError
+    );
+
+}
+
+
+// =========================================
+// STATO MUSICA
+// =========================================
+
+let musicEnabled =
+    musicSettings?.music_enabled ?? true;
+
+
+// =========================================
+// AGGIORNA INTERFACCIA
+// =========================================
+
+function updateMusicUI(enabled) {
+
+    musicToggle.textContent =
+        enabled ? '🔊' : '🔇';
+
+    settingsMusicToggle.textContent =
+        enabled ? '🔊' : '🔇';
+
+    musicStatus.textContent =
+        enabled ? 'Attiva' : 'Disattivata';
+
+}
+
+
+// =========================================
+// APPLICA STATO INIZIALE
+// =========================================
+
+updateMusicUI(musicEnabled);
 
 if (musicEnabled) {
-
-    musicToggle.textContent = '🔊';
 
     music.play().catch(() => {
 
@@ -1395,13 +1448,13 @@ if (musicEnabled) {
 
     });
 
-} else {
-
-    musicToggle.textContent = '🔇';
 }
 
 
-// Avvio al primo gesto dell'utente
+// =========================================
+// AVVIO AL PRIMO GESTO DELL'UTENTE
+// =========================================
+
 document.addEventListener('click', () => {
 
     if (
@@ -1416,34 +1469,83 @@ document.addEventListener('click', () => {
 }, { once: true });
 
 
-// Pulsante musica
-musicToggle.addEventListener('click', () => {
+// =========================================
+// SALVA IMPOSTAZIONE
+// =========================================
 
-    if (music.paused) {
+async function saveMusicSetting(enabled) {
+
+    const { error } = await supabaseClient
+        .from('score_user_settings')
+        .update({
+            music_enabled: enabled,
+            updated_at: new Date().toISOString()
+        })
+        .eq('user_id', user.id);
+
+    if (error) {
+
+        console.error(
+            'Errore salvataggio musica:',
+            error
+        );
+
+    }
+
+}
+
+
+// =========================================
+// PULSANTE MUSICA PRINCIPALE
+// =========================================
+
+musicToggle.addEventListener('click', async () => {
+
+    musicEnabled = !musicEnabled;
+
+    if (musicEnabled) {
 
         music.play().catch(() => {});
-
-        musicToggle.textContent = '🔊';
-
-        localStorage.setItem(
-            'fanta5_music_enabled',
-            'true'
-        );
 
     } else {
 
         music.pause();
 
-        musicToggle.textContent = '🔇';
-
-        localStorage.setItem(
-            'fanta5_music_enabled',
-            'false'
-        );
     }
+
+    updateMusicUI(musicEnabled);
+
+    await saveMusicSetting(musicEnabled);
 
 });
 
+
+// =========================================
+// PULSANTE MUSICA IN IMPOSTAZIONI
+// =========================================
+
+settingsMusicToggle.addEventListener(
+    'click',
+    async () => {
+
+        musicEnabled = !musicEnabled;
+
+        if (musicEnabled) {
+
+            music.play().catch(() => {});
+
+        } else {
+
+            music.pause();
+
+        }
+
+        updateMusicUI(musicEnabled);
+
+        await saveMusicSetting(musicEnabled);
+
+    }
+);
 
     const username =
         profile.username || 'giocatore';
@@ -1543,6 +1645,50 @@ document.getElementById('close_settings')
     });
 
     settingsPreviousDisplay.clear();
+
+});
+document.getElementById('settings_music_toggle')
+    .addEventListener('click', async () => {
+
+    if (music.paused) {
+
+        music.play().catch(() => {});
+
+        document.getElementById('settings_music_toggle').textContent = '🔊';
+        document.getElementById('music_status').textContent = 'Attiva';
+
+        const { error } = await supabaseClient
+            .from('score_user_settings')
+            .update({
+                music_enabled: true,
+                updated_at: new Date().toISOString()
+            })
+            .eq('user_id', user.id);
+
+        if (error) {
+            console.error('Errore salvataggio musica:', error);
+        }
+
+    } else {
+
+        music.pause();
+
+        document.getElementById('settings_music_toggle').textContent = '🔇';
+        document.getElementById('music_status').textContent = 'Disattivata';
+
+        const { error } = await supabaseClient
+            .from('score_user_settings')
+            .update({
+                music_enabled: false,
+                updated_at: new Date().toISOString()
+            })
+            .eq('user_id', user.id);
+
+        if (error) {
+            console.error('Errore salvataggio musica:', error);
+        }
+
+    }
 
 });
 </script>
