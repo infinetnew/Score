@@ -1315,58 +1315,6 @@ supabaseClient.auth.getSession().then(async ({ data }) => {
 
         loadingBar.style.width = '100%';
         loadingPercent.textContent = '100%';
-// =========================================
-// MUSICA FANTA 5
-// =========================================
-
-const music = document.getElementById('fanta5_music');
-const musicToggle = document.getElementById('music_toggle');
-
-music.volume = 0.15;
-
-// Recuperiamo la preferenza dell'utente
-const musicEnabled =
-    localStorage.getItem('fanta5_music_enabled') !== 'false';
-
-if (musicEnabled) {
-
-    musicToggle.textContent = '🔊';
-
-    music.play().catch(() => {
-        console.log('Autoplay musica bloccato dal browser.');
-    });
-
-} else {
-
-    musicToggle.textContent = '🔇';
-}
-
-
-// Pulsante musica
-musicToggle.addEventListener('click', () => {
-
-    if (music.paused) {
-
-        music.play().catch(() => {});
-        musicToggle.textContent = '🔊';
-
-        localStorage.setItem(
-            'fanta5_music_enabled',
-            'true'
-        );
-
-    } else {
-
-        music.pause();
-        musicToggle.textContent = '🔇';
-
-        localStorage.setItem(
-            'fanta5_music_enabled',
-            'false'
-        );
-    }
-
-});
 
         setTimeout(() => {
 
@@ -1377,6 +1325,78 @@ musicToggle.addEventListener('click', () => {
 
         return;
     }
+// =========================================
+// MUSICA FANTA 5
+// =========================================
+
+const music = document.getElementById('fanta5_music');
+const musicToggle = document.getElementById('music_toggle');
+
+music.volume = 0.15;
+
+const musicEnabled =
+    localStorage.getItem('fanta5_music_enabled') !== 'false';
+
+if (musicEnabled) {
+
+    musicToggle.textContent = '🔊';
+
+    music.play().catch(() => {
+
+        console.log(
+            'Autoplay bloccato. La musica partirà al primo tocco.'
+        );
+
+    });
+
+} else {
+
+    musicToggle.textContent = '🔇';
+}
+
+
+// Avvio al primo gesto dell'utente
+document.addEventListener('click', () => {
+
+    if (
+        musicEnabled &&
+        music.paused
+    ) {
+
+        music.play().catch(() => {});
+
+    }
+
+}, { once: true });
+
+
+// Pulsante musica
+musicToggle.addEventListener('click', () => {
+
+    if (music.paused) {
+
+        music.play().catch(() => {});
+
+        musicToggle.textContent = '🔊';
+
+        localStorage.setItem(
+            'fanta5_music_enabled',
+            'true'
+        );
+
+    } else {
+
+        music.pause();
+
+        musicToggle.textContent = '🔇';
+
+        localStorage.setItem(
+            'fanta5_music_enabled',
+            'false'
+        );
+    }
+
+});
 
 
     const username =
