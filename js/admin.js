@@ -844,6 +844,9 @@ if (h2hError) {
     console.error('Errore recupero scontri:', h2hError);
     return;
 }
+
+console.log('H2H RECUPERATI:', h2hMatches);
+console.log('NUMERO H2H RECUPERATI:', h2hMatches?.length);
 const h2hResults = (h2hMatches || []).map(match => {
 
     const isPlayer1 =
