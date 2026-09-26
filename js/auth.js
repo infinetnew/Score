@@ -39,6 +39,17 @@ if (!emailRegex.test(email)) {
 
         return;
     }
+// Avviamo la musica direttamente dal gesto di registrazione
+const registrationMusic =
+    document.getElementById('fanta5_music');
+
+if (registrationMusic) {
+
+    registrationMusic.volume = 0.08;
+
+    registrationMusic.play().catch(() => {});
+
+}
 
 
 // Controlliamo se il nickname è già utilizzato
