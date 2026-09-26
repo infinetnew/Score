@@ -159,11 +159,13 @@ if (error) {
     }
 
 
-    console.log('Login automatico effettuato:', loginData.user.id);
+console.log('Login automatico effettuato:', loginData.user.id);
 
+// Inizializziamo musica e notifiche
+await window.initializeFanta5Settings(loginData.user);
 
-    // Entriamo nell'app
-    enterApp(username);
+// Entriamo nell'app
+enterApp(username);
 }
 
 
