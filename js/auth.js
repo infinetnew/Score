@@ -39,17 +39,6 @@ if (!emailRegex.test(email)) {
 
         return;
     }
-// Avviamo la musica direttamente dal gesto di registrazione
-const registrationMusic =
-    document.getElementById('fanta5_music');
-
-if (registrationMusic) {
-
-    registrationMusic.volume = 0.08;
-
-    registrationMusic.play().catch(() => {});
-
-}
 
 
 // Controlliamo se il nickname è già utilizzato
@@ -159,13 +148,11 @@ if (error) {
     }
 
 
-console.log('Login automatico effettuato:', loginData.user.id);
+    console.log('Login automatico effettuato:', loginData.user.id);
 
-// Inizializziamo musica e notifiche
-await window.initializeFanta5Settings(loginData.user);
 
-// Entriamo nell'app
-enterApp(username);
+    // Entriamo nell'app
+    enterApp(username);
 }
 
 
