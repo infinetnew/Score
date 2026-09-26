@@ -28,6 +28,24 @@
         });
     }
 </script>
+
+<script>
+    async function testNotificationPermission() {
+
+        if (!('Notification' in window)) {
+            console.error('Le notifiche non sono supportate da questo browser.');
+            return;
+        }
+
+        const permission = await Notification.requestPermission();
+
+        console.log(
+            'Permesso notifiche:',
+            permission
+        );
+    }
+</script>
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Fanta 5">
