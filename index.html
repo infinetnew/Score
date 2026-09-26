@@ -1480,6 +1480,7 @@ registerPushSubscription(user.id);
 
         return;
     }
+async function initializeFanta5Settings(user) {
 // =========================================
 // MUSICA FANTA 5
 // =========================================
@@ -1735,6 +1736,10 @@ settingsMusicToggle.addEventListener(
 
     }
 );
+
+}
+
+    await initializeFanta5Settings(user);
 
     const username =
         profile.username || 'giocatore';
