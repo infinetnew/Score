@@ -66,20 +66,19 @@ async function registerPushSubscription(userId) {
         const registration =
             await navigator.serviceWorker.ready;
 
-        let subscription =
-            await registration.pushManager.getSubscription();
+let subscription =
+    await registration.pushManager.getSubscription();
 
-if (subscription) {
-    await subscription.unsubscribe();
-    subscription = null;
+if (!subscription) {
+
+    subscription =
+        await registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey:
+                'BK7sx4P76Lr7AmUjl1dukqsI9Vq20UbiKwD4d3eZ9-m0e1-NZpcvQLGQKKrjEvexZQJ6iG5GW4jOQrA8Dg3A-rQ'
+        });
+
 }
-
-subscription =
-    await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey:
-            'BK7sx4P76Lr7AmUjl1dukqsI9Vq20UbiKwD4d3eZ9-m0e1-NZpcvQLGQKKrjEvexZQJ6iG5GW4jOQrA8Dg3A-rQ'
-    });
 
         const subscriptionJSON =
             subscription.toJSON();
