@@ -15,14 +15,14 @@ self.addEventListener('push', event => {
 
     const title = data.title || 'Fanta 5';
 
-    const options = {
-        body: data.body || '',
-        icon: data.icon || '/Score/assets/icon-192.png',
-        badge: data.badge || '/Score/assets/icon-192.png',
-        data: {
-            url: data.url || '/Score/'
-        }
-    };
+const options = {
+    body: data.body || '',
+    icon: '/Score/assets/icon-192.png',
+    badge: '/Score/assets/icon-192.png',
+    data: {
+        url: data.url || '/Score/'
+    }
+};
 
     event.waitUntil(
         self.registration.showNotification(
