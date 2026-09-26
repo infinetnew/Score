@@ -44,6 +44,79 @@
             permission
         );
     }
+async function registerPushSubscription(userId) {
+
+    if (!('serviceWorker' in navigator)) {
+        console.error('Service Worker non supportato.');
+        return;
+    }
+
+    if (!('PushManager' in window)) {
+        console.error('Push API non supportata.');
+        return;
+    }
+
+    if (Notification.permission !== 'granted') {
+        console.log('Permesso notifiche non concesso.');
+        return;
+    }
+
+    try {
+
+        const registration =
+            await navigator.serviceWorker.ready;
+
+        let subscription =
+            await registration.pushManager.getSubscription();
+
+        if (!subscription) {
+
+            subscription =
+                await registration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey:
+                        'BPAWKVm7qRefOB5btCF3FjgWjwIeLSnOXVY2UZ2Cj76trziV40cJBmnU8JoprExcnL8OqkiQGOYI1WntVd7d9DY'
+                });
+
+        }
+
+        const subscriptionJSON =
+            subscription.toJSON();
+
+        const { error } =
+            await supabaseClient
+                .from('score_push_subscriptions')
+                .upsert({
+                    user_id: userId,
+                    endpoint: subscriptionJSON.endpoint,
+                    p256dh: subscriptionJSON.keys.p256dh,
+                    auth: subscriptionJSON.keys.auth,
+                    updated_at: new Date().toISOString()
+                }, {
+                    onConflict: 'user_id,endpoint'
+                });
+
+        if (error) {
+            console.error(
+                'Errore salvataggio push subscription:',
+                error
+            );
+            return;
+        }
+
+        console.log(
+            'Push subscription salvata correttamente.'
+        );
+
+    } catch (error) {
+
+        console.error(
+            'Errore registrazione push:',
+            error
+        );
+
+    }
+}
 </script>
 
 <meta name="apple-mobile-web-app-capable" content="yes">
