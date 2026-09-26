@@ -1443,7 +1443,7 @@ supabaseClient.auth.getSession().then(async ({ data }) => {
     // =========================================
 
     const user = data.session.user;
-
+registerPushSubscription(user.id);
     console.log('Sessione trovata:', user.id);
 
 
