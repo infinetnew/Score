@@ -1084,6 +1084,46 @@ document.getElementById('admin_users')
     document.getElementById('admin_user_detail').style.display = 'none';
 
 });
+document.getElementById('admin_stats')
+    .addEventListener('click', async () => {
+
+    document.getElementById('admin_menu').style.display = 'none';
+    document.getElementById('admin_stats_page').style.display = 'block';
+
+    const statsElement =
+        document.getElementById('admin_registered_users');
+
+    statsElement.textContent = '...';
+
+    const { count, error } = await supabaseClient
+        .from('score_users')
+        .select('*', {
+            count: 'exact',
+            head: true
+        });
+
+    if (error) {
+
+        console.error(
+            'Errore caricamento statistiche:',
+            error
+        );
+
+        statsElement.textContent = 'Errore';
+
+        return;
+    }
+
+    statsElement.textContent = count;
+
+});
+document.getElementById('back_admin_stats')
+    .addEventListener('click', () => {
+
+    document.getElementById('admin_stats_page').style.display = 'none';
+    document.getElementById('admin_menu').style.display = 'block';
+
+});
 document.getElementById('back_admin_users')
     .addEventListener('click', () => {
 
