@@ -660,7 +660,29 @@ document.getElementById('complete_matchday')
         }
 
         console.log('Giornata conclusa:', data);
+// Invia la notifica push agli utenti iscritti
+const { data: notificationData, error: notificationError } =
+    await supabaseClient.functions.invoke(
+        'send-matchday-completed',
+        {
+            body: {
+                completed_matchday: data.completed_matchday,
+                new_matchday: data.new_matchday
+            }
+        }
+    );
 
+if (notificationError) {
+    console.error(
+        'Errore invio notifica giornata conclusa:',
+        notificationError
+    );
+} else {
+    console.log(
+        'Notifica giornata conclusa inviata:',
+        notificationData
+    );
+}
         const button =
             document.getElementById('complete_matchday');
 
