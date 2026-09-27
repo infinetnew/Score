@@ -513,6 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const openRulesButton =
         document.getElementById('open_rules');
 
+console.log("PULSANTE REGOLAMENTO:", openRulesButton);
     const closeRulesButton =
         document.getElementById('close_rules');
 
