@@ -96,8 +96,8 @@ function caricaRegolamento() {
 
         <p>
             Ogni settimana ogni partecipante viene assegnato automaticamente
-            a una lega e riceve un budget di crediti con cui dovrà costruire
-            la propria squadra acquistando i calciatori disponibili.
+            a una lega e dovrà costruire la propria squadra acquistando i 
+	    calciatori disponibili.
         </p>
 
         <p>
@@ -452,14 +452,8 @@ function caricaRegolamento() {
         </p>
 
         <p>
-            Dopo la creazione degli scontri sarà inoltre possibile vedere
-            le informazioni relative al proprio avversario e ai calciatori
-            acquistati dall'altro partecipante.
-        </p>
-
-        <p>
             La sezione permette quindi di avere sempre sotto controllo
-            la propria squadra e la sfida della giornata.
+            la propria squadra.
         </p>
 
 
@@ -531,12 +525,6 @@ function caricaRegolamento() {
         <p>
             La velocità conta:
             <strong>più velocemente si risponde, più crediti si possono ottenere.</strong>
-        </p>
-
-        <p>
-            Se il quiz non viene ancora completato, il sistema può inviare
-            una notifica per ricordare che c'è ancora la possibilità di
-            giocare e ottenere crediti.
         </p>
 
 
