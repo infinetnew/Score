@@ -1700,6 +1700,27 @@ document.addEventListener('pointerdown', () => {
     }
 
 });
+// =========================================
+// PAUSA MUSICA QUANDO L'APP NON È VISIBILE
+// =========================================
+
+document.addEventListener('visibilitychange', () => {
+
+    if (document.hidden) {
+
+        // App iconizzata / non visibile
+        music.pause();
+
+    } else {
+
+        // App tornata visibile
+        if (musicEnabled && music.paused) {
+            music.play().catch(() => {});
+        }
+
+    }
+
+});
 
 // =========================================
 // SALVA IMPOSTAZIONE
